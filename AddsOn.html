@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add-ons Selection - AI-TECH PRO</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+/* Custom checkbox styles to match theme */
+input[type="checkbox"]:checked {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDqOnXYYPGPAITnEPD6l8msE92cGjSfiBtRgqx1Rn6okJO4BAKijq9pOOaFe2LTg5vsQkEtUiU_ApWWPGIPM4ZJYRFsk4h46ANCkxPUFcws7iov1tOYFmqz9HsFUGfBvQtTbao1VYBinmTD-l5VHIlhLZe1ts6gRuepJ-ilRTinkQhew8vBwlN5k8s3YeK0XbU4EoEKQD0Sxk4Rc6mCKOWWWBAN6dUFo2Ryt4MwC6zI7o3uRCzYUie_MJopGGLBSMnE5nEpoT_7_Nc)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Top Navigation -->
+<header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50">
+    <button
+  onclick="window.location.href='Pricingdashboard.html'"
+  class="fixed top-5 left-5 "
+>
+  ←
+</button>
+
+<div class="px-4 md:px-10 h-16 flex items-center justify-between max-w-7xl mx-auto w-full">
+    
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+    
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">deployed_code</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">AI-TECH PRO</h2>
+</div>
+<div class="flex items-center gap-4 md:gap-8">
+<nav class="hidden md:flex items-center gap-6">
+<a href="A9Admin.html" target="_blank" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a href="Pricingsub.html" target="_blank"  class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Subscriptions</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaQyb7y8mjcM_T_A9dc-rW3RnY7SnSO4ShyPERC-1XDq4jcpBDTY2NTNzDLYqX-l6xCDzECRG-yEFaFm9XO2ZOM_tM9B8CVHhCrFd0moW05aIuNVWVrCnCKQMn9RafQRuCFyglNa6l_XPhpo1rtlYFSLbQ4bnRUeMuq2nC-q857gF2xIcTILYphROZ3SO9rLQPE26bVCRYKBgb6Kn7NkHixPAmChx7e7gtsQgtVn0Vy3DKZHxwHAXJXfAHiEfHrGdk_5F8fPH1zuM");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Left Column: Heading & List Items -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
+                        Customize Your Plan
+                    </h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">
+                        Boost Your AI Career Journey with these optional add-ons.
+                    </p>
+</div>
+<!-- Add-ons List -->
+<div class="flex flex-col gap-4">
+<!-- Item 1: Mentor Sessions (Selected State) -->
+<label data-name="Mentor Sessions" data-price="150" data-period="month" class="group relative flex flex-col sm:flex-row gap-4 bg-primary/5 dark:bg-primary/10 border border-primary p-5 rounded-xl cursor-pointer transition-all hover:shadow-md">
+<div class="flex items-start gap-4 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-primary shrink-0 size-12 shadow-sm">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<p class="text-slate-900 dark:text-white text-lg font-bold">Mentor Sessions</p>
+<span class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">Popular</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">1-on-1 guidance from industry experts to accelerate your learning.</p>
+<p class="text-primary font-bold text-lg">$150.00 <span class="text-slate-400 text-sm font-normal">/ month</span></p>
+</div>
+</div>
+<div class="shrink-0 pt-1 flex justify-end sm:block">
+<input checked="" class="h-6 w-6 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-primary focus:ring-primary focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+</label>
+<!-- Item 2: Resume Review (Unselected) -->
+<label data-name="Resume Review" data-price="50" data-period="one-time" class="group relative flex flex-col sm:flex-row gap-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:shadow-md">
+<div class="flex items-start gap-4 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors shrink-0 size-12">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-lg font-bold mb-1">Resume Review</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">Get your CV ATS-optimized and ready for top tech companies.</p>
+<p class="text-slate-700 dark:text-slate-200 font-bold text-lg">$50.00 <span class="text-slate-400 text-sm font-normal">/ one-time</span></p>
+</div>
+</div>
+<div class="shrink-0 pt-1 flex justify-end sm:block">
+<input class="h-6 w-6 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+</label>
+<!-- Item 3: Mock Interviews (Unselected) -->
+<label data-name="Mock Interviews" data-price="75" data-period="session" class="group relative flex flex-col sm:flex-row gap-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:shadow-md">
+<div class="flex items-start gap-4 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors shrink-0 size-12">
+<span class="material-symbols-outlined">co_present</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-lg font-bold mb-1">Mock Interviews</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">Practice with real AI scenarios and get instant detailed feedback.</p>
+<p class="text-slate-700 dark:text-slate-200 font-bold text-lg">$75.00 <span class="text-slate-400 text-sm font-normal">/ session</span></p>
+</div>
+</div>
+<div class="shrink-0 pt-1 flex justify-end sm:block">
+<input class="h-6 w-6 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+</label>
+<!-- Item 4: AI Credits (Selected) -->
+<label data-name="AI Credits Pack" data-price="25" data-period="month" class="group relative flex flex-col sm:flex-row gap-4 bg-primary/5 dark:bg-primary/10 border border-primary p-5 rounded-xl cursor-pointer transition-all hover:shadow-md">
+<div class="flex items-start gap-4 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-white dark:bg-slate-700 text-primary shrink-0 size-12 shadow-sm">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-lg font-bold mb-1">AI Credits Pack</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">Add 500 extra GPU hours for intense model training sessions.</p>
+<p class="text-primary font-bold text-lg">$25.00 <span class="text-slate-400 text-sm font-normal">/ month</span></p>
+</div>
+</div>
+<div class="shrink-0 pt-1 flex justify-end sm:block">
+<input checked="" class="h-6 w-6 rounded border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-primary focus:ring-primary focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+</label>
+<!-- Item 5: Placement Support (Unselected) -->
+<label data-name="Placement Support" data-price="100" data-period="month" class="group relative flex flex-col sm:flex-row gap-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 rounded-xl cursor-pointer transition-all hover:border-primary/50 hover:shadow-md">
+<div class="flex items-start gap-4 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors shrink-0 size-12">
+<span class="material-symbols-outlined">work_outline</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-lg font-bold mb-1">Placement Support</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">Priority access to our exclusive job board and recruiter network.</p>
+<p class="text-slate-700 dark:text-slate-200 font-bold text-lg">$100.00 <span class="text-slate-400 text-sm font-normal">/ month</span></p>
+</div>
+</div>
+<div class="shrink-0 pt-1 flex justify-end sm:block">
+<input class="h-6 w-6 rounded border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+</label>
+</div>
+</div>
+<!-- Right Column: Sticky Summary -->
+<div class="lg:col-span-4 relative h-full">
+<div class="sticky top-24 flex flex-col gap-6">
+<!-- Summary Card -->
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-700/50">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Order Summary</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Review your selected add-ons</p>
+</div>
+<div class="p-6 flex flex-col gap-4">
+    <!-- Dynamic Order Items -->
+    <div id="order-items" class="flex flex-col gap-3">
+        <!-- JS will render selected items here -->
+    </div>
+    <hr class="border-dashed border-slate-200 dark:border-slate-700 my-2"/>
+    <!-- Total -->
+    <div class="flex justify-between items-end">
+        <div>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Total</p>
+            <p class="text-3xl font-black text-slate-900 dark:text-white mt-1">$<span id="total-amount">0.00</span></p>
+        </div>
+    </div>
+    <!-- Action Buttons -->
+    <div class="mt-4 flex flex-col gap-3">
+        <button id="add-to-plan" class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
+            Add to Plan
+        </button>
+        <a class="text-center text-sm font-medium text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">
+            Skip for now
+        </a>
+    </div>
+</div>
+<!-- Trust Badges -->
+<div class="bg-slate-50 dark:bg-slate-700/30 px-6 py-4 flex items-center justify-center gap-4 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                                Secure Payment
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                                Cancel Anytime
+                            </div>
+</div>
+</div>
+<!-- Help Box -->
+<div class="rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4 flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary">contact_support</span>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Need help deciding?</p>
+<p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Talk to our career advisors to find the best package for your goals.</p>
+<a class="text-xs font-bold text-primary mt-2 block hover:underline" href="#">Chat with us</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Interactivity Script: handles selection, summary rendering, persistence -->
+<script>
+    (function(){
+        const STORAGE_KEY = 'tp_addons_selection_v1';
+
+        function formatPrice(v){
+            return parseFloat(v).toFixed(2);
+        }
+
+        function getLabels(){
+            return Array.from(document.querySelectorAll('label[data-name][data-price]'));
+        }
+
+        function renderSummary(){
+            const container = document.getElementById('order-items');
+            const totalEl = document.getElementById('total-amount');
+            container.innerHTML = '';
+            let total = 0;
+            getLabels().forEach(label => {
+                const cb = label.querySelector('input[type="checkbox"]');
+                const name = label.dataset.name || '';
+                const price = parseFloat(label.dataset.price || '0');
+                if(cb && cb.checked){
+                    total += price;
+                    const item = document.createElement('div');
+                    item.className = 'flex justify-between items-start text-sm';
+                    item.innerHTML = `<div class="flex gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check_circle</span><span class="text-slate-700 dark:text-slate-200 font-medium">${name}</span></div><span class="text-slate-900 dark:text-white font-semibold">$${formatPrice(price)}</span>`;
+                    container.appendChild(item);
+                }
+            });
+            totalEl.textContent = formatPrice(total);
+            // store minimal state
+            const selected = getLabels().filter(l=> l.querySelector('input[type="checkbox"]').checked).map(l=> ({name: l.dataset.name, price: l.dataset.price, period: l.dataset.period||''}));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+        }
+
+        function syncFromStorage(){
+            try{
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if(!raw) return;
+                const parsed = JSON.parse(raw);
+                if(!Array.isArray(parsed)) return;
+                getLabels().forEach(label => {
+                    const name = label.dataset.name;
+                    const cb = label.querySelector('input[type="checkbox"]');
+                    if(cb){
+                        cb.checked = parsed.some(p => p.name === name);
+                    }
+                });
+            }catch(e){console.warn('Could not load saved addons', e)}
+        }
+
+        function setup(){
+            getLabels().forEach(label => {
+                const cb = label.querySelector('input[type="checkbox"]');
+                if(!cb) return;
+                // clicking the label should toggle checkbox (native), but we also toggle visual state
+                function applyState(){
+                    if(cb.checked){
+                        label.classList.add('bg-primary/5','border-primary');
+                    } else {
+                        label.classList.remove('bg-primary/5','border-primary');
+                    }
+                }
+                cb.addEventListener('change', ()=>{ applyState(); renderSummary(); });
+                // ensure initial visual state
+                applyState();
+            });
+
+            document.getElementById('add-to-plan').addEventListener('click', function(){
+                // simple confirmation for now
+                const raw = localStorage.getItem(STORAGE_KEY) || '[]';
+                const parsed = JSON.parse(raw);
+                if(parsed.length === 0){
+                    alert('No add-ons selected. Please select at least one add-on or click Skip.');
+                    return;
+                }
+                // simulate storing/checkout action
+                alert('Add-ons saved to your plan.\n' + parsed.map(p => `${p.name} - $${formatPrice(p.price)}`).join('\n'));
+                // optionally redirect to a checkout or subscription page
+                // window.location.href = 'checkout.html';
+            });
+
+            // initial render and restore
+            syncFromStorage();
+            renderSummary();
+        }
+
+        if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+    })();
+</script>
+</body></html>

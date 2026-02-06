@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI-TECH PRO Learning Insights</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111a22", // Matching the component example background
+                        "card-dark": "#1a2632", // Slightly lighter for cards
+                        "border-dark": "#233648",
+                        "text-secondary": "#92adc9"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display overflow-x-hidden">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        <!-- Top Navigation -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-6 py-3 sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="size-8 text-primary">
+                        <span class="material-symbols-outlined text-4xl">school</span>
+                    </div>
+                    <h2 class="text-white text-xl font-bold leading-tight tracking-tight">AI-TECH PRO</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="A9Admin.html" target="_blank"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">Dashboard</a>
+                    <a href="A17Analytics.html" target="_blank"
+                        class="text-white text-sm font-medium border-b-2 border-primary pb-0.5" href="#">Analytics</a>
+                    <a href="A6Catlog.html" target="_blank"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">Courses</a>
+                    <a href="A14Student.html"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">Students</a>
+                    <a href="A18Report.html" target="_blank"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">Reports</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <span
+                        class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">search</span>
+                    <input
+                        class="h-10 w-64 rounded-lg bg-[#233648] border-none pl-10 pr-4 text-sm text-white placeholder-text-secondary focus:ring-1 focus:ring-primary"
+                        placeholder="Search analytics..." />
+                </div>
+                <button class="relative text-text-secondary hover:text-white">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span
+                        class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+                </button>
+                <div class="size-9 rounded-full bg-cover bg-center cursor-pointer border border-border-dark"
+                    data-alt="User profile picture of an administrator"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBpIaH1BF2LXtFtfedvY2YRXffjUNWT8An3W_rrB8Ec30uNHUdW3Tm2LH8K20oWP1A7C6cZOtUFJdpNYBTtLeuO1S-ciCgowbEKPBd1c0rpN0BR9jH5M-LEpME5O80RK7Dx53W_xdEz4fXLUs2vQuMO_mA1h1vxdgGXUWqRywuuOxUIlBe8FozyOQnmfKIaG3EMHhijCLQPDrJGPJ4pxNvUhAKGtHABq8oJHe6vJgHt3mmXD1lCRiy9txYalGC9suyKreM5qVTmc8");'>
+                </div>
+            </div>
+        </header>
+        <div class="layout-container flex h-full grow flex-col max-w-[1440px] mx-auto w-full">
+            <!-- Page Header & Filters -->
+            <div class="px-6 py-6 border-b border-border-dark">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">Analytics Overview
+                        </h1>
+                        <p class="text-text-secondary text-base font-normal">Real-time insights into student performance
+                            and course ROI.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="exportBtn"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#233648] hover:bg-[#2f455a] transition-colors text-white text-sm font-medium">
+                            <span class="material-symbols-outlined text-[20px]">download</span>
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+                <!-- Filter Chips -->
+                <div class="flex flex-wrap items-center gap-3 overflow-x-auto scrollbar-hide pb-2" id="filterContainer">
+                    <span class="material-symbols-outlined text-text-secondary">filter_list</span>
+                    <button
+                        class="filter-chip flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] border border-transparent hover:bg-[#2d4257] pl-3 pr-2 transition-all data-[active=true]:bg-primary/20 data-[active=true]:border-primary/30 data-[active=true]:text-primary"
+                        data-filter="last30">
+                        <p class="text-sm font-medium">Last 30 Days</p>
+                    </button>
+                    <button
+                        class="filter-chip flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] border border-transparent hover:bg-[#2d4257] pl-3 pr-2 transition-all data-[active=true]:bg-primary/20 data-[active=true]:border-primary/30 data-[active=true]:text-primary"
+                        data-filter="python">
+                        <p class="text-sm font-medium">Python Course</p>
+                    </button>
+                    <button
+                        class="filter-chip flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] border border-transparent hover:bg-[#2d4257] pl-3 pr-2 transition-all data-[active=true]:bg-primary/20 data-[active=true]:border-primary/30 data-[active=true]:text-primary"
+                        data-filter="risk">
+                        <p class="text-sm font-medium">At-Risk Students</p>
+                    </button>
+                    <button
+                        class="filter-chip flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] border border-transparent hover:bg-[#2d4257] pl-3 pr-2 transition-all data-[active=true]:bg-primary/20 data-[active=true]:border-primary/30 data-[active=true]:text-primary"
+                        data-filter="datascience">
+                        <p class="text-sm font-medium">Skill: Data Science</p>
+                    </button>
+                    <button id="resetFilters"
+                        class="ml-auto flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg text-text-secondary hover:text-white pl-2 pr-2">
+                        <p class="text-sm font-medium">Reset Filters</p>
+                    </button>
+                </div>
+            </div>
+            <!-- Main Dashboard Content -->
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left Column: Visualizations (8 cols) -->
+                <div class="lg:col-span-8 flex flex-col gap-6">
+                    <!-- AI Insight Banner -->
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-xl border border-primary/30 bg-gradient-to-r from-primary/10 to-[#1a2632] p-5">
+                        <div class="flex gap-4">
+                            <div class="p-2 bg-primary/20 rounded-lg h-fit text-primary">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <p class="text-white text-base font-bold">AI Learning Insight</p>
+                                <p class="text-text-secondary text-sm">
+                                    Suggestion: Enroll more students in <span class="text-white font-medium">Python
+                                        Basics</span> to close the identified skill gap in Data Science modules.
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            class="whitespace-nowrap rounded-lg h-9 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors">
+                            Take Action
+                        </button>
+                    </div>
+                    <!-- Charts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Skill Gap Heatmap -->
+                        <div class="rounded-xl border border-border-dark bg-card-dark p-5 flex flex-col gap-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-white font-bold text-lg">Skill Gap Analysis</h3>
+                                <button class="text-text-secondary hover:text-white"><span
+                                        class="material-symbols-outlined">more_horiz</span></button>
+                            </div>
+                            <div class="flex-1 min-h-[250px] relative">
+                                <!-- Replaced static bars with Chart.js -->
+                                <canvas id="skillChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- ROI / Engagement -->
+                        <div class="rounded-xl border border-border-dark bg-card-dark p-5 flex flex-col gap-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-white font-bold text-lg">Engagement Trends</h3>
+                                <div class="flex items-center gap-1 text-green-500 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-sm">trending_up</span>
+                                    +12.5%
+                                </div>
+                            </div>
+                            <div class="flex-1 min-h-[250px] relative">
+                                <!-- Replaced SVG with Chart.js -->
+                                <canvas id="engagementChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- KPI Cards Row -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flex flex-col gap-2 rounded-xl p-5 border border-border-dark bg-card-dark">
+                            <p class="text-text-secondary text-sm font-medium">Avg. Completion Rate</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-white text-2xl font-bold">78%</p>
+                                <p class="text-green-500 text-sm font-medium mb-1">+5%</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 rounded-xl p-5 border border-border-dark bg-card-dark">
+                            <p class="text-text-secondary text-sm font-medium">Quiz Pass Rate</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-white text-2xl font-bold">92%</p>
+                                <p class="text-text-secondary text-sm font-medium mb-1">0%</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 rounded-xl p-5 border border-border-dark bg-card-dark">
+                            <p class="text-text-secondary text-sm font-medium">Active Learners</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-white text-2xl font-bold">1,240</p>
+                                <p class="text-green-500 text-sm font-medium mb-1">+12%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Student Detail View (4 cols) -->
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <!-- Search Student -->
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-text-secondary">person_search</span>
+                        </div>
+                        <input id="studentSearch"
+                            class="block w-full p-4 pl-10 text-sm text-white bg-card-dark border border-border-dark rounded-xl focus:ring-primary focus:border-primary placeholder-text-secondary"
+                            placeholder="Search student by name or ID..." type="text" value="" />
+                    </div>
+                    <!-- Selected Student Card -->
+                    <div class="rounded-xl border border-border-dark bg-card-dark overflow-hidden flex flex-col h-full">
+                        <!-- Header Background -->
+                        <div class="h-24 bg-gradient-to-r from-[#1e3a8a] to-primary/40 relative">
+                            <div
+                                class="absolute -bottom-10 left-6 rounded-full border-4 border-card-dark bg-card-dark p-0.5">
+                                <div class="size-20 rounded-full bg-cover bg-center"
+                                    data-alt="Portrait of student Alex Johnson"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6xl5LJq8I-yB-RxIlSzSWaYTiSScGegRuUNriJCvEH2nvDvekhDOxQ5sKkDc1irZFPT_I7AmMV0jwJspurfmFkJjppWLxkjbqAxTBW5xKyrBewNVUMG43QqE9woTHBYaUp3J6qNHXr8Jsewp5gk5ikB4OgAHUPu0fh23-evajQy4Qr52MraOxLRximFiqeKfCF0aLk_uNjhtxmEdDu-RK54z8DE0_bAM7UHKXujjKETq2h0kfTe1MdapVqXxi--W0okW_YZDgLMk");'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-12 px-6 pb-6 flex flex-col gap-6 flex-1">
+                            <!-- Student Info -->
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h2 class="text-xl font-bold text-white">Alex Johnson</h2>
+                                        <p class="text-text-secondary text-sm">ID: #ST-9928 • Data Science Track</p>
+                                    </div>
+                                    <span
+                                        class="inline-flex items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">Active</span>
+                                </div>
+                                <div class="mt-4 flex gap-4">
+                                    <button
+                                        class="flex-1 rounded-lg bg-primary py-2 text-sm font-medium text-white hover:bg-primary/90 transition-colors">Message</button>
+                                    <button
+                                        class="flex-1 rounded-lg bg-[#233648] py-2 text-sm font-medium text-white hover:bg-[#2d4257] transition-colors border border-border-dark">Details</button>
+                                </div>
+                            </div>
+                            <!-- Metrics -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="rounded-lg bg-[#111a22] p-3 border border-border-dark">
+                                    <p class="text-xs text-text-secondary uppercase font-bold tracking-wider">Avg Grade
+                                    </p>
+                                    <p class="text-xl font-bold text-white mt-1">92%</p>
+                                </div>
+                                <div class="rounded-lg bg-[#111a22] p-3 border border-border-dark">
+                                    <p class="text-xs text-text-secondary uppercase font-bold tracking-wider">AI Queries
+                                    </p>
+                                    <p class="text-xl font-bold text-white mt-1">142</p>
+                                </div>
+                            </div>
+                            <!-- Enrolled Courses -->
+                            <div class="flex flex-col gap-4">
+                                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Enrolled Courses</h3>
+                                <div class="space-y-4">
+                                    <!-- Course 1 -->
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-white font-medium">Advanced React Patterns</span>
+                                            <span class="text-text-secondary">85%</span>
+                                        </div>
+                                        <div class="h-2 w-full rounded-full bg-[#233648]">
+                                            <div class="h-2 rounded-full bg-primary" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Course 2 -->
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-white font-medium">UX Fundamentals</span>
+                                            <span class="text-green-500 font-medium flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                                Done
+                                            </span>
+                                        </div>
+                                        <div class="h-2 w-full rounded-full bg-[#233648]">
+                                            <div class="h-2 rounded-full bg-green-500" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Course 3 -->
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-white font-medium">Python for Data Science</span>
+                                            <span class="text-text-secondary">42%</span>
+                                        </div>
+                                        <div class="h-2 w-full rounded-full bg-[#233648]">
+                                            <div class="h-2 rounded-full bg-yellow-500" style="width: 42%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- AI Tutor Insights Section in Student Card -->
+                            <div class="mt-auto pt-4 border-t border-border-dark">
+                                <h3
+                                    class="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
+                                    AI Tutor Notes
+                                </h3>
+                                <p class="text-sm text-text-secondary leading-relaxed">
+                                    Alex struggles with <span class="text-white">Asynchronous JS</span> concepts but
+                                    excels in UI Design. Recommended specialized practice module sent yesterday.
+                                </p>
+                            </div>
+                            <button
+                                class="mt-4 w-full flex items-center justify-center gap-2 rounded-lg border border-border-dark hover:bg-[#233648] py-2.5 text-sm font-medium text-text-secondary hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                                Download Full Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // ============ Configuration ============
+        const API_BASE_URL = "http://localhost:8080/api";
+
+        // ============ State ============
+        let studentsData = [];
+        let skillChartInstance = null;
+        let engagementChartInstance = null;
+
+        // ============ Initialization ============
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAnalyticsData();
+            setupInteractions();
+        });
+
+        async function fetchAnalyticsData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/students`);
+                if (!response.ok) throw new Error('Failed to fetch data');
+                const students = await response.json();
+                studentsData = students;
+
+                updateDashboard(students);
+            } catch (error) {
+                console.error("Error loading analytics:", error);
+                showToast("Failed to load real-time data. Using offline mode.", "error");
+                // Fallback to empty or mock data if needed, but keeping existing UI for now
+            }
+        }
+
+        function updateDashboard(students) {
+            // 1. KPI Updates
+            updateKPICards(students);
+
+            // 2. Chart Updates
+            updateCharts(students);
+        }
+
+        function updateKPICards(students) {
+            // Active Learners (Total Students)
+            const activeLearnersEl = document.querySelector('.flex.flex-col.gap-2.rounded-xl.p-5:nth-child(3) .text-white.text-2xl');
+            if (activeLearnersEl) {
+                activeLearnersEl.textContent = students.length.toLocaleString();
+            }
+
+            // Mocking other KPIs as we don't have real "Completion Rate" or "Quiz" data yet
+            // In a real scenario, this would be averaged from a 'progress' field in the student object
+        }
+
+        function updateCharts(students) {
+            // --- Process Data for Skill Chart (Course Distribution) ---
+            const courseCounts = {};
+            students.forEach(s => {
+                const course = s.desiredCourse || 'Unknown';
+                courseCounts[course] = (courseCounts[course] || 0) + 1;
+            });
+
+            const labels = Object.keys(courseCounts);
+            const data = Object.values(courseCounts);
+
+            // --- Process Data for Engagement Chart (Enrollments in last 7 days) ---
+            const last7Days = [...Array(7)].map((_, i) => {
+                const d = new Date();
+                d.setDate(d.getDate() - (6 - i));
+                return d.toISOString().split('T')[0];
+            });
+
+            const enrollmentsByDay = last7Days.map(date => {
+                return students.filter(s => {
+                    if (!s.createdAt) return false; // Handle missing dates
+                    return s.createdAt.startsWith(date);
+                }).length;
+            });
+
+            // Format labels for chart (e.g., "Jan 20")
+            const dateLabels = last7Days.map(date => {
+                const d = new Date(date);
+                return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            });
+
+            // --- Render Skill Chart ---
+            const ctxSkill = document.getElementById('skillChart').getContext('2d');
+            if (skillChartInstance) skillChartInstance.destroy();
+
+            skillChartInstance = new Chart(ctxSkill, {
+                type: 'bar', // Changed from radar to bar for better distribution visualization
+                data: {
+                    labels: labels.length > 0 ? labels : ['No Data'],
+                    datasets: [{
+                        label: 'Students Enrolled',
+                        data: data.length > 0 ? data : [0],
+                        backgroundColor: 'rgba(19, 127, 236, 0.6)',
+                        borderColor: '#137fec',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: {
+                            grid: { color: '#233648' },
+                            ticks: { color: '#92adc9', stepSize: 1 }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: '#ffffff', font: { size: 11 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // --- Render Engagement Chart ---
+            const ctxEngage = document.getElementById('engagementChart').getContext('2d');
+            if (engagementChartInstance) engagementChartInstance.destroy();
+
+            engagementChartInstance = new Chart(ctxEngage, {
+                type: 'line',
+                data: {
+                    labels: dateLabels,
+                    datasets: [{
+                        label: 'New Enrollments',
+                        data: enrollmentsByDay,
+                        backgroundColor: (context) => {
+                            const ctx = context.chart.ctx;
+                            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                            gradient.addColorStop(0, 'rgba(19, 127, 236, 0.5)');
+                            gradient.addColorStop(1, 'rgba(19, 127, 236, 0)');
+                            return gradient;
+                        },
+                        borderColor: '#137fec',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#92adc9' } },
+                        y: {
+                            grid: { color: '#233648' },
+                            beginAtZero: true,
+                            ticks: { color: '#92adc9', stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupInteractions() {
+            // --- Export Data ---
+            document.getElementById('exportBtn').addEventListener('click', () => {
+                if (studentsData.length === 0) {
+                    showToast("No data available to export", "warning");
+                    return;
+                }
+
+                const headers = ['ID', 'Name', 'Email', 'Phone', 'Course', 'State', 'City', 'Joined Date'];
+                const rows = studentsData.map(s => [
+                    s.id || '',
+                    `"${s.name || ''}"`, // Quote name to handle commas
+                    s.email || '',
+                    s.phone || '',
+                    `"${s.desiredCourse || ''}"`,
+                    s.state || '',
+                    s.city || '',
+                    s.createdAt || ''
+                ]);
+
+                const csvContent = "data:text/csv;charset=utf-8,"
+                    + [headers.join(','), ...rows.map(e => e.join(','))].join("\n");
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `student_analytics_export_${new Date().toISOString().slice(0, 10)}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Visual Feedback
+                const btn = document.getElementById('exportBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span> Exported!';
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-600');
+                }, 2000);
+            });
+
+            // --- Mock Filter Interactions ---
+            const filters = document.querySelectorAll('.filter-chip');
+            filters.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const isActive = this.getAttribute('data-active') === 'true';
+                    this.setAttribute('data-active', !isActive);
+                    // In a real app, we would re-run updateCharts() with filtered data
+                    // For now, just toggling UI state
+                    showToast("Filtering updated", "info");
+                });
+            });
+
+            document.getElementById('resetFilters').addEventListener('click', () => {
+                filters.forEach(btn => btn.setAttribute('data-active', 'false'));
+                showToast("Filters reset", "info");
+            });
+
+            // --- Simple Toast System ---
+            // (Reusing simple toast logic if not available globally)
+            if (!window.showToast) {
+                window.showToast = (msg, type = 'info') => {
+                    console.log(`[${type.toUpperCase()}] ${msg}`);
+                    // Optionally create a DOM element
+                };
+            }
+        }
+
+        // --- Basic Toast Implementation (if not present) ---
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container') || createToastContainer();
+            const toast = document.createElement('div');
+
+            const colors = {
+                success: 'bg-green-600',
+                error: 'bg-red-600',
+                warning: 'bg-orange-500',
+                info: 'bg-blue-600'
+            };
+
+            toast.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg mb-3 flex items-center gap-2 transform transition-all duration-300 translate-x-10 opacity-0`;
+            toast.style.minWidth = '250px';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-[20px]">${type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info'}</span>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-x-10', 'opacity-0');
+            });
+
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-full');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function createToastContainer() {
+            const div = document.createElement('div');
+            div.id = 'toast-container';
+            div.className = 'fixed bottom-5 right-5 z-50 flex flex-col items-end';
+            document.body.appendChild(div);
+            return div;
+        }
+
+    </script>
+</body>
+
+</html>

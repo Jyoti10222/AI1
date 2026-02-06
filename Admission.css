@@ -1,0 +1,55 @@
+<div class="admission-container">
+    <h1>Student Admission Form</h1>
+
+    <div class="form-section-title">Personal Details</div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter full name">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter email">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="Enter phone number">
+        </div>
+
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date">
+        </div>
+
+        <div class="form-group full-width">
+            <label>Address</label>
+            <textarea placeholder="Enter full address"></textarea>
+        </div>
+    </div>
+
+    <div class="form-section-title">Course Details</div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Course</label>
+            <select>
+                <option>Select Course</option>
+                <option>AI & ML</option>
+                <option>Full Stack Development</option>
+                <option>Data Science</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Mode</label>
+            <select>
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Hybrid</option>
+            </select>
+        </div>
+    </div>
+
+    <button class="submit-btn">Submit Admission</button>
+</div>

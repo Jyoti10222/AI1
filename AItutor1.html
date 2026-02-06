@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Tutor - Python Full Stack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        "message-pop": "message-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+                        "pulse-ring": "pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                        "float": "float 3s ease-in-out infinite",
+                        "shimmer": "shimmer 2s linear infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        "message-pop": {
+                            "0%": { opacity: "0", transform: "translateY(20px) scale(0.95)" },
+                            "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+                        },
+                        "pulse-ring": {
+                            "0%": { transform: "scale(0.95)", boxShadow: "0 0 0 0 rgba(59, 130, 246, 0.7)" },
+                            "70%": { transform: "scale(1)", boxShadow: "0 0 0 15px rgba(59, 130, 246, 0)" },
+                            "100%": { transform: "scale(0.95)", boxShadow: "0 0 0 0 rgba(59, 130, 246, 0)" },
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-5px)" },
+                        },
+                        shimmer: {
+                            "0%": { backgroundPosition: "-200% 0" },
+                            "100%": { backgroundPosition: "200% 0" },
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary h-screen overflow-hidden flex flex-col">
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob"></div>
+<div class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000"></div>
+<div class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000"></div>
+</div>
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex-none">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group" href="#">
+<div class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">TECH-PRO AI</h2>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Catalog</a>
+<a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5" href="#">My Learning</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Mentors</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] cursor-pointer hover:scale-105 transition-transform">
+<div class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10 flex gap-6 overflow-hidden">
+<aside class="w-80 hidden lg:flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden h-full">
+<div class="p-5 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-dark-surface/50">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Current Course</h3>
+<h2 class="font-bold text-slate-900 dark:text-white leading-tight">Python Full Stack Masterclass</h2>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-blue-600 rounded-full w-[45%]"></div>
+</div>
+<span class="text-xs font-bold text-slate-500">45%</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-1">
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors opacity-60">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500">Module 1</span>
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+</div>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Python Basics</p>
+</div>
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors opacity-60">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500">Module 2</span>
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+</div>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Data Structures</p>
+</div>
+<div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 cursor-pointer relative overflow-hidden group">
+<div class="absolute inset-0 bg-blue-100/50 dark:bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-1 relative z-10">
+<span class="text-xs font-bold text-blue-600 dark:text-blue-400">Module 3 - Current</span>
+<span class="flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+</span>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white relative z-10">Advanced Functions</p>
+<div class="mt-2 pl-3 border-l-2 border-blue-200 dark:border-blue-700 space-y-2 relative z-10">
+<div class="text-xs font-medium text-blue-700 dark:text-blue-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-[10px] text-blue-500 fill-current">play_circle</span>
+                            Decorators &amp; Wrappers
+                        </div>
+</div>
+</div>
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors opacity-60">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500">Module 4</span>
+<span class="material-symbols-outlined text-slate-300 text-sm">radio_button_unchecked</span>
+</div>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Object Oriented Programming</p>
+</div>
+</div>
+</aside>
+<section class="flex-1 flex flex-col bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden relative">
+<div class="h-16 px-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-white/50 dark:bg-dark-card/50 backdrop-blur-sm z-20">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg text-indigo-600 dark:text-indigo-400">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Current Topic</p>
+<h2 class="text-sm font-bold text-slate-900 dark:text-white">Understanding Python Decorators</h2>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-[10px] font-bold uppercase tracking-wider border border-green-200 dark:border-green-800 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        AI Online
+                    </span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8 bg-slate-50/50 dark:bg-black/20 pb-24">
+<div class="flex flex-row-reverse items-end gap-3 group">
+<div class="size-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] shrink-0">
+<div class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="User" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44"/>
+</div>
+</div>
+<div class="max-w-[80%]">
+<div class="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-5 py-3 shadow-md shadow-blue-500/10">
+<p class="text-sm leading-relaxed">I'm finding Python decorators a bit confusing. Can you explain how they actually work under the hood?</p>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 text-right mr-1">10:42 AM</p>
+</div>
+</div>
+<div class="flex items-end gap-3 animate-message-pop origin-bottom-left">
+<div class="size-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/20">
+<span class="material-symbols-outlined text-white text-lg animate-float">smart_toy</span>
+</div>
+<div class="max-w-[90%] md:max-w-[85%] space-y-2">
+<div class="bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-2xl rounded-tl-sm px-6 py-5 shadow-sm">
+<p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+                                Think of a decorator as a wrapper for a function. It allows you to add functionality before or after the original function runs, without changing the function's code itself.
+                            </p>
+<div class="mb-4 p-4 bg-yellow-50 dark:bg-yellow-900/10 rounded-xl border border-yellow-100 dark:border-yellow-800/30 flex gap-4 items-start">
+<div class="p-2 bg-yellow-100 dark:bg-yellow-800/40 rounded-lg text-yellow-600 dark:text-yellow-400 shrink-0">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Analogy: Gift Wrapping</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400">
+                                         Imagine a function is a plain toy. A decorator is like wrapping paper. You wrap the toy (pass the function) inside the paper (the decorator), and what you get back is a wrapped gift. It's still the toy inside, but now it has an extra layer!
+                                     </p>
+</div>
+</div>
+<div class="relative group rounded-lg overflow-hidden bg-[#1e1e1e] border border-slate-700 mb-4 font-mono text-xs shadow-inner">
+<div class="flex items-center justify-between px-3 py-1.5 bg-[#2d2d2d] border-b border-slate-700">
+<span class="text-slate-400">example.py</span>
+<button class="text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined text-sm">content_copy</span></button>
+</div>
+<div class="p-4 overflow-x-auto text-slate-300">
+<span class="text-purple-400">def</span> <span class="text-yellow-300">my_decorator</span>(func):
+    <span class="text-purple-400">def</span> <span class="text-blue-400">wrapper</span>():
+        <span class="text-green-400">print</span>(<span class="text-orange-300">"Before..."</span>)
+        func()
+        <span class="text-green-400">print</span>(<span class="text-orange-300">"After..."</span>)
+    <span class="text-purple-400">return</span> wrapper
+<span class="text-yellow-300">@my_decorator</span>
+<span class="text-purple-400">def</span> <span class="text-blue-400">say_hello</span>():
+    <span class="text-green-400">print</span>(<span class="text-orange-300">"Hello!"</span>)
+                                </div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+<p class="text-sm font-medium text-slate-900 dark:text-white mb-3">
+                                    Do you have any doubt on this explanation? Or do you need any questions to practice?
+                                </p>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-colors border border-indigo-200 dark:border-indigo-800">
+                                        I have a doubt
+                                    </button>
+<button class="px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors border border-emerald-200 dark:border-emerald-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">fitness_center</span>
+                                        Give me a practice question
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-row-reverse items-end gap-3 group animate-message-pop" style="animation-delay: 0.1s; animation-fill-mode: backwards;">
+<div class="size-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] shrink-0">
+<div class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="User" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44"/>
+</div>
+</div>
+<div class="max-w-[80%]">
+<div class="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-5 py-3 shadow-md">
+<p class="text-sm leading-relaxed">Give me a practice question.</p>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 text-right mr-1">10:44 AM</p>
+</div>
+</div>
+<div class="flex items-end gap-3 animate-message-pop origin-bottom-left" style="animation-delay: 0.5s; animation-fill-mode: backwards;">
+<div class="size-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/20">
+<span class="material-symbols-outlined text-white text-lg">smart_toy</span>
+</div>
+<div class="max-w-[90%] md:max-w-[85%] space-y-2">
+<div class="bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-2xl rounded-tl-sm px-6 py-5 shadow-sm">
+<p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
+                                Great choice! Let's solidify your understanding with a practical challenge.
+                            </p>
+<div class="rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden bg-slate-50 dark:bg-dark-bg">
+<div class="bg-indigo-50 dark:bg-indigo-900/20 px-4 py-3 border-b border-indigo-100 dark:border-indigo-800 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400">code_blocks</span>
+<h4 class="text-sm font-bold text-indigo-900 dark:text-indigo-100">Practice: The Timer Decorator</h4>
+</div>
+<span class="text-[10px] font-bold text-indigo-500 bg-white dark:bg-indigo-950 px-2 py-0.5 rounded-full border border-indigo-100 dark:border-indigo-800">Level: Easy</span>
+</div>
+<div class="p-4">
+<p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+<strong>Task:</strong> Complete the code below to create a decorator <code>@time_it</code> that prints how long <code>process_data()</code> takes to run.
+                                    </p>
+<div class="bg-[#1e1e1e] rounded-lg p-3 font-mono text-xs text-slate-300 mb-3 border border-slate-700">
+<div class="flex">
+<span class="text-slate-600 select-none w-6 text-right mr-3">1</span>
+<span>import time</span>
+</div>
+<div class="flex">
+<span class="text-slate-600 select-none w-6 text-right mr-3">2</span>
+<span></span>
+</div>
+<div class="flex">
+<span class="text-slate-600 select-none w-6 text-right mr-3">3</span>
+<span><span class="text-purple-400">def</span> <span class="text-yellow-300">time_it</span>(func):</span>
+</div>
+<div class="flex">
+<span class="text-slate-600 select-none w-6 text-right mr-3">4</span>
+<span> <span class="text-slate-500 italic"># Your code here...</span></span>
+</div>
+<div class="flex">
+<span class="text-slate-600 select-none w-6 text-right mr-3">5</span>
+<span>    pass</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-colors shadow-sm shadow-blue-500/20">
+                                            Submit Answer
+                                        </button>
+<button class="px-4 py-2 bg-white dark:bg-dark-surface text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-600 transition-colors">
+                                            Show Hint
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-dark-card border-t border-slate-100 dark:border-slate-800 z-10 absolute bottom-0 w-full">
+<div class="px-6 pt-3 pb-2">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-1">Suggested Follow-ups</p>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 mask-linear-fade">
+<button class="flex-shrink-0 px-3 py-1.5 bg-slate-50 dark:bg-dark-surface hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-200 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-700 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 transition-all whitespace-nowrap">
+                            Can decorators take arguments?
+                        </button>
+<button class="flex-shrink-0 px-3 py-1.5 bg-slate-50 dark:bg-dark-surface hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-200 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-700 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 transition-all whitespace-nowrap">
+                            Explain @wraps from functools
+                        </button>
+<button class="flex-shrink-0 px-3 py-1.5 bg-slate-50 dark:bg-dark-surface hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-200 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-700 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 transition-all whitespace-nowrap">
+                            What are class decorators?
+                        </button>
+</div>
+</div>
+<div class="p-6 pt-1 pb-6 relative z-20">
+<div class="relative flex items-end gap-3">
+<div class="absolute -top-11 right-0 flex items-center gap-2 bg-white dark:bg-dark-surface px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-600 shadow-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-dark-bg transition-colors group">
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-blue-500 transition-colors uppercase">Explain like I'm 5</span>
+<button aria-checked="false" class="w-8 h-4 bg-slate-200 dark:bg-slate-600 rounded-full relative transition-colors focus:outline-none peer" role="switch">
+<span class="absolute left-0.5 top-0.5 w-3 h-3 bg-white rounded-full shadow-sm transition-transform duration-200 transform translate-x-0 group-hover:translate-x-0.5"></span>
+</button>
+</div>
+<div class="flex-1 relative group">
+<textarea class="w-full bg-slate-50 dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-2xl px-4 py-3 pr-12 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none custom-scrollbar transition-all group-hover:border-slate-300 dark:group-hover:border-slate-500" placeholder="Ask a question about decorators..." rows="1" style="min-height: 52px;"></textarea>
+<button class="absolute right-3 bottom-2.5 p-1.5 text-slate-400 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700/50">
+<span class="material-symbols-outlined text-xl">attach_file</span>
+</button>
+</div>
+<button class="relative shrink-0 size-[52px] rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 hover:shadow-indigo-500/50 transition-all flex items-center justify-center group overflow-visible">
+<div class="absolute inset-0 rounded-full bg-blue-500/30 animate-pulse-ring"></div>
+<span class="material-symbols-outlined text-2xl relative z-10 group-hover:scale-110 transition-transform">mic</span>
+</button>
+<button class="shrink-0 size-[52px] rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-200 dark:border-slate-700 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl transform rotate-90 ml-1">send</span>
+</button>
+</div>
+<p class="text-center text-[10px] text-slate-400 mt-2">Tech-Pro AI helps you learn. Check important info.</p>
+</div>
+</div>
+</section>
+</main>
+
+</body></html>

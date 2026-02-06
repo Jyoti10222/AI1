@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Java Full Stack AI Assistant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ea2e2e", // Changed to a Java-ish Red/Orange tone or keep blue? Let's stick to a tech blue/indigo but maybe slightly different to refresh. Actually User didn't ask for color change, but "Java" often implies red/orange. I'll stick to the existing primary for consistency unless I feel adventurous. Let's keep the nice blue #135bec for a clean "AI" look.
+                        "primary": "#135bec",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+    <header
+        class="w-full flex items-center justify-between px-6 lg:px-12 py-4 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md z-40 sticky top-0 border-b border-slate-200 dark:border-white/5">
+        <div class="flex items-center gap-4">
+            <div class="bg-primary/10 p-2 rounded-lg hidden sm:block">
+                <span class="material-symbols-outlined text-primary">code</span>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight text-slate-800 dark:text-white">
+                Java Full Stack <span class="hidden sm:inline text-slate-400 font-normal mx-2">/</span> <span
+                    class="text-primary block sm:inline">Spring Boot &amp; Microservices</span>
+            </h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <div
+                class="hidden md:flex items-center text-xs text-slate-500 dark:text-slate-400 font-medium bg-slate-100 dark:bg-white/5 px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/5">
+                <span class="material-symbols-outlined text-sm mr-1.5">timer</span>
+                Module 3 of 12
+            </div>
+            <div
+                class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                <span class="text-red-500 text-xs font-bold tracking-wide">AI ACTIVE</span>
+            </div>
+            <div
+                class="size-8 rounded-full bg-slate-200 dark:bg-white/10 ml-2 overflow-hidden border border-slate-300 dark:border-white/20">
+                <img alt="User Profile" class="w-full h-full"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLqZWXq_Lz-Gz5ZFEJ0dLe7067hDUE-X560WEEncSaPSRQIeSStSEmhogRj_CwIyCIPxcyGfbGLIFc-v0ZPe5S5ZA_VR8Cl3V5iojpUqqSnDJqIk5lOp0hfriLif5vEIS3D33TCgbGuZYNDBXicmUD9fSzJbFbzwKVZROkspzAPnwM6d8ytqfSurXnHzIR9UfLbI2me7JxPZnD-7bDI3LVcaRifONamK_jDmv_D_yGA8-xESzGVlw5kmxsWq6v4wykDBbcIB9tyBi7" />
+            </div>
+        </div>
+    </header>
+    <main class="flex-1 w-full max-w-6xl mx-auto p-6 lg:p-8 flex flex-col gap-8 pb-32">
+        <section class="w-full flex flex-col items-center">
+            <div
+                class="relative w-full aspect-video bg-black rounded-2xl shadow-2xl overflow-hidden group border border-slate-200 dark:border-white/10">
+                <div class="absolute inset-0 bg-cover bg-center opacity-60"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfp4ylADa58d_Dh-XYy3TCjyhn0H23sLmDA39CvpCb2xc-aaKN85KmOKKvOcvhiUSCsDSZDFErOT8axsCcuCNe12FXQoIDajzNuhuFdEWcnw2qYT3vrlOFVpT04zlr6bE5mqV_jrZa0NB4es4wbYR9oZYgBwQW2R1mVEBzDhTTw4CD-_aO_7aIJb3Wi6b7aKBzkobJoUqvtiSvRJYE48jkULEOOx0bKy8pITq95RvFGxZVoJLoow0RrJcPs35aOM0-482thXbOqObE');">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-between p-6 lg:p-10 z-10">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10 flex items-center gap-2">
+                            <span class="size-2 bg-red-500 rounded-full animate-pulse"></span>
+                            <span class="text-white text-xs font-bold tracking-wider">LIVE SESSION</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button
+                                class="size-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-white/10 text-white backdrop-blur-md transition-colors">
+                                <span class="material-symbols-outlined">settings</span>
+                            </button>
+                            <button
+                                class="size-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-white/10 text-white backdrop-blur-md transition-colors">
+                                <span class="material-symbols-outlined">subtitles</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full size-24 bg-primary/90 hover:bg-primary hover:scale-110 shadow-[0_0_40px_rgba(19,91,236,0.4)] text-white border-4 border-white/20 backdrop-blur-sm transition-all group">
+                        <span class="material-symbols-outlined text-6xl ml-2"
+                            style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    </button>
+                    <div class="flex flex-col gap-4 mt-auto">
+                        <div class="flex items-end gap-4">
+                            <div class="relative">
+                                <div
+                                    class="size-20 lg:size-24 rounded-full border-4 border-primary overflow-hidden shadow-2xl relative z-10 bg-black">
+                                    <img alt="AI Java Tutor" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm97sI5Wu9X-H9bNTD_7zKgD2N8D3OfhjP9F9sotk29A7R7gC4nu061bPzIv_-u10hRC8XTK0_eSfIRCVEzFXCqHfn7m7GajQzUHH3QAyt4NVTd6mT7OzD58bDwqnkiAp1-Xyhc39SJC025sbZTeziXBRXUPL2UmtqP6wobbcNj745Wg_Maan7CFvuoQOwpdo20Nxipjp7EAnUi9XqrBhvVBVIrdWYj4VVx2nr0i5d2kalhMMQsBo5FOmOW0gtSMdbwHdYXNmzrxKn" />
+                                </div>
+                                <div
+                                    class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-black z-20">
+                                    AI TUTOR</div>
+                            </div>
+                            <div class="flex-1 mb-2">
+                                <div
+                                    class="bg-black/80 backdrop-blur-xl rounded-xl p-4 lg:p-6 border border-white/10 shadow-lg transform transition-transform hover:scale-[1.01] origin-bottom-left">
+                                    <p class="text-white text-lg lg:text-xl font-medium leading-relaxed font-display">
+                                        <span class="text-primary font-bold">Explanation:</span> In Spring Boot, the
+                                        <code
+                                            class="bg-white/10 px-1.5 py-0.5 rounded text-amber-300 font-mono text-base">@SpringBootApplication</code>
+                                        annotation is a convenience annotation that adds all of the following: <span
+                                            class="italic text-slate-300">@Configuration</span>, <span
+                                            class="italic text-slate-300">@EnableAutoConfiguration</span>, and <span
+                                            class="italic text-slate-300">@ComponentScan</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex items-center gap-4 text-white text-xs font-bold tracking-wider">
+                            <span>14:20</span>
+                            <div
+                                class="flex-1 h-2 bg-white/20 rounded-full overflow-hidden cursor-pointer group/progress relative">
+                                <div class="absolute inset-y-0 left-0 bg-primary w-[35%] rounded-full"></div>
+                                <div
+                                    class="absolute top-1/2 left-[35%] -translate-y-1/2 size-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity transform scale-0 group-hover/progress:scale-100">
+                                </div>
+                            </div>
+                            <span>45:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-8 flex flex-col gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <details
+                        class="group relative bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-sm">
+                        <summary
+                            class="flex items-center justify-between p-3 cursor-pointer select-none hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">menu_book</span>
+                                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Chapters</span>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <div
+                            class="absolute top-full left-0 right-0 mt-2 p-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-xl z-30 max-h-60 overflow-y-auto">
+                            <div class="space-y-1">
+                                <a class="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                    href="#">1. Java Basics Refresher</a>
+                                <a class="block px-3 py-2 rounded-lg text-sm font-bold bg-primary/10 text-primary"
+                                    href="#">2. Spring Boot Intro</a>
+                                <a class="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                    href="#">3. RESTful Services</a>
+                                <a class="block px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                    href="#">4. Data JPA &amp; Hibernate</a>
+                            </div>
+                        </div>
+                    </details>
+                    <details
+                        class="group relative bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-sm">
+                        <summary
+                            class="flex items-center justify-between p-3 cursor-pointer select-none hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-purple-500">auto_awesome</span>
+                                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Smart Notes</span>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <div
+                            class="absolute top-full left-0 right-0 mt-2 p-4 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-xl z-30 w-72 md:w-full">
+                            <div class="space-y-3">
+                                <div
+                                    class="bg-slate-50 dark:bg-white/5 p-2 rounded border border-slate-100 dark:border-white/5">
+                                    <p class="text-xs font-bold text-slate-700 dark:text-slate-300">
+                                        @SpringBootApplication</p>
+                                    <p class="text-[10px] text-slate-500 mt-1">Combines @Configuration,
+                                        @EnableAutoConfiguration, @ComponentScan</p>
+                                </div>
+                                <div
+                                    class="bg-slate-50 dark:bg-white/5 p-2 rounded border border-slate-100 dark:border-white/5">
+                                    <p class="text-xs font-bold text-slate-700 dark:text-slate-300">IoC Container</p>
+                                    <p class="text-[10px] text-slate-500 mt-1">Manages the lifecycle of beans.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <details
+                        class="group relative bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-sm">
+                        <summary
+                            class="flex items-center justify-between p-3 cursor-pointer select-none hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-orange-500">slideshow</span>
+                                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">PPT Slides</span>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <div
+                            class="absolute top-full left-0 right-0 mt-2 p-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-xl z-30">
+                            <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                href="#">
+                                <span class="material-symbols-outlined text-orange-500 text-sm">download</span>
+                                Module_02_Intro.pptx
+                            </a>
+                        </div>
+                    </details>
+                    <details
+                        class="group relative bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-sm">
+                        <summary
+                            class="flex items-center justify-between p-3 cursor-pointer select-none hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+                                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Resources</span>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <div
+                            class="absolute top-full left-0 right-0 mt-2 p-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl shadow-xl z-30">
+                            <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                href="#">
+                                <span class="material-symbols-outlined text-red-500 text-sm">download</span>
+                                Spring_CheatSheet.pdf
+                            </a>
+                            <a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                                href="#">
+                                <span class="material-symbols-outlined text-blue-500 text-sm">link</span>
+                                Source Code (GitHub)
+                            </a>
+                        </div>
+                    </details>
+                </div>
+                <details
+                    class="group bg-gradient-to-br from-slate-900 to-slate-800 dark:from-surface-dark dark:to-black rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg"
+                    open="">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer select-none bg-white/5 hover:bg-white/10 transition-colors">
+                        <div class="flex items-center gap-2 text-white">
+                            <div class="bg-primary/20 p-1.5 rounded">
+                                <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+                            </div>
+                            <span class="font-bold text-sm tracking-wide">AI Concept Summary</span>
+                            <span
+                                class="bg-primary text-[10px] font-bold px-1.5 py-0.5 rounded ml-2 text-white">LIVE</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                    </summary>
+                    <div class="p-6 relative">
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2">
+                        </div>
+                        <div class="relative z-10 flex flex-col md:flex-row gap-6 items-start">
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-white mb-2">Dependency Injection (DI)</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    A design pattern used to implement IoC. It allows the creation of dependent objects
+                                    outside of a class and provides those objects to a class in different ways. In
+                                    Spring, we use <code class="text-primary font-mono">@Autowired</code> to inject
+                                    dependencies.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span
+                                        class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Keywords:</span>
+                                    <span
+                                        class="text-xs bg-white/10 text-white px-2 py-1 rounded hover:bg-white/20 cursor-pointer transition-colors">Inversion
+                                        of Control</span>
+                                    <span
+                                        class="text-xs bg-white/10 text-white px-2 py-1 rounded hover:bg-white/20 cursor-pointer transition-colors">Beans</span>
+                                    <span
+                                        class="text-xs bg-white/10 text-white px-2 py-1 rounded hover:bg-white/20 cursor-pointer transition-colors">ApplicationContext</span>
+                                </div>
+                            </div>
+                            <div class="hidden md:block w-px bg-white/10 self-stretch"></div>
+                            <div class="w-full md:w-48 shrink-0">
+                                <p class="text-xs font-bold text-slate-400 mb-2 uppercase">Why it matters?</p>
+                                <ul class="text-xs text-slate-300 space-y-2">
+                                    <li class="flex gap-2">
+                                        <span class="material-symbols-outlined text-green-500 text-sm">check</span>
+                                        Loose coupling
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <span class="material-symbols-outlined text-green-500 text-sm">check</span>
+                                        Easier testing
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <span class="material-symbols-outlined text-green-500 text-sm">check</span>
+                                        Maintainability
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <style>
+                .col-span-12-force {
+                    grid-column: span 12 / span 12;
+                }
+            </style>
+        </section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div
+                class="flex flex-col h-full bg-white dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden">
+                <div
+                    class="p-4 border-b border-slate-200 dark:border-white/5 flex justify-between items-center bg-slate-50 dark:bg-white/5">
+                    <h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">co_present</span>
+                        Current Slide
+                    </h3>
+                    <button class="text-xs text-slate-500 hover:text-primary flex items-center gap-1 transition-colors">
+                        <span class="material-symbols-outlined text-sm">fullscreen</span> Expand
+                    </button>
+                </div>
+                <div class="p-5 flex-1 flex flex-col gap-4">
+                    <div
+                        class="relative rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 group cursor-pointer">
+                        <img alt="Spring Architecture Diagram"
+                            class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGe56TCDYgqh8uZ0atONhe1Gtw6GWoBHoYqku9NxoAnak0h5S2HoDCrM04zLrRZuHAc6b6Cmeu7ASdFPimC0LZ-CnJM6OnadxZOj8_pwzjr_zbwehdPv68JND5ePO060eyKVA0-fWVB69UtcyaShpruJLxip38298IFGTzZZyZFak1SxUcwMeiT9q-0X332zSTiQ5ek4hpXpjy4I_fC2veq02WwPgh-D978dtO0YeZrg-o8XljN3jgs4Gp14AYYRP1WIFHA8sSmmTd" />
+                        <div
+                            class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md">
+                            Slide 14/42</div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 bg-slate-50 dark:bg-background-dark/50 p-4 rounded-xl border border-slate-200 dark:border-white/5">
+                        <button
+                            class="size-12 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-lg shadow-primary/30 transition-all hover:scale-110 active:scale-95 group relative overflow-hidden">
+                            <span
+                                class="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-0 group-hover:opacity-100"></span>
+                            <span class="material-symbols-outlined text-2xl">mic</span>
+                        </button>
+                        <div>
+                            <p class="text-sm font-bold text-slate-800 dark:text-white">Ask about this diagram</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">AI can analyze visual components</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col h-full bg-yellow-50 dark:bg-[#1a1810] rounded-2xl border border-yellow-200 dark:border-yellow-900/30 shadow-sm overflow-hidden">
+                <div
+                    class="p-4 border-b border-yellow-200 dark:border-yellow-900/30 flex justify-between items-center bg-yellow-100/50 dark:bg-yellow-900/10">
+                    <h3 class="font-bold text-yellow-900 dark:text-yellow-500 flex items-center gap-2">
+                        <span class="material-symbols-outlined">edit_note</span>
+                        My Notes
+                    </h3>
+                    <button
+                        class="text-xs font-bold text-yellow-700 dark:text-yellow-500 flex items-center gap-1.5 hover:bg-yellow-200 dark:hover:bg-yellow-900/40 px-2 py-1 rounded transition-colors">
+                        <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                        Export PDF
+                    </button>
+                </div>
+                <div class="p-0 flex-1 relative flex flex-col">
+                    <div class="absolute inset-0 pointer-events-none opacity-20 dark:opacity-10"
+                        style="background-image: linear-gradient(#eab308 1px, transparent 1px); background-size: 100% 2rem; margin-top: 1.9rem;">
+                    </div>
+                    <textarea
+                        class="flex-1 w-full bg-transparent border-none resize-none text-slate-800 dark:text-yellow-100 placeholder-yellow-800/30 dark:placeholder-yellow-500/30 text-base p-6 focus:ring-0 leading-8"
+                        placeholder="• Spring Initializr creates project structure
+• Annotations reduce boilerplate code
+• Remember: Convention over Configuration"></textarea>
+                    <div
+                        class="p-3 border-t border-yellow-200 dark:border-yellow-900/30 flex justify-between items-center bg-yellow-100/30 dark:bg-yellow-900/10">
+                        <span class="text-[10px] text-yellow-700/60 dark:text-yellow-500/50 font-medium">Saved 2m
+                            ago</span>
+                        <button
+                            class="text-yellow-700 dark:text-yellow-500 hover:text-yellow-900 dark:hover:text-yellow-300 transition-colors">
+                            <span class="material-symbols-outlined">add_circle</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Configure video ID for this course
+        window.courseVideoId = 'eIrMbAQSU34'; // "Java Tutorial for Beginners" (Edureka)
+    </script>
+    <script src="js/video-player-configurable.js?v=3"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

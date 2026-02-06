@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Assignments &amp; Practice - Cybersecurity</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary h-screen overflow-hidden flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex-none">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="#">
+                        <div
+                            class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                        </div>
+                        <h2
+                            class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                            TECH-PRO AI</h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a href="A7Tutor.html" target="_blank"
+                            class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">Catalog</a>
+                        <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                            href="#">My Learning</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Mentors</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Community</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                    </button>
+                    <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                        <span id="header-user-name"
+                            class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                        <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px]">
+                            <div
+                                class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="flex-1 w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10 flex gap-6 overflow-hidden">
+        <aside class="w-72 hidden lg:flex flex-col gap-6 h-full">
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Current Course</h3>
+                <h2 class="font-bold text-slate-900 dark:text-white leading-tight">Cybersecurity Professional
+                    Certificate</h2>
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-600 rounded-full w-[65%]"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500">65%</span>
+                </div>
+            </div>
+            <div
+                class="flex-1 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-900 dark:text-white">Practice Progress</h3>
+                </div>
+                <div class="p-4">
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-slate-500">Questions Solved</span>
+                            <span class="font-bold text-slate-900 dark:text-white" id="progressText">0/0</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div id="progressBar" class="h-full bg-blue-500 rounded-full transition-all duration-500"
+                                style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <section class="flex-1 flex flex-col gap-6 overflow-hidden">
+            <!-- Mode Switcher -->
+            <div class="flex items-center justify-between">
+                <div
+                    class="flex bg-white dark:bg-dark-card rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+                    <button onclick="switchPracticeMode('questions')" id="btn-questions"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-all bg-blue-500 text-white shadow-sm">
+                        Practice Questions
+                    </button>
+                    <button onclick="switchPracticeMode('code')" id="btn-code"
+                        class="px-4 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+                        Code Practice
+                    </button>
+                </div>
+                <div id="difficulty-selector" class="flex items-center gap-2">
+                    <span class="text-sm text-slate-500">Difficulty:</span>
+                    <select id="difficultyFilter" onchange="filterQuestionsByDifficulty()"
+                        class="bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg text-sm px-3 py-1.5 focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- QUESTIONS MODE -->
+            <div id="questions-mode" class="flex-1 flex flex-col gap-6 overflow-hidden">
+                <div
+                    class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 flex flex-col h-full overflow-y-auto custom-scrollbar relative">
+
+                    <!-- Question Container -->
+                    <div id="question-container" class="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+                        <div class="flex items-center justify-between mb-6">
+                            <span
+                                class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider"
+                                id="question-difficulty-badge">Easy</span>
+                            <span class="text-slate-500 text-sm" id="question-counter">Question 1 of 5</span>
+                        </div>
+
+                        <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-6 leading-relaxed"
+                            id="question-text">
+                            Loading question...
+                        </h2>
+
+                        <div class="space-y-3 mb-8" id="options-container">
+                            <!-- Options will be injected here -->
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="feedback-area" class="hidden mb-6 p-4 rounded-xl"></div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="border-t border-slate-200 dark:border-slate-700 pt-6 mt-auto">
+                        <div class="flex justify-between items-center max-w-3xl mx-auto w-full">
+                            <button onclick="previousPracticeQuestion()" id="prev-btn"
+                                class="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50 transition-colors">
+                                Previous
+                            </button>
+                            <div class="flex gap-3">
+                                <button onclick="checkAnswer()" id="check-btn"
+                                    class="px-6 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">
+                                    Check Answer
+                                </button>
+                                <button onclick="nextPracticeQuestion()" id="next-btn"
+                                    class="hidden px-6 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium hover:opacity-90 transition-colors">
+                                    Next Question
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Overlay (Hidden by default) -->
+                    <div id="results-overlay"
+                        class="hidden absolute inset-0 bg-white dark:bg-dark-card z-20 flex flex-col items-center justify-center text-center p-6">
+                        <div
+                            class="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6 text-green-600 dark:text-green-400">
+                            <span class="material-symbols-outlined text-4xl">emoji_events</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Practice Complete!</h2>
+                        <p class="text-slate-500 mb-8" id="result-message">Great job! You've mastered the basics.</p>
+                        <div class="flex items-center gap-8 mb-8">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-slate-900 dark:text-white" id="final-score">0/0
+                                </div>
+                                <div class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Score</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400" id="final-accuracy">0%
+                                </div>
+                                <div class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Accuracy
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="resetPractice()"
+                            class="px-8 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:scale-105 transition-transform">
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CODE PRACTICE MODE (Hidden by default) -->
+            <div id="code-mode" class="hidden flex-1 flex flex-col gap-4 overflow-hidden h-full">
+                <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4 h-full overflow-hidden">
+                    <!-- Problem Description -->
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 overflow-y-auto custom-scrollbar">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white" id="code-challenge-title">
+                                Select a Challenge</h3>
+                            <span
+                                class="px-2 py-1 rounded text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">Coding
+                                Challenge</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6" id="code-challenge-desc">
+                            Select a coding challenge from the list to start practicing.
+                        </p>
+
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Available Challenges:</h4>
+                            <div id="challenge-list" class="space-y-2">
+                                <!-- Challenge items injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Editor -->
+                    <div class="flex flex-col gap-4 h-full overflow-hidden">
+                        <div
+                            class="flex-1 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
+                            <div
+                                class="flex items-center justify-between px-4 py-2 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+                                <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Solution
+                                    Editor</span>
+                                <select id="language-select" onchange="changeLanguage()"
+                                    class="text-xs bg-white dark:bg-dark-bg border-slate-200 dark:border-slate-700 rounded">
+                                    <option value="python">Python</option>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="java">Java</option>
+                                </select>
+                            </div>
+                            <div class="flex-1 relative">
+                                <textarea id="code-editor"
+                                    class="w-full h-full p-4 font-mono text-sm bg-[#1e1e1e] text-slate-300 resize-none focus:outline-none"
+                                    spellcheck="false"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Output Console -->
+                        <div
+                            class="h-1/3 bg-[#1e1e1e] rounded-2xl border border-slate-700 shadow-sm p-4 font-mono text-sm overflow-y-auto custom-scrollbar">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-slate-400 text-xs uppercase tracking-wider">Console Output</span>
+                                <button onclick="runCode()"
+                                    class="text-xs bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded transition-colors">
+                                    Run Code
+                                </button>
+                            </div>
+                            <div id="code-output" class="text-slate-300 whitespace-pre-wrap font-mono">
+                                > Ready to run...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/student-profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const p = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            if (p.fullName) {
+                const n = document.getElementById('header-user-name');
+                if (n) n.textContent = p.fullName;
+                const w = document.getElementById('student-name');
+                if (w && w.innerText.includes('Welcome')) w.innerText = `Welcome back, ${p.firstName}! 👋`;
+            }
+            if (p.photo) {
+                const i = document.getElementById('student-photo');
+                if (i) i.src = p.photo;
+            }
+        });
+    </script>
+    <script src="js/access-control.js"></script>
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'cyber';
+
+        // State
+        let currentMode = 'questions'; // 'questions' or 'code'
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedDifficulty = 'easy';
+        let filteredQuestions = [];
+        let practiceQuestions = { easy: [], medium: [], hard: [] };
+        let codeChallenges = [];
+
+        let samplePracticeQuestions = {
+            easy: [],
+            medium: [],
+            hard: []
+        };
+
+        // --- Initialization ---
+        async function loadAssignmentData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const data = result.data;
+
+                    // Load Practice Questions
+                    if (data.practiceQuestions) {
+                        samplePracticeQuestions = data.practiceQuestions;
+                    }
+
+                    // Load Code Challenges
+                    if (data.codeChallenges) {
+                        codeChallenges = data.codeChallenges;
+                    }
+
+                    // Initialize
+                    filterQuestionsByDifficulty();
+                    loadCodeChallengesList();
+                }
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        function switchPracticeMode(mode) {
+            currentMode = mode;
+            // Update buttons
+            document.getElementById('btn-questions').className = mode === 'questions'
+                ? 'px-4 py-2 rounded-md text-sm font-medium transition-all bg-blue-500 text-white shadow-sm'
+                : 'px-4 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all';
+
+            document.getElementById('btn-code').className = mode === 'code'
+                ? 'px-4 py-2 rounded-md text-sm font-medium transition-all bg-blue-500 text-white shadow-sm'
+                : 'px-4 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all';
+
+            // Show sections
+            document.getElementById('questions-mode').classList.toggle('hidden', mode !== 'questions');
+            document.getElementById('code-mode').classList.toggle('hidden', mode !== 'code');
+            document.getElementById('difficulty-selector').style.display = mode === 'questions' ? 'flex' : 'none';
+        }
+
+        // --- Question Mode Logic ---
+        function filterQuestionsByDifficulty() {
+            selectedDifficulty = document.getElementById('difficultyFilter').value;
+            filteredQuestions = samplePracticeQuestions[selectedDifficulty] || [];
+            currentQuestionIndex = 0;
+            score = 0;
+            updateScoreDisplay(); // Reset progress
+
+            if (filteredQuestions.length > 0) {
+                loadPracticeQuestions();
+                document.getElementById('results-overlay').classList.add('hidden');
+            } else {
+                document.getElementById('question-text').textContent = "No questions available for this difficulty.";
+                document.getElementById('options-container').innerHTML = "";
+            }
+        }
+
+        function loadPracticeQuestions() {
+            const q = filteredQuestions[currentQuestionIndex];
+            if (!q) return;
+
+            // Content
+            document.getElementById('question-difficulty-badge').textContent = selectedDifficulty;
+            document.getElementById('question-counter').textContent = `Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
+            document.getElementById('question-text').textContent = q.question;
+
+            // Options
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const optLetter = String.fromCharCode(65 + idx); // A, B, C...
+                // Option text handles "A) Text" format or just "Text"
+                const optText = opt.includes(')') ? opt.split(')')[1].trim() : opt;
+
+                const btn = document.createElement('div');
+                btn.className = 'group p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 cursor-pointer transition-all flex items-center gap-4';
+                btn.onclick = () => selectPracticeOption(btn, optLetter);
+                btn.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-500 group-hover:bg-blue-500 group-hover:text-white transition-colors" id="opt-badge-${optLetter}">
+                        ${optLetter}
+                    </div>
+                    <span class="text-slate-700 dark:text-slate-300 font-medium">${optText}</span>
+                    <input type="radio" name="practice-opt" value="${optLetter}" class="hidden">
+                `;
+                container.appendChild(btn);
+            });
+
+            // Reset state
+            document.getElementById('feedback-area').className = 'hidden mb-6 p-4 rounded-xl';
+            document.getElementById('feedback-area').innerHTML = '';
+            document.getElementById('check-btn').classList.remove('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+        }
+
+        function selectPracticeOption(el, val) {
+            // Deselect all
+            document.querySelectorAll('#options-container > div').forEach(d => {
+                d.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/10');
+                d.querySelector('input').checked = false;
+            });
+            // Select this
+            el.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/10');
+            el.querySelector('input').checked = true;
+        }
+
+        function checkAnswer() {
+            const selected = document.querySelector('input[name="practice-opt"]:checked');
+            if (!selected) return;
+
+            const q = filteredQuestions[currentQuestionIndex];
+            const isCorrect = selected.value === q.correctAnswer;
+            const feedback = document.getElementById('feedback-area');
+
+            // UI Feedback
+            if (isCorrect) {
+                feedback.className = 'mb-6 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800 block';
+                feedback.innerHTML = `<strong class="block mb-1">Correct! 🎉</strong>${q.explanation}`;
+                score++;
+            } else {
+                feedback.className = 'mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800 block';
+                feedback.innerHTML = `<strong class="block mb-1">Incorrect.</strong>The correct answer is ${q.correctAnswer}. ${q.explanation}`;
+            }
+
+            // Buttons
+            document.getElementById('check-btn').classList.add('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
+
+            // Allow Next even if last question (to show results)
+            if (currentQuestionIndex === filteredQuestions.length - 1) {
+                document.getElementById('next-btn').textContent = "Inish";
+                document.getElementById('next-btn').onclick = showFinalResults;
+            } else {
+                document.getElementById('next-btn').textContent = "Next Question";
+                document.getElementById('next-btn').onclick = nextPracticeQuestion;
+            }
+
+            updateScoreDisplay();
+        }
+
+        function nextPracticeQuestion() {
+            if (currentQuestionIndex < filteredQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadPracticeQuestions();
+            }
+        }
+
+        function previousPracticeQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadPracticeQuestions();
+            }
+        }
+
+        function showFinalResults() {
+            const overlay = document.getElementById('results-overlay');
+            const percentage = Math.round((score / filteredQuestions.length) * 100);
+
+            document.getElementById('final-score').textContent = `${score}/${filteredQuestions.length}`;
+            document.getElementById('final-accuracy').textContent = `${percentage}%`;
+
+            let msg = "Great start! Keep practicing.";
+            if (percentage === 100) msg = "Perfect Score! You're a pro! 🏆";
+            else if (percentage >= 80) msg = "Excellent job! almost there.";
+            else if (percentage >= 60) msg = "Good effort! Review the tricky ones.";
+
+            document.getElementById('result-message').textContent = msg;
+            overlay.classList.remove('hidden');
+        }
+
+        function resetPractice() {
+            filterQuestionsByDifficulty();
+        }
+
+        function updateScoreDisplay() {
+            const progressText = document.getElementById('progressText');
+            const progressBar = document.getElementById('progressBar');
+            if (progressText && progressBar) {
+                progressText.textContent = `${score}/${filteredQuestions.length}`; // Showing Score now, slightly different from "solved" but tracks successful interactions
+                // Better metric for progress bar might be (Index / Total)
+                const percent = filteredQuestions.length > 0 ? ((currentQuestionIndex) / filteredQuestions.length) * 100 : 0;
+                progressBar.style.width = `${percent}%`;
+            }
+        }
+
+        // --- Code Practice Mode Logic ---
+        function loadCodeChallengesList() {
+            const list = document.getElementById('challenge-list');
+            list.innerHTML = '';
+
+            if (codeChallenges.length === 0) {
+                list.innerHTML = '<p class="text-sm text-slate-500">No coding challenges available yet.</p>';
+                return;
+            }
+
+            codeChallenges.forEach((c, i) => {
+                const item = document.createElement('div');
+                item.className = 'p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-colors';
+                item.onclick = () => loadPracticeCode(i);
+                item.innerHTML = `
+                    <h5 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-1">${c.title}</h5>
+                    <p class="text-xs text-slate-500 line-clamp-2">${c.description}</p>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        let currentChallengeIndex = -1;
+
+        function loadPracticeCode(index) {
+            currentChallengeIndex = index;
+            const c = codeChallenges[index];
+            document.getElementById('code-challenge-title').textContent = c.title || "Challenge";
+            document.getElementById('code-challenge-desc').textContent = c.description || "";
+
+            // Default to python or first available
+            changeLanguage();
+        }
+
+        function changeLanguage() {
+            if (currentChallengeIndex === -1) return;
+            const lang = document.getElementById('language-select').value;
+            const c = codeChallenges[currentChallengeIndex];
+
+            if (c.languages && c.languages[lang]) {
+                document.getElementById('code-editor').value = c.languages[lang].template || "";
+            } else {
+                document.getElementById('code-editor').value = "// No template available for this language.";
+            }
+        }
+
+        function runCode() {
+            const output = document.getElementById('code-output');
+            output.innerHTML = "> Running code...\n";
+            setTimeout(() => {
+                // Mock execution
+                output.innerHTML += "Result: Success\n> Tests passed: 3/3\n> Execution time: 12ms";
+            }, 800);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAssignmentData);
+    </script>
+</body>
+
+</html>

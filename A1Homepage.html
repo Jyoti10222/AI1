@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI-TECH PRO Landing Page</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-hover": "#116bd0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-white transition-colors duration-200">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#101922]/90 backdrop-blur-md border-b border-[#e7edf3] dark:border-gray-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2 class="text-xl font-bold tracking-tight text-[#0d141b] dark:text-white">AI-TECH PRO</h2>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="hidden sm:flex items-center gap-6 mr-4">
+                            <a class="text-sm font-medium text-[#0d141b] hover:text-primary dark:text-gray-300 dark:hover:text-white transition-colors"
+                                href="#courses">Courses</a>
+
+                            <div class="relative group">
+                                <button
+                                    class="flex items-center gap-1 text-sm font-medium text-[#0d141b] dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors">
+                                    Portals
+                                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+                                </button>
+                                <div
+                                    class="absolute right-0 top-full mt-2 w-56 rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-[#101922] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60] overflow-hidden transform group-hover:translate-y-0 translate-y-2">
+                                    <a href="A10Adminlog.html"
+                                        class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                                        <div
+                                            class="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                                            <span
+                                                class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold">Admin Login</span>
+                                            <span class="text-[10px] text-gray-500">System Management</span>
+                                        </div>
+                                    </a>
+                                    <div class="border-t border-gray-100 dark:border-gray-800"></div>
+                                    <a href="FacultyLogin.html"
+                                        class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                                        <div
+                                            class="p-1.5 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+                                            <span class="material-symbols-outlined text-[18px]">school</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold">Trainer Login</span>
+                                            <span class="text-[10px] text-gray-500">Faculty Dashboard</span>
+                                        </div>
+                                    </a>
+                                    <div class="border-t border-gray-100 dark:border-gray-800"></div>
+                                    <a href="SuperAdminLogin.html"
+                                        class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                                        <div
+                                            class="p-1.5 rounded-lg bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                                            <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold">Super Admin</span>
+                                            <span class="text-[10px] text-gray-500">Org Level Access</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="A3Login.html" target="_blank" class="allow-access"><button
+                                class="hidden sm:flex h-9 items-center justify-center px-4 rounded-lg text-sm font-bold text-[#0d141b] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                Login
+                            </button></a>
+                        <a href="A2Signup.html" target="_blank" class="allow-access"><button
+                                class="h-9 items-center justify-center px-4 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary-hover shadow-sm transition-colors flex gap-2">
+                                <span>Get Started</span>
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </button></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col">
+            <section class="relative py-16 lg:py-24 overflow-hidden">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="flex flex-col gap-6 max-w-2xl">
+                            <div
+                                class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900/30 dark:border-blue-800 dark:text-blue-300 w-fit">
+                                <span class="material-symbols-outlined mr-1 text-[16px]">new_releases</span>
+                                New AI Tutor Engine v2.0
+                            </div>
+                            <h1
+                                class="text-5xl font-black leading-tight tracking-tight text-[#0d141b] dark:text-white sm:text-6xl">
+                                Elevate Your Skills with <span
+                                    class="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">Adaptive
+                                    AI Learning</span>
+                            </h1>
+                            <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Stop wasting time on one-size-fits-all courses. Our AI Tutor adapts to your pace, style,
+                                and goals in real-time, creating a curriculum that evolves with you.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mt-2">
+                                <button
+                                    class="h-12 px-8 rounded-lg bg-primary text-white text-base font-bold hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                                    Get Started Free
+                                </button>
+                                <button
+                                    class="h-12 px-8 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0d141b] dark:text-white text-base font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">play_circle</span>
+                                    Try AI Tutor
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-4">
+                                <div class="flex -space-x-2 overflow-hidden">
+                                    <div class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#101922] bg-cover bg-center"
+                                        data-alt="Avatar of user 1"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbvQGUbjJEfyPjnVsrBMu6Bsxrmq8vJJT_2V02vjhZmCJfVnb5uoW8GD_QCpcdMn618mai1LUgFfIaLJWvzcuGlnC-3tVwgQDJ8OvIYKm_eswL_fEbeFZBTL6f5i2GwMcweTwmEWVYG0vDpXWRypWdybo_YSQoH1XPn3pXDm4ukrKOcO_zPgs3DPfXVCSZRU1RzBMvy5cjqPSWUmtjKszEKzRnGQ9qDMyhpGWdiKYi75FiBv9H0CJgfsuIPtQzbhbce23myCfJTaQ')">
+                                    </div>
+                                    <div class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#101922] bg-cover bg-center"
+                                        data-alt="Avatar of user 2"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0Kj9jx686Lc89IlxDMHxPYIPrQU7R89Zx-FrkYys_Q_Y3ObIT4FuZ7lCaR4PxDxeGt1vaLbchMbezPbighAvczYlhQ1Db0A6RP_eGlV6OHPRYM36NpO3iNN1BT32Fpw0t1YkFt18DqEKw5UETATqH9O-5ahqVD6M5GaQnkm0ogiTVBkO10GU7uyLO9oYhGP-Sd5j_3ccCyH3twY9RS3Fp4UYZABSHF9x6htPT26mHMzCrCCfLjEK3D4Xmjp32IdByXZcy3SssCWw')">
+                                    </div>
+                                    <div class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#101922] bg-cover bg-center"
+                                        data-alt="Avatar of user 3"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7gu1ELKrbPysfEOI2A6jeZcz447fT3fVZHER1JDgDv9-fyKXhvp-u56H5VzUyPUic-VIdbJeO-B4n4CjrWjeDbAM8MDTY8aVhzZ3UruJMVYSTDlqev36IBZzeu4v7OB9DzrkilZKijFIe7PXQ5ZRN6fOGAiUKfvoe16I3QmNjALKIaKBxFzUM9UHkXErXzn13U6aA9f7P2ZGokk-mjH7V5ZeDuEfy423Orog6lVvKvSUdAc6DHJXGsK5t6j4WFk6gWJZlpqBgmDY')">
+                                    </div>
+                                </div>
+                                <span>Join 10,000+ learners today</span>
+                            </div>
+                        </div>
+                        <div class="relative lg:h-auto">
+                            <div
+                                class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-2">
+                                <div class="w-full aspect-[4/3] bg-cover bg-center rounded-xl"
+                                    data-alt="Dashboard view showing AI analytics and learning path progress"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvgS8hF4Z6b-6AZsTNustNTbMqi1iRitza6nrp5cXY5XxrkSVKT6hgNgQBPuQxG6tcqcGwdNJnxPkX4BQr5N1UiTa04a1DYmQLsHGDLYmOIYF2Tk-B4Q9CjQ4WZnj6xyiu4Yo6nft_VLTIo67R2RoPCxzPBEhsG9unqb5eaLKHSOKERiAqYjINpvFDjoT6JR-e8_tGt9oiYYS9QN5QvVAI9id4mr-Qh0y46NYwHU6MUX3rEg_7eiHDYpfZU4LQ4b3MmTtCB9a3RSg')">
+                                </div>
+                                <div
+                                    class="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 max-w-xs hidden md:block">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div
+                                            class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600 dark:text-green-400">
+                                            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold dark:text-white">Module Completed</p>
+                                            <p class="text-xs text-gray-500">Machine Learning Basics</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full blur-3xl opacity-60">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="border-y border-gray-100 dark:border-gray-800 bg-white dark:bg-[#101922] py-8">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p class="text-center text-sm font-semibold text-gray-500 dark:text-gray-400 mb-6">TRUSTED BY
+                        INNOVATIVE TEAMS AT</p>
+                    <div
+                        class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                        <div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300"><span
+                                class="material-symbols-outlined mr-2">token</span> Acme Corp</div>
+                        <div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300"><span
+                                class="material-symbols-outlined mr-2">diamond</span> GlobalTech</div>
+                        <div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300"><span
+                                class="material-symbols-outlined mr-2">rocket_launch</span> FutureScale</div>
+                        <div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300"><span
+                                class="material-symbols-outlined mr-2">bolt</span> Synergy</div>
+                        <div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300"><span
+                                class="material-symbols-outlined mr-2">deployed_code</span> DevCore</div>
+                    </div>
+                </div>
+            </section>
+            <section id="courses" class="py-16 lg:py-24 bg-background-light dark:bg-background-dark">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <!-- Learning Modes Section -->
+                    <div class="mb-12">
+                        <h3
+                            class="text-center text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6">
+                            Choose Your Learning Mode</h3>
+                        <div id="learning-modes-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                            <!-- Dynamic Learning Modes will be loaded here -->
+                            <div class="col-span-full text-center p-4">
+                                <div
+                                    class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent">
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Loading modes...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Learning Paths Header -->
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 z-20 relative">
+                        <div>
+                            <h2 class="text-3xl font-bold tracking-tight text-[#0d141b] dark:text-white sm:text-4xl">
+                                Featured Learning Paths</h2>
+                            <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">Tailored to your current skill
+                                level and career goals.</p>
+                        </div>
+                        <div class="relative group">
+                            <button class="allow-access"
+                                class="text-primary font-bold hover:text-primary-hover flex items-center gap-1 py-2 px-1 focus:outline-none">
+                                View all courses
+                                <span
+                                    class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:rotate-180">keyboard_arrow_down</span>
+                            </button>
+                            <div
+                                class="absolute right-0 top-full mt-2 w-64 rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden transform group-hover:translate-y-0 translate-y-2 max-h-[80vh] overflow-y-auto">
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#cloud">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">cloud</span>
+                                    Cloud Computing
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#networking">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">hub</span>
+                                    Networking
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#ai">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">psychology</span>
+                                    AI
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#cyber">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">security</span>
+                                    Cybersecurity
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#java-fs">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">coffee</span>
+                                    Java Full Stack
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#python-fs">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">terminal</span>
+                                    Python Full Stack
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#auto-test">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">smart_toy</span>
+                                    Automation Testing
+                                </a>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm text-[#0d141b] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#manual-test">
+                                    <span class="material-symbols-outlined text-gray-400 text-[18px]">bug_report</span>
+                                    Manual Testing
+                                </a>
+                                <div class="border-t border-gray-100 dark:border-gray-700 my-1"></div>
+                                <a class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-primary hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                    href="#">
+                                    <span class="material-symbols-outlined text-[18px]">apps</span>
+                                    All Available Courses
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-16">
+
+
+
+                        <!-- <div class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-all hover:shadow-lg hover:-translate-y-1">
+<a class="relative aspect-video w-full overflow-hidden bg-gray-200 block" href="#">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Dashboard view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvgS8hF4Z6b-6AZsTNustNTbMqi1iRitza6nrp5cXY5XxrkSVKT6hgNgQBPuQxG6tcqcGwdNJnxPkX4BQr5N1UiTa04a1DYmQLsHGDLYmOIYF2Tk-B4Q9CjQ4WZnj6xyiu4Yo6nft_VLTIo67R2RoPCxzPBEhsG9unqb5eaLKHSOKERiAqYjINpvFDjoT6JR-e8_tGt9oiYYS9QN5QvVAI9id4mr-Qh0y46NYwHU6MUX3rEg_7eiHDYpfZU4LQ4b3MmTtCB9a3RSg')"></div>
+</a>
+<div class="flex flex-1 flex-col p-5">
+<div class="mb-2 flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400">
+<span class="rounded bg-green-50 dark:bg-green-900/30 px-2 py-0.5 text-green-700 dark:text-green-300">Beginner</span>
+<span>•</span>
+<span>6 weeks</span>
+</div>
+<h3 class="mb-2 text-lg font-bold text-[#0d141b] dark:text-white line-clamp-2">Serverless Deployment Basics</h3>
+<div class="mt-auto flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+<div class="h-8 w-8 rounded-full bg-cover bg-center" data-alt="Instructor portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCidlRHLqxb9oCOwggEOem9pfybnxZyBd5OoGnCgOm2jcfje57PVnQoHOemXL4P-rCp2GC635q91NNg8tcrBifonjUXfgLqKoc9OjZNu8UccSH9WMkFNbNw8nLxNxN8_FOVomGtEtN1EhooK-N97re57ts5ERrrAL3AWdX4RlxSfPzPLPKyL0QmPkazQMPDGVcuKfmIDTwfHfiNjdY_UAfpDiwASnExbA_gQDMngohL1ngb7yo_viGwcvyGQymYtxaS6UG5qlcIF0')"></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-[#0d141b] dark:text-white">Michael Ross</span>
+<span class="text-xs text-gray-500">DevOps Lead</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+
+
+
+
+
+                        <!-- Dynamic Courses Container -->
+                        <div id="courses-dynamic-container" class="space-y-16">
+                            <div class="col-span-full text-center py-12">
+                                <div
+                                    class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent">
+                                </div>
+                                <p class="mt-4 text-gray-500 dark:text-gray-400">Loading courses...</p>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 lg:py-24 bg-white dark:bg-[#101922]">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <span class="text-primary font-semibold text-sm tracking-wider uppercase mb-2 block">Why Choose
+                            AI-TECH PRO</span>
+                        <h2 class="text-3xl font-black text-[#0d141b] dark:text-white sm:text-4xl">Smarter Learning,
+                            Better Results</h2>
+                    </div>
+                    <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
+                        <div class="w-full lg:w-1/2">
+                            <div
+                                class="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-800">
+                                <div class="aspect-[4/3] bg-cover bg-center"
+                                    data-alt="Graph showing adaptive learning curve improvement"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGSHfcphv5v2QvNecMAls7GAsRdhZTBRg3UzHo6HkRJRZxUiWCylR7N05zW6UH9a7WH0fa01tlwyQL_Yhq0VmiYo_l9x-w7jioxknJJ7BFaiu1UA4NAifAt771NC9wA9oVmapTZlWKi4m_Qn7zEU5M3JAY7ulAbdRliZdWaDUiPWUxXGUlpKefDKjXsqwh8PrpjTz-whT3BW8Jm-J9mD4lzGLDk8D8mbxpbo_AirGceY_hLq5KzsnBTubZvqALMJT7-bv40wirilA')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-2xl">alt_route</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-[#0d141b] dark:text-white">Adaptive Learning Paths</h3>
+                            <p class="text-lg text-gray-600 dark:text-gray-400">
+                                No two learners are alike. Our system constantly analyzes performance to adjust the
+                                curriculum difficulty and format in real-time, ensuring you're always challenged but
+                                never overwhelmed.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    Dynamic content adjustments
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    Personalized pacing
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    Focus on weak areas automatically
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                        <div class="w-full lg:w-1/2">
+                            <div
+                                class="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-800">
+                                <div class="aspect-[4/3] bg-cover bg-center"
+                                    data-alt="Student interacting with AI chatbot interface"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHmEDLxj_jbrgaGmNus0FzgHid0asRvPxZCM5CkV1__OLpvbchuhvW05f-Y_K06w2oSRX-gVOg_dPRluJ6kztwcfOhS-f0S_wDZWdWKKPwnPhMZeg3-jSXTVJeqq_1T5DpED6p0kWuwEDZFm0paneSTcOYT_wBECkYVpnFH6z80rNZFbmU_fc6H8Jj-EBhDGZRB4kUJ1jP4Wifi9QwN9jXi_-NkiIXsUrKgkFfz74l9GZ5sfswFNuSfkd11RqZKto1Z-9tipdD9gw')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                                <span class="material-symbols-outlined text-2xl">psychology</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-[#0d141b] dark:text-white">Instant AI Feedback</h3>
+                            <p class="text-lg text-gray-600 dark:text-gray-400">
+                                Don't wait for grades. Get immediate, detailed feedback on quizzes, code submissions,
+                                and written assignments from our advanced AI Tutor models.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    24/7 availability
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    Deep code analysis
+                                </li>
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-green-500">check</span>
+                                    Explanations in plain English
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="py-16 bg-background-light dark:bg-background-dark border-y border-[#e7edf3] dark:border-gray-800">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-center text-3xl font-bold text-[#0d141b] dark:text-white mb-12">Loved by Learners
+                        Worldwide</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <div class="flex gap-1 text-yellow-400 mb-4">
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6 italic">"The adaptive learning path is a
+                                game changer. I learned Python in half the time it took me on other platforms because it
+                                skipped what I already knew."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-full bg-cover bg-center"
+                                    data-alt="Testimonial user avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4Lz2EQVd3owMz74s_2rl36SAymszlWMo7fsZie1-b8H8V2zgrkmeSNK9XqT09S44kxQRKTgY2NMxnBDPsd3GKUeEaUnnzWqChbqHZKnQ8uYoI2bYdu9uW8QklqT5AVVVPpGawK8JlU0_6vECSiJV2uwQzh1k2vEbjR8KsKOixroM8En1isPcyYQOUGC48-goXkSYKPAbC3_bs22qU_RODXnDXE9M7LUa_nnr4DYJQdaAh0Cp_kz5Ye4EtxUuOfx9mV7vK3XHL8Cw')">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm text-[#0d141b] dark:text-white">Alex Johnson</p>
+                                    <p class="text-xs text-gray-500">Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <div class="flex gap-1 text-yellow-400 mb-4">
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star_half</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6 italic">"Our entire team uses AI-TECH PRO.
+                                The analytics dashboard helps me identify skill gaps in my department instantly. Highly
+                                recommended for enterprises."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-full bg-cover bg-center"
+                                    data-alt="Testimonial user avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJoebKcdfdmYH20pix9JwY2ooPuelej64hbw-lKoTjzF819nI6rmsxamJRL-ZPQXBnl1HF4UVNV_-nXTrANKSXDbdR8ZjfBdcu_MoRAPLWiaLaP7VSOSBurnQogL2TSMze62vpZmWwW1iOuRFQatNwfkUJTDh1hNszKY7w2RtYsTQd9kz_-7vpjBMMm2iahBGOtMsK_hPORUKcsMC8p5_jDyPjdZnfSrANfIRCeioNy0tyzUkcoHykxHUsZmMD4TyNFB_ffUdIPfE')">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm text-[#0d141b] dark:text-white">Maria Garcia</p>
+                                    <p class="text-xs text-gray-500">CTO at TechFlow</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <div class="flex gap-1 text-yellow-400 mb-4">
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                                <span class="material-symbols-outlined fill-current">star</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6 italic">"I was skeptical about AI tutors,
+                                but the explanations are surprisingly human-like and accurate. It's like having a
+                                professor on call 24/7."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-full bg-cover bg-center"
+                                    data-alt="Testimonial user avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTf2Zytvz0DrNlgiuaph9kem7Wc0KzeaBeEGt4xIyLqxUuFOBy_keQYjbCF13qhxhViv2Ep6Ca3Ke7vlybR-nloTUF4gtxjzrY3G5inOHvoMoCkN1cmWbe-Esg_coIeimWeFb4Vz7JYVRKgoEM-Bf9y0VwWnEsrgQaE_Klwr3J5-QP-IRctlIGnFEMQn6vK-aUmcTb8ArqBXO2niCpcRxCcDFMUUTHse4sZzXIubgvuvzpg8mpGnCRugWCH-5EGfxspp32MyUtXQ4')">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm text-[#0d141b] dark:text-white">David Chen</p>
+                                    <p class="text-xs text-gray-500">Data Analyst Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-20 bg-white dark:bg-[#101922]">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-[#0d141b] dark:text-white">Simple, Transparent Pricing</h2>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">Start for free, upgrade as you grow.</p>
+                        <div class="mt-6 inline-flex rounded-lg bg-gray-100 dark:bg-gray-800 p-1">
+                            <button
+                                class="rounded-md bg-white dark:bg-gray-700 px-4 py-2 text-sm font-semibold shadow-sm text-[#0d141b] dark:text-white">Monthly</button>
+                            <button
+                                class="rounded-md px-4 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Yearly
+                                (-20%)</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <div class="rounded-2xl border border-gray-200 dark:border-gray-700 p-8 flex flex-col">
+                            <h3 class="text-lg font-semibold text-[#0d141b] dark:text-white">Starter</h3>
+                            <div class="mt-4 flex items-baseline">
+                                <span class="text-4xl font-bold tracking-tight text-[#0d141b] dark:text-white">$0</span>
+                                <span class="ml-1 text-sm text-gray-500">/month</span>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-500">Perfect for exploring our platform.</p>
+                            <ul class="mt-6 space-y-4 flex-1">
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Access to 5 basic courses</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Basic AI assistance</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Community support</li>
+                            </ul>
+                            <button
+                                class="mt-8 w-full rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-2.5 text-center text-sm font-semibold text-[#0d141b] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Get
+                                Started</button>
+                        </div>
+                        <div
+                            class="relative rounded-2xl border-2 border-primary bg-white dark:bg-gray-800 p-8 flex flex-col shadow-xl">
+                            <div
+                                class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold text-white uppercase tracking-wide">
+                                Most Popular</div>
+                            <h3 class="text-lg font-semibold text-[#0d141b] dark:text-white">Pro Learner</h3>
+                            <div class="mt-4 flex items-baseline">
+                                <span
+                                    class="text-4xl font-bold tracking-tight text-[#0d141b] dark:text-white">$29</span>
+                                <span class="ml-1 text-sm text-gray-500">/month</span>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-500">For serious learners needing full access.</p>
+                            <ul class="mt-6 space-y-4 flex-1">
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-primary mr-2 text-[20px]">check</span>
+                                    Unlimited course access</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-primary mr-2 text-[20px]">check</span>
+                                    Advanced AI Tutor (GPT-4)</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-primary mr-2 text-[20px]">check</span>
+                                    Certificates of completion</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-primary mr-2 text-[20px]">check</span>
+                                    Offline downloads</li>
+                            </ul>
+                            <button
+                                class="mt-8 w-full rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-hover transition-colors shadow-lg shadow-blue-500/30">Get
+                                Started</button>
+                        </div>
+                        <div class="rounded-2xl border border-gray-200 dark:border-gray-700 p-8 flex flex-col">
+                            <h3 class="text-lg font-semibold text-[#0d141b] dark:text-white">Enterprise</h3>
+                            <div class="mt-4 flex items-baseline">
+                                <span
+                                    class="text-4xl font-bold tracking-tight text-[#0d141b] dark:text-white">Custom</span>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-500">For teams and organizations.</p>
+                            <ul class="mt-6 space-y-4 flex-1">
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Team management dashboard</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Custom learning paths</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    SSO &amp; Advanced Security</li>
+                                <li class="flex text-sm text-gray-600 dark:text-gray-300"><span
+                                        class="material-symbols-outlined text-green-500 mr-2 text-[20px]">check</span>
+                                    Dedicated account manager</li>
+                            </ul>
+                            <button
+                                class="mt-8 w-full rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-2.5 text-center text-sm font-semibold text-[#0d141b] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Contact
+                                Sales</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 bg-primary">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl font-bold text-white mb-4">Ready to accelerate your learning?</h2>
+                    <p class="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">Join thousands of professionals mastering
+                        new skills with the power of AI.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button
+                            class="px-8 py-3 rounded-lg bg-white text-primary font-bold hover:bg-gray-50 shadow-lg transition-colors">Get
+                            Started </button>
+                        <button
+                            class="px-8 py-3 rounded-lg bg-primary-hover border border-white/20 text-white font-bold hover:bg-blue-700 transition-colors">View
+                            Enterprise Plans</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-white dark:bg-[#101922] border-t border-gray-200 dark:border-gray-800 pt-16 pb-8">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                    <div class="col-span-2 lg:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="size-6 rounded bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                            </div>
+                            <span class="text-lg font-bold text-[#0d141b] dark:text-white">AI-TECH PRO</span>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-xs">
+                            Empowering the workforce of tomorrow with AI-driven personalized education. Learn smarter,
+                            not harder.
+                        </p>
+                        <div class="flex gap-4">
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                                    class="sr-only">Twitter</span><svg class="h-5 w-5" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                                    </path>
+                                </svg></a>
+                            <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                                    class="sr-only">GitHub</span><svg class="h-5 w-5" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                        fill-rule="evenodd"></path>
+                                </svg></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-[#0d141b] dark:text-white mb-4">Product</h4>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Enterprise</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Case Studies</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-[#0d141b] dark:text-white mb-4">Resources</h4>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Community</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">API Docs</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-[#0d141b] dark:text-white mb-4">Company</h4>
+                        <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                            <li><a class="hover:text-primary transition-colors" href="#">About</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Legal</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-gray-100 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-sm text-gray-400">© 2024 AI-TECH PRO Inc. All rights reserved.</p>
+                    <div class="flex gap-6 text-sm text-gray-400">
+                        <a class="hover:text-gray-600 dark:hover:text-gray-300" href="#">Privacy Policy</a>
+                        <a class="hover:text-gray-600 dark:hover:text-gray-300" href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 md:hidden shadow-2xl">
+        <div class="p-4 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+            <span class="font-bold text-lg dark:text-white">Menu</span>
+            <button id="closeMobileMenu" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                <span class="material-symbols-outlined dark:text-white">close</span>
+            </button>
+        </div>
+        <nav class="p-4 flex flex-col gap-2">
+            <a href="#courses"
+                class="mobile-nav-link p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">school</span> Courses
+            </a>
+            <div class="border-t border-gray-100 dark:border-gray-800 my-2 pt-2">
+                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Portals</p>
+                <a href="A10Adminlog.html"
+                    class="mobile-nav-link p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium flex items-center gap-3">
+                    <span class="material-symbols-outlined text-blue-500">admin_panel_settings</span> Admin Login
+                </a>
+                <a href="FacultyLogin.html"
+                    class="mobile-nav-link p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium flex items-center gap-3">
+                    <span class="material-symbols-outlined text-green-500">school</span> Trainer Login
+                </a>
+                <a href="SuperAdminLogin.html"
+                    class="mobile-nav-link p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium flex items-center gap-3">
+                    <span class="material-symbols-outlined text-orange-500">verified_user</span> Super Admin
+                </a>
+            </div>
+            <div class="border-t border-gray-100 dark:border-gray-800 my-4"></div>
+            <a href="A3Login.html"
+                class="p-3 rounded-lg border border-gray-200 dark:border-gray-700 text-center font-bold text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">Login</a>
+            <a href="A2Signup.html"
+                class="p-3 rounded-lg bg-primary text-white text-center font-bold hover:bg-primary-hover">Get
+                Started</a>
+        </nav>
+    </div>
+
+    <script>
+            (() => {
+                // ============ Toast Notification System ============
+                function showToast(msg, type = 'info', duration = 3000) {
+                    const container = document.getElementById('toastContainer');
+                    if (!container) return;
+                    const el = document.createElement('div');
+                    const colors = {
+                        success: 'bg-green-600',
+                        error: 'bg-red-600',
+                        info: 'bg-slate-800 dark:bg-slate-700',
+                        warning: 'bg-orange-500'
+                    };
+                    const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+                    el.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg max-w-xs flex items-center gap-2 transform translate-x-full transition-transform duration-300`;
+                    el.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icons[type] || 'info'}</span><span>${msg}</span>`;
+                    container.appendChild(el);
+                    requestAnimationFrame(() => { el.classList.remove('translate-x-full'); });
+                    setTimeout(() => { el.classList.add('translate-x-full'); setTimeout(() => el.remove(), 300); }, duration);
+                }
+
+                // ============ Dark Mode Toggle ============
+                const html = document.documentElement;
+                function initDarkMode() {
+                    const saved = localStorage.getItem('darkMode');
+                    if (saved === 'true' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        html.classList.add('dark');
+                    }
+                }
+                initDarkMode();
+
+                // ============ Mobile Menu ============
+                const mobileMenuBtn = document.createElement('button');
+                mobileMenuBtn.id = 'mobileMenuBtn';
+                mobileMenuBtn.className = 'md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg';
+                mobileMenuBtn.innerHTML = '<span class="material-symbols-outlined dark:text-white">menu</span>';
+
+                const headerBtns = document.querySelector('header .flex.items-center.gap-3');
+                if (headerBtns) {
+                    headerBtns.insertBefore(mobileMenuBtn, headerBtns.firstChild);
+                }
+
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileOverlay = document.getElementById('mobileMenuOverlay');
+                const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+                function openMobileMenu() {
+                    mobileMenu?.classList.remove('translate-x-full');
+                    mobileOverlay?.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeMobileMenuFn() {
+                    mobileMenu?.classList.add('translate-x-full');
+                    mobileOverlay?.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+
+                mobileMenuBtn.addEventListener('click', openMobileMenu);
+                closeMobileMenu?.addEventListener('click', closeMobileMenuFn);
+                mobileOverlay?.addEventListener('click', closeMobileMenuFn);
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', closeMobileMenuFn);
+                });
+
+                // ============ Pricing Toggle (Monthly/Yearly) ============
+                const pricingToggle = document.querySelector('.inline-flex.rounded-lg.bg-gray-100');
+                if (pricingToggle) {
+                    const buttons = pricingToggle.querySelectorAll('button');
+                    const priceDisplays = document.querySelectorAll('.text-4xl.font-bold');
+                    const monthlyPrices = ['$0', '$29', 'Custom'];
+                    const yearlyPrices = ['$0', '$23', 'Custom']; // 20% off
+
+                    buttons.forEach((btn, idx) => {
+                        btn.addEventListener('click', () => {
+                            buttons.forEach(b => {
+                                b.classList.remove('bg-white', 'dark:bg-gray-700', 'shadow-sm');
+                                b.classList.add('text-gray-500');
+                            });
+                            btn.classList.add('bg-white', 'dark:bg-gray-700', 'shadow-sm');
+                            btn.classList.remove('text-gray-500');
+
+                            const isYearly = idx === 1;
+                            const prices = isYearly ? yearlyPrices : monthlyPrices;
+                            priceDisplays.forEach((display, i) => {
+                                if (prices[i]) {
+                                    display.textContent = prices[i];
+                                    // Add animation
+                                    display.classList.add('scale-110');
+                                    setTimeout(() => display.classList.remove('scale-110'), 200);
+                                }
+                            });
+
+                            if (isYearly) {
+                                showToast('Yearly pricing applied - Save 20%!', 'success');
+                            } else {
+                                showToast('Monthly pricing selected', 'info');
+                            }
+                        });
+                    });
+                }
+
+                // ============ CTA Button Handlers ============
+                function handleCTA(button, action) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const text = button.textContent.trim().toLowerCase();
+
+                        if (text.includes('get started')) {
+                            showToast('Redirecting to signup...', 'info');
+                            setTimeout(() => window.open('A2Signup.html', '_blank'), 500);
+                        } else if (text.includes('try ai tutor')) {
+                            showToast('AI Tutor demo launching...', 'info');
+                            // Scroll to courses section
+                            document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+                        } else if (text.includes('view enterprise') || text.includes('contact sales')) {
+                            showToast('Enterprise contact form coming soon!', 'info');
+                        } else if (text.includes('view all courses')) {
+                            document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+
+                // Setup all CTA buttons
+                document.querySelectorAll('button').forEach(btn => {
+                    const text = btn.textContent.trim().toLowerCase();
+                    if (text.includes('get started') || text.includes('try ai tutor') ||
+                        text.includes('contact sales') || text.includes('view enterprise')) {
+                        handleCTA(btn);
+                    }
+                });
+
+                // ============ Course Card Interactions ============
+                const favoritesKey = 'favorite_courses';
+                function getFavorites() {
+                    try { return JSON.parse(localStorage.getItem(favoritesKey) || '[]'); }
+                    catch { return []; }
+                }
+                function saveFavorites(arr) {
+                    localStorage.setItem(favoritesKey, JSON.stringify(arr));
+                }
+
+                // Check Authentication Helper
+                function checkAuth() {
+                    return localStorage.getItem("isLoggedIn") === "true";
+                }
+
+                function handleCardClick(e, title) {
+                    if (e.target.closest('button')) return; // Ignore if clicking a button
+
+                    if (!checkAuth()) {
+                        showToast("Please Register. If you already have an account, please Log In.", 'warning');
+                        return;
+                    }
+
+                    // showToast(`Opening ${title}...`, 'info');
+                    // Redirect to application after a short delay
+                    // setTimeout(() => {
+                    //     window.location.href = 'A4Onboarding.html';
+                    // }, 1000);
+                    showToast(`Selected: ${title}`, 'info');
+                }
+
+                // 1. Featured Learning Paths Cards
+                document.querySelectorAll('.group.flex.flex-col.overflow-hidden.rounded-xl').forEach((card, idx) => {
+                    const title = card.querySelector('h3')?.textContent?.trim() || `Course ${idx + 1}`;
+                    const courseId = title.toLowerCase().replace(/\s+/g, '-');
+
+                    // Add click handler for course details
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', (e) => handleCardClick(e, title));
+
+                    // Add favorite button
+                    const imgContainer = card.querySelector('a');
+                    if (imgContainer) {
+                        const favBtn = document.createElement('button');
+                        favBtn.className = 'absolute top-3 right-3 z-20 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 shadow-md backdrop-blur-sm hover:scale-110 transition-transform';
+                        const isFav = getFavorites().includes(courseId);
+                        favBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] ${isFav ? 'text-red-500' : 'text-gray-400'}">${isFav ? 'favorite' : 'favorite_border'}</span>`;
+
+                        favBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            const favs = getFavorites();
+                            const icon = favBtn.querySelector('span');
+                            if (favs.includes(courseId)) {
+                                saveFavorites(favs.filter(f => f !== courseId));
+                                icon.textContent = 'favorite_border';
+                                icon.classList.remove('text-red-500');
+                                icon.classList.add('text-gray-400');
+                                showToast('Removed from favorites', 'info');
+                            } else {
+                                favs.push(courseId);
+                                saveFavorites(favs);
+                                icon.textContent = 'favorite';
+                                icon.classList.add('text-red-500');
+                                icon.classList.remove('text-gray-400');
+                                showToast('Added to favorites!', 'success');
+                            }
+                        });
+                        imgContainer.style.position = 'relative';
+                        imgContainer.appendChild(favBtn);
+                    }
+                });
+
+                // 2. Learning Mode Cards (AI-Based, Online, Offline, Hybrid)
+                document.querySelectorAll('.group.relative.overflow-hidden.rounded-2xl').forEach((card) => {
+                    const title = card.querySelector('h4')?.textContent?.trim() || "Learning Mode";
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', (e) => handleCardClick(e, title));
+                });
+
+                // ============ Testimonial Card Hover Effects ============
+                document.querySelectorAll('.bg-white.dark\\:bg-gray-800.p-8.rounded-xl').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-4px)';
+                        card.style.transition = 'transform 0.3s ease';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0)';
+                    });
+                });
+
+                // ============ Scroll Animations ============
+                const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+                const animateOnScroll = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            animateOnScroll.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    animateOnScroll.observe(section);
+                });
+                // Make first section visible immediately
+                const firstSection = document.querySelector('section');
+                if (firstSection) {
+                    firstSection.style.opacity = '1';
+                    firstSection.style.transform = 'translateY(0)';
+                }
+
+                // ============ Header Scroll Effect ============
+                let lastScroll = 0;
+                const header = document.querySelector('header');
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll > 100) {
+                        header?.classList.add('shadow-md');
+                    } else {
+                        header?.classList.remove('shadow-md');
+                    }
+                    lastScroll = currentScroll;
+                });
+
+                // ============ Trusted By Section Animation ============
+                const trustedBy = document.querySelector('.flex.flex-wrap.justify-center.items-center.gap-8');
+                if (trustedBy) {
+                    trustedBy.classList.add('transition-all', 'duration-500');
+                    trustedBy.addEventListener('mouseenter', () => {
+                        trustedBy.classList.remove('grayscale', 'opacity-60');
+                    });
+                    trustedBy.addEventListener('mouseleave', () => {
+                        trustedBy.classList.add('grayscale', 'opacity-60');
+                    });
+                }
+
+                // ============ Feature List Item Animations ============
+                document.querySelectorAll('ul.space-y-3 li').forEach((item, idx) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateX(-20px)';
+                    item.style.transition = `opacity 0.4s ease ${idx * 0.1}s, transform 0.4s ease ${idx * 0.1}s`;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateX(0)';
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    observer.observe(item);
+                });
+
+                // ============ Social Links ============
+                document.querySelectorAll('footer a[href="#"]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const text = link.textContent?.trim() || link.querySelector('.sr-only')?.textContent || 'Link';
+                        showToast(`${text} - Coming soon!`, 'info');
+                    });
+                });
+
+                // ============ Keyboard Shortcuts ============
+                document.addEventListener('keydown', (e) => {
+                    // Escape closes mobile menu
+                    if (e.key === 'Escape') {
+                        closeMobileMenuFn();
+                    }
+                    // / focuses search (if exists)
+                    if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+                        const searchInput = document.querySelector('input[type="search"]');
+                        if (searchInput) {
+                            e.preventDefault();
+                            searchInput.focus();
+                        }
+                    }
+                });
+
+                // ============ Stats Counter Animation ============
+                const stats = document.querySelectorAll('[class*="text-3xl"][class*="font-black"]');
+                stats.forEach(stat => {
+                    const text = stat.textContent;
+                    if (text && /\d/.test(text)) {
+                        const targetNum = parseInt(text.replace(/\D/g, ''));
+                        if (targetNum > 0 && targetNum < 100000) {
+                            stat.textContent = '0';
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        let current = 0;
+                                        const increment = Math.ceil(targetNum / 50);
+                                        const timer = setInterval(() => {
+                                            current += increment;
+                                            if (current >= targetNum) {
+                                                stat.textContent = text;
+                                                clearInterval(timer);
+                                            } else {
+                                                stat.textContent = current.toLocaleString() + text.replace(/[\d,]+/, '');
+                                            }
+                                        }, 30);
+                                        observer.unobserve(stat);
+                                    }
+                                });
+                            }, { threshold: 0.5 });
+                            observer.observe(stat);
+                        }
+                    }
+                });
+
+                // ============ Smooth Scroll for Anchor Links ============
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        const href = anchor.getAttribute('href');
+                        if (href && href !== '#') {
+                            e.preventDefault();
+                            const target = document.querySelector(href);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    });
+                });
+
+                // ============ Dynamic Content Loading from Backend ============
+                async function loadHomepageContent() {
+                    try {
+                        const response = await fetch('http://localhost:8080/api/homepage-config');
+                        const result = await response.json();
+
+                        if (result.success) {
+                            const config = result.data;
+
+                            // Update Learning Modes
+                            if (config.learningModes) {
+                                const modesContainer = document.getElementById('learning-modes-container');
+                                if (modesContainer) {
+                                    modesContainer.innerHTML = config.learningModes.map(mode => `
+                                        <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-${mode.color}-50 to-${mode.color}-50/50 dark:from-${mode.color}-900/10 dark:to-${mode.color}-900/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            <div class="flex flex-col items-center text-center gap-2 relative z-10">
+                                                <div class="p-2 bg-${mode.color}-100 dark:bg-${mode.color}-900/40 rounded-lg text-${mode.color}-600 dark:text-${mode.color}-400 group-hover:scale-110 transition-transform">
+                                                    <span class="material-symbols-outlined text-2xl">${mode.icon || 'school'}</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-[#0d141b] dark:text-white text-sm">${mode.title}</h4>
+                                                    <p class="text-[10px] text-gray-600 dark:text-gray-400 mt-0.5">${mode.description}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `).join('');
+                                }
+                            }
+
+                            // Update Hero Section
+                            if (config.hero) {
+                                const badgeEl = document.querySelector('.inline-flex.items-center.rounded-full');
+                                if (badgeEl) badgeEl.childNodes[2].textContent = config.hero.badge;
+
+                                const headingEl = document.querySelector('h1.text-5xl');
+                                if (headingEl) {
+                                    const parts = config.hero.heading.split('Adaptive AI Learning');
+                                    headingEl.innerHTML = parts[0] + '<span class="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">Adaptive AI Learning</span>' + (parts[1] || '');
+                                }
+
+                                const subheadingEl = document.querySelector('h1.text-5xl + p');
+                                if (subheadingEl) subheadingEl.textContent = config.hero.subheading;
+
+                                const ctaButtons = document.querySelectorAll('.flex.flex-wrap.gap-4.mt-2 button');
+                                if (ctaButtons[0]) ctaButtons[0].textContent = config.hero.ctaPrimary;
+                                if (ctaButtons[1]) {
+                                    ctaButtons[1].innerHTML = `<span class="material-symbols-outlined text-primary">play_circle</span> ${config.hero.ctaSecondary}`;
+                                }
+
+                                const learnerCountEl = document.querySelector('.flex.items-center.gap-4.text-sm span');
+                                if (learnerCountEl) learnerCountEl.textContent = `Join ${config.hero.learnerCount} learners today`;
+                            }
+
+                            // Update Trusted Companies
+                            if (config.trustedCompanies) {
+                                const companiesContainer = document.querySelector('.flex.flex-wrap.justify-center.items-center.gap-8');
+                                if (companiesContainer) {
+                                    companiesContainer.innerHTML = config.trustedCompanies.map(company =>
+                                        `<div class="h-8 flex items-center font-bold text-xl text-gray-600 dark:text-gray-300">
+                                            <span class="material-symbols-outlined mr-2">${company.icon}</span> ${company.name}
+                                        </div>`
+                                    ).join('');
+                                }
+                            }
+
+                            // Update Testimonials
+                            if (config.testimonials) {
+                                const testimonialCards = document.querySelectorAll('.bg-white.dark\\:bg-gray-800.p-8.rounded-xl');
+                                config.testimonials.forEach((testimonial, index) => {
+                                    if (testimonialCards[index]) {
+                                        const card = testimonialCards[index];
+
+                                        // Update stars
+                                        const starsContainer = card.querySelector('.flex.gap-1.text-yellow-400');
+                                        if (starsContainer) {
+                                            const fullStars = Math.floor(testimonial.rating);
+                                            const hasHalfStar = testimonial.rating % 1 !== 0;
+                                            starsContainer.innerHTML = '';
+                                            for (let i = 0; i < fullStars; i++) {
+                                                starsContainer.innerHTML += '<span class="material-symbols-outlined fill-current">star</span>';
+                                            }
+                                            if (hasHalfStar) {
+                                                starsContainer.innerHTML += '<span class="material-symbols-outlined fill-current">star_half</span>';
+                                            }
+                                        }
+
+                                        // Update quote
+                                        const quoteEl = card.querySelector('p.text-gray-600');
+                                        if (quoteEl) quoteEl.textContent = `"${testimonial.quote}"`;
+
+                                        // Update avatar
+                                        const avatarEl = card.querySelector('.h-10.w-10.rounded-full');
+                                        if (avatarEl) avatarEl.style.backgroundImage = `url('${testimonial.avatar}')`;
+
+                                        // Update name and role
+                                        const nameEl = card.querySelector('p.font-bold.text-sm');
+                                        if (nameEl) nameEl.textContent = testimonial.name;
+
+                                        const roleEl = card.querySelector('p.text-xs.text-gray-500');
+                                        if (roleEl) roleEl.textContent = testimonial.role;
+                                    }
+                                });
+                            }
+
+                            // Update Pricing
+                            if (config.pricing) {
+                                const pricingTitle = document.querySelector('section.py-20 h2.text-3xl');
+                                if (pricingTitle) pricingTitle.textContent = config.pricing.sectionTitle;
+
+                                const pricingSubtitle = pricingTitle?.nextElementSibling;
+                                if (pricingSubtitle) pricingSubtitle.textContent = config.pricing.sectionSubtitle;
+
+                                const pricingCards = document.querySelectorAll('.rounded-2xl.border');
+                                config.pricing.plans.forEach((plan, index) => {
+                                    if (pricingCards[index]) {
+                                        const card = pricingCards[index];
+
+                                        const nameEl = card.querySelector('h3');
+                                        if (nameEl) nameEl.textContent = plan.name;
+
+                                        const priceEl = card.querySelector('.text-4xl.font-bold');
+                                        if (priceEl) priceEl.textContent = plan.price;
+
+                                        const descEl = card.querySelector('p.mt-4.text-sm');
+                                        if (descEl) descEl.textContent = plan.description;
+
+                                        const featuresList = card.querySelector('ul.mt-6.space-y-4');
+                                        if (featuresList) {
+                                            featuresList.innerHTML = plan.features.map(feature =>
+                                                `<li class="flex text-sm text-gray-600 dark:text-gray-300">
+                                                    <span class="material-symbols-outlined ${plan.highlighted ? 'text-primary' : 'text-green-500'} mr-2 text-[20px]">check</span>
+                                                    ${feature}
+                                                </li>`
+                                            ).join('');
+                                        }
+
+                                        const ctaBtn = card.querySelector('button');
+                                        if (ctaBtn) ctaBtn.textContent = plan.cta;
+                                    }
+                                });
+                            }
+
+                            // Update CTA Section
+                            if (config.cta) {
+                                const ctaTitle = document.querySelector('section.py-16.bg-primary h2');
+                                if (ctaTitle) ctaTitle.textContent = config.cta.title;
+
+                                const ctaSubtitle = ctaTitle?.nextElementSibling;
+                                if (ctaSubtitle) ctaSubtitle.textContent = config.cta.subtitle;
+
+                                const ctaButtons = document.querySelectorAll('section.py-16.bg-primary button');
+                                if (ctaButtons[0]) ctaButtons[0].textContent = config.cta.primaryButton;
+                                if (ctaButtons[1]) ctaButtons[1].textContent = config.cta.secondaryButton;
+                            }
+
+                            // Update Footer
+                            if (config.footer) {
+                                const footerDesc = document.querySelector('footer p.text-sm.text-gray-500');
+                                if (footerDesc) footerDesc.textContent = config.footer.description;
+
+                                const copyright = document.querySelector('footer p.text-sm.text-gray-400');
+                                if (copyright) copyright.textContent = config.footer.copyright;
+                            }
+
+                            // Update Courses
+                            if (config.courses) {
+                                updateCourses(config.courses);
+                            }
+
+                            console.log('✅ Homepage content loaded from backend');
+                        }
+                    } catch (error) {
+                        console.warn('⚠️ Could not load homepage content from backend, using default content:', error.message);
+                    }
+                }
+
+                // Update Courses Function
+                function updateCourses(courses) {
+                    const container = document.getElementById('courses-dynamic-container');
+                    if (!container) return;
+
+                    if (!courses || courses.length === 0) {
+                        container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-gray-500">No courses available at the moment.</p></div>';
+                        return;
+                    }
+
+                    // Group courses into a single grid for now, or maintain categories if we had them.
+                    // Since specific categories were removed, we render a unified grid.
+
+                    const gridHtml = `
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 relative z-10 px-4">
+                            ${courses.filter(c => c.enabled).map(course => {
+                        // Default gradients based on color
+                        const getGradient = (color) => {
+                            const gradients = {
+                                blue: 'from-blue-900/90 via-blue-900/70 to-blue-900/50',
+                                purple: 'from-purple-900/90 via-purple-900/70 to-purple-900/50',
+                                red: 'from-red-900/90 via-red-900/70 to-red-900/50',
+                                green: 'from-green-900/90 via-green-900/70 to-green-900/50',
+                                orange: 'from-orange-900/90 via-orange-900/70 to-orange-900/50',
+                                cyan: 'from-cyan-900/90 via-cyan-900/70 to-cyan-900/50'
+                            };
+                            return gradients[color] || gradients.blue;
+                        };
+
+                        // Default badges based on color
+                        const getBadgeColor = (color) => {
+                            const colors = {
+                                blue: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+                                purple: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+                                red: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+                                green: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+                                orange: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
+                                cyan: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300'
+                            };
+                            return colors[color] || colors.blue;
+                        };
+
+                        return `
+                                <div class="group flex flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-all hover:shadow-lg hover:-translate-y-1 h-full">
+                                    <div class="relative aspect-video w-full overflow-hidden bg-gray-200 cursor-pointer h-40" onclick="showRegistrationMessage()">
+                                        <div class="absolute top-2 left-2 z-10 rounded bg-white/90 px-1.5 py-0.5 text-[10px] font-bold text-primary shadow-sm backdrop-blur-sm">
+                                            <span class="flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-[12px]">${course.icon || 'school'}</span>
+                                                Featured
+                                            </span>
+                                        </div>
+                                        <div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                                            style="background-image: url('${course.image || 'images/course_bg.png'}'); background-color: #cbd5e1;">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 flex-col p-3">
+                                        <div class="mb-1.5 flex items-center gap-2 text-[10px] font-medium text-gray-500 dark:text-gray-400">
+                                            <span class="rounded px-1.5 py-0.5 ${getBadgeColor(course.color)}">
+                                                ${course.id.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
+                                            </span>
+                                        </div>
+                                        <h3 class="mb-1 text-base font-bold text-[#0d141b] dark:text-white line-clamp-1">
+                                            ${course.name}
+                                        </h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-3 line-clamp-2 flex-1 leading-snug">
+                                            ${course.description}
+                                        </p>
+                                        <div class="mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
+                                            <button onclick="showRegistrationMessage()" class="text-primary font-semibold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+                                                View Course <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                    }).join('')}
+                        </div>
+                    `;
+
+                    container.innerHTML = gridHtml;
+                }
+
+                // Show registration message
+                function showRegistrationMessage() {
+                    alert('⚠️ You must be registered first to access this course.\n\nPlease sign up or log in to continue.');
+                }
+
+                // Load content when page is ready
+                loadHomepageContent();
+
+                // ============ Console welcome message ============
+                console.log('%cAI-TECH PRO Homepage Loaded', 'color: #137fec; font-size: 16px; font-weight: bold;');
+                console.log('Interactive features: Mobile menu, Pricing toggle, Course favorites, Scroll animations, Toast notifications');
+            })();
+    </script>
+</body>
+
+</html>

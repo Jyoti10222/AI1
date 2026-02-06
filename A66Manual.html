@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Manual Testing - Course Detail</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .progress-striped {
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+            background-size: 1rem 1rem;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .text-shadow-sm {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div
+                class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+            </div>
+        </div>
+        <header
+            class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-8">
+                        <a class="flex items-center gap-2 group" href="#">
+                            <div
+                                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2
+                                class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                                TECH-PRO AI</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                                href="#">Catalog</a>
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">My Learning</a>
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">Mentors</a>
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">Community</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                        </button>
+                        <div
+                            class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] cursor-pointer hover:scale-105 transition-transform">
+                            <div
+                                class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                <img alt="Profile" class="h-full w-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-10 text-center max-w-4xl mx-auto space-y-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Find Your Next
+                    Challenge</h1>
+                <div class="relative group max-w-2xl mx-auto w-full">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div
+                        class="relative flex items-center bg-white dark:bg-dark-card rounded-xl shadow-xl ring-1 ring-slate-200 dark:ring-slate-700">
+                        <span class="pl-4 text-indigo-500 material-symbols-outlined">auto_awesome</span>
+                        <input
+                            class="w-full px-4 py-4 bg-transparent border-0 focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                            placeholder="Ask AI: 'Show me advanced Python courses with project-based learning...'"
+                            type="text" />
+                        <div class="pr-2">
+                            <button
+                                class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/30">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <aside
+                    class="w-full lg:w-72 flex-shrink-0 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 p-6 sticky top-24 shadow-sm z-20 hidden lg:block">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-slate-400">tune</span> Filters
+                        </h3>
+                        <button
+                            class="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">Reset
+                            All</button>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Skill Domain</h4>
+                            <div class="space-y-2.5">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Development</span>
+                                    <span class="ml-auto text-xs text-slate-400">12</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Data
+                                        Science</span>
+                                    <span class="ml-auto text-xs text-slate-400">8</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Design</span>
+                                    <span class="ml-auto text-xs text-slate-400">5</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">QA
+                                        &amp; Testing</span>
+                                    <span class="ml-auto text-xs text-slate-400">4</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Cybersecurity</span>
+                                    <span class="ml-auto text-xs text-slate-400">6</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Difficulty</h4>
+                            <div class="space-y-2.5">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Beginner</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input checked=""
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Intermediate</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Advanced</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Duration</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between text-xs text-slate-500">
+                                    <span>0h</span>
+                                    <span>50h+</span>
+                                </div>
+                                <input
+                                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700 accent-blue-600"
+                                    max="100" min="0" type="range" value="40" />
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Rating</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        class="rounded-full border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        name="rating" type="radio" />
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">&amp; up</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        class="rounded-full border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        name="rating" type="radio" />
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">&amp; up</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-2.5 mt-2 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <span class="material-symbols-outlined text-sm">bookmark</span>
+                            Save Filters
+                        </button>
+                    </div>
+                </aside>
+                <div class="flex-1 w-full">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            Showing <span class="font-bold text-slate-900 dark:text-white">8 courses</span> matched
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <select
+                                    class="appearance-none pl-3 pr-8 py-2 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option>Recommended for You</option>
+                                    <option>Most Popular</option>
+                                    <option>Highest Rated</option>
+                                    <option>Newest First</option>
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex bg-white dark:bg-dark-card rounded-lg border border-slate-200 dark:border-slate-700 p-1">
+                                <button
+                                    class="p-1.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white">
+                                    <span class="material-symbols-outlined text-lg">grid_view</span>
+                                </button>
+                                <button class="p-1.5 rounded text-slate-500 hover:text-slate-900 dark:hover:text-white">
+                                    <span class="material-symbols-outlined text-lg">view_list</span>
+                                </button>
+                            </div>
+                            <button
+                                class="lg:hidden p-2 rounded-lg bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                <span class="material-symbols-outlined">filter_list</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full cursor-pointer">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Cloud Computing"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 98% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 uppercase tracking-wide">AWS</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Infrastructure</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Cloud Computing</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Master AWS &amp; Azure infrastructure with hands-on labs in serverless computing and
+                                    containerization.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">15%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[15%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.9</span>
+                                            <span class="text-[10px] text-slate-400">(2.4k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 12h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Networking"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 95% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 uppercase tracking-wide">Network</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">CCNA</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Networking</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Deep dive into TCP/IP, routing protocols, and modern software-defined networking
+                                    architectures.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.7</span>
+                                            <span class="text-[10px] text-slate-400">(1.8k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 8h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="AI &amp; ML"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 99% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">AI/ML</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Data</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    AI &amp; Machine Learning</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Comprehensive guide to Neural Networks, Machine Learning algorithms, and Generative
+                                    AI models.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">45%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[45%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">5.0</span>
+                                            <span class="text-[10px] text-slate-400">(5.2k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 15h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Cybersecurity"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 94% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 uppercase tracking-wide">Security</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Ethical
+                                            Hacking</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Cybersecurity</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Learn ethical hacking, penetration testing, and enterprise security defense
+                                    strategies.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.8</span>
+                                            <span class="text-[10px] text-slate-400">(3.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 10h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Java Full Stack"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 92% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 uppercase tracking-wide">Development</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Java</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Java Full Stack</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Build enterprise-grade applications using Java Spring Boot, Hibernate, and Angular
+                                    frontend.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">75%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[75%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.6</span>
+                                            <span class="text-[10px] text-slate-400">(4.2k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 22h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Python Full Stack"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 96% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 uppercase tracking-wide">Development</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Python</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Python Full Stack</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Modern web development with Django, FastAPI, and React. Includes REST API design.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">10%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[10%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.9</span>
+                                            <span class="text-[10px] text-slate-400">(6.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 18h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Automation Testing"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 89% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 uppercase tracking-wide">QA</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Selenium</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Automation Testing</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Master Selenium and Cypress for automated browser testing and CI/CD integration.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.5</span>
+                                            <span class="text-[10px] text-slate-400">(2.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 6h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/30 transition-all flex flex-col h-full ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-dark-bg cursor-pointer">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Manual Testing"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 85% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-50 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 uppercase tracking-wide">QA</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Fundamentals</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Manual Testing</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Foundations of software quality assurance, test planning, bug tracking, and agile
+                                    testing methodologies.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.3</span>
+                                            <span class="text-[10px] text-slate-400">(1.5k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 4h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer
+            class="bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 py-8 relative z-10 mt-auto">
+            <div
+                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-400">© 2024 TECH-PRO AI Inc. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Privacy
+                        Policy</a>
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </footer>
+        <div aria-modal="true"
+            class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto overflow-x-hidden"
+            role="dialog">
+            <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm transition-opacity"></div>
+            <div
+                class="relative w-full max-w-5xl bg-white dark:bg-dark-card rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto border border-slate-200 dark:border-slate-700">
+                <a class="absolute top-4 right-4 z-20 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full backdrop-blur-md transition-colors group cursor-pointer flex items-center justify-center"
+                    href="A6Catlog.html">
+                    <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">close</span>
+                </a>
+                <div class="relative h-72 shrink-0 group">
+                    <img alt="Manual Testing" class="w-full h-full object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <div class="flex flex-wrap items-center gap-3 mb-4">
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white uppercase tracking-wide shadow-lg shadow-blue-500/30">QA
+                                Foundations</span>
+                            <span
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white uppercase tracking-wide shadow-lg shadow-purple-500/30">ISTQB
+                                Prep</span>
+                            <div
+                                class="flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/20 backdrop-blur-md border border-green-500/30 text-green-300 text-xs font-bold uppercase">
+                                <span class="material-symbols-outlined text-sm">auto_awesome</span> 85% Match
+                            </div>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 text-shadow-sm">Manual Testing Mastery
+                        </h2>
+                        <div class="flex flex-wrap items-center gap-6 text-white/90 text-sm font-medium">
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-yellow-400">star</span> 4.3 (1.5k
+                                reviews)</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-blue-300">schedule</span> 4 Weeks
+                                (Flexible)</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-pink-300">bar_chart</span> Beginner
+                                Level</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 bg-white dark:bg-dark-card overflow-y-auto max-h-[60vh] custom-scrollbar">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:divide-x dark:divide-slate-700">
+                        <div class="lg:col-span-2 p-8 space-y-10">
+                            <div class="space-y-4">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-500">info</span> Course Overview
+                                </h3>
+                                <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                                    Launch your career in QA by mastering the fundamentals of Software Testing. Learn
+                                    how to write effective test cases, execute manual tests, report bugs using JIRA, and
+                                    collaborate within Agile teams. This course covers everything from the Software
+                                    Development Life Cycle (SDLC) to Usability and API testing basics.
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-indigo-500">code_blocks</span> Required
+                                    Skills &amp; Tools
+                                </h3>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            📋</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">Test Cases
+                                            </div>
+                                            <div class="text-[10px] text-slate-400">Documentation</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            🐞</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">JIRA</div>
+                                            <div class="text-[10px] text-slate-400">Bug Tracking</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            🏃</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">Agile
+                                            </div>
+                                            <div class="text-[10px] text-slate-400">Methodologies</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            👥</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">Usability
+                                            </div>
+                                            <div class="text-[10px] text-slate-400">UX Testing</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            🗃️</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">SQL</div>
+                                            <div class="text-[10px] text-slate-400">Database Basics</div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-default">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-lg shadow-sm">
+                                            🚀</div>
+                                        <div>
+                                            <div class="font-bold text-slate-700 dark:text-slate-200 text-sm">API
+                                                Testing</div>
+                                            <div class="text-[10px] text-slate-400">Postman</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-orange-500">lightbulb</span> Industry
+                                    Applications
+                                </h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div
+                                        class="group p-4 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <div
+                                                class="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+                                                <span class="material-symbols-outlined text-xl">fact_check</span>
+                                            </div>
+                                        </div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">Software QA</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Ensuring zero-defect
+                                            delivery and reliability in enterprise applications.</p>
+                                    </div>
+                                    <div
+                                        class="group p-4 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <div
+                                                class="p-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg">
+                                                <span class="material-symbols-outlined text-xl">verified_user</span>
+                                            </div>
+                                        </div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-1">User Acceptance
+                                            Testing</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Validating end-to-end
+                                            business flows with stakeholders before release.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50/50 dark:bg-slate-900/30 p-8 space-y-8 h-full">
+                            <div class="space-y-4">
+                                <h4
+                                    class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg">work</span> Career Paths
+                                </h4>
+                                <div class="space-y-3">
+                                    <div
+                                        class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-1.5 h-8 bg-blue-500 rounded-full"></div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 dark:text-white text-sm">Manual QA
+                                                    Tester</div>
+                                                <div class="text-[10px] text-slate-500">$75k/yr avg</div>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="material-symbols-outlined text-slate-300 text-sm">arrow_forward_ios</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-1.5 h-8 bg-indigo-500 rounded-full"></div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 dark:text-white text-sm">Quality
+                                                    Analyst</div>
+                                                <div class="text-[10px] text-slate-500">$90k/yr avg</div>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="material-symbols-outlined text-slate-300 text-sm">arrow_forward_ios</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <h4
+                                    class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg">apartment</span> Hiring Partners
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-blue-500 transition-colors cursor-pointer">Infosys</span>
+                                    <span
+                                        class="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-blue-500 transition-colors cursor-pointer">Accenture</span>
+                                    <span
+                                        class="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-blue-500 transition-colors cursor-pointer">Capgemini</span>
+                                    <span
+                                        class="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-blue-500 transition-colors cursor-pointer">IBM</span>
+                                    <span
+                                        class="px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-blue-500 transition-colors cursor-pointer">Cognizant</span>
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-auto">
+                                <a href="Bmanual.html'"><button
+                                        class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-xl shadow-blue-500/20 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                                        <span>Continue Learning</span>
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </button></a>
+
+                                <p class="text-center text-xs text-slate-400 mt-3">Start your QA journey today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/access-control.js"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

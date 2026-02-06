@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI-TECH PRO Student Command Center</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/permissions.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white">
+    <div class="flex min-h-screen w-full overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="hidden w-64 flex-col border-r border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 lg:flex shrink-0">
+            <div class="flex h-16 items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-800">
+                <div class="bg-primary/10 rounded-lg p-1.5">
+                    <span class="material-symbols-outlined text-primary" style="font-size: 28px;">school</span>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">AI-TECH PRO</h1>
+                    <p class="text-slate-500 text-xs font-medium">Enterprise Edition</p>
+                </div>
+            </div>
+            <div class="flex flex-col gap-1 p-4 flex-1 overflow-y-auto">
+                <div class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Main Menu</div>
+                <a href="A9Admin.html" target="_blank"
+                    class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+                <a href="A14Student.html"
+                    class="flex items-center gap-3 rounded-lg bg-primary/10 px-3 py-2.5 text-primary dark:bg-primary/20 dark:text-blue-400">
+                    <span class="material-symbols-outlined filled-icon" style="font-size: 20px;">groups</span>
+                    <span class="text-sm font-bold">Students</span>
+                </a>
+
+                <div class="mt-4 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Intelligence
+                </div>
+                <a href="A17Analytics.html"
+                    class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">trending_up</span>
+                    <span class="text-sm font-medium">Analytics</span>
+                </a>
+                <a href="A18Report.html" target="_blank"
+                    class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">psychology</span>
+                    <span class="text-sm font-medium">Reports</span>
+                </a>
+                <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+                        <span class="text-sm font-medium">Settings</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex flex-1 flex-col h-screen overflow-hidden relative">
+            <header
+                class="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6 dark:bg-slate-900 dark:border-slate-800 shrink-0 z-20">
+                <div class="flex items-center gap-4">
+                    <a class="flex items-center justify-center h-9 w-9 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors"
+                        href="A11Builder.html">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </a>
+                    <div class="lg:hidden">
+                        <button class="text-slate-500 hover:text-primary dark:text-slate-400">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                    <div class="hidden md:flex items-center gap-2 text-sm">
+                        <a href="A9Admin.html" target="_blank"><span
+                                class="text-slate-400 dark:text-slate-500">Admin</span></a>
+                        <span class="text-slate-300 dark:text-slate-600">/</span>
+                        <span class="text-slate-400 dark:text-slate-500">Management</span>
+                        <span class="text-slate-300 dark:text-slate-600">/</span>
+                        <span class="font-medium text-slate-900 dark:text-white">Student Management</span>
+                    </div>
+                </div>
+                <!-- Search & Profile -->
+                <div class="flex items-center justify-end gap-4 flex-1">
+                    <div class="relative hidden max-w-md flex-1 sm:flex">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined"
+                            style="font-size: 20px;">search</span>
+                        <input
+                            class="h-10 w-full rounded-lg border-none bg-slate-100 py-2 pl-10 pr-4 text-sm text-slate-900 focus:ring-2 focus:ring-primary dark:bg-slate-800 dark:text-white dark:placeholder-slate-500"
+                            id="learnerSearch" placeholder="Search learner..." type="text" />
+                    </div>
+                    <div class="flex items-center gap-2 border-l border-slate-200 pl-4 dark:border-slate-800">
+                        <button
+                            class="relative flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-50 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+                            <span
+                                class="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-slate-900"></span>
+                        </button>
+                        <div class="ml-2 h-9 w-9 overflow-hidden rounded-full border border-slate-200 dark:border-slate-700 bg-cover bg-center"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAg5d-WVptnwrIg79Sk8TGE1GczX4QK5WLPo3zmZr5C8uHyYbjyVubqCuzN9SfhgxbdvLHjby_3m_P-fq25Ek6GkD5NfFr2iNBmoyx1_QMRvg4Yw1JvfH5f2sycbceJKEJh_UyJAFd5jF2TgwGqGw1ASLUhzTZkblpbuKkGs7-M84ZFdyOjpz3wEpQtf0VIlmKMNo5KiWFddV8ZHrk8xNK0Ep3o6_1_0oGvs_JrdV0wWOTB1G-6aqAyZc3LV5RLhGwbAMzLcL-sr3I');">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex flex-1 overflow-hidden">
+                <div class="flex-1 overflow-y-auto bg-slate-50 p-6 dark:bg-[#0B1116]">
+                    <div class="mx-auto max-w-[1400px] flex flex-col gap-6">
+                        <!-- Headings & Buttons -->
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <h2 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Student
+                                    Management Console</h2>
+                                <p class="mt-1 text-slate-500 dark:text-slate-400">Manage enrollments, track finances,
+                                    and update learner details.</p>
+                            </div>
+                            <div class="flex gap-3">
+                                <button id="importCsvBtn" title="Import CSV"
+                                    class="inline-flex items-center justify-center size-10 rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700">
+                                    <span class="material-symbols-outlined" style="font-size: 20px;">cloud_upload</span>
+                                </button>
+                                <input id="csvFileInput" type="file" accept=".csv" class="hidden" title="Upload CSV" />
+                                <button id="export-btn" title="Export to Excel" data-permission="exportStudents"
+                                    class="inline-flex items-center justify-center size-10 rounded-lg bg-blue-600 text-white hover:bg-blue-700 shadow-sm">
+                                    <span class="material-symbols-outlined" style="font-size: 20px;">download</span>
+                                </button>
+                                <button id="redirectAddStudent" title="Add Student (Payment Required)"
+                                    data-permission="addStudents"
+                                    class="inline-flex items-center justify-center size-10 rounded-lg bg-primary text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    <span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- KPIs / Stats (simplified) -->
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-3">
+                            <div
+                                class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="rounded-lg bg-blue-50 p-2 text-primary dark:bg-blue-900/20">
+                                        <span class="material-symbols-outlined" style="font-size: 24px;">school</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Learners</p>
+                                    <p id="totalLearners"
+                                        class="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">--
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="rounded-lg bg-green-50 p-2 text-green-600 dark:bg-green-900/20">
+                                        <span class="material-symbols-outlined" style="font-size: 24px;">payments</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Collected
+                                    </p>
+                                    <p id="totalCollected"
+                                        class="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">--
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="rounded-lg bg-orange-50 p-2 text-orange-600 dark:bg-orange-900/20">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size: 24px;">pending_actions</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Pending Balance
+                                    </p>
+                                    <p id="pendingBalance"
+                                        class="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">--
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Table -->
+                        <div
+                            class="flex flex-col rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                            <!-- Basic Toolbar -->
+                            <div
+                                class="flex flex-col gap-4 border-b border-slate-200 p-4 dark:border-slate-800 lg:flex-row lg:items-center lg:justify-between">
+                                <div class="flex gap-2 items-center">
+                                    <span class="text-sm font-medium text-slate-600 dark:text-slate-400">All
+                                        Students</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="renderTable()"
+                                        class="flex items-center justify-center rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"><span
+                                            class="material-symbols-outlined">refresh</span></button>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full text-left text-sm">
+                                    <thead
+                                        class="bg-slate-50 text-xs uppercase font-semibold text-slate-500 dark:bg-slate-800/50 dark:text-slate-400">
+                                        <tr>
+                                            <th class="px-6 py-4 w-12"><input
+                                                    class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary"
+                                                    type="checkbox" /></th>
+                                            <th class="px-6 py-4">Learner</th>
+                                            <th class="px-6 py-4">Contact</th>
+                                            <th class="px-6 py-4">Experience</th>
+                                            <th class="px-6 py-4">Qualification</th>
+                                            <th class="px-6 py-4">Year</th>
+                                            <th class="px-6 py-4">Branch</th>
+                                            <th class="px-6 py-4">University</th>
+                                            <th class="px-6 py-4">College</th>
+                                            <th class="px-6 py-4">CGPA</th>
+                                            <th class="px-6 py-4">Course</th>
+                                            <th class="px-6 py-4">Fees</th>
+                                            <th class="px-6 py-4">Paid</th>
+                                            <th class="px-6 py-4">Balance</th>
+                                            <th class="px-6 py-4">Payment</th>
+                                            <th class="px-6 py-4 text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="studentTableBody"
+                                        class="divide-y divide-slate-200 dark:divide-slate-800">
+                                        <!-- Rows generated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div
+                                class="flex items-center justify-between border-t border-slate-200 px-6 py-4 dark:border-slate-800">
+                                <div class="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
+                                    Showing <span id="startIdx" class="font-medium">0</span> to <span id="endIdx"
+                                        class="font-medium">0</span> of <span id="totalCount"
+                                        class="font-medium">0</span> results
+                                </div>
+                                <div id="paginationControls" class="flex flex-1 justify-between sm:justify-end gap-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit/Add Student Modal (Financials added) -->
+    <div id="studentModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+        <div
+            class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800">
+            <div class="p-4 border-b dark:border-slate-800 shrink-0">
+                <div class="flex items-center justify-between">
+                    <h3 id="studentModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">Student Details
+                    </h3>
+                    <button id="closeStudentModal" class="text-slate-400 hover:text-slate-600">✕</button>
+                </div>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">First Name</label>
+                        <input id="editFirstName"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Last Name</label>
+                        <input id="editLastName" class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="text-xs text-slate-500">Email</label>
+                        <input id="editEmail" class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Contact Number</label>
+                        <input id="editContactNumber"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Experience Type</label>
+                        <select id="editExperienceType"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800">
+                            <option value="Fresher">Fresher</option>
+                            <option value="Experienced">Experienced</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="text-xs text-slate-500">Photo URL (Optional)</label>
+                        <input id="editPhoto" type="url"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800"
+                            placeholder="https://..." />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="text-xs text-slate-500">Qualification</label>
+                        <input id="editQualification"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Passout Year</label>
+                        <input id="editPassoutYear" type="number"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Branch</label>
+                        <input id="editBranch" class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">University</label>
+                        <input id="editUniversity"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">College Name</label>
+                        <input id="editCollegeName"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">CGPA</label>
+                        <input id="editCgpa" type="number" step="0.01"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="text-xs text-slate-500">Desired Course *</label>
+                        <input id="editCourse" list="coursesList"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" required />
+                        <datalist id="coursesList">
+                            <option>Python Full Stack</option>
+                            <option>Java Programming</option>
+                            <option>Cyber Security</option>
+                            <option>Cloud Computing</option>
+                            <option>Networking</option>
+                            <option>Automation Testing</option>
+                            <option>Selenium</option>
+                            <option>C Programming</option>
+                            <option>C++ Programming</option>
+                            <option>Artificial Intelligence</option>
+                            <option>Manual Testing</option>
+                        </datalist>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Course Fees</label>
+                        <input id="editCourseFees" type="number"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" placeholder="0.00" />
+                    </div>
+                    <div class="col-span-1">
+                        <label class="text-xs text-slate-500">Paid Fees</label>
+                        <input id="editPaidFees" type="number"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800" placeholder="0.00" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="text-xs text-slate-500">Payment Type</label>
+                        <select id="editPaymentType"
+                            class="mt-1 w-full rounded border bg-slate-50 p-2 dark:bg-slate-800">
+                            <option value="Self">Self</option>
+                            <option value="Sponsor">Sponsor</option>
+                            <option value="Loan">Loan</option>
+                            <option value="Scholarship">Scholarship</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 flex justify-end gap-2 border-t dark:border-slate-800">
+                <button id="cancelStudent" class="px-4 py-2 rounded bg-slate-100">Cancel</button>
+                <button id="saveStudent" class="px-4 py-2 rounded bg-primary text-white">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+        const qs = s => document.querySelector(s);
+        const qsa = s => Array.from(document.querySelectorAll(s));
+
+        let state = { data: [], sort: { field: null, dir: 1 }, pageSize: 12, page: 1 };
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/students`);
+                const result = await response.json();
+
+                if (result.success || Array.isArray(result.data)) {
+                    state.data = result.data || result.students || []; // Handle data wrapper
+                } else if (Array.isArray(result)) {
+                    state.data = result;
+                } else {
+                    state.data = [];
+                }
+
+                // Ensure financial fields exist (mocking them if missing in JSON)
+                state.data = state.data.map(s => ({
+                    ...s,
+                    courseFees: s.courseFees || 15000, // Default mock fee
+                    paidFees: s.paidFees || 0,
+                    paymentType: s.paymentType || 'Self',
+                    // Fallback for photo
+                    photo: s.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(s.firstName + ' ' +
+                        s.lastName)}&background=random`
+                }));
+
+                const totalCollected = state.data.reduce((acc, s) => acc + (parseFloat(s.paidFees) || 0), 0);
+                const totalPending = state.data.reduce((acc, s) => acc + ((parseFloat(s.courseFees) || 0) - (parseFloat(s.paidFees)
+                    || 0)), 0);
+
+                qs('#totalLearners').innerText = state.data.length.toLocaleString();
+                qs('#totalCollected').innerText = formatCurrency(totalCollected);
+                qs('#pendingBalance').innerText = formatCurrency(totalPending);
+
+                renderTable();
+
+            } catch (error) {
+                console.error('Error loading students from API:', error);
+                alert('Failed to connect to backend. Please ensure server.js is running.');
+            }
+        }
+
+        // Formatting currency
+        const formatCurrency = num => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(num ||
+            0);
+
+        function renderTable() {
+            const tbody = qs('#studentTableBody');
+            let data = [...state.data];
+
+            // Search filter
+            const q = (qs('#learnerSearch').value || '').toLowerCase();
+            if (q) {
+                data = data.filter(s =>
+                    (s.firstName || '').toLowerCase().includes(q) ||
+                    (s.lastName || '').toLowerCase().includes(q) ||
+                    (s.email || '').toLowerCase().includes(q) ||
+                    (s.desiredCourse || '').toLowerCase().includes(q)
+                );
+            }
+
+            // Pagination logic
+            const total = data.length;
+            const totalPages = Math.max(1, Math.ceil(total / state.pageSize));
+            if (state.page > totalPages) state.page = totalPages;
+            const start = (state.page - 1) * state.pageSize;
+            const end = Math.min(total, start + state.pageSize);
+            const slice = data.slice(start, end);
+
+            tbody.innerHTML = '';
+
+            if (total === 0) {
+                tbody.innerHTML = '<tr><td colspan="16" class="px-6 py-4 text-center text-slate-500">No students found via API.</td></tr>';
+            }
+
+            slice.forEach((s, idx) => {
+                const globalIndex = state.data.indexOf(s);
+                const fullName = (s.firstName + ' ' + s.lastName).trim() || 'Unknown';
+                const balance = (s.courseFees || 0) - (s.paidFees || 0);
+
+                const tr = document.createElement('tr');
+                tr.className = 'group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors';
+                tr.innerHTML = `
+    <td class="px-6 py-4"><input class="h-4 w-4 rounded border-slate-300" type="checkbox" /></td>
+    <td class="px-6 py-4">
+        <div class="flex items-center gap-3">
+            <div
+                class="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary overflow-hidden">
+                <img src="${s.photo}" alt="${fullName}" class="h-full w-full object-cover"
+                    onerror="this.src='https://ui-avatars.com/api/?name=User'" />
+            </div>
+            <div>
+                <div class="font-semibold text-slate-900 dark:text-white">${fullName}</div>
+                <div class="text-xs text-slate-500">${s.email || 'No Email'}</div>
+            </div>
+        </div>
+    </td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.contactNumber || '-'}</td>
+    <td class="px-6 py-4 text-xs"><span
+            class="inline-flex px-2 py-1 rounded-full text-xs font-medium ${s.experienceType === 'Experienced' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}">${s.experienceType
+                    || 'Fresher'}</span></td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.qualification || '-'}</td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.passoutYear || '-'}</td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.branch || '-'}</td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.university || '-'}</td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.collegeName || '-'}</td>
+    <td class="px-6 py-4 text-xs text-slate-600">${s.cgpa || '-'}</td>
+    <td class="px-6 py-4 text-slate-600">${s.desiredCourse || '-'}</td>
+    <td class="px-6 py-4 font-mono text-xs">${formatCurrency(s.courseFees)}</td>
+    <td class="px-6 py-4 font-mono text-xs text-emerald-600">${formatCurrency(s.paidFees)}</td>
+    <td class="px-6 py-4 font-mono text-xs ${balance > 0 ? 'text-red-500' : 'text-slate-400'}">
+        ${formatCurrency(balance)}</td>
+    <td class="px-6 py-4"><span
+            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">${s.paymentType
+                    || 'Self'}</span></td>
+    <td class="px-6 py-4 text-right">
+        <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button class="p-1 hover:text-primary" onclick="openEdit(${globalIndex})" title="Edit"><span
+                    class="material-symbols-outlined" style="font-size:18px">edit</span></button>
+            <button class="p-1 hover:text-red-600" onclick="deleteStudent(${globalIndex})" title="Delete"><span
+                    class="material-symbols-outlined" style="font-size:18px">delete</span></button>
+        </div>
+    </td>
+    `;
+                tbody.appendChild(tr);
+            });
+            updatePagination(total, start + 1, end);
+        }
+
+        function updatePagination(total, startIdx, endIdx) {
+            qs('#totalCount').innerText = total;
+            qs('#startIdx').innerText = total === 0 ? 0 : startIdx;
+            qs('#endIdx').innerText = endIdx;
+            // Simplified simple prev/next
+            const controls = qs('#paginationControls');
+            controls.innerHTML = `
+    <button ${state.page <= 1 ? 'disabled' : ''} onclick="changePage(-1)"
+        class="rounded-lg border px-3 py-1 bg-white hover:bg-slate-50 disabled:opacity-50">Prev</button>
+    <span class="mx-2 text-sm self-center">Page ${state.page}</span>
+    <button ${endIdx >= total ? 'disabled' : ''} onclick="changePage(1)" class="rounded-lg border px-3 py-1 bg-white
+        hover:bg-slate-50 disabled:opacity-50">Next</button>
+    `;
+        }
+
+        window.changePage = (delta) => { state.page += delta; renderTable(); };
+
+        // Actions
+        window.openEdit = (idx) => {
+            const s = state.data[idx];
+            if (!s) return;
+            qs('#editFirstName').value = s.firstName || '';
+            qs('#editLastName').value = s.lastName || '';
+            qs('#editEmail').value = s.email || '';
+            qs('#editContactNumber').value = s.contactNumber || '';
+            qs('#editExperienceType').value = s.experienceType || 'Fresher';
+            qs('#editPhoto').value = s.photo || '';
+            qs('#editQualification').value = s.qualification || '';
+            qs('#editPassoutYear').value = s.passoutYear || '';
+            qs('#editBranch').value = s.branch || '';
+            qs('#editUniversity').value = s.university || '';
+            qs('#editCollegeName').value = s.collegeName || '';
+            qs('#editCgpa').value = s.cgpa || '';
+            qs('#editCourse').value = s.desiredCourse || '';
+            qs('#editCourseFees').value = s.courseFees || 0;
+            qs('#editPaidFees').value = s.paidFees || 0;
+            qs('#editPaymentType').value = s.paymentType || 'Self';
+
+            qs('#studentModalTitle').innerText = 'Edit Student';
+            qs('#studentModal').dataset.editIndex = idx;
+            qs('#studentModal').dataset.mode = 'edit';
+            qs('#studentModal').classList.remove('hidden');
+        };
+
+        window.deleteStudent = async (idx) => {
+            const s = state.data[idx];
+            if (!s || !s.id) {
+                alert('Cannot delete student: Missing ID');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to delete ${s.firstName} ${s.lastName}?`)) {
+                try {
+                    const res = await fetch(`${API_BASE_URL}/students/${s.id}`, { method: 'DELETE' });
+                    const result = await res.json();
+                    if (result.success) {
+                        loadData();
+                        showToast('Student deleted successfully', 'success');
+                    } else {
+                        alert(result.error || 'Failed to delete student');
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Error deleting student');
+                }
+            }
+        };
+
+        // Clear modal fields
+        function clearModal() {
+            qs('#editFirstName').value = '';
+            qs('#editLastName').value = '';
+            qs('#editEmail').value = '';
+            qs('#editContactNumber').value = '';
+            qs('#editExperienceType').value = 'Fresher';
+            qs('#editPhoto').value = '';
+            qs('#editQualification').value = '';
+            qs('#editPassoutYear').value = '';
+            qs('#editBranch').value = '';
+            qs('#editUniversity').value = '';
+            qs('#editCollegeName').value = '';
+            qs('#editCgpa').value = '';
+            qs('#editCourse').value = '';
+            qs('#editCourseFees').value = 0;
+            qs('#editPaidFees').value = 0;
+            qs('#editPaymentType').value = 'Self';
+            qs('#studentModal').dataset.editIndex = '';
+            qs('#studentModal').dataset.mode = '';
+        }
+
+        // Open add mode
+        window.openAddModal = () => {
+            clearModal();
+            qs('#studentModalTitle').innerText = 'Add New Student';
+            qs('#studentModal').dataset.mode = 'add';
+            qs('#studentModal').classList.remove('hidden');
+        };
+
+        // Modal Handlers
+        qs('#redirectAddStudent').addEventListener('click', () => {
+            openAddModal();
+        });
+        qs('#closeStudentModal').addEventListener('click', () => {
+            qs('#studentModal').classList.add('hidden');
+            clearModal();
+        });
+        qs('#cancelStudent').addEventListener('click', () => {
+            qs('#studentModal').classList.add('hidden'); clearModal();
+        });
+
+        qs('#saveStudent').addEventListener('click', async () => {
+            const mode = qs('#studentModal').dataset.mode;
+            const idx = qs('#studentModal').dataset.editIndex;
+            const s = idx !== '' && idx !== undefined ? state.data[idx] : {};
+
+            // Create student object from form fields
+            const studentData = {
+                firstName: qs('#editFirstName').value.trim(),
+                lastName: qs('#editLastName').value.trim(),
+                email: qs('#editEmail').value.trim(),
+                contactNumber: qs('#editContactNumber').value.trim(),
+                experienceType: qs('#editExperienceType').value,
+                photo: qs('#editPhoto').value.trim(),
+                qualification: qs('#editQualification').value.trim(),
+                passoutYear: qs('#editPassoutYear').value,
+                branch: qs('#editBranch').value.trim(),
+                university: qs('#editUniversity').value.trim(),
+                collegeName: qs('#editCollegeName').value.trim(),
+                cgpa: qs('#editCgpa').value,
+                desiredCourse: qs('#editCourse').value.trim(),
+                courseFees: parseFloat(qs('#editCourseFees').value) || 0,
+                paidFees: parseFloat(qs('#editPaidFees').value) || 0,
+                paymentType: qs('#editPaymentType').value
+            };
+
+            // Basic validation
+            if (!studentData.firstName || !studentData.lastName || !studentData.email) {
+                alert('Please fill in all required fields (First Name, Last Name, Email)');
+                return;
+            }
+
+            const btn = qs('#saveStudent');
+            const originalText = btn.innerText;
+            btn.innerText = 'Saving...';
+            btn.disabled = true;
+
+            try {
+                let url = `${API_BASE_URL}/students`;
+                let method = 'POST';
+
+                if (mode === 'edit' && s.id) {
+                    url = `${API_BASE_URL}/students/${s.id}`;
+                    method = 'PUT';
+                }
+
+                const res = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(studentData)
+                });
+
+                const result = await res.json();
+
+                if (result.success) {
+                    qs('#studentModal').classList.add('hidden');
+                    clearModal();
+                    loadData();
+                    showToast(mode === 'add' ? 'Student added successfully' : 'Student updated successfully', 'success');
+                } else {
+                    alert(result.error || 'Operation failed');
+                }
+
+            } catch (e) {
+                console.error(e);
+                alert('Network error occurred');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        function showToast(msg, type = 'info') {
+            // Simple toast fallback if not present on page
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded text-white ${type === 'success' ? 'bg-green-600' :
+                'bg-blue-600'} z-50`;
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Search Listener
+        qs('#learnerSearch').addEventListener('input', () => { state.page = 1; renderTable(); });
+
+        // Export (Simple CSV)
+        qs('#export-btn').addEventListener('click', () => {
+            const headers = ['First Name', 'Last Name', 'Email', 'Course', 'Course Fees', 'Paid Fees', 'Balance', 'Payment Type'];
+            const rows = state.data.map(s => [
+                s.firstName, s.lastName, s.email, s.desiredCourse,
+                s.courseFees, s.paidFees, (s.courseFees - s.paidFees), s.paymentType
+            ]);
+            const csvContent = [headers.join(','), ...rows.map(r => r.map(c => `"${c}"`).join(','))].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'students_financial_export.csv';
+            document.body.appendChild(a); a.click(); a.remove();
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize permission enforcement
+            await initializePermissions();
+            loadData();
+        });
+
+        // Permission enforcement
+        async function initializePermissions() {
+            const userRole = PermissionManager.getUserRole();
+            console.log('Current user role:', userRole);
+
+            // Get all elements with data-permission attribute
+            const permissionElements = document.querySelectorAll('[data-permission]');
+
+            for (const element of permissionElements) {
+                const requiredPermission = element.getAttribute('data-permission');
+                const hasPermission = await PermissionManager.hasPermission(requiredPermission);
+
+                if (!hasPermission) {
+                    // Hide the element if user doesn't have permission
+                    element.style.display = 'none';
+                    element.disabled = true;
+                    console.log(`Permission denied: ${requiredPermission} for role ${userRole}`);
+                } else {
+                    console.log(`Permission granted: ${requiredPermission} for role ${userRole}`);
+                }
+            }
+
+            // Also enforce permissions on edit and delete actions
+            enforceActionPermissions();
+        }
+
+        function enforceActionPermissions() {
+            // Override edit function to check permissions
+            const originalOpenEdit = window.openEdit;
+            window.openEdit = async (idx) => {
+                console.log('🔍 Checking editStudents permission...');
+                const hasPermission = await PermissionManager.hasPermission('editStudents');
+                console.log(`editStudents permission: ${hasPermission}`);
+
+                if (!hasPermission) {
+                    PermissionManager.showAccessDenied('editStudents');
+                    return;
+                }
+                originalOpenEdit(idx);
+            };
+
+            // Override delete function to check permissions
+            const originalDeleteStudent = window.deleteStudent;
+            window.deleteStudent = async (idx) => {
+                console.log('🔍 Checking deleteStudents permission...');
+                console.log('Current role:', PermissionManager.getUserRole());
+
+                const hasPermission = await PermissionManager.hasPermission('deleteStudents');
+                console.log(`✅ deleteStudents permission result: ${hasPermission}`);
+
+                if (!hasPermission) {
+                    console.log('❌ Permission denied - showing access denied message');
+                    PermissionManager.showAccessDenied('deleteStudents');
+                    return;
+                }
+
+                console.log('✅ Permission granted - proceeding with delete');
+                await originalDeleteStudent(idx);
+            };
+        }
+    </script>
+</body>
+
+</html>

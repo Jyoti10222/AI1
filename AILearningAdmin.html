@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Admin | Tech-Pro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d141b;
+            color: #e8eaed;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen pb-20">
+    <!-- Header -->
+    <header class="bg-[#1a2332] border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#137fec] text-[32px]">admin_panel_settings</span>
+                    <h1 class="text-2xl font-black text-white">Homepage Configuration</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="saveChanges()"
+                        class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-700 flex items-center gap-2">
+                        <span class="material-symbols-outlined">save</span>
+                        Save Changes
+                    </button>
+                    <button onclick="window.location.href='A1Homepage.html'"
+                        class="bg-[#137fec] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#0066cc]">
+                        View Site
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Section 1: Learning Modes -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-purple-500 text-3xl">category</span>
+                <h2 class="text-3xl font-black text-white">Choose Your Learning Mode</h2>
+            </div>
+            <p class="text-gray-400 mb-6">Configure the 4 main learning modes displayed on the homepage.</p>
+
+            <div class="grid grid-cols-1 gap-6" id="learningModesContainer">
+                <!-- Modes will be injected here -->
+            </div>
+        </section>
+
+        <div class="border-t border-gray-800"></div>
+
+        <!-- Section 2: Featured Learning Paths -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-orange-500 text-3xl">route</span>
+                <h2 class="text-3xl font-black text-white">Featured Learning Paths</h2>
+            </div>
+            <p class="text-gray-400 mb-6">Manage the courses available on the homepage and onboarding screens.</p>
+
+            <div class="bg-[#1a2332] rounded-xl border border-gray-800 overflow-hidden">
+                <div class="p-4 border-b border-gray-800 grid grid-cols-12 gap-4 font-bold text-gray-400 text-sm">
+                    <div class="col-span-1 text-center">Enable</div>
+                    <div class="col-span-4">Course Name & Description</div>
+                    <div class="col-span-3">Icon & Color</div>
+                    <div class="col-span-3">Link & Image</div>
+                    <div class="col-span-1 text-center">ID</div>
+                </div>
+                <div id="coursesContainer" class="divide-y divide-gray-800">
+                    <!-- Courses will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <div class="border-t border-gray-800"></div>
+
+        <!-- Section 3: Program Content Management -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-purple-500 text-3xl">dataset</span>
+                <h2 class="text-3xl font-black text-white">Program Content Management</h2>
+            </div>
+            <p class="text-gray-400 mb-6">Manage the specific curriculum and modules for each learning path and mode
+                below.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- AI Tech -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400"><span
+                                class="material-symbols-outlined">psychology</span></div>
+                        AI for Tech
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="AITechCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="AITechUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="AITechModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AI Non-Tech -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-green-500/10 text-green-400"><span
+                                class="material-symbols-outlined">school</span></div>
+                        AI for Non-Tech
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="AINonTechCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="AINonTechUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="AINonTechModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-red-500/10 text-red-400"><span
+                                class="material-symbols-outlined">security</span></div>
+                        Cybersecurity
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="CybersecurityCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="CybersecurityUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="CybersecurityModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Networking -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-orange-500/10 text-orange-400"><span
+                                class="material-symbols-outlined">hub</span></div>
+                        Networking
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="NetworkingCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="NetworkingUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="NetworkingModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cloud Computing -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400"><span
+                                class="material-symbols-outlined">cloud</span></div>
+                        Cloud Computing
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="CloudComputingCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="CloudComputingUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="CloudComputingModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Java Full Stack -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-yellow-500/10 text-yellow-400"><span
+                                class="material-symbols-outlined">code</span></div>
+                        Java Full Stack
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="JavaFullStackCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="JavaFullStackUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="JavaFullStackModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Python Full Stack -->
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2 text-lg">
+                        <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400"><span
+                                class="material-symbols-outlined">terminal</span></div>
+                        Python Full Stack
+                    </h3>
+                    <div class="space-y-2">
+                        <a href="PythonFullStackCareerAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Career Program</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-blue-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="PythonFullStackUpskillingAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Upskilling</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-purple-500 transition-colors">arrow_forward</span>
+                        </a>
+                        <a href="PythonFullStackModularAdmin.html"
+                            class="flex items-center justify-between text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 p-3 rounded-lg transition-all group">
+                            <span>Modular</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-gray-600 group-hover:text-green-500 transition-colors">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div
+            class="bg-gray-800 border border-gray-700 text-white px-6 py-4 rounded-lg shadow-xl flex items-center gap-3">
+            <span class="material-symbols-outlined text-green-500" id="toastIcon">check_circle</span>
+            <span id="toastMessage">Changes saved successfully</span>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let currentConfig = null;
+
+        // Initialize
+        async function init() {
+            try {
+                const response = await fetch(`${API_BASE}/homepage-config`);
+                const result = await response.json();
+
+                if (result.success) {
+                    currentConfig = result.data;
+                    renderLearningModes();
+                    renderCourses();
+                } else {
+                    showToast('Failed to load configuration', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showToast('Server connection error', 'error');
+            }
+        }
+
+        // Render Learning Modes
+        function renderLearningModes() {
+            const container = document.getElementById('learningModesContainer');
+
+            let html = currentConfig.learningModes.map((mode, index) => `
+                <div class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 group hover:border-gray-700 transition-all relative">
+                    <button onclick="deleteLearningMode(${index})" class="absolute top-2 right-2 text-red-500 opacity-0 group-hover:opacity-100 hover:bg-red-500/10 p-1 rounded transition-all" title="Delete Mode">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                    </button>
+                    <div class="flex items-start gap-4">
+                        <div class="flex-1 space-y-3">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Title</label>
+                                <input type="text" value="${mode.title}" 
+                                    onchange="updateMode(${index}, 'title', this.value)"
+                                    class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-2 text-white focus:outline-none focus:border-[#137fec]">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Description</label>
+                                <input type="text" value="${mode.description}" 
+                                    onchange="updateMode(${index}, 'description', this.value)"
+                                    class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-2 text-sm text-gray-300 focus:outline-none focus:border-[#137fec]">
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex-1">
+                                    <label class="block text-xs text-gray-500 mb-1">Icon (Material Symbol)</label>
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-gray-400">${mode.icon}</span>
+                                        <input type="text" value="${mode.icon}" 
+                                            onchange="updateMode(${index}, 'icon', this.value)"
+                                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#137fec]">
+                                    </div>
+                                </div>
+                                <div class="w-1/3">
+                                    <label class="block text-xs text-gray-500 mb-1">Color</label>
+                                    <select onchange="updateMode(${index}, 'color', this.value)"
+                                        class="w-full bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#137fec]">
+                                        ${['indigo', 'green', 'orange', 'purple', 'blue', 'red', 'cyan'].map(c =>
+                `<option value="${c}" ${mode.color === c ? 'selected' : ''}>${c.charAt(0).toUpperCase() + c.slice(1)}</option>`
+            ).join('')}
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mt-3">
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Link URL</label>
+                                    <input type="text" value="${mode.link || '#'}" 
+                                        onchange="updateMode(${index}, 'link', this.value)"
+                                        class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-2 text-sm text-blue-400 focus:outline-none focus:border-[#137fec]">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Image Path</label>
+                                    <input type="text" value="${mode.image || ''}" 
+                                        onchange="updateMode(${index}, 'image', this.value)"
+                                        class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-2 text-sm text-gray-400 focus:outline-none focus:border-[#137fec]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add "Add New" button
+            html += `
+                <div onclick="addLearningMode()" class="bg-[#1a2332] p-5 rounded-xl border border-gray-800 border-dashed hover:border-[#137fec] hover:bg-[#137fec]/5 transition-all cursor-pointer flex flex-col items-center justify-center min-h-[200px] gap-3 text-gray-500 hover:text-[#137fec]">
+                    <span class="material-symbols-outlined text-4xl">add_circle</span>
+                    <span class="font-bold">Add Learning Mode</span>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        // Render Courses
+        function renderCourses() {
+            const container = document.getElementById('coursesContainer');
+
+            let html = currentConfig.courses.map((course, index) => `
+                <div class="p-4 grid grid-cols-12 gap-4 items-start hover:bg-[#2d3748]/30 transition-colors group">
+                    <!-- Enable Checkbox -->
+                    <div class="col-span-1 flex justify-center pt-2">
+                        <input type="checkbox" ${course.enabled ? 'checked' : ''} 
+                            onchange="updateCourse(${index}, 'enabled', this.checked)"
+                            class="w-5 h-5 rounded border-gray-600 text-green-600 focus:ring-green-500 bg-[#0d141b]">
+                    </div>
+
+                    <!-- Name & Desc -->
+                    <div class="col-span-4 space-y-2">
+                        <input type="text" value="${course.name}" placeholder="Course Name"
+                            onchange="updateCourse(${index}, 'name', this.value)"
+                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-1.5 text-white text-sm font-bold focus:outline-none focus:border-[#137fec]">
+                        <textarea rows="2" 
+                            onchange="updateCourse(${index}, 'description', this.value)"
+                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-3 py-1.5 text-gray-400 text-xs focus:outline-none focus:border-[#137fec] resize-none"
+                            placeholder="Description">${course.description}</textarea>
+                    </div>
+
+                    <!-- Icon & Color -->
+                    <div class="col-span-3 space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-500 text-lg">${course.icon}</span>
+                            <input type="text" value="${course.icon}" placeholder="Icon Name"
+                                onchange="updateCourse(${index}, 'icon', this.value)"
+                                class="flex-1 bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-[#137fec]">
+                        </div>
+                        <select onchange="updateCourse(${index}, 'color', this.value)"
+                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-[#137fec]">
+                            ${['blue', 'purple', 'red', 'green', 'orange', 'cyan', 'teal'].map(c =>
+                `<option value="${c}" ${course.color === c ? 'selected' : ''}>${c.charAt(0).toUpperCase() + c.slice(1)}</option>`
+            ).join('')}
+                        </select>
+                    </div>
+
+                    <!-- Link & Image -->
+                    <div class="col-span-3 space-y-2">
+                        <input type="text" value="${course.link}" placeholder="Page Link (.html)"
+                            onchange="updateCourse(${index}, 'link', this.value)"
+                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-xs text-blue-400 focus:outline-none focus:border-[#137fec]">
+                        <input type="text" value="${course.image}" placeholder="Image Path"
+                            onchange="updateCourse(${index}, 'image', this.value)"
+                            class="w-full bg-[#0d141b] border border-gray-700 rounded px-2 py-1 text-xs text-gray-500 focus:outline-none focus:border-[#137fec]">
+                    </div>
+
+                    <!-- ID & Delete -->
+                    <div class="col-span-1 text-center pt-2 flex flex-col gap-2 items-center">
+                        <span class="text-xs font-mono text-gray-600 bg-[#0d141b] px-2 py-1 rounded w-full truncate" title="${course.id}">${course.id}</span>
+                        <button onclick="deleteCourse(${index})" class="text-red-500 opacity-0 group-hover:opacity-100 hover:bg-red-500/10 p-1.5 rounded transition-all" title="Delete Course">
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add "Add New Course" button
+            html += `
+                <div onclick="addCourse()" class="p-4 border-t border-gray-800 hover:bg-[#2d3748]/30 transition-colors cursor-pointer flex items-center justify-center gap-2 text-gray-500 hover:text-[#137fec]">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    <span class="font-bold text-sm">Add New Learning Path</span>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        // --- Logic Handlers ---
+
+        function addLearningMode() {
+            currentConfig.learningModes.push({
+                title: "New Learning Mode",
+                description: "Description for the new learning mode.",
+                icon: "school",
+                color: "blue",
+                link: "#",
+                image: "images/ai_personalized_learning.png"
+            });
+            renderLearningModes();
+            showToast('New learning mode added - Don\'t forget to save!', 'info');
+        }
+
+        function deleteLearningMode(index) {
+            if (confirm('Are you sure you want to delete this learning mode?')) {
+                currentConfig.learningModes.splice(index, 1);
+                renderLearningModes();
+                showToast('Learning mode removed', 'warning');
+            }
+        }
+
+        function addCourse() {
+            const newId = `course-${Date.now()}`;
+            currentConfig.courses.push({
+                id: newId,
+                name: "New Learning Path",
+                description: "Comprehensive guide to mastering this skill.",
+                icon: "school",
+                color: "blue",
+                link: "Online.html",
+                image: "images/ai_tech_card_bg.png", // Valid default image
+                enabled: true, // Auto-enable new courses
+                category: "Technology",
+                price: 4999,
+                duration: "6 Months"
+            });
+            renderCourses();
+            showToast('New course added (Enabled by default)', 'info');
+        }
+
+        function deleteCourse(index) {
+            if (confirm('Are you sure you want to delete this course path?')) {
+                currentConfig.courses.splice(index, 1);
+                renderCourses();
+                showToast('Course removed', 'warning');
+            }
+        }
+
+        // Data Update Helpers
+        function updateMode(index, field, value) {
+            currentConfig.learningModes[index][field] = value;
+            if (field === 'icon') renderLearningModes();
+        }
+
+        function updateCourse(index, field, value) {
+            currentConfig.courses[index][field] = value;
+            if (field === 'icon') renderCourses();
+        }
+
+        // Save Function
+        async function saveChanges() {
+            if (!currentConfig) return;
+
+            const btn = document.querySelector('button[onclick="saveChanges()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Saving...`;
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/homepage-config`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentConfig)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('Configuration saved successfully!', 'success');
+                } else {
+                    showToast('Failed to save configuration', 'error');
+                }
+            } catch (error) {
+                console.error('Save error:', error);
+                showToast('Network error while saving', 'error');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Toast Helper
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            const iconEl = document.getElementById('toastIcon');
+
+            msgEl.textContent = msg;
+
+            const colors = {
+                'success': 'text-green-500',
+                'error': 'text-red-500',
+                'warning': 'text-orange-500',
+                'info': 'text-blue-500'
+            };
+            const icons = {
+                'success': 'check_circle',
+                'error': 'error',
+                'warning': 'warning',
+                'info': 'info'
+            };
+
+            iconEl.textContent = icons[type] || 'info';
+            iconEl.className = `material-symbols-outlined ${colors[type] || 'text-white'}`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Run
+        init();
+    </script
+</body>
+
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>TECH-PRO AI Sign Up Screen</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#3b82f6", // blue-500
+            "primary-hover": "#2563eb", // blue-600
+            "dark-bg": "#0f172a", // slate-900
+            "dark-card": "#1e293b", // slate-800
+            "dark-surface": "#334155", // slate-700
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+  <!-- Google OAuth Script -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body
+  class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      <div
+        class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+      </div>
+      <div
+        class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+      </div>
+    </div>
+    <header
+      class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-4">
+            <a class="flex items-center gap-2 group" href="#">
+              <div
+                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                <span class="material-symbols-outlined">auto_awesome</span>
+              </div>
+              <h2
+                class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                TECH-PRO AI</h2>
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-sm text-slate-500 dark:text-slate-400 hidden sm:inline-block">Already have an
+              account?</span>
+            <a href="A3Login.html" target="_blank"><button
+                class="h-9 items-center justify-center px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:shadow-sm">
+                Log In
+              </button></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1 flex flex-col justify-center py-12 relative z-10">
+      <div class="mx-auto w-full max-w-3xl px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <h1
+            class="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-3 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
+            Join the future of learning
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+            Create your account to access personalized AI-driven courses.
+          </p>
+        </div>
+        <div
+          class="bg-white dark:bg-dark-card rounded-3xl shadow-2xl shadow-slate-200/50 dark:shadow-black/50 border border-slate-100 dark:border-slate-700 overflow-hidden relative">
+          <div class="p-8 sm:p-10 space-y-8">
+            <div class="space-y-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Account Details</h3>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button type="button" id="googleSignInBtn" onclick="handleGoogleSignIn()"
+                  class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24">
+                    <path
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      fill="#4285F4"></path>
+                    <path
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      fill="#34A853"></path>
+                    <path
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      fill="#FBBC05"></path>
+                    <path
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      fill="#EA4335"></path>
+                  </svg>
+                  Sign in with Google
+                </button>
+                <button
+                  class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow">
+                  <span class="material-symbols-outlined text-slate-500">business</span>
+                  Organization SSO
+                </button>
+              </div>
+              <div class="relative flex items-center gap-4 py-2">
+                <div
+                  class="h-px flex-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700">
+                </div>
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Or via Email or
+                  Phone</span>
+                <div
+                  class="h-px flex-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700">
+                </div>
+              </div>
+              <div class="space-y-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="first-name">First
+                      Name</label>
+                    <input
+                      class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm h-12 transition-shadow"
+                      id="first-name" placeholder="e.g. Alex" type="text" />
+                  </div>
+                  <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="last-name">Last
+                      Name</label>
+                    <input
+                      class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm h-12 transition-shadow"
+                      id="last-name" placeholder="e.g. Johnson" type="text" />
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Email or
+                    Phone Number</label>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-500">
+                      <span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+                    </div>
+                    <input
+                      class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm pl-11 h-12 transition-shadow"
+                      id="email" placeholder="name@company.com or phone number" type="text" />
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+                    for="password">Password</label>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-500">
+                      <span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+                    </div>
+                    <input
+                      class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm pl-11 pr-10 h-12 transition-shadow"
+                      id="password" placeholder="••••••••" type="password" />
+                    <div
+                      class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                      <span class="material-symbols-outlined text-[20px]">visibility</span>
+                    </div>
+                  </div>
+                  <div
+                    class="mt-3 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm">
+                    <p class="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wider">Security Requirements
+                    </p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                      <li id="rule-length" class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="material-symbols-outlined text-[16px]">radio_button_unchecked</span>
+                        8+ characters
+                      </li>
+
+                      <li id="rule-uppercase" class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="material-symbols-outlined text-[16px]">radio_button_unchecked</span>
+                        Uppercase letter
+                      </li>
+
+                      <li id="rule-number" class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="material-symbols-outlined text-[16px]">radio_button_unchecked</span>
+                        Number
+                      </li>
+
+                      <li id="rule-special" class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="material-symbols-outlined text-[16px]">radio_button_unchecked</span>
+                        Special char
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="relative overflow-hidden flex items-start gap-4 p-5 rounded-2xl border transition-all duration-300 bg-gradient-to-br from-indigo-50/80 to-blue-50/80 border-indigo-100/80 dark:from-indigo-900/10 dark:to-blue-900/10 dark:border-indigo-500/20 hover:shadow-md hover:border-indigo-200 dark:hover:border-indigo-500/40">
+                <div class="absolute -top-10 -right-10 w-24 h-24 bg-indigo-400/20 rounded-full blur-2xl"></div>
+                <div class="relative flex h-6 items-center">
+                  <input checked=""
+                    class="peer h-5 w-5 cursor-pointer rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-600 dark:bg-slate-800 transition-all"
+                    id="ai-assessment" name="ai-assessment" type="checkbox" />
+                </div>
+                <div class="relative flex-1">
+                  <label
+                    class="cursor-pointer select-none font-bold text-slate-900 dark:text-white flex items-center gap-2 text-base"
+                    for="ai-assessment">
+                    <span
+                      class="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-[22px]">psychology_alt</span>
+                    Include AI Skill Assessment
+                    <span
+                      class="ml-2 inline-flex items-center rounded-md bg-indigo-100 px-2 py-1 text-xs font-bold text-indigo-700 ring-1 ring-inset ring-indigo-700/10 dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-indigo-400/30">Recommended</span>
+                  </label>
+                  <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm leading-relaxed">
+                    Our AI will analyze your skill gaps in <span
+                      class="font-semibold text-slate-800 dark:text-slate-200">under 5 minutes</span> to generate a
+                    custom curriculum, saving you ~20 hours of irrelevant coursework.
+                  </p>
+                </div>
+              </div>
+              <div class="pt-4 flex flex-col gap-5">
+                <button type="button" onclick="validateSignup()"
+                  class="w-full relative overflow-hidden group flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 text-base font-bold text-white shadow-xl">
+                  Create Account
+                </button>
+
+
+                <p class="text-xs text-center text-slate-500 dark:text-slate-400">
+                  By creating an account, you agree to our <a
+                    class="text-blue-600 hover:text-blue-700 dark:text-blue-400 hover:underline transition-colors"
+                    href="#">Terms of Service</a> and <a
+                    class="text-blue-600 hover:text-blue-700 dark:text-blue-400 hover:underline transition-colors"
+                    href="#">Privacy Policy</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Need help? <a class="font-semibold text-blue-600 dark:text-blue-400 hover:underline" href="#">Contact
+              Support</a>
+          </p>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 py-8 relative z-10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-400">© 2024 TECH-PRO AI Inc. All rights reserved.</p>
+        <div class="flex gap-6 text-sm text-slate-400">
+          <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+          <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+          <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- Error Modal -->
+  <div id="errorModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
+    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 max-w-sm w-full text-center shadow-xl">
+      <span class="material-symbols-outlined text-red-500 text-[48px] mb-3">
+        error
+      </span>
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+        Missing Information
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-4">
+        Please enter all the credentials.
+      </p>
+      <button onclick="closeError()"
+        class="w-full rounded-xl bg-red-600 hover:bg-red-700 text-white py-2 font-semibold">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
+    <div class="bg-white dark:bg-dark-card rounded-2xl p-6 max-w-md w-full text-center shadow-xl">
+      <span class="material-symbols-outlined text-green-500 text-[48px] mb-3">
+        mark_email_read
+      </span>
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+        Account Created Successfully! 🎉
+      </h2>
+      <p id="successMessage" class="text-slate-600 dark:text-slate-400 mb-4">
+        Your account has been successfully created.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-4">
+        <p class="text-sm text-blue-800 dark:text-blue-200">
+          📧 <strong>Check your email!</strong> We've sent a welcome email with a link to log in to your account.
+        </p>
+      </div>
+      <button onclick="redirectToLogin()"
+        class="w-full rounded-xl bg-green-600 hover:bg-green-700 text-white py-2 font-semibold">
+        Go to Login
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function validateSignup() {
+      const firstName = document.getElementById("first-name").value.trim();
+      const lastName = document.getElementById("last-name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // 1️⃣ Check empty fields
+      if (!firstName || !lastName || !email || !password) {
+        showError("Please enter all the credentials.");
+        return;
+      }
+
+      // 2️⃣ Password rules
+      const passwordRegex =
+        /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-]).{8,}$/;
+
+      if (!passwordRegex.test(password)) {
+        showError(
+          "Password must meet security requirements (uppercase, number, special character)")
+        return;
+      }
+
+      // ✅ All validations passed
+      showSuccess();
+    }
+
+    function showError(message) {
+      document.querySelector("#errorModal p").innerText = message;
+      document.getElementById("errorModal").classList.remove("hidden");
+      document.getElementById("errorModal").classList.add("flex");
+    }
+
+    function closeError() {
+      document.getElementById("errorModal").classList.add("hidden");
+      document.getElementById("errorModal").classList.remove("flex");
+    }
+
+    function showSuccess() {
+      document.getElementById("successModal").classList.remove("hidden");
+      document.getElementById("successModal").classList.add("flex");
+    }
+
+    function redirectToLogin() {
+      window.location.href = "A3Login.html";
+    }
+  </script>
+  <script>
+    const passwordInput = document.getElementById("password");
+
+    const rules = {
+      length: {
+        regex: /.{8,}/,
+        element: document.getElementById("rule-length")
+      },
+      uppercase: {
+        regex: /[A-Z]/,
+        element: document.getElementById("rule-uppercase")
+      },
+      number: {
+        regex: /\d/,
+        element: document.getElementById("rule-number")
+      },
+      special: {
+        regex: /[@$!%*?&#^()_+=\-]/,
+        element: document.getElementById("rule-special")
+      }
+    };
+
+    passwordInput.addEventListener("input", () => {
+      const value = passwordInput.value;
+
+      Object.values(rules).forEach(rule => {
+        const icon = rule.element.querySelector("span");
+
+        if (rule.regex.test(value)) {
+          rule.element.classList.remove("text-slate-500");
+          rule.element.classList.add("text-emerald-600");
+          icon.innerText = "check_circle";
+        } else {
+          rule.element.classList.remove("text-emerald-600");
+          rule.element.classList.add("text-slate-500");
+          icon.innerText = "radio_button_unchecked";
+        }
+      });
+    });
+  </script>
+  <script>
+    function validateSignup() {
+      const firstName = document.getElementById("first-name").value.trim();
+      const lastName = document.getElementById("last-name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // Empty check
+      if (!firstName || !lastName || !email || !password) {
+        showError("Please enter all the credentials.");
+        return;
+      }
+
+      // Validate email OR phone number
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^(\+91|91)?[6-9]\d{9}$/;
+
+      if (!emailRegex.test(email) && !phoneRegex.test(email.replace(/\s+/g, ''))) {
+        showError("Please enter a valid email address or phone number.");
+        return;
+      }
+
+      // Password validation
+      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        showError("Password must have uppercase, number & special character.");
+        return;
+      }
+
+      // 🔥 BACKEND CALL - Primary storage
+      fetch("http://127.0.0.1:8080/api/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password
+        })
+      })
+        .then(res => res.text())
+        .then(response => {
+          if (response === "SIGNUP_SUCCESS_EMAIL_SENT") {
+            // Store user data (not password) in localStorage for profile
+            localStorage.setItem('userFirstName', firstName);
+            localStorage.setItem('userLastName', lastName);
+            localStorage.setItem('userEmail', email);
+
+            // Update success message to confirm email was sent
+            document.getElementById('successMessage').innerText =
+              `Welcome ${firstName}! A confirmation email has been sent to ${email}.`;
+            showSuccess();
+          }
+          else if (response === "SIGNUP_SUCCESS") {
+            // Store user data (not password) in localStorage for profile
+            localStorage.setItem('userFirstName', firstName);
+            localStorage.setItem('userLastName', lastName);
+            localStorage.setItem('userEmail', email);
+
+            // Update success message for phone registration
+            document.getElementById('successMessage').innerText =
+              `Welcome ${firstName}! Your account has been successfully created.`;
+            showSuccess();
+          }
+          else if (response === "ALREADY_REGISTERED") {
+            showError("This email or phone number is already registered. Please try logging in instead.");
+          }
+          else if (response === "INVALID_EMAIL") {
+            showError("The email address or phone number you entered is not valid. Please check and try again.");
+          }
+          else if (response === "MISSING_FIELDS") {
+            showError("Please fill in all required fields.");
+          }
+          else {
+            showError("Something went wrong. Please try again later.");
+          }
+        })
+        .catch((error) => {
+          console.error("Backend error:", error);
+          showError("Unable to connect to the server. Please ensure the backend server is running on port 8080.");
+        });
+    }
+
+    // ---------- MODALS ----------
+    function showError(message) {
+      document.querySelector("#errorModal p").innerText = message;
+      document.getElementById("errorModal").classList.remove("hidden");
+      document.getElementById("errorModal").classList.add("flex");
+    }
+
+    function closeError() {
+      document.getElementById("errorModal").classList.add("hidden");
+      document.getElementById("errorModal").classList.remove("flex");
+    }
+
+    function showSuccess() {
+      document.getElementById("successModal").classList.remove("hidden");
+      document.getElementById("successModal").classList.add("flex");
+    }
+
+    function redirectToLogin() {
+      // Redirect to login page after successful signup
+      window.location.href = "A3Login.html";
+    }
+  </script>
+
+  <!-- Google Sign-In Handler (Demo Mode) -->
+  <script>
+    // Handle Google Sign-In button click
+    async function handleGoogleSignIn() {
+      try {
+        // For demo purposes, we'll use a popup to get user's Google email
+        const email = prompt('Enter your Google email address:');
+
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // Extract name from email (before @)
+        const emailName = email.split('@')[0];
+        const firstName = emailName.charAt(0).toUpperCase() + emailName.slice(1);
+        const lastName = 'User';
+
+        // Show loading state
+        const btn = document.getElementById('googleSignInBtn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Signing in...';
+        btn.disabled = true;
+
+        // Auto-generate a secure password
+        const autoPassword = 'GOOGLE_AUTH_' + Date.now();
+
+        // Register user with backend
+        const signupResponse = await fetch("http://127.0.0.1:8080/api/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password: autoPassword,
+            authProvider: 'google'
+          })
+        });
+
+        const result = await signupResponse.text();
+
+        // Reset button
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+
+        if (result === "SIGNUP_SUCCESS_EMAIL_SENT" || result === "SIGNUP_SUCCESS" || result === "ALREADY_REGISTERED") {
+          // Store user data
+          localStorage.setItem('userFirstName', firstName);
+          localStorage.setItem('userLastName', lastName);
+          localStorage.setItem('userEmail', email);
+          localStorage.setItem('authProvider', 'google');
+          localStorage.setItem('isLoggedIn', 'true');
+
+          // Show success message
+          document.getElementById('successMessage').innerText =
+            `Welcome ${firstName}! You've successfully signed in with Google.`;
+          showSuccess();
+
+          // Redirect to onboarding page after 2 seconds
+          setTimeout(() => {
+            window.location.href = "A4Onboarding.html";
+          }, 2000);
+        } else if (result === "INVALID_EMAIL") {
+          showError('The email address you entered is not valid. Please check and try again.');
+        } else {
+          showError('Failed to sign in. Please try again or use email signup.');
+        }
+
+      } catch (error) {
+        console.error('Google Sign-In error:', error);
+
+        // Reset button
+        const btn = document.getElementById('googleSignInBtn');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+
+        showError('Unable to connect to the server. Please ensure the backend is running and try again.');
+      }
+    }
+  </script>
+
+
+</body>
+
+</html>

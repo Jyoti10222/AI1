@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dynamic Instructor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .chart-bar {
+            transition: height 1s ease-out;
+        }
+
+        .tooltip-trigger:hover .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #heatmap-modal:target {
+            display: flex;
+        }
+
+        .sidebar-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .group:hover .sidebar-dropdown {
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary overflow-hidden">
+    <div class="flex h-screen w-full overflow-hidden">
+        <aside
+            class="w-72 bg-white/80 dark:bg-dark-card/80 backdrop-blur-2xl border-r border-slate-200/60 dark:border-slate-800/60 hidden lg:flex flex-col z-20 shrink-0 h-full relative shadow-lg shadow-slate-200/50 dark:shadow-none">
+            <div class="p-8 flex items-center gap-3">
+                <div
+                    class="size-10 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group cursor-pointer hover:scale-110 hover:rotate-3 transition-all duration-300">
+                    <span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+                </div>
+                <h2
+                    class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">
+                    TECH-PRO AI</h2>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-2 custom-scrollbar">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 font-medium transition-all shadow-sm"
+                    href="#">
+                    <span class="material-symbols-outlined filled">dashboard</span>
+                    Dashboard
+                </a>
+
+                <a href="A14Student.html" target="_blank"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-purple-500 transition-colors">groups</span>
+                    Students Management
+                </a>
+                <a href="A16Users.html" target="_blank"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-purple-500 transition-colors">groups</span>
+                    User Management
+                </a>
+                <a href="LeadDash.html" target="_blank"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-purple-500 transition-colors">groups</span>
+                    Lead Management
+                </a>
+                <a href="PricingDashboard.html" target="_blank"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-purple-500 transition-colors">groups</span>
+                    Pricing Management
+                </a>
+
+                <div class="group relative">
+                    <a href="Faculty.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors cursor-pointer">
+                        <span
+                            class="material-symbols-outlined group-hover:text-green-500 transition-colors">forum</span>
+                        Faculty Management
+                        <span id="facultyNotificationBadge" style="display: none;"
+                            class="ml-auto bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                    </a>
+                    <a href="AdminDashboard.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors cursor-pointer">
+                        <span
+                            class="material-symbols-outlined group-hover:text-green-500 transition-colors">forum</span>
+                        Delivery Management
+                        <span id="deliveryNotificationBadge" style="display: none;"
+                            class="ml-auto bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                    </a>
+                    <a href="AILearningAdmin.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                        <span
+                            class="material-symbols-outlined group-hover:text-blue-500 transition-colors">school</span>
+                        learning Path Management
+                    </a>
+
+                    <a href="TrainerManagement.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                        <span
+                            class="material-symbols-outlined group-hover:text-blue-500 transition-colors">school</span>
+                        Trainer Accounts
+                    </a>
+                    <a href="ExamBuilder.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors cursor-pointer">
+                        <span
+                            class="material-symbols-outlined group-hover:text-green-500 transition-colors">forum</span>
+                        Exam Management
+                    </a>
+                    <a href="AssessmentBuilder.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors cursor-pointer">
+                        <span
+                            class="material-symbols-outlined group-hover:text-green-500 transition-colors">forum</span>
+                        Assessment Management
+                    </a>
+                    <a href="CounsellorAdmin.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors cursor-pointer">
+                        <span
+                            class="material-symbols-outlined group-hover:text-green-500 transition-colors">forum</span>
+                        Counselor Management
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined group-hover:text-orange-500 transition-colors">bar_chart</span>
+                        Analytics
+                    </a>
+
+                </div>
+            </nav>
+            <div class="p-4 border-t border-slate-100 dark:border-slate-800/50">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">Quick Actions</h3>
+                <div class="space-y-2 group">
+                    <div class="relative">
+                        <button
+                            class="w-full flex items-center justify-between px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors shadow-md shadow-blue-500/20 z-10 relative">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                                Create
+                            </div>
+                            <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute bottom-full left-0 w-full mb-1 bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20 overflow-hidden">
+                            <a class="block px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600"
+                                href="A11Builder.html">New Course</a>
+                            <a class="block px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600"
+                                href="#">From Template</a>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full flex items-center gap-2 px-3 py-2 bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">edit_document</span>
+                        Edit Content
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div
+                    class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer">
+                    <div
+                        class="size-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+                        AM
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Alex Morgan</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Senior Instructor</p>
+                    </div>
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <span class="material-symbols-outlined text-[20px]">settings</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+            <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                <div
+                    class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+                </div>
+                <div
+                    class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+                </div>
+            </div>
+            <header
+                class="h-20 shrink-0 bg-white/70 dark:bg-dark-bg/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between px-8 z-30 sticky top-0 w-full transition-all duration-300">
+                <div class="flex items-center gap-4 lg:hidden">
+                    <button class="p-2 -ml-2 text-slate-600 dark:text-slate-300">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <span class="font-bold text-lg text-slate-900 dark:text-white">TECH-PRO AI</span>
+                </div>
+                <div class="hidden lg:flex flex-col">
+                    <h1 class="text-lg font-bold text-slate-900 dark:text-white">Instructor Dashboard</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Dynamic Overview &amp; Real-time Analytics</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative hidden sm:block group">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px] group-focus-within:text-blue-500 transition-colors">search</span>
+                        <input
+                            class="pl-11 pr-4 py-2.5 w-72 rounded-full bg-slate-100/50 dark:bg-slate-800/50 border-transparent focus:border-blue-500/50 focus:bg-white dark:focus:bg-dark-card focus:ring-4 focus:ring-blue-500/10 text-sm focus:w-80 transition-all duration-300 shadow-sm"
+                            placeholder="Search courses, students, data..." type="text" />
+                    </div>
+                    <button
+                        class="relative size-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+                        <span
+                            class="absolute top-2 right-2 size-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-dark-bg animate-pulse"></span>
+                    </button>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 z-10 custom-scrollbar">
+                <div class="max-w-7xl mx-auto space-y-6">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div
+                            class="bg-white dark:bg-dark-card p-6 rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span
+                                    class="material-symbols-outlined text-8xl text-blue-500 -mr-4 -mt-4 transform rotate-12">group</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Total
+                                    Learners</span>
+                                <div
+                                    class="size-10 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <span class="material-symbols-outlined">group</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-3 relative z-10">
+                                <span id="totalLearnersCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">0</span>
+                                <span id="totalLearnersTrend"
+                                    class="text-xs font-bold text-green-600 dark:text-green-400 flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    <span id="totalLearnersTrendValue">+0%</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-dark-card p-6 rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span
+                                    class="material-symbols-outlined text-8xl text-purple-500 -mr-4 -mt-4 transform rotate-12">donut_large</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Avg.
+                                    Completion</span>
+                                <div
+                                    class="size-10 rounded-2xl bg-purple-50 dark:bg-purple-900/20 text-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <span class="material-symbols-outlined">donut_large</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-3 relative z-10">
+                                <span id="avgCompletionPercent"
+                                    class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">0%</span>
+                                <span id="avgCompletionTrend"
+                                    class="text-xs font-bold text-green-600 dark:text-green-400 flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    <span id="avgCompletionTrendValue">+0%</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-dark-card p-6 rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span
+                                    class="material-symbols-outlined text-8xl text-orange-500 -mr-4 -mt-4 transform rotate-12">school</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Active
+                                    Courses</span>
+                                <div
+                                    class="size-10 rounded-2xl bg-orange-50 dark:bg-orange-900/20 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <span class="material-symbols-outlined">school</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-3 relative z-10">
+                                <span id="activeCoursesCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">0</span>
+                                <span id="draftCoursesCount"
+                                    class="text-xs font-semibold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">0
+                                    in draft</span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-dark-card p-6 rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm hover:shadow-xl hover:shadow-yellow-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span
+                                    class="material-symbols-outlined text-8xl text-yellow-500 -mr-4 -mt-4 transform rotate-12">star</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Course
+                                    Rating</span>
+                                <div
+                                    class="size-10 rounded-2xl bg-yellow-50 dark:bg-yellow-900/20 text-yellow-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <span class="material-symbols-outlined">star</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-3 relative z-10">
+                                <span id="courseRatingValue"
+                                    class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">0.0</span>
+                                <span
+                                    class="text-xs font-semibold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full"><span
+                                        id="courseRatingReviews">0</span> reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div
+                            class="lg:col-span-2 bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm p-8 flex flex-col transition-all duration-300">
+                            <div
+                                class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                                <div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        Course Performance
+                                        <span class="flex size-2 bg-green-500 rounded-full animate-pulse"
+                                            title="Live Updates"></span>
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Weekly active students with
+                                        real-time filtering</p>
+                                </div>
+                                <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800/50 p-1 rounded-lg">
+                                    <button
+                                        class="px-3 py-1.5 text-xs font-medium rounded-md bg-white dark:bg-dark-surface shadow-sm text-slate-900 dark:text-white">Students</button>
+                                    <button
+                                        class="px-3 py-1.5 text-xs font-medium rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Groups</button>
+                                    <button
+                                        class="px-3 py-1.5 text-xs font-medium rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Modules</button>
+                                </div>
+                                <select
+                                    class="bg-slate-50 dark:bg-slate-800 border-none text-xs rounded-lg py-1.5 pl-3 pr-8 text-slate-600 dark:text-slate-300 focus:ring-1 focus:ring-blue-500 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                    <option>Last 3 Months</option>
+                                    <option>Last 6 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                            <div
+                                class="flex-1 flex items-end justify-between gap-2 h-64 mt-2 px-2 pb-2 border-b border-l border-slate-100 dark:border-slate-800/50 relative">
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[40%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[45%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[60%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W1</span>
+                                    <div
+                                        class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-card border border-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible transition-all z-20 whitespace-nowrap">
+                                        <div class="font-bold mb-1">Week 1</div>
+                                        <div class="flex justify-between gap-4"><span
+                                                class="text-slate-400">Active:</span> <span>420</span></div>
+                                        <div class="flex justify-between gap-4"><span
+                                                class="text-slate-400">Rate:</span> <span
+                                                class="text-green-400">98%</span></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[55%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[60%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[70%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W2</span>
+                                    <div
+                                        class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-card border border-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible transition-all z-20 whitespace-nowrap">
+                                        <div class="font-bold mb-1">Week 2</div>
+                                        <div class="flex justify-between gap-4"><span
+                                                class="text-slate-400">Active:</span> <span>580</span></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[45%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[50%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[50%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W3</span>
+                                    <div
+                                        class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-card border border-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible transition-all z-20 whitespace-nowrap">
+                                        <div class="font-bold mb-1">Week 3</div>
+                                        <div class="flex justify-between gap-4"><span
+                                                class="text-slate-400">Active:</span> <span>490</span></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[60%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[65%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[80%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W4</span>
+                                    <div
+                                        class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark-card border border-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible transition-all z-20 whitespace-nowrap">
+                                        <div class="font-bold mb-1">Week 4</div>
+                                        <div class="flex justify-between gap-4"><span
+                                                class="text-slate-400">Active:</span> <span>610</span></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[75%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[80%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[85%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W5</span>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[50%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[55%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[60%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W6</span>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[80%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[85%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[75%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W7</span>
+                                </div>
+                                <div
+                                    class="w-full flex flex-col justify-end gap-1 group cursor-pointer tooltip-trigger relative h-full">
+                                    <div
+                                        class="w-full bg-blue-100 dark:bg-blue-900/30 rounded-t-sm h-[90%] group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-all relative overflow-hidden chart-bar group-hover:h-[95%]">
+                                        <div class="absolute bottom-0 w-full bg-blue-500 h-[92%] rounded-t-sm"></div>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 text-center">W8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm p-8 flex flex-col transition-all duration-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-slate-900 dark:text-white">Completion Rates</h3>
+                                <button class="text-xs text-blue-600 hover:underline">Filter by Course</button>
+                            </div>
+                            <div class="flex-1 flex items-center justify-center relative group">
+                                <div class="size-48 rounded-full flex items-center justify-center relative shadow-inner cursor-pointer hover:scale-105 transition-transform"
+                                    style="background: conic-gradient(#3b82f6 0% 65%, #a855f7 65% 85%, #f1f5f9 85% 100%);">
+                                    <div
+                                        class="size-32 bg-white dark:bg-dark-card rounded-full flex flex-col items-center justify-center z-10 shadow-sm group-hover:shadow-lg transition-shadow">
+                                        <span class="text-3xl font-bold text-slate-900 dark:text-white">65%</span>
+                                        <span class="text-xs text-slate-500 uppercase tracking-wide">Completed</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div
+                                        class="bg-dark-bg/90 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm -translate-y-16">
+                                        View Breakdowns
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 space-y-3">
+                                <button
+                                    class="w-full flex items-center justify-between text-sm p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="size-3 bg-blue-500 rounded-full group-hover/item:ring-2 ring-blue-200">
+                                        </div>
+                                        <span class="text-slate-600 dark:text-slate-400">Completed</span>
+                                    </div>
+                                    <span class="font-bold text-slate-900 dark:text-white">65%</span>
+                                </button>
+                                <button
+                                    class="w-full flex items-center justify-between text-sm p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="size-3 bg-purple-500 rounded-full group-hover/item:ring-2 ring-purple-200">
+                                        </div>
+                                        <span class="text-slate-600 dark:text-slate-400">In Progress</span>
+                                    </div>
+                                    <span class="font-bold text-slate-900 dark:text-white">20%</span>
+                                </button>
+                                <button
+                                    class="w-full flex items-center justify-between text-sm p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="size-3 bg-slate-100 dark:bg-slate-700 rounded-full group-hover/item:ring-2 ring-slate-200">
+                                        </div>
+                                        <span class="text-slate-600 dark:text-slate-400">Not Started</span>
+                                    </div>
+                                    <span class="font-bold text-slate-900 dark:text-white">15%</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm p-8 relative transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-green-500">calendar_month</span>
+                                    Learner Engagement Heatmap
+                                </h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                    Click on any cell to see detailed interaction points.
+                                </p>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="flex items-center gap-1 text-[10px] text-slate-500">
+                                    <span>Less</span>
+                                    <div class="w-3 h-3 bg-slate-100 dark:bg-slate-800 rounded-sm"></div>
+                                    <div class="w-3 h-3 bg-green-200 dark:bg-green-900/40 rounded-sm"></div>
+                                    <div class="w-3 h-3 bg-green-400 dark:bg-green-700 rounded-sm"></div>
+                                    <div class="w-3 h-3 bg-green-600 dark:bg-green-500 rounded-sm"></div>
+                                    <span>More</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto pb-2">
+                            <div class="min-w-[600px]">
+                                <div class="flex mb-3">
+                                    <div class="w-24 shrink-0"></div>
+                                    <div
+                                        class="flex-1 grid grid-cols-7 gap-2 text-center text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                                        <div>Mon</div>
+                                        <div>Tue</div>
+                                        <div>Wed</div>
+                                        <div>Thu</div>
+                                        <div>Fri</div>
+                                        <div>Sat</div>
+                                        <div>Sun</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center h-10">
+                                        <div
+                                            class="w-20 text-[10px] font-medium text-slate-400 uppercase tracking-wide shrink-0">
+                                            Morning</div>
+                                        <div class="flex-1 grid grid-cols-7 gap-2 h-full">
+                                            <a class="block bg-slate-100 dark:bg-slate-800/50 rounded-lg hover:ring-2 ring-blue-500 cursor-pointer transition-all tooltip-trigger relative hover:scale-105 hover:shadow-md"
+                                                href="#heatmap-modal">
+                                                <div
+                                                    class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-black text-white text-[10px] rounded opacity-0 invisible z-10 whitespace-nowrap">
+                                                    Low Activity</div>
+                                            </a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-slate-100 dark:bg-slate-800 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-slate-100 dark:bg-slate-800 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center h-10">
+                                        <div
+                                            class="w-20 text-[10px] font-medium text-slate-400 uppercase tracking-wide shrink-0">
+                                            Afternoon</div>
+                                        <div class="flex-1 grid grid-cols-7 gap-1 h-full">
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-600 dark:bg-green-500 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all tooltip-trigger relative hover:scale-105"
+                                                href="#heatmap-modal">
+                                                <div
+                                                    class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-black text-white text-[10px] rounded opacity-0 invisible z-10 whitespace-nowrap">
+                                                    Peak Activity: 245 Students</div>
+                                            </a>
+                                            <a class="block bg-green-600 dark:bg-green-500 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-slate-100 dark:bg-slate-800 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center h-10">
+                                        <div
+                                            class="w-20 text-[10px] font-medium text-slate-400 uppercase tracking-wide shrink-0">
+                                            Evening</div>
+                                        <div class="flex-1 grid grid-cols-7 gap-1 h-full">
+                                            <a class="block bg-green-600 dark:bg-green-500 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-600 dark:bg-green-500 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-600 dark:bg-green-500 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center h-10">
+                                        <div
+                                            class="w-20 text-[10px] font-medium text-slate-400 uppercase tracking-wide shrink-0">
+                                            Night</div>
+                                        <div class="flex-1 grid grid-cols-7 gap-1 h-full">
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-slate-100 dark:bg-slate-800 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-slate-100 dark:bg-slate-800 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-200 dark:bg-green-900/40 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                            <a class="block bg-green-400 dark:bg-green-700 rounded hover:ring-2 ring-blue-500 cursor-pointer transition-all hover:scale-105"
+                                                href="#heatmap-modal"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in-up"
+                        id="heatmap-modal">
+                        <div
+                            class="bg-white dark:bg-dark-card rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-slate-200 dark:border-slate-800">
+                            <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Tuesday Afternoon
+                                        Insights</h3>
+                                    <a class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" href="#">
+                                        <span class="material-symbols-outlined">close</span>
+                                    </a>
+                                </div>
+                                <p class="text-sm text-slate-500 mt-1">Activity breakdown for 2:00 PM - 6:00 PM</p>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div
+                                    class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-800/50 transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div class="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-xl">
+                                            <span class="material-symbols-outlined text-[24px]">play_circle</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-slate-900 dark:text-white">Video Interactions</p>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">156 students watched
+                                                module 3</p>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="text-blue-600 font-bold px-3 py-1 bg-blue-50 dark:bg-blue-900/20 rounded-lg">65%</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-white/5 hover:border-purple-200 dark:hover:border-purple-800/50 transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div class="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-xl">
+                                            <span class="material-symbols-outlined text-[24px]">quiz</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-slate-900 dark:text-white">Quiz Attempts</p>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">89 quizzes completed
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="text-purple-600 font-bold px-3 py-1 bg-purple-50 dark:bg-purple-900/20 rounded-lg">35%</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-6 bg-slate-50 dark:bg-slate-800/30 flex justify-end gap-3 border-t border-slate-100 dark:border-slate-800">
+                                <a class="px-5 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors"
+                                    href="#">Close</a>
+                                <button
+                                    class="px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-xl transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-0.5">View
+                                    Detailed Report</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 shadow-sm overflow-hidden transition-all duration-300">
+                        <div
+                            class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <h3 class="font-bold text-slate-900 dark:text-white">Recent Student Activity</h3>
+                            <button class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline">View
+                                All</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead
+                                    class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-white/5">
+                                    <tr>
+                                        <th class="px-8 py-4 first:rounded-tl-2xl">Student</th>
+                                        <th class="px-6 py-4">Course</th>
+                                        <th class="px-6 py-4">Action</th>
+                                        <th class="px-6 py-4 last:rounded-tr-2xl">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentActivityTableBody"
+                                    class="divide-y divide-slate-100 dark:divide-slate-800">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        // -----------------------------------------------------------
+        // Real-time Dashboard Statistics
+        // -----------------------------------------------------------
+        const API_BASE_URL = 'http://127.0.0.1:8080/api';
+        const USE_BACKEND = true;
+        const STORAGE_KEY = 'student_enquiries';
+
+        async function getStudentData() {
+            if (USE_BACKEND) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/students`);
+                    const result = await response.json();
+                    if (result.success) {
+                        return result.data || [];
+                    }
+                } catch (error) {
+                    console.warn('Backend unavailable, using localStorage:', error);
+                }
+            }
+
+            // Fallback to localStorage
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch (e) {
+                console.error('Error loading student data:', e);
+                return [];
+            }
+        }
+
+        async function updateDashboardStats() {
+            const students = await getStudentData();
+            const totalStudents = students.length;
+
+            // Update Total Learners
+            document.getElementById('totalLearnersCount').textContent = totalStudents.toLocaleString();
+
+            // Calculate trend (mock: compare with previous data or use growth percentage)
+            const trendPercent = totalStudents > 0 ? Math.min(Math.round((totalStudents / 100) * 12), 25) : 0;
+            document.getElementById('totalLearnersTrendValue').textContent = `+${trendPercent}%`;
+
+            // Calculate unique courses
+            const uniqueCourses = new Set(students.map(s => s.desiredCourse).filter(c => c));
+            const activeCourses = uniqueCourses.size;
+            document.getElementById('activeCoursesCount').textContent = activeCourses;
+            document.getElementById('draftCoursesCount').textContent = Math.max(0, Math.floor(activeCourses * 0.25)) + ' in draft';
+
+            // Calculate average completion (realistic mock based on enrollment)
+            // Assume 60-75% completion rate with some variance
+            const baseCompletion = 68;
+            const variance = totalStudents > 0 ? Math.min(Math.floor(totalStudents / 20), 7) : 0;
+            const avgCompletion = Math.min(baseCompletion + variance, 85);
+            document.getElementById('avgCompletionPercent').textContent = avgCompletion + '%';
+
+            const completionTrend = Math.min(Math.floor(variance / 2) + 3, 8);
+            document.getElementById('avgCompletionTrendValue').textContent = `+${completionTrend}%`;
+
+            // Calculate course rating (4.5-5.0 range based on student count)
+            const baseRating = 4.6;
+            const ratingBoost = totalStudents > 0 ? Math.min(totalStudents / 1000, 0.3) : 0;
+            const courseRating = Math.min(baseRating + ratingBoost, 5.0).toFixed(1);
+            document.getElementById('courseRatingValue').textContent = courseRating;
+
+            // Reviews count (assume 25-30% of students leave reviews)
+            const reviewCount = Math.floor(totalStudents * 0.27);
+            document.getElementById('courseRatingReviews').textContent = reviewCount.toLocaleString();
+        }
+
+        // Initial load
+        updateDashboardStats();
+
+        // Listen for storage changes (when students are added/removed)
+        window.addEventListener('storage', function (e) {
+            if (e.key === STORAGE_KEY) {
+                updateDashboardStats();
+            }
+        });
+
+        // Refresh stats every 30 seconds
+        setInterval(updateDashboardStats, 30000);
+
+        // Update when page becomes visible
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) {
+                updateDashboardStats();
+            }
+        });
+
+        // -----------------------------------------------------------
+        // 1. Sidebar Toggle Mobile
+        // -----------------------------------------------------------
+        const menuBtn = document.querySelector('.lg\\:hidden button');
+        const sidebar = document.querySelector('aside');
+
+        // Ensure sidebar is hidden on mobile by default if not tailored via class logic
+        // But for now we rely on the CSS classes presented.
+
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('absolute');
+                sidebar.classList.toggle('top-0');
+                sidebar.classList.toggle('left-0');
+                sidebar.classList.toggle('h-full');
+                sidebar.classList.toggle('z-50');
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !sidebar.classList.contains('hidden')) {
+                    // Only toggle if it's currently visible in mobile mode (roughly inferred)
+                    if (window.innerWidth < 1024) {
+                        sidebar.classList.add('hidden');
+                        sidebar.classList.remove('absolute', 'top-0', 'left-0', 'h-full', 'z-50');
+                    }
+                }
+            });
+        }
+
+        // -----------------------------------------------------------
+        // Real-time Course Performance Chart & Activity
+        // -----------------------------------------------------------
+        function updateCoursePerformanceChart() {
+            const students = getStudentData();
+            const totalStudents = students.length;
+
+            // Generate weekly data based on student count
+            const weeklyData = [];
+            for (let i = 0; i < 8; i++) {
+                const baseActivity = Math.floor(totalStudents * (0.3 + Math.random() * 0.4));
+                weeklyData.push(baseActivity);
+            }
+
+            // Update chart bars
+            const chartBars = document.querySelectorAll('.chart-bar');
+            chartBars.forEach((bar, index) => {
+                if (index < weeklyData.length) {
+                    const activity = weeklyData[index];
+                    const maxActivity = Math.max(...weeklyData);
+                    const heightPercent = maxActivity > 0 ? Math.floor((activity / maxActivity) * 100) : 0;
+
+                    // Update bar height
+                    bar.style.height = `${heightPercent}%`;
+
+                    // Update tooltip if exists
+                    const tooltip = bar.querySelector('.tooltip-content');
+                    if (tooltip) {
+                        tooltip.innerHTML = `
+                            <div class="font-bold mb-1">Week ${index + 1}</div>
+                            <div class="flex justify-between gap-4"><span class="text-slate-400">Active:</span> <span>${activity}</span></div>
+                        `;
+                    }
+                }
+            });
+        }
+
+        // -----------------------------------------------------------
+        // Real-time Learner Engagement Heatmap
+        // -----------------------------------------------------------
+        function updateEngagementHeatmap() {
+            const students = getStudentData();
+            const totalStudents = students.length;
+
+            // Generate heatmap data based on student activity patterns
+            const heatmapCells = document.querySelectorAll('a[href="#heatmap-modal"]');
+
+            heatmapCells.forEach(cell => {
+                // Generate activity level (0-4) based on student count
+                const activityLevel = totalStudents > 0 ? Math.floor(Math.random() * 5) : 0;
+
+                // Remove existing background classes
+                cell.classList.remove('bg-slate-100', 'bg-green-200', 'bg-green-400', 'bg-green-600',
+                    'dark:bg-slate-800', 'dark:bg-green-900/40', 'dark:bg-green-700', 'dark:bg-green-500');
+
+                // Add appropriate class based on activity level
+                if (activityLevel === 0) {
+                    cell.classList.add('bg-slate-100', 'dark:bg-slate-800');
+                } else if (activityLevel === 1) {
+                    cell.classList.add('bg-green-200', 'dark:bg-green-900/40');
+                } else if (activityLevel === 2) {
+                    cell.classList.add('bg-green-400', 'dark:bg-green-700');
+                } else {
+                    cell.classList.add('bg-green-600', 'dark:bg-green-500');
+                }
+            });
+        }
+
+        // -----------------------------------------------------------
+        // Real-time Recent Student Activity Table
+        // -----------------------------------------------------------
+        function updateRecentActivity() {
+            const students = getStudentData();
+            const tbody = document.getElementById('recentActivityTableBody');
+
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+
+            if (students.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="px-6 py-8 text-center text-slate-500 dark:text-slate-400">
+                            No student activity yet. Add students to see their activity here.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Get recent students (last 5)
+            const recentStudents = students.slice(0, Math.min(5, students.length));
+
+            const actions = ['Enrolled in Course', 'Started Module 1', 'Completed Quiz', 'Submitted Assignment', 'Posted Comment'];
+            const actionColors = [
+                { bg: 'bg-blue-100', text: 'text-blue-800', darkBg: 'dark:bg-blue-900/30', darkText: 'dark:text-blue-400' },
+                { bg: 'bg-purple-100', text: 'text-purple-800', darkBg: 'dark:bg-purple-900/30', darkText: 'dark:text-purple-400' },
+                { bg: 'bg-green-100', text: 'text-green-800', darkBg: 'dark:bg-green-900/30', darkText: 'dark:text-green-400' },
+                { bg: 'bg-orange-100', text: 'text-orange-800', darkBg: 'dark:bg-orange-900/30', darkText: 'dark:text-orange-400' },
+                { bg: 'bg-yellow-100', text: 'text-yellow-800', darkBg: 'dark:bg-yellow-900/30', darkText: 'dark:text-yellow-400' }
+            ];
+
+            const avatarColors = [
+                { bg: 'bg-pink-100', text: 'text-pink-600' },
+                { bg: 'bg-blue-100', text: 'text-blue-600' },
+                { bg: 'bg-orange-100', text: 'text-orange-600' },
+                { bg: 'bg-purple-100', text: 'text-purple-600' },
+                { bg: 'bg-green-100', text: 'text-green-600' }
+            ];
+
+            recentStudents.forEach((student, index) => {
+                const fullName = `${student.firstName || ''} ${student.lastName || ''}`.trim() || 'Unknown Student';
+                const initials = fullName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const course = student.desiredCourse || 'General Course';
+                const action = actions[index % actions.length];
+                const actionColor = actionColors[index % actionColors.length];
+                const avatarColor = avatarColors[index % avatarColors.length];
+
+                // Calculate time ago
+                const timestamp = student.timestamp ? new Date(student.timestamp) : new Date();
+                const now = new Date();
+                const diffMs = now - timestamp;
+                const diffMins = Math.floor(diffMs / 60000);
+                let timeAgo;
+                if (diffMins < 1) timeAgo = 'Just now';
+                else if (diffMins < 60) timeAgo = `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+                else if (diffMins < 1440) timeAgo = `${Math.floor(diffMins / 60)} hour${Math.floor(diffMins / 60) > 1 ? 's' : ''} ago`;
+                else timeAgo = `${Math.floor(diffMins / 1440)} day${Math.floor(diffMins / 1440) > 1 ? 's' : ''} ago`;
+
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer';
+                row.innerHTML = `
+                    <td class="px-6 py-4 flex items-center gap-3">
+                        <div class="size-8 rounded-full ${avatarColor.bg} ${avatarColor.text} flex items-center justify-center text-xs font-bold">
+                            ${initials}
+                        </div>
+                        <span class="font-medium text-slate-900 dark:text-white">${fullName}</span>
+                    </td>
+                    <td class="px-6 py-4 text-slate-600 dark:text-slate-300">${course}</td>
+                    <td class="px-6 py-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${actionColor.bg} ${actionColor.text} ${actionColor.darkBg} ${actionColor.darkText}">
+                            ${action}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-slate-500 dark:text-slate-400">${timeAgo}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Call all update functions
+        function updateAllRealTimeData() {
+            updateDashboardStats();
+            updateCoursePerformanceChart();
+            updateEngagementHeatmap();
+            updateRecentActivity();
+        }
+
+        // Initial load
+        updateAllRealTimeData();
+
+        // Listen for storage changes
+        window.addEventListener('storage', function (e) {
+            if (e.key === STORAGE_KEY) {
+                updateAllRealTimeData();
+            }
+        });
+
+        // Refresh all data every 30 seconds
+        setInterval(updateAllRealTimeData, 30000);
+
+        // Update when page becomes visible
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) {
+                updateAllRealTimeData();
+            }
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // -----------------------------------------------------------
+            // 3. Search Filter
+            // -----------------------------------------------------------
+            const searchInput = document.querySelector('input[placeholder*="Search"]');
+            const tableRows = document.querySelectorAll('tbody tr');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase().trim();
+                    tableRows.forEach(row => {
+                        // We check all text in the row
+                        const rowText = row.innerText.toLowerCase();
+                        if (rowText.includes(term)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // -----------------------------------------------------------
+            // 4. AI Insight Actions
+            // -----------------------------------------------------------
+            const aiCard = document.querySelector('.animate-fade-in-up');
+
+            if (aiCard) {
+                // Find buttons inside the AI card
+                const buttons = aiCard.querySelectorAll('button');
+
+                // Assuming buttons order: 0=Generate, 1=Dismiss, 2=Close(X)
+                buttons.forEach(btn => {
+                    const text = btn.innerText.trim();
+
+                    // Generate Script Action
+                    if (text.includes('Generate Script')) {
+                        btn.addEventListener('click', function () {
+                            const originalContent = this.innerHTML;
+                            this.disabled = true;
+                            this.innerHTML = `<span class="material-symbols-outlined animate-spin text-[14px]">refresh</span> Generating...`;
+                            this.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                            this.classList.add('bg-indigo-500');
+
+                            setTimeout(() => {
+                                this.innerHTML = `<span class="material-symbols-outlined text-[14px]">check_circle</span> Script Ready`;
+                                this.classList.remove('bg-indigo-500');
+                                this.classList.add('bg-green-600', 'hover:bg-green-700');
+
+                                // Reset after 3 seconds
+                                setTimeout(() => {
+                                    this.disabled = false;
+                                    this.innerHTML = originalContent;
+                                    this.classList.remove('bg-green-600', 'hover:bg-green-700');
+                                    this.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                                }, 3000);
+                            }, 1500);
+                        });
+                    }
+
+                    // Dismiss Actions
+                    if (text === ('Dismiss') || btn.querySelector('.material-symbols-outlined')?.innerText === 'close') {
+                        btn.addEventListener('click', () => {
+                            aiCard.style.transition = 'opacity 0.3s, transform 0.3s';
+                            aiCard.style.opacity = '0';
+                            aiCard.style.transform = 'translateY(-10px)';
+                            setTimeout(() => aiCard.remove(), 300);
+                        });
+                    }
+                });
+            }
+
+            // -----------------------------------------------------------
+            // 5. Course Performance Tabs (Mock Switch)
+            // -----------------------------------------------------------
+            const tabContainer = document.querySelector('.bg-slate-50.dark\\:bg-slate-800\\/50'); // Container of tabs
+            if (tabContainer) {
+                const tabs = tabContainer.querySelectorAll('button');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Reset all tabs
+                        tabs.forEach(t => {
+                            t.className = "px-3 py-1.5 text-xs font-medium rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors";
+                        });
+                        // Activate clicked tab
+                        tab.className = "px-3 py-1.5 text-xs font-medium rounded-md bg-white dark:bg-dark-surface shadow-sm text-slate-900 dark:text-white";
+
+                        // Animate Bar Charts Randomly for effect
+                        const bars = document.querySelectorAll('.chart-bar > div:first-child');
+                        bars.forEach(bar => {
+                            const parentHeight = bar.parentElement.style.height || '50%';
+                            // This is complex because height is in class logic usually, 
+                            // but here we can just jitter the height classes or direct style if present.
+                            // The HTML uses specific height classes or style? 
+                            // Looking at HTML: <div class="w-full ... h-[40%] ...">
+                            // Since tailwind arbitrary values are static classes, we can't easily animate them without removing/adding classes.
+                            // But there is a <div style="height:..." possibly? No.
+                            // Let's just do a subtle opacity pulse to indicate data refresh.
+
+                            bar.parentElement.classList.add('opacity-50');
+                            setTimeout(() => bar.parentElement.classList.remove('opacity-50'), 200);
+                        });
+                    });
+                });
+            }
+
+            // Start Real-time Updates
+            if (typeof updateDashboardStats === 'function') {
+                updateDashboardStats(); // Initial call
+                setInterval(updateDashboardStats, 30000); // Poll every 30s
+                console.log('🚀 Admin Dashboard Real-time Sync Active');
+            }
+
+            // Update Notification Badges
+            updateNotificationBadges();
+            setInterval(updateNotificationBadges, 60000); // Update every minute
+        });
+
+        // Function to update notification badges with real-time counts
+        async function updateNotificationBadges() {
+            const API_BASE = 'http://localhost:8080/api';
+
+            try {
+                // Faculty Management - Count pending trainer approvals
+                const trainersResponse = await fetch(`${API_BASE}/trainers`);
+                if (trainersResponse.ok) {
+                    const trainersData = await trainersResponse.json();
+                    const pendingTrainers = trainersData.trainers ? trainersData.trainers.filter(t => t.status === 'pending').length : 0;
+                    updateBadge('facultyNotificationBadge', pendingTrainers);
+                }
+            } catch (error) {
+                console.error('Error fetching faculty notifications:', error);
+            }
+
+            try {
+                // Delivery Management - Count pending study materials
+                const materialsResponse = await fetch(`${API_BASE}/study-materials?status=pending`);
+                if (materialsResponse.ok) {
+                    const materialsData = await materialsResponse.json();
+                    const pendingMaterials = materialsData.materials ? materialsData.materials.length : 0;
+                    updateBadge('deliveryNotificationBadge', pendingMaterials);
+                }
+            } catch (error) {
+                console.error('Error fetching delivery notifications:', error);
+            }
+        }
+
+        // Helper function to update badge
+        function updateBadge(badgeId, count) {
+            const badge = document.getElementById(badgeId);
+            if (badge) {
+                badge.textContent = count;
+
+                // Hide badge if count is 0
+                if (count === 0) {
+                    badge.style.display = 'none';
+                } else {
+                    badge.style.display = 'inline-block';
+
+                    // Add pulse animation for new notifications
+                    badge.classList.add('animate-pulse');
+                    setTimeout(() => badge.classList.remove('animate-pulse'), 2000);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

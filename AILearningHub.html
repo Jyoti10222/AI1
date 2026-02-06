@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Paths | Tech-Pro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f6f7f8 0%, #ffffff 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #137fec 0%, #0066cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-purple {
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#137fec] text-[32px]">school</span>
+                    <h1 class="text-2xl font-black text-[#0d141b]">Tech-Pro AI</h1>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="A1Homepage.html"
+                        class="text-[#4c739a] hover:text-[#137fec] font-medium transition-colors">Home</a>
+                    <a href="A4Onboarding.html"
+                        class="text-[#4c739a] hover:text-[#137fec] font-medium transition-colors">Dashboard</a>
+                    <a href="CourseListing.html"
+                        class="text-[#4c739a] hover:text-[#137fec] font-medium transition-colors">Courses</a>
+                    <button
+                        class="bg-[#137fec] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#0066cc] transition-colors">
+                        Get Started
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center fade-in">
+            <div class="inline-block mb-4">
+                <span
+                    class="bg-blue-100 text-[#137fec] px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
+                    🚀 AI-Powered Learning
+                </span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-black text-[#0d141b] mb-6 leading-tight">
+                Choose Your <span class="gradient-text">AI Learning Path</span>
+            </h1>
+            <p class="text-xl text-[#4c739a] max-w-3xl mx-auto mb-12 leading-relaxed">
+                Whether you're a developer looking to master AI engineering or a business professional wanting to
+                leverage AI tools,
+                we have the perfect learning path for you.
+            </p>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="text-3xl font-black text-[#137fec] mb-1">8,500+</div>
+                    <div class="text-sm text-[#4c739a] font-medium">Active Students</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="text-3xl font-black text-[#137fec] mb-1">4.8★</div>
+                    <div class="text-sm text-[#4c739a] font-medium">Average Rating</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="text-3xl font-black text-[#137fec] mb-1">50+</div>
+                    <div class="text-sm text-[#4c739a] font-medium">Programs</div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="text-3xl font-black text-[#137fec] mb-1">80+</div>
+                    <div class="text-sm text-[#4c739a] font-medium">AI Tools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Path Selection -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- AI for Tech Card -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-xl border-2 border-blue-500 cursor-pointer"
+                    onclick="window.location.href='AITech.html'">
+                    <div class="relative h-64 bg-gradient-to-br from-blue-500 to-blue-700 overflow-hidden">
+                        <div class="absolute inset-0 opacity-20">
+                            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                            <div class="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+                        </div>
+                        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
+                            <div>
+                                <span class="material-symbols-outlined text-white text-[64px]">terminal</span>
+                            </div>
+                            <div>
+                                <h2 class="text-4xl font-black text-white mb-2">AI for Tech</h2>
+                                <p class="text-blue-100 text-lg">For Developers & Engineers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[#4c739a] text-lg mb-6 leading-relaxed">
+                            Master AI engineering, machine learning, and deep learning. Build production-ready AI
+                            applications with Python, TensorFlow, and PyTorch.
+                        </p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">Machine Learning & Deep Learning</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">Generative AI & LLMs</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">MLOps & Deployment</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">Hands-on Coding Projects</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+                            <div>
+                                <div class="text-sm text-[#4c739a] mb-1">Starting from</div>
+                                <div class="text-2xl font-black text-[#137fec]">₹999</div>
+                            </div>
+                            <button
+                                class="bg-[#137fec] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#0066cc] transition-colors flex items-center gap-2">
+                                Explore Tech Path
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI for Non-Tech Card -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-xl border-2 border-purple-500 cursor-pointer"
+                    onclick="window.location.href='AINonTech.html'">
+                    <div class="relative h-64 bg-gradient-to-br from-purple-500 to-purple-700 overflow-hidden">
+                        <div class="absolute inset-0 opacity-20">
+                            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                            <div class="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+                        </div>
+                        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
+                            <div>
+                                <span class="material-symbols-outlined text-white text-[64px]">psychology</span>
+                            </div>
+                            <div>
+                                <h2 class="text-4xl font-black text-white mb-2">AI for Non-Tech</h2>
+                                <p class="text-purple-100 text-lg">For Business Professionals</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[#4c739a] text-lg mb-6 leading-relaxed">
+                            Leverage AI tools to boost productivity and creativity. No coding required. Perfect for
+                            managers, marketers, and business professionals.
+                        </p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">ChatGPT & AI Tools Mastery</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">Prompt Engineering</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">AI for Business & Marketing</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                                <span class="text-[#0d141b] font-medium">No-Code AI Solutions</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+                            <div>
+                                <div class="text-sm text-[#4c739a] mb-1">Starting from</div>
+                                <div class="text-2xl font-black text-[#9333ea]">₹499</div>
+                            </div>
+                            <button
+                                class="bg-[#9333ea] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#7c3aed] transition-colors flex items-center gap-2">
+                                Explore Non-Tech Path
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Modes Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-[#0d141b] mb-4">Three Ways to Learn</h2>
+                <p class="text-xl text-[#4c739a] max-w-2xl mx-auto">
+                    Choose the learning mode that fits your goals and schedule
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Career Learning -->
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-xl p-8 border border-blue-200">
+                    <div class="bg-blue-500 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-white text-[32px]">school</span>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#0d141b] mb-3">Career Learning</h3>
+                    <p class="text-[#4c739a] mb-4 leading-relaxed">
+                        Complete programs to become job-ready in AI roles. 3-6 months structured learning with
+                        certification.
+                    </p>
+                    <div class="text-sm text-[#4c739a] space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">schedule</span>
+                            <span>3-6 months</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            <span>Career Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upskilling -->
+                <div class="bg-gradient-to-br from-purple-50 to-white rounded-xl p-8 border border-purple-200">
+                    <div class="bg-purple-500 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-white text-[32px]">trending_up</span>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#0d141b] mb-3">Upskilling</h3>
+                    <p class="text-[#4c739a] mb-4 leading-relaxed">
+                        Upgrade existing skills with focused courses. 2-6 weeks self-paced learning with skill badges.
+                    </p>
+                    <div class="text-sm text-[#4c739a] space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">schedule</span>
+                            <span>2-6 weeks</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">verified</span>
+                            <span>Skill Certificate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modular Learning -->
+                <div class="bg-gradient-to-br from-green-50 to-white rounded-xl p-8 border border-green-200">
+                    <div class="bg-green-500 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-white text-[32px]">widgets</span>
+                    </div>
+                    <h3 class="text-2xl font-black text-[#0d141b] mb-3">Modular Learning</h3>
+                    <p class="text-[#4c739a] mb-4 leading-relaxed">
+                        Learn one concept at a time. 2-7 days quick modules with instant certificates.
+                    </p>
+                    <div class="text-sm text-[#4c739a] space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">schedule</span>
+                            <span>2-7 days</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">verified</span>
+                            <span>Module Certificate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-black text-[#0d141b] mb-6">Ready to Start Your AI Journey?</h2>
+            <p class="text-xl text-[#4c739a] mb-8">
+                Join thousands of learners who are already transforming their careers with AI
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="window.location.href='AITech.html'"
+                    class="bg-[#137fec] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0066cc] transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">terminal</span>
+                    Explore AI for Tech
+                </button>
+                <button onclick="window.location.href='AINonTech.html'"
+                    class="bg-[#9333ea] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#7c3aed] transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">psychology</span>
+                    Explore AI for Non-Tech
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0d141b] text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-black text-xl mb-4">Tech-Pro AI</h3>
+                    <p class="text-gray-400 text-sm">
+                        Empowering professionals with AI education
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">AI for Tech</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="AITechCareer.html" class="hover:text-white transition-colors">Career Programs</a>
+                        </li>
+                        <li><a href="AITechUpskilling.html" class="hover:text-white transition-colors">Upskilling
+                                Courses</a></li>
+                        <li><a href="AITechModular.html" class="hover:text-white transition-colors">Modular Learning</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">AI for Non-Tech</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="AINonTechCareer.html" class="hover:text-white transition-colors">Career
+                                Programs</a></li>
+                        <li><a href="AINonTechUpskilling.html" class="hover:text-white transition-colors">Upskilling
+                                Courses</a></li>
+                        <li><a href="AINonTechModular.html" class="hover:text-white transition-colors">Modular
+                                Learning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 Tech-Pro AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>

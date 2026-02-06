@@ -1,0 +1,773 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Assignment Admin - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "primary-hover": "#2563eb",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                        "dark-surface": "#334155",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 min-h-screen p-6 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto">
+        <header
+            class="bg-white/70 dark:bg-dark-card/70 backdrop-blur-xl border border-white/20 dark:border-white/5 rounded-3xl p-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-4 shadow-sm">
+            <div class="flex items-center gap-4">
+                <div
+                    class="size-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+                    <span class="material-symbols-outlined text-3xl">code</span>
+                </div>
+                <div>
+                    <h1
+                        class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300">
+                        Admin: Assignment Config
+                    </h1>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Manage Python Full Stack Assignments</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <a href="A8Assignment.html" target="_blank"
+                    class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-700 rounded-xl font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-sm group">
+                    <span
+                        class="material-symbols-outlined group-hover:scale-110 transition-transform">open_in_new</span>
+                    View Page
+                </a>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-600 dark:text-blue-400">
+                        <span class="material-symbols-outlined">school</span>
+                    </div>
+                    <h2 class="text-lg font-bold">Course Information</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Course
+                            Title</label>
+                        <input type="text" id="courseTitle" placeholder="Enter course title"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Progress
+                            (%)</label>
+                        <input type="number" id="courseProgress" min="0" max="100" placeholder="0-100"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400">
+                        <span class="material-symbols-outlined">assignment</span>
+                    </div>
+                    <h2 class="text-lg font-bold">Main Assignment Details</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Badge
+                            Text</label>
+                        <input type="text" id="mainBadge" placeholder="e.g., ML Challenge"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Difficulty</label>
+                            <select id="mainDifficulty"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Icon</label>
+                            <input type="text" id="mainIcon" placeholder="e.g., neurology"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Assignment
+                            Title</label>
+                        <input type="text" id="mainTitle" placeholder="Enter assignment title"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Description</label>
+                        <textarea id="mainDescription" placeholder="Enter assignment description" rows="3"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all resize-none"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Due
+                                Date</label>
+                            <input type="text" id="mainDueDate" placeholder="e.g., Oct 25, 11:59 PM"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Security
+                                Feature</label>
+                            <input type="text" id="mainSecurity" placeholder="e.g., AI Check Enabled"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-pink-50 dark:bg-pink-900/20 rounded-lg text-pink-600 dark:text-pink-400">
+                        <span class="material-symbols-outlined">code</span>
+                    </div>
+                    <h2 class="text-lg font-bold">Code Editor Settings</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Filename</label>
+                        <input type="text" id="codeFilename" placeholder="e.g., neural_network.py"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Code
+                            Content</label>
+                        <textarea id="codeContent"
+                            class="w-full bg-[#1e1e1e] text-slate-300 font-mono text-sm border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all custom-scrollbar"
+                            rows="8" placeholder="Enter code content here..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="col-span-1 lg:col-span-2 bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-600 dark:text-orange-400">
+                        <span class="material-symbols-outlined">quiz</span>
+                    </div>
+                    <h2 class="text-lg font-bold">Practice Questions & Challenges</h2>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex gap-4 mb-6 border-b border-slate-100 dark:border-slate-800">
+                    <button id="tab-questions"
+                        class="px-4 py-2 text-sm font-bold border-b-2 border-blue-600 text-blue-600 dark:text-blue-400 transition-colors"
+                        onclick="switchPracticeTab('questions')">Questions</button>
+                    <button id="tab-challenges"
+                        class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+                        onclick="switchPracticeTab('challenges')">Code Challenges</button>
+                </div>
+
+                <!-- Questions Panel -->
+                <div id="panel-questions">
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <button
+                            class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 transition-colors"
+                            onclick="openQuestionModal('easy')">+ Add Easy Question</button>
+                        <button
+                            class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 transition-colors"
+                            onclick="openQuestionModal('medium')">+ Add Medium Question</button>
+                        <button
+                            class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 transition-colors"
+                            onclick="openQuestionModal('hard')">+ Add Hard Question</button>
+                    </div>
+                    <div id="practiceQuestionsList" class="space-y-3"></div>
+                </div>
+
+                <!-- Challenges Panel -->
+                <div id="panel-challenges" style="display: none;">
+                    <div class="mb-6">
+                        <button
+                            class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 transition-colors"
+                            onclick="addCodeChallenge()">+ Add Code Challenge</button>
+                    </div>
+                    <div id="codeChallengesList" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg text-teal-600 dark:text-teal-400">
+                        <span class="material-symbols-outlined">history</span>
+                    </div>
+                    <h2 class="text-lg font-bold">Submission History</h2>
+                </div>
+                <div id="submissionHistory" class="space-y-3 max-h-96 overflow-y-auto custom-scrollbar pr-2"></div>
+                <button
+                    class="w-full mt-4 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-300 transition-colors flex items-center justify-center gap-2"
+                    onclick="addSubmission()">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Submission
+                </button>
+            </div>
+
+            <div
+                class="col-span-1 lg:col-span-2 bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div class="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg text-indigo-600 dark:text-indigo-400">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    </div>
+                    <h2 class="text-lg font-bold">AI Feedback Section</h2>
+                </div>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Section
+                                Title</label>
+                            <input type="text" id="aiFeedbackTitle" placeholder="e.g., AI Model Review"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Subtitle</label>
+                            <input type="text" id="aiFeedbackSubtitle" placeholder="e.g., Based on your latest attempt"
+                                class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Button
+                            Text</label>
+                        <input type="text" id="aiFeedbackButton" placeholder="e.g., Ask AI for ML tips"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Recommendation
+                            Title</label>
+                        <input type="text" id="aiRecommendationTitle" placeholder="e.g., Implementation Hint"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Recommendation
+                            Message</label>
+                        <textarea id="aiRecommendationMessage" placeholder="Enter recommendation message" rows="2"
+                            class="w-full bg-slate-50 dark:bg-dark-surface border-0 ring-1 ring-slate-200 dark:ring-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Code
+                            Snippet</label>
+                        <textarea id="aiCodeSnippet"
+                            class="w-full bg-[#1e1e1e] text-slate-300 font-mono text-sm border-0 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 transition-all custom-scrollbar"
+                            rows="4" placeholder="Enter code snippet"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="mt-8 flex items-center justify-between bg-white dark:bg-dark-card p-6 rounded-3xl shadow-lg border border-slate-200/60 dark:border-white/5 sticky bottom-6 z-40">
+            <div id="statusMessage" class="flex-1 mr-4"></div>
+            <button
+                class="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-1 transition-all flex items-center gap-2"
+                onclick="saveAllChanges()">
+                <span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'python';
+        let assignmentsListData = [];
+        let submissionHistoryData = [];
+        let critiquesData = [];
+        let practiceQuestionsData = { easy: [], medium: [], hard: [] };
+        let codeChallengesData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+                    document.getElementById('courseTitle').value = data.courseInfo.title || '';
+                    document.getElementById('courseProgress').value = data.courseInfo.progress || 0;
+                    document.getElementById('mainBadge').value = data.mainAssignment.badge || '';
+                    document.getElementById('mainDifficulty').value = data.mainAssignment.difficulty || 'Medium';
+                    document.getElementById('mainIcon').value = data.mainAssignment.icon || '';
+                    document.getElementById('mainTitle').value = data.mainAssignment.title || '';
+                    document.getElementById('mainDescription').value = data.mainAssignment.description || '';
+                    document.getElementById('mainDueDate').value = data.mainAssignment.dueDate || '';
+                    document.getElementById('mainSecurity').value = data.mainAssignment.securityFeature || '';
+                    document.getElementById('codeFilename').value = data.codeEditor.filename || '';
+                    document.getElementById('codeContent').value = data.codeEditor.code?.replace(/\\n/g, '\n') || '';
+                    document.getElementById('aiFeedbackTitle').value = data.aiFeedback.title || '';
+                    document.getElementById('aiFeedbackSubtitle').value = data.aiFeedback.subtitle || '';
+                    document.getElementById('aiFeedbackButton').value = data.aiFeedback.buttonText || '';
+                    document.getElementById('aiRecommendationTitle').value = data.aiFeedback.recommendation?.title || '';
+                    document.getElementById('aiRecommendationMessage').value = data.aiFeedback.recommendation?.message || '';
+                    document.getElementById('aiCodeSnippet').value = data.aiFeedback.recommendation?.codeSnippet?.replace(/\\n/g, '\n') || '';
+                    assignmentsListData = data.assignmentsList || [];
+                    submissionHistoryData = data.submissionHistory || [];
+                    critiquesData = data.aiFeedback.critiques || [];
+
+                    // Practice Data
+                    practiceQuestionsData = data.practiceQuestions || { easy: [], medium: [], hard: [] };
+                    codeChallengesData = data.codeChallenges || [];
+
+                    renderAssignmentsList();
+                    renderSubmissionHistory();
+                    renderPracticeQuestions();
+                    renderCodeChallenges();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showStatus('Unable to connect to backend. Make sure the server is running.', 'error');
+            }
+        }
+
+        function renderAssignmentsList() {
+            const container = document.getElementById('assignmentsList');
+            container.innerHTML = assignmentsListData.map((item, index) => `
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 flex justify-between items-center group hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm">
+                    <div>
+                        <strong class="text-slate-900 dark:text-white block mb-1">${item.title}</strong>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 capitalize">${item.status}</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">stars</span> ${item.icon}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="p-2 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200 dark:border-slate-600 hover:text-blue-600 dark:hover:text-blue-400" onclick="editAssignment(${index})">
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                        </button>
+                        <button class="p-2 bg-white dark:bg-slate-700 text-red-600 dark:text-red-400 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-red-50 dark:hover:bg-red-900/20" onclick="deleteAssignment(${index})">
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSubmissionHistory() {
+            const container = document.getElementById('submissionHistory');
+            container.innerHTML = submissionHistoryData.map((item, index) => `
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700 flex justify-between items-center group hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm">
+                    <div>
+                        <strong class="text-xs font-bold uppercase text-slate-500">Attempt #${item.attempt}</strong>
+                        <div class="text-sm font-medium text${item.status === 'success' ? '-green-600 dark:text-green-400' : (item.status === 'failed' ? '-red-600 dark:text-red-400' : '-slate-900 dark:text-white')}">
+                            ${item.status} - ${item.message}
+                        </div>
+                        <div class="text-[10px] text-slate-400 mt-1">${item.time}</div>
+                    </div>
+                    <div class="flex gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors" onclick="editSubmission(${index})"><span class="material-symbols-outlined text-sm">edit</span></button>
+                        <button class="p-1.5 hover:bg-red-100 dark:hover:bg-red-900/30 text-red-500 rounded-lg transition-colors" onclick="deleteSubmission(${index})"><span class="material-symbols-outlined text-sm">delete</span></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAssignment() {
+            const title = prompt('Assignment Title:');
+            if (!title) return;
+            const status = prompt('Status (completed/in-progress/pending/needs-revision):') || 'pending';
+            const icon = prompt('Icon name:') || 'assignment';
+            const note = prompt('Note:') || '';
+            assignmentsListData.push({ title, status, icon, note });
+            renderAssignmentsList();
+        }
+
+        function editAssignment(index) {
+            const item = assignmentsListData[index];
+            item.title = prompt('Assignment Title:', item.title) || item.title;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            item.note = prompt('Note:', item.note) || item.note;
+            renderAssignmentsList();
+        }
+
+        function deleteAssignment(index) {
+            if (confirm('Delete this assignment?')) {
+                assignmentsListData.splice(index, 1);
+                renderAssignmentsList();
+            }
+        }
+
+        function addSubmission() {
+            const attempt = parseInt(prompt('Attempt Number:')) || 1;
+            const status = prompt('Status (failed/error/success):') || 'failed';
+            const message = prompt('Message:') || '';
+            const time = prompt('Time:') || new Date().toLocaleTimeString();
+            const icon = prompt('Icon:') || 'error';
+            submissionHistoryData.push({ attempt, status, message, time, icon });
+            renderSubmissionHistory();
+        }
+
+        function editSubmission(index) {
+            const item = submissionHistoryData[index];
+            item.attempt = parseInt(prompt('Attempt Number:', item.attempt)) || item.attempt;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.message = prompt('Message:', item.message) || item.message;
+            item.time = prompt('Time:', item.time) || item.time;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            renderSubmissionHistory();
+        }
+
+        function deleteSubmission(index) {
+            if (confirm('Delete this submission?')) {
+                submissionHistoryData.splice(index, 1);
+                renderSubmissionHistory();
+            }
+        }
+
+        async function saveAllChanges() {
+            const data = {
+                id: ASSIGNMENT_ID,
+                pageTitle: 'Assignments & Practice - Python Full Stack',
+                courseInfo: {
+                    title: document.getElementById('courseTitle').value,
+                    progress: parseInt(document.getElementById('courseProgress').value) || 0
+                },
+                assignmentsList: assignmentsListData,
+                mainAssignment: {
+                    badge: document.getElementById('mainBadge').value,
+                    difficulty: document.getElementById('mainDifficulty').value,
+                    title: document.getElementById('mainTitle').value,
+                    description: document.getElementById('mainDescription').value,
+                    dueDate: document.getElementById('mainDueDate').value,
+                    securityFeature: document.getElementById('mainSecurity').value,
+                    icon: document.getElementById('mainIcon').value
+                },
+                codeEditor: {
+                    filename: document.getElementById('codeFilename').value,
+                    code: document.getElementById('codeContent').value.replace(/\n/g, '\\n')
+                },
+                submissionHistory: submissionHistoryData,
+                aiFeedback: {
+                    title: document.getElementById('aiFeedbackTitle').value,
+                    subtitle: document.getElementById('aiFeedbackSubtitle').value,
+                    critiques: critiquesData,
+                    recommendation: {
+                        title: document.getElementById('aiRecommendationTitle').value,
+                        message: document.getElementById('aiRecommendationMessage').value,
+                        codeSnippet: document.getElementById('aiCodeSnippet').value.replace(/\n/g, '\\n')
+                    },
+                    buttonText: document.getElementById('aiFeedbackButton').value
+                },
+                practiceQuestions: practiceQuestionsData,
+                codeChallenges: codeChallengesData
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showStatus('âœ“ All changes saved successfully!', 'success');
+                } else {
+                    showStatus('âœ— Failed to save changes: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                showStatus('âœ— Network error. Make sure the backend server is running.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            const bgColor = type === 'success' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300';
+            const icon = type === 'success' ? 'check_circle' : 'error';
+            statusEl.innerHTML = `
+            <div class="${bgColor} px-4 py-3 rounded-xl flex items-center gap-2 text-sm font-medium animate-pulse">
+                <span class="material-symbols-outlined text-lg">${icon}</span>
+                ${message}
+            </div>`;
+            setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+        }
+
+        // --- Practice Mode Functions ---
+
+        function switchPracticeTab(tab) {
+            document.getElementById('panel-questions').style.display = tab === 'questions' ? 'block' : 'none';
+            document.getElementById('panel-challenges').style.display = tab === 'challenges' ? 'block' : 'none';
+
+            const btnQ = document.getElementById('tab-questions');
+            const btnC = document.getElementById('tab-challenges');
+
+            if (tab === 'questions') {
+                btnQ.className = "px-4 py-2 text-sm font-bold border-b-2 border-blue-600 text-blue-600 dark:text-blue-400 transition-colors";
+                btnC.className = "px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors";
+            } else {
+                btnC.className = "px-4 py-2 text-sm font-bold border-b-2 border-blue-600 text-blue-600 dark:text-blue-400 transition-colors";
+                btnQ.className = "px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors";
+            }
+        }
+
+        function renderPracticeQuestions() {
+            const container = document.getElementById('practiceQuestionsList');
+            let html = '';
+
+            ['easy', 'medium', 'hard'].forEach(diff => {
+                const questions = practiceQuestionsData[diff] || [];
+                if (questions.length > 0) {
+                    const colors = { easy: 'green', medium: 'yellow', hard: 'red' };
+                    const color = colors[diff] || 'slate';
+                    html += `
+                    <div class="mb-4">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-${color}-600 dark:text-${color}-400 mb-2 pl-1">${diff} Questions</h4>
+                        <div class="space-y-2">
+                    `;
+                    questions.forEach((q, idx) => {
+                        html += `
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 group hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start gap-4">
+                                <div>
+                                    <p class="text-sm font-medium text-slate-900 dark:text-white line-clamp-2">${q.question}</p>
+                                    <div class="mt-2 text-xs text-slate-500 dark:text-slate-400 flex flex-wrap gap-2">
+                                        <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700">Answer: ${q.correctAnswer}</span>
+                                        <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700">Options: ${q.options.length}</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="p-2 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200 dark:border-slate-600 hover:text-blue-600 dark:hover:text-blue-400" onclick="editPracticeQuestion('${diff}', ${idx})">
+                                        <span class="material-symbols-outlined text-sm">edit</span>
+                                    </button>
+                                    <button class="p-2 bg-white dark:bg-slate-700 text-red-600 dark:text-red-400 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-red-50 dark:hover:bg-red-900/20" onclick="deletePracticeQuestion('${diff}', ${idx})">
+                                        <span class="material-symbols-outlined text-sm">delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+                    html += `</div></div>`;
+                }
+            });
+
+            if (html === '') html = '<div class="text-center py-8 text-slate-400 text-sm">No practice questions added yet.</div>';
+            container.innerHTML = html;
+        }
+
+        function openQuestionModal(difficulty, editIndex = null) {
+            const modal = document.getElementById('questionModal');
+            modal.style.display = 'flex';
+            document.getElementById('modalDifficulty').value = difficulty;
+
+            if (editIndex !== null) {
+                const q = practiceQuestionsData[difficulty][editIndex];
+                document.getElementById('modalTitle').textContent = `Edit ${difficulty} Question`;
+                document.getElementById('modalIndex').value = editIndex;
+                document.getElementById('modalQuestion').value = q.question;
+                document.getElementById('modalOptions').value = q.options.join('\n');
+                document.getElementById('modalCorrect').value = q.correctAnswer;
+                document.getElementById('modalExplanation').value = q.explanation;
+            } else {
+                document.getElementById('modalTitle').textContent = `Add ${difficulty} Question`;
+                document.getElementById('modalIndex').value = '-1';
+                document.getElementById('modalQuestion').value = '';
+                document.getElementById('modalOptions').value = '';
+                document.getElementById('modalCorrect').value = 'A';
+                document.getElementById('modalExplanation').value = '';
+            }
+        }
+
+        function closeQuestionModal() {
+            document.getElementById('questionModal').style.display = 'none';
+        }
+
+        function saveQuestionFromModal() {
+            const diff = document.getElementById('modalDifficulty').value;
+            const idx = parseInt(document.getElementById('modalIndex').value);
+
+            const newQ = {
+                question: document.getElementById('modalQuestion').value,
+                options: document.getElementById('modalOptions').value.split('\n').filter(o => o.trim() !== ''),
+                correctAnswer: document.getElementById('modalCorrect').value,
+                explanation: document.getElementById('modalExplanation').value
+            };
+
+            if (!newQ.question || newQ.options.length < 2) {
+                alert("Please provide a question and at least 2 options.");
+                return;
+            }
+
+            if (idx === -1) {
+                if (!practiceQuestionsData[diff]) practiceQuestionsData[diff] = [];
+                practiceQuestionsData[diff].push(newQ);
+            } else {
+                practiceQuestionsData[diff][idx] = newQ;
+            }
+
+            closeQuestionModal();
+            renderPracticeQuestions();
+        }
+
+        function editPracticeQuestion(difficulty, index) {
+            openQuestionModal(difficulty, index);
+        }
+
+        function deletePracticeQuestion(difficulty, index) {
+            if (confirm('Delete this question?')) {
+                practiceQuestionsData[difficulty].splice(index, 1);
+                renderPracticeQuestions();
+            }
+        }
+
+        function renderCodeChallenges() {
+            const container = document.getElementById('codeChallengesList');
+            container.innerHTML = codeChallengesData.map((c, i) => `
+                <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700 group hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm">
+                    <div class="flex justify-between items-start gap-4">
+                        <div>
+                            <strong class="text-slate-900 dark:text-white block mb-1">${c.title}</strong>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${c.description}</p>
+                        </div>
+                        <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="p-2 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200 dark:border-slate-600 hover:text-blue-600 dark:hover:text-blue-400" onclick="editCodeChallenge(${i})">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                            </button>
+                            <button class="p-2 bg-white dark:bg-slate-700 text-red-600 dark:text-red-400 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-red-50 dark:hover:bg-red-900/20" onclick="deleteCodeChallenge(${i})">
+                                <span class="material-symbols-outlined text-sm">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('') || '<div class="text-center py-8 text-slate-400 text-sm">No code challenges added yet.</div>';
+        }
+
+        function addCodeChallenge() {
+            const title = prompt("Challenge Title:");
+            if (!title) return;
+            const desc = prompt("Description:");
+
+            codeChallengesData.push({
+                title: title,
+                description: desc,
+                languages: {
+                    python: { template: "def solution():\n    pass" },
+                    javascript: { template: "function solution() {\n}" },
+                    java: { template: "public class Solution {\n    public void solve() {\n    }\n}" }
+                }
+            });
+            renderCodeChallenges();
+        }
+
+        function editCodeChallenge(index) {
+            const c = codeChallengesData[index];
+            c.title = prompt("Title:", c.title) || c.title;
+            c.description = prompt("Description:", c.description) || c.description;
+            renderCodeChallenges();
+        }
+
+        function deleteCodeChallenge(index) {
+            if (confirm('Delete challenge?')) {
+                codeChallengesData.splice(index, 1);
+                renderCodeChallenges();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+
+    <!-- Question Editor Modal -->
+    <div id="questionModal" class="modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; justify-content: center; align-items: center; background: rgba(0,0,0,0.5);">
+        <div
+            style="background: white; padding: 2rem; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+            <h3 style="margin-bottom: 1rem;" id="modalTitle">Add Question</h3>
+            <input type="hidden" id="modalDifficulty">
+            <input type="hidden" id="modalIndex">
+
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea id="modalQuestion" style="width: 100%; height: 80px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Options (One per line)</label>
+                <textarea id="modalOptions" style="width: 100%; height: 100px;"
+                    placeholder="A) Option 1&#10;B) Option 2..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Correct Answer</label>
+                <select id="modalCorrect">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Explanation</label>
+                <textarea id="modalExplanation" style="width: 100%; height: 80px;"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                <button class="btn-secondary" onclick="closeQuestionModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveQuestionFromModal()" style="width: auto;">Save
+                    Question</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

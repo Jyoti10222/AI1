@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Admin Dashboard - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #1a1a2e;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--card-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: var(--card-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-icon .material-symbols-outlined {
+            font-size: 36px;
+            color: white;
+        }
+
+        .course-card h3 {
+            color: #1a1a2e;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .course-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .meta-item .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        .arrow-icon {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .arrow-icon .material-symbols-outlined {
+            color: white;
+            font-size: 20px;
+        }
+
+        .course-card:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @media (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span class="material-symbols-outlined" style="font-size: 48px; color: #667eea;">dashboard</span>
+                Assignment Admin Dashboard
+            </h1>
+            <p>Manage all assignment pages from one central location</p>
+        </header>
+
+        <div class="courses-grid">
+            <!-- Cloud Computing -->
+            <a href="A81CCAdmin.html" class="course-card" style="--card-color: #3b82f6;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">cloud</span>
+                </div>
+                <h3>Cloud Computing</h3>
+                <p>Manage Cloud Computing Fundamentals assignment content, code examples, and AI feedback.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A81CC.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- AI & Machine Learning -->
+            <a href="A82AIAdmin.html" class="course-card" style="--card-color: #8b5cf6;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">psychology</span>
+                </div>
+                <h3>AI & Machine Learning</h3>
+                <p>Edit AI & ML assignment details, neural network code, and model review feedback.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A82AI.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Java Programming -->
+            <a href="A83JavaAdmin.html" class="course-card" style="--card-color: #f59e0b;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">code</span>
+                </div>
+                <h3>Java Programming</h3>
+                <p>Manage Java Full Stack assignments, thread pool implementations, and code reviews.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A83Java.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- .NET Development -->
+            <a href="A84NetAdmin.html" class="course-card" style="--card-color: #512bd4;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">web</span>
+                </div>
+                <h3>.NET Development</h3>
+                <p>Edit .NET Core assignments, ASP.NET API code, and security review content.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A84Net.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Cybersecurity -->
+            <a href="A85CyberAdmin.html" class="course-card" style="--card-color: #dc2626;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">security</span>
+                </div>
+                <h3>Cybersecurity</h3>
+                <p>Manage cybersecurity assignments, password hashing code, and security audit reports.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A85Cyber.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Automation Testing -->
+            <a href="A86AutomanAdmin.html" class="course-card" style="--card-color: #10b981;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">automation</span>
+                </div>
+                <h3>Automation Testing</h3>
+                <p>Edit automation testing assignments, Selenium code, and Page Object Model content.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A86Automan.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- C Programming -->
+            <a href="A87CAdmin.html" class="course-card" style="--card-color: #0284c7;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">memory</span>
+                </div>
+                <h3>C Programming</h3>
+                <p>Manage C programming assignments, memory allocator code, and systems programming feedback.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A87C.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+
+            <!-- Python Full Stack -->
+            <a href="A8AssignmentAdmin.html" class="course-card" style="--card-color: #3776ab;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">code</span>
+                </div>
+                <h3>Python Full Stack</h3>
+                <p>Edit Python assignments, decorator implementations, and retry logic feedback.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="material-symbols-outlined">assignment</span>
+                        <span>A8Assignment.html</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth hover effects
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Log click events for analytics (optional)
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('click', function (e) {
+                const courseName = this.querySelector('h3').textContent;
+                console.log(`Opening admin page for: ${courseName}`);
+            });
+        });
+    </script>
+</body>
+
+</html>

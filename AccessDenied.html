@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Access Denied - Tech-Pro AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-dark": "#111a22",
+                        "card-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background-dark text-white font-display min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full">
+        <!-- Access Denied Card -->
+        <div class="bg-card-dark rounded-2xl shadow-2xl overflow-hidden border border-red-900/30">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-red-600 to-red-800 p-8 text-center">
+                <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white/10 mb-4">
+                    <span class="material-symbols-outlined text-7xl text-white">block</span>
+                </div>
+                <h1 class="text-3xl font-bold text-white mb-2">Access Denied</h1>
+                <p class="text-red-100 text-lg">You don't have permission to access this page</p>
+            </div>
+
+            <!-- Content -->
+            <div class="p-8">
+                <div class="bg-red-900/20 border border-red-800/50 rounded-lg p-6 mb-6">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-red-500 text-2xl">info</span>
+                        <div>
+                            <h3 class="text-white font-bold mb-2">Why am I seeing this?</h3>
+                            <p class="text-gray-300 text-sm mb-3">
+                                This page requires specific permissions that your current role doesn't have.
+                            </p>
+                            <div class="bg-background-dark rounded-lg p-3">
+                                <p class="text-xs text-gray-400 mb-1">Required Permission:</p>
+                                <p id="requiredPermission" class="text-white font-mono text-sm">Not specified</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Info -->
+                <div class="bg-background-dark rounded-lg p-4 mb-6">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="text-gray-400 mb-1">Your Role:</p>
+                            <p id="userRole" class="text-white font-medium">Loading...</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 mb-1">User ID:</p>
+                            <p id="userId" class="text-white font-mono text-xs">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="space-y-3">
+                    <a href="A9Admin.html"
+                        class="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 transition-colors text-white font-medium">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        Go to Dashboard
+                    </a>
+                    <a href="A1Homepage.html"
+                        class="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors text-white font-medium">
+                        <span class="material-symbols-outlined">home</span>
+                        Go to Homepage
+                    </a>
+                    <button onclick="contactAdmin()"
+                        class="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-lg border border-gray-600 hover:bg-gray-800 transition-colors text-white font-medium">
+                        <span class="material-symbols-outlined">mail</span>
+                        Contact Administrator
+                    </button>
+                </div>
+
+                <!-- Help Text -->
+                <div class="mt-6 pt-6 border-t border-gray-700">
+                    <p class="text-gray-400 text-sm text-center">
+                        If you believe this is an error, please contact your system administrator to request the
+                        necessary permissions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const requiredPermission = urlParams.get('required') || 'Not specified';
+            const attemptedPage = urlParams.get('page') || 'Unknown';
+
+            // Display required permission
+            document.getElementById('requiredPermission').textContent = requiredPermission;
+
+            // Get user info from localStorage
+            const userRole = localStorage.getItem('userRole') || 'Not set';
+            const userId = localStorage.getItem('userId') || localStorage.getItem('studentId') || 'Not set';
+
+            document.getElementById('userRole').textContent = userRole;
+            document.getElementById('userId').textContent = userId;
+
+            // Log access attempt
+            console.warn('Access Denied:', {
+                user: userId,
+                role: userRole,
+                required: requiredPermission,
+                page: attemptedPage,
+                timestamp: new Date().toISOString()
+            });
+        });
+
+        function contactAdmin() {
+            const userRole = localStorage.getItem('userRole') || 'Not set';
+            const userId = localStorage.getItem('userId') || 'Not set';
+            const urlParams = new URLSearchParams(window.location.search);
+            const requiredPermission = urlParams.get('required') || 'Not specified';
+
+            const subject = encodeURIComponent('Permission Request - Access Denied');
+            const body = encodeURIComponent(
+                `Hello Administrator,\n\n` +
+                `I am requesting access to a feature that requires the following permission:\n` +
+                `Permission: ${requiredPermission}\n\n` +
+                `My Details:\n` +
+                `User ID: ${userId}\n` +
+                `Current Role: ${userRole}\n\n` +
+                `Please grant me the necessary permissions.\n\n` +
+                `Thank you.`
+            );
+
+            window.location.href = `mailto:admin@techproai.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+
+</html>

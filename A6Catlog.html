@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Course Catalog</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .progress-striped {
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+            background-size: 1rem 1rem;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div
+                class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+            </div>
+        </div>
+        <header
+            class="sticky top-0 z-50 w-full bg-white/70 dark:bg-dark-bg/70 backdrop-blur-xl border-b border-white/20 dark:border-white/5 shadow-sm supports-[backdrop-filter]:bg-white/60">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-8">
+                        <a class="flex items-center gap-2 group" href="#">
+                            <div
+                                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2
+                                class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                                TECH-PRO AI</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                                href="#">Catalog</a>
+                            <a href="A7Tutor.html" target="_blankclass=" text-sm font-medium text-slate-500
+                                hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">Assessments</a>
+                            <a href="CourseListing.html"
+                                class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">Study Material</a>
+                            <a href="PracticeExams.html"
+                                class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="#">Exam</a>
+
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button
+                            class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                        </button>
+                        <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                            <span id="header-user-name"
+                                class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                            <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px]">
+                                <div
+                                    class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                    <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <main class="flex-1 w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-10 text-center max-w-4xl mx-auto space-y-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Find Your Next
+                    Challenge</h1>
+                <div class="relative group max-w-2xl mx-auto w-full">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div
+                        class="relative flex items-center bg-white/90 dark:bg-dark-card/90 backdrop-blur-xl rounded-2xl shadow-2xl ring-1 ring-white/20 dark:ring-white/10">
+                        <span class="pl-4 text-indigo-500 material-symbols-outlined">auto_awesome</span>
+                        <input
+                            class="w-full px-4 py-4 bg-transparent border-0 focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                            placeholder="Ask AI: 'Show me advanced Python courses with project-based learning...'"
+                            type="text" />
+                        <div class="pr-2">
+                            <button
+                                class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/30">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <aside
+                    class="w-full lg:w-72 flex-shrink-0 bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/5 p-6 sticky top-24 shadow-lg ring-1 ring-slate-900/5 z-20 hidden lg:block">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-slate-400">tune</span> Filters
+                        </h3>
+                        <button
+                            class="text-xs font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">Reset
+                            All</button>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Skill Domain</h4>
+                            <div class="space-y-2.5">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Development</span>
+                                    <span class="ml-auto text-xs text-slate-400">12</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Data
+                                        Science</span>
+                                    <span class="ml-auto text-xs text-slate-400">8</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Design</span>
+                                    <span class="ml-auto text-xs text-slate-400">5</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">QA
+                                        &amp; Testing</span>
+                                    <span class="ml-auto text-xs text-slate-400">4</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Cybersecurity</span>
+                                    <span class="ml-auto text-xs text-slate-400">6</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Artificial
+                                        Intelligence</span>
+                                    <span class="ml-auto text-xs text-slate-400">4</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Networking
+                                        and AI</span>
+                                    <span class="ml-auto text-xs text-slate-400">2</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Difficulty</h4>
+                            <div class="space-y-2.5">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Beginner</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input checked=""
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Intermediate</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input
+                                        class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Advanced</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Duration</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between text-xs text-slate-500">
+                                    <span>0h</span>
+                                    <span>50h+</span>
+                                </div>
+                                <input
+                                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700 accent-blue-600"
+                                    max="100" min="0" type="range" value="40" />
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Rating</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        class="rounded-full border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        name="rating" type="radio" />
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">&amp; up</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input
+                                        class="rounded-full border-slate-300 text-blue-600 focus:ring-blue-500 bg-slate-50 dark:bg-dark-bg dark:border-slate-600"
+                                        name="rating" type="radio" />
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span class="material-symbols-outlined text-sm fill-current">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                        <span
+                                            class="material-symbols-outlined text-sm text-slate-300 dark:text-slate-600">star</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500">&amp; up</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-2.5 mt-2 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <span class="material-symbols-outlined text-sm">bookmark</span>
+                            Save Filters
+                        </button>
+                    </div>
+                </aside>
+                <div class="flex-1 w-full">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            Showing <span class="font-bold text-slate-900 dark:text-white">10 courses</span> matched
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <select
+                                    class="appearance-none pl-3 pr-8 py-2 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option>Recommended for You</option>
+                                    <option>Most Popular</option>
+                                    <option>Highest Rated</option>
+                                    <option>Newest First</option>
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex bg-white dark:bg-dark-card rounded-lg border border-slate-200 dark:border-slate-700 p-1">
+                                <button
+                                    class="p-1.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white">
+                                    <span class="material-symbols-outlined text-lg">grid_view</span>
+                                </button>
+                                <button class="p-1.5 rounded text-slate-500 hover:text-slate-900 dark:hover:text-white">
+                                    <span class="material-symbols-outlined text-lg">view_list</span>
+                                </button>
+                            </div>
+                            <button
+                                class="lg:hidden p-2 rounded-lg bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                <span class="material-symbols-outlined">filter_list</span>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="A61CC.html" data-course="Cloud Computing">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                    <img alt="Cloud Computing"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                    </div>
+                                    <label
+                                        class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                        <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                            type="checkbox" />
+                                        <span
+                                            class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                    </label>
+                                    <div
+                                        class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 98%
+                                        Match
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-start justify-between mb-3">
+                                        <div class="flex gap-2 flex-wrap">
+                                            <span
+                                                class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 uppercase tracking-wide">AWS</span>
+                                            <span
+                                                class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Infrastructure</span>
+                                        </div>
+                                    </div>
+                                    <h3
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                        Cloud Computing</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                        Master AWS &amp; Azure infrastructure with hands-on labs in serverless computing
+                                        and containerization.
+                                    </p>
+                                    <div class="mt-auto">
+                                        <div class="flex items-center justify-between text-xs mb-2">
+                                            <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                            <span class="font-bold text-blue-600 dark:text-blue-400">15%</span>
+                                        </div>
+                                        <div
+                                            class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                            <div class="h-full bg-blue-600 rounded-full w-[15%]"></div>
+                                        </div>
+                                        <div
+                                            class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                            <div class="flex items-center gap-1 text-yellow-500">
+                                                <span class="material-symbols-outlined text-sm">star</span>
+                                                <span
+                                                    class="text-xs font-bold text-slate-700 dark:text-slate-200">4.9</span>
+                                                <span class="text-[10px] text-slate-400">(2.4k)</span>
+                                            </div>
+                                            <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                                <span class="material-symbols-outlined text-[14px]">schedule</span> 12h
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </a>
+
+
+                    <a href="A68Net.html" data-course="Networking">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Networking"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 95% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 uppercase tracking-wide">Network</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">CCNA</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Networking</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Deep dive into TCP/IP, routing protocols, and modern software-defined networking
+                                    architectures.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.7</span>
+                                            <span class="text-[10px] text-slate-400">(1.8k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 8h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A64Ai.html" data-course="Artificial Intelligence">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="AI &amp; ML"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 99% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">AI/ML</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Data</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    AI &amp; Machine Learning</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Comprehensive guide to Neural Networks, Machine Learning algorithms, and Generative
+                                    AI models.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">45%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[45%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">5.0</span>
+                                            <span class="text-[10px] text-slate-400">(5.2k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 15h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A67Cyber.html" data-course="Cyber Security">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Cybersecurity"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 94% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 uppercase tracking-wide">Security</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Ethical
+                                            Hacking</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Cybersecurity</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Learn ethical hacking, penetration testing, and enterprise security defense
+                                    strategies.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.8</span>
+                                            <span class="text-[10px] text-slate-400">(3.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 10h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A62Java.html" data-course="Java Programming">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Java Full Stack"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 92% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 uppercase tracking-wide">Development</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Java</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Java Full Stack</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Build enterprise-grade applications using Java Spring Boot, Hibernate, and Angular
+                                    frontend.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">75%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[75%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.6</span>
+                                            <span class="text-[10px] text-slate-400">(4.2k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 22h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A63Python.html" data-course="Python Full Stack">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Python Full Stack"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 96% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 uppercase tracking-wide">Development</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Python</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Python Full Stack</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Modern web development with Django, FastAPI, and React. Includes REST API design.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-blue-600 dark:text-blue-400">10%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-blue-600 rounded-full w-[10%]"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.9</span>
+                                            <span class="text-[10px] text-slate-400">(6.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 18h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A65Automation.html" data-course="Automation Testing">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Automation Testing"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 89% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 uppercase tracking-wide">QA</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Selenium</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Automation Testing</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Master Selenium and Cypress for automated browser testing and CI/CD integration.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.5</span>
+                                            <span class="text-[10px] text-slate-400">(2.1k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 6h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="A66Manual.html" data-course="Manual Testing">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Manual Testing"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 85% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-50 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 uppercase tracking-wide">QA</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase tracking-wide">Fundamentals</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Manual Testing</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Foundations of software quality assurance, test planning, bug tracking, and agile
+                                    testing methodologies.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.3</span>
+                                            <span class="text-[10px] text-slate-400">(1.5k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 4h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                    </a>
+                    <!-- Cybersecurity and AI Course -->
+                    <a href="AiCybersecurity.html" data-course="Cyber Security">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Cybersecurity and AI"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 97% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 uppercase tracking-wide">Security</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">AI</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Cybersecurity and AI</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Learn AI-powered threat detection, automated security responses, and machine
+                                    learning for cybersecurity defense.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.9</span>
+                                            <span class="text-[10px] text-slate-400">(2.8k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 14h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Networking and AI Course -->
+                    <a href="AiNet.html" data-course="Networking">
+                        <div
+                            class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-200/60 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full ring-1 ring-slate-900/5">
+                            <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                <img alt="Networking and AI"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                                </div>
+                                <label
+                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur rounded-lg px-2.5 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-white transition-colors border border-transparent hover:border-slate-200 shadow-sm z-10">
+                                    <input class="rounded border-slate-300 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+                                        type="checkbox" />
+                                    <span
+                                        class="text-xs font-semibold text-slate-700 dark:text-slate-200">Compare</span>
+                                </label>
+                                <div
+                                    class="absolute bottom-3 left-3 px-2 py-1 bg-green-500/90 backdrop-blur text-white text-[10px] font-bold uppercase rounded-md shadow-sm tracking-wide flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> 93% Match
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 uppercase tracking-wide">Network</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">AI</span>
+                                    </div>
+                                </div>
+                                <h3
+                                    class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                                    Networking and AI</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                                    Explore AI-driven network optimization, intelligent traffic management, and
+                                    predictive network maintenance.
+                                </p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="text-slate-500 dark:text-slate-400">Progress</span>
+                                        <span class="font-bold text-slate-400 dark:text-slate-500">0%</span>
+                                    </div>
+                                    <div
+                                        class="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-4">
+                                        <div class="h-full bg-slate-200 dark:bg-slate-700 rounded-full w-0"></div>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                                        <div class="flex items-center gap-1 text-yellow-500">
+                                            <span class="material-symbols-outlined text-sm">star</span>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 dark:text-slate-200">4.8</span>
+                                            <span class="text-[10px] text-slate-400">(1.9k)</span>
+                                        </div>
+                                        <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 12h
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    </div>
+    </main>
+    <footer class="bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 py-8 relative z-10 mt-auto">
+        <div
+            class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-slate-400">© 2024 TECH-PRO AI Inc. All rights reserved.</p>
+            <div class="flex gap-6 text-sm text-slate-400">
+                <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Terms of
+                    Service</a>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2"></div>
+
+    <!-- Compare Modal -->
+    <div id="compareModal" class="fixed inset-0 z-[999] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeCompareModal()"></div>
+        <div
+            class="absolute inset-4 md:inset-[10%] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Compare Courses</h3>
+                <button onclick="closeCompareModal()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="compareContent" class="flex-1 overflow-auto p-6"></div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel"
+        class="fixed top-16 right-4 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 z-[100] hidden">
+        <div class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+            <h3 class="font-bold text-slate-900 dark:text-white">Notifications</h3>
+            <button id="markAllRead" class="text-xs text-blue-600 hover:text-blue-500">Mark all read</button>
+        </div>
+        <div class="max-h-80 overflow-y-auto">
+            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer border-l-4 border-blue-500">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">New AI Course Available</p>
+                <p class="text-xs text-slate-500">Advanced Neural Networks just launched</p>
+            </div>
+            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">Course Progress Update</p>
+                <p class="text-xs text-slate-500">You've completed 45% of AI & ML</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ============ Course Data ============
+            const coursesData = [
+                { id: 1, title: 'Cloud Computing', domain: 'Development', difficulty: 'Intermediate', duration: 12, rating: 4.9, match: 98, progress: 15 },
+                { id: 2, title: 'Networking', domain: 'Development', difficulty: 'Intermediate', duration: 8, rating: 4.7, match: 95, progress: 0 },
+                { id: 3, title: 'AI & Machine Learning', domain: 'Artificial Intelligence', difficulty: 'Advanced', duration: 15, rating: 5.0, match: 99, progress: 45 },
+                { id: 4, title: 'Cybersecurity', domain: 'Cybersecurity', difficulty: 'Advanced', duration: 10, rating: 4.8, match: 94, progress: 0 },
+                { id: 5, title: 'Java Full Stack', domain: 'Development', difficulty: 'Intermediate', duration: 22, rating: 4.6, match: 92, progress: 75 },
+                { id: 6, title: 'Python Full Stack', domain: 'Development', difficulty: 'Intermediate', duration: 18, rating: 4.9, match: 96, progress: 10 },
+                { id: 7, title: 'Automation Testing', domain: 'QA & Testing', difficulty: 'Beginner', duration: 6, rating: 4.5, match: 89, progress: 0 },
+                { id: 8, title: 'Manual Testing', domain: 'QA & Testing', difficulty: 'Beginner', duration: 4, rating: 4.3, match: 85, progress: 0 },
+                { id: 9, title: 'Cybersecurity and AI', domain: 'Artificial Intelligence', difficulty: 'Advanced', duration: 14, rating: 4.9, match: 97, progress: 0 },
+                { id: 10, title: 'Networking and AI', domain: 'Networking and AI', difficulty: 'Intermediate', duration: 12, rating: 4.8, match: 93, progress: 0 }
+            ];
+
+            let activeFilters = { domains: [], difficulties: [], maxDuration: 100, minRating: 0 };
+            let currentSort = 'recommended';
+            let currentView = 'grid';
+            let compareList = [];
+
+            // ============ Toast ============
+            function showToast(msg, type = 'info') {
+                const container = document.getElementById('toastContainer');
+                const colors = { success: 'bg-green-600', error: 'bg-red-600', info: 'bg-slate-800', warning: 'bg-orange-500' };
+                const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+                const el = document.createElement('div');
+                el.className = `${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg max-w-xs flex items-center gap-2`;
+                el.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icons[type]}</span><span>${msg}</span>`;
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 3000);
+            }
+
+            // ============ Search ============
+            const searchInput = document.querySelector('input[placeholder*="Ask AI"]');
+            const searchBtn = document.querySelector('button:has(.material-symbols-outlined)');
+
+            if (searchInput) {
+                searchInput.addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter') performSearch();
+                });
+                searchInput.addEventListener('focus', () => {
+                    showToast('Try: "Python courses for beginners"', 'info');
+                });
+            }
+
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.trim() === 'Search') {
+                    btn.addEventListener('click', performSearch);
+                }
+            });
+
+            function performSearch() {
+                const query = searchInput?.value?.trim().toLowerCase();
+                if (!query) return;
+
+                const cards = document.querySelectorAll('.grid > a, .grid > div.group');
+                let found = 0;
+
+                cards.forEach(card => {
+                    const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+                    const desc = card.querySelector('p')?.textContent?.toLowerCase() || '';
+                    const visible = title.includes(query) || desc.includes(query);
+                    card.style.display = visible ? '' : 'none';
+                    if (visible) found++;
+                });
+
+                updateCourseCount(found);
+                showToast(`Found ${found} courses matching "${query}"`, found > 0 ? 'success' : 'warning');
+            }
+
+            // ============ Filters ============
+            const domainCheckboxes = document.querySelectorAll('aside input[type="checkbox"]');
+            const difficultyCheckboxes = document.querySelectorAll('aside h4');
+            let allFilterCheckboxes = [];
+
+            document.querySelectorAll('aside label input[type="checkbox"]').forEach(cb => {
+                allFilterCheckboxes.push(cb);
+                cb.addEventListener('change', applyFilters);
+            });
+
+            document.querySelectorAll('aside label input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', applyFilters);
+            });
+
+            // Duration slider
+            const durationSlider = document.querySelector('input[type="range"]');
+            if (durationSlider) {
+                durationSlider.addEventListener('input', (e) => {
+                    activeFilters.maxDuration = parseInt(e.target.value);
+                    applyFilters();
+                });
+            }
+
+            function applyFilters() {
+                activeFilters.domains = [];
+                activeFilters.difficulties = [];
+
+                // Get selected domains
+                const domainLabels = ['Development', 'Data Science', 'Design', 'QA & Testing', 'Cybersecurity', 'Artificial Intelligence', 'Networking and AI'];
+                document.querySelectorAll('aside h4').forEach(h4 => {
+                    if (h4.textContent.includes('Skill Domain')) {
+                        const labels = h4.parentElement.querySelectorAll('label');
+                        labels.forEach((label, idx) => {
+                            const cb = label.querySelector('input[type="checkbox"]');
+                            if (cb?.checked && domainLabels[idx]) {
+                                activeFilters.domains.push(domainLabels[idx]);
+                            }
+                        });
+                    }
+                    if (h4.textContent.includes('Difficulty')) {
+                        const labels = h4.parentElement.querySelectorAll('label');
+                        labels.forEach(label => {
+                            const cb = label.querySelector('input[type="checkbox"]');
+                            const text = label.querySelector('span')?.textContent?.trim();
+                            if (cb?.checked && text) {
+                                activeFilters.difficulties.push(text);
+                            }
+                        });
+                    }
+                });
+
+                // Get rating filter
+                document.querySelectorAll('aside input[name="rating"]').forEach((radio, idx) => {
+                    if (radio.checked) {
+                        activeFilters.minRating = idx === 0 ? 4 : 3;
+                    }
+                });
+
+                filterCourses();
+            }
+
+            function filterCourses() {
+                const cards = document.querySelectorAll('.grid > a');
+                let visibleCount = 0;
+
+                cards.forEach((card, idx) => {
+                    const course = coursesData[idx];
+                    if (!course) return;
+
+                    let visible = true;
+
+                    // Domain filter
+                    if (activeFilters.domains.length > 0) {
+                        visible = activeFilters.domains.some(d => course.domain.includes(d));
+                    }
+
+                    // Difficulty filter
+                    if (visible && activeFilters.difficulties.length > 0) {
+                        visible = activeFilters.difficulties.includes(course.difficulty);
+                    }
+
+                    // Duration filter
+                    if (visible && activeFilters.maxDuration < 100) {
+                        const maxHours = (activeFilters.maxDuration / 100) * 50;
+                        visible = course.duration <= maxHours;
+                    }
+
+                    // Rating filter
+                    if (visible && activeFilters.minRating > 0) {
+                        visible = course.rating >= activeFilters.minRating;
+                    }
+
+                    card.style.display = visible ? '' : 'none';
+                    if (visible) visibleCount++;
+                });
+
+                updateCourseCount(visibleCount);
+            }
+
+            function updateCourseCount(count) {
+                const countEl = document.querySelector('p.text-sm.text-slate-500 span');
+                if (countEl) countEl.textContent = count + ' courses';
+            }
+
+            // Reset All
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.trim() === 'Reset All') {
+                    btn.addEventListener('click', () => {
+                        allFilterCheckboxes.forEach(cb => cb.checked = false);
+                        document.querySelectorAll('aside input[name="rating"]').forEach(r => r.checked = false);
+                        if (durationSlider) durationSlider.value = 100;
+                        activeFilters = { domains: [], difficulties: [], maxDuration: 100, minRating: 0 };
+                        document.querySelectorAll('.grid > a').forEach(c => c.style.display = '');
+                        updateCourseCount(10);
+                        showToast('Filters reset', 'success');
+                    });
+                }
+
+                // Save Filters
+                if (btn.textContent.includes('Save Filters')) {
+                    btn.addEventListener('click', () => {
+                        localStorage.setItem('catalogFilters', JSON.stringify(activeFilters));
+                        showToast('Filters saved!', 'success');
+                    });
+                }
+            });
+
+            // ============ Sort Dropdown ============
+            const sortSelect = document.querySelector('select');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (e) => {
+                    const sortBy = e.target.value;
+                    const container = document.querySelector('.grid.grid-cols-1');
+                    const cards = Array.from(container.querySelectorAll(':scope > a'));
+
+                    cards.sort((a, b) => {
+                        const titleA = a.querySelector('h3')?.textContent || '';
+                        const titleB = b.querySelector('h3')?.textContent || '';
+                        const ratingA = parseFloat(a.querySelector('.flex.items-center.gap-1.text-yellow-500 span:nth-child(2)')?.textContent || '0');
+                        const ratingB = parseFloat(b.querySelector('.flex.items-center.gap-1.text-yellow-500 span:nth-child(2)')?.textContent || '0');
+
+                        switch (sortBy) {
+                            case 'Most Popular':
+                                return titleB.localeCompare(titleA);
+                            case 'Highest Rated':
+                                return ratingB - ratingA;
+                            case 'Newest First':
+                                return -1;
+                            default:
+                                return 0;
+                        }
+                    });
+
+                    cards.forEach(card => container.appendChild(card));
+                    showToast(`Sorted by: ${sortBy}`, 'info');
+                });
+            }
+
+            // ============ View Toggle ============
+            const viewBtns = document.querySelectorAll('.flex.bg-white.dark\\:bg-dark-card.rounded-lg button');
+            viewBtns.forEach((btn, idx) => {
+                btn.addEventListener('click', () => {
+                    viewBtns.forEach(b => {
+                        b.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white');
+                        b.classList.add('text-slate-500');
+                    });
+                    btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white');
+                    btn.classList.remove('text-slate-500');
+
+                    const grid = document.querySelector('.grid.grid-cols-1');
+                    if (idx === 0) {
+                        grid.classList.remove('grid-cols-1', 'md:grid-cols-1');
+                        grid.classList.add('md:grid-cols-2', 'xl:grid-cols-3');
+                        showToast('Grid view', 'info');
+                    } else {
+                        grid.classList.remove('md:grid-cols-2', 'xl:grid-cols-3');
+                        grid.classList.add('grid-cols-1', 'md:grid-cols-1');
+                        showToast('List view', 'info');
+                    }
+                });
+            });
+
+            // ============ Compare ============
+            document.querySelectorAll('.grid label input[type="checkbox"]').forEach((cb, idx) => {
+                cb.addEventListener('change', (e) => {
+                    e.stopPropagation();
+                    const card = cb.closest('a') || cb.closest('.group');
+                    const title = card?.querySelector('h3')?.textContent || `Course ${idx + 1}`;
+
+                    if (cb.checked) {
+                        if (compareList.length >= 3) {
+                            cb.checked = false;
+                            showToast('Maximum 3 courses for comparison', 'warning');
+                            return;
+                        }
+                        compareList.push({ idx, title });
+                        showToast(`Added "${title}" to compare`, 'success');
+                    } else {
+                        compareList = compareList.filter(c => c.idx !== idx);
+                        showToast(`Removed "${title}" from compare`, 'info');
+                    }
+
+                    if (compareList.length >= 2) {
+                        setTimeout(() => showCompareOption(), 500);
+                    }
+                });
+            });
+
+            function showCompareOption() {
+                if (compareList.length >= 2 && !document.getElementById('compareFloatBtn')) {
+                    const btn = document.createElement('button');
+                    btn.id = 'compareFloatBtn';
+                    btn.className = 'fixed bottom-6 right-6 px-6 py-3 bg-blue-600 text-white rounded-full shadow-xl hover:bg-blue-500 flex items-center gap-2 z-50';
+                    btn.innerHTML = `<span class="material-symbols-outlined">compare</span> Compare (${compareList.length})`;
+                    btn.onclick = openCompareModal;
+                    document.body.appendChild(btn);
+                } else if (compareList.length < 2) {
+                    document.getElementById('compareFloatBtn')?.remove();
+                } else {
+                    const btn = document.getElementById('compareFloatBtn');
+                    if (btn) btn.innerHTML = `<span class="material-symbols-outlined">compare</span> Compare (${compareList.length})`;
+                }
+            }
+
+            // ============ Notifications ============
+            const notifBtn = document.querySelector('button:has(.material-symbols-outlined:first-child)');
+            const notifPanel = document.getElementById('notificationsPanel');
+
+            document.querySelectorAll('header button').forEach(btn => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon?.textContent === 'notifications') {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        notifPanel.classList.toggle('hidden');
+                    });
+                }
+            });
+
+            document.getElementById('markAllRead')?.addEventListener('click', () => {
+                showToast('All notifications marked as read', 'success');
+                const badge = document.querySelector('header .bg-red-500');
+                if (badge) badge.remove();
+                notifPanel.classList.add('hidden');
+            });
+
+            document.addEventListener('click', () => notifPanel?.classList.add('hidden'));
+
+            // ============ Mobile Filter Button ============
+            document.querySelectorAll('button').forEach(btn => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon?.textContent === 'filter_list') {
+                    btn.addEventListener('click', () => {
+                        const aside = document.querySelector('aside');
+                        if (aside) {
+                            aside.classList.toggle('hidden');
+                            aside.classList.toggle('lg:block');
+                            aside.classList.toggle('fixed');
+                            aside.classList.toggle('inset-4');
+                            aside.classList.toggle('z-50');
+                        }
+                    });
+                }
+            });
+
+            // ============ Profile Click ============
+            const profileImg = document.querySelector('.h-9.w-9.rounded-full.bg-gradient-to-tr');
+            if (profileImg) {
+                profileImg.addEventListener('click', () => showToast('Profile settings coming soon!', 'info'));
+            }
+
+            // Load saved filters
+            const savedFilters = localStorage.getItem('catalogFilters');
+            if (savedFilters) {
+                try {
+                    activeFilters = JSON.parse(savedFilters);
+                    showToast('Saved filters loaded', 'info');
+                } catch { }
+            }
+
+            console.log('%cCatalog Page Loaded', 'color: #3b82f6; font-size: 14px; font-weight: bold;');
+        });
+
+        // Global functions
+        function closeCompareModal() {
+            document.getElementById('compareModal')?.classList.add('hidden');
+        }
+
+        function openCompareModal() {
+            const modal = document.getElementById('compareModal');
+            const content = document.getElementById('compareContent');
+            if (!modal || !content) return;
+
+            content.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-${Math.min(3, window.compareList?.length || 2)} gap-6">
+            ${(window.compareList || []).map(c => `
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2">${c.title}</h4>
+                    <p class="text-sm text-slate-500">Course details would appear here</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+            modal.classList.remove('hidden');
+        }
+    </script>
+    <script src="js/student-profile.js"></script>
+
+    <script src="js/access-control.js"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

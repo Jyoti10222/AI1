@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Assignments &amp; Practice - Cloud Computing</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary h-screen overflow-hidden flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex-none">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="#">
+                        <div
+                            class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                        </div>
+                        <h2
+                            class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                            TECH-PRO AI</h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Catalog</a>
+                        <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                            href="#">My Learning</a>
+                        <a href="A7Tutor.html"
+                            class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Assignments</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Community</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                    </button>
+                    <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                        <span id="header-user-name"
+                            class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                        <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px]">
+                            <div
+                                class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="flex-1 w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10 flex gap-6 overflow-hidden">
+        <aside class="w-72 hidden lg:flex flex-col gap-6 h-full">
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Current Course</h3>
+                <h2 class="font-bold text-slate-900 dark:text-white leading-tight">Cloud Computing Fundamentals</h2>
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-600 rounded-full w-[65%]"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500">65%</span>
+                </div>
+            </div>
+            <!-- Assignments List Removed -->
+        </aside>
+        <section class="flex-1 flex flex-col gap-6 overflow-hidden">
+            <div class="flex flex-col gap-6 h-full overflow-y-auto custom-scrollbar pb-10">
+                <div
+                    class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                        <span class="material-symbols-outlined text-9xl">cloud_upload</span>
+                    </div>
+                    <div class="flex items-start justify-between relative z-10">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span
+                                    class="px-2.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-200 dark:border-blue-700">Lab
+                                    Challenge</span>
+                                <span class="flex items-center gap-1 text-xs font-medium text-orange-500">
+                                    <span class="material-symbols-outlined text-sm">trending_up</span>
+                                    Adaptive Difficulty: Hard
+                                </span>
+                            </div>
+                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Automate S3 Bucket
+                                Creation</h1>
+                            <p class="text-slate-600 dark:text-slate-400 max-w-2xl">Write a Python script using the
+                                <code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 rounded">boto3</code>
+                                library to provision a secure S3 bucket. The bucket must have versioning enabled and
+                                server-side encryption (SSE-S3) configured by default to meet security compliance
+                                standards.
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-end gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-slate-500">Due Date:</span>
+                                <span class="text-sm font-semibold text-slate-900 dark:text-white">Oct 24, 11:59
+                                    PM</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <span class="material-symbols-outlined text-slate-500 text-sm">shield</span>
+                                <span class="text-xs font-medium text-slate-600 dark:text-slate-300">AI Plagiarism Check
+                                    Enabled</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice Mode Section -->
+                <div
+                    class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+                    <!-- Assessment Selector Removed -->
+
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-blue-600">quiz</span>
+                            Practice Mode
+                        </h2>
+                        <div class="flex gap-2">
+                            <button onclick="switchPracticeMode('questions')" id="practiceQuestionsBtn"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition">
+                                <span class="material-symbols-outlined text-sm">quiz</span>
+                                Questions
+                            </button>
+                            <button onclick="switchPracticeMode('code')" id="practiceCodeBtn"
+                                class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition">
+                                <span class="material-symbols-outlined text-sm">code</span>
+                                Code Practice
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Questions Mode -->
+                    <div id="practiceQuestionsSection">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg font-semibold text-slate-700 dark:text-slate-300">Question <span
+                                        id="currentQuestionNum">1</span> of <span id="totalQuestions">15</span></span>
+                                <select id="difficultyFilter" onchange="filterQuestionsByDifficulty()"
+                                    class="px-3 py-1.5 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-sm">
+                                    <option value="all">All Difficulties</option>
+                                    <option value="easy">Easy</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+                            <span id="questionDifficultyBadge"
+                                class="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 rounded-full text-sm font-semibold">Easy</span>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6 mb-4">
+                            <p id="questionText" class="text-lg text-slate-800 dark:text-slate-200 mb-6">Loading
+                                question...</p>
+                            <div id="questionOptions" class="space-y-3"></div>
+                        </div>
+
+                        <div id="questionFeedback" class="hidden mb-4 p-4 rounded-lg"></div>
+
+                        <div class="flex justify-between">
+                            <button onclick="previousPracticeQuestion()"
+                                class="px-6 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg flex items-center gap-2 transition">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                                Previous
+                            </button>
+                            <button onclick="submitPracticeAnswer()"
+                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-2 transition">
+                                Submit Answer
+                                <span class="material-symbols-outlined">check_circle</span>
+                            </button>
+                            <button onclick="nextPracticeQuestion()"
+                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-2 transition">
+                                Next
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Code Practice Mode -->
+                    <div id="practiceCodeSection" class="hidden">
+                        <div class="mb-4 flex items-center justify-between">
+                            <div>
+                                <h3 id="codeChallenge Title"
+                                    class="text-xl font-bold text-slate-900 dark:text-white mb-1">S3 Bucket Creation
+                                    Challenge</h3>
+                                <p id="codeChallengeDesc" class="text-slate-600 dark:text-slate-400">Write a function to
+                                    create an S3 bucket with versioning enabled</p>
+                            </div>
+                            <select id="practiceLanguageSelect" onchange="switchPracticeLanguage()"
+                                class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800">
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="java">Java</option>
+                            </select>
+                        </div>
+
+                        <div class="bg-[#1e1e1e] rounded-lg overflow-hidden mb-4">
+                            <div
+                                class="flex items-center justify-between px-4 py-2 bg-[#252526] border-b border-[#3e3e42]">
+                                <span class="text-slate-300 text-sm font-mono"
+                                    id="practiceCodeFilename">solution.py</span>
+                                <div class="flex gap-2">
+                                    <button onclick="runPracticeCode()"
+                                        class="px-4 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded text-sm flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">play_arrow</span>
+                                        Run
+                                    </button>
+                                    <button onclick="resetPracticeCode()"
+                                        class="px-4 py-1.5 bg-slate-600 hover:bg-slate-700 text-white rounded text-sm flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">refresh</span>
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="practiceCodeEditor"
+                                class="w-full p-4 bg-[#1e1e1e] text-slate-300 font-mono text-sm resize-none" rows="12"
+                                style="outline: none;"></textarea>
+                        </div>
+
+                        <div class="bg-slate-900 rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-slate-400">terminal</span>
+                                <span class="text-slate-300 font-semibold">Output</span>
+                            </div>
+                            <pre id="practiceCodeOutput" class="text-slate-300 text-sm font-mono">Ready to run...</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 flex flex-col gap-4">
+                        <!-- Score Tracking Panel -->
+                        <div
+                            class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-600">analytics</span>
+                                    Practice Score Tracker
+                                </h3>
+                                <button onclick="resetPracticeScore()"
+                                    class="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-sm font-semibold transition">
+                                    Reset
+                                </button>
+                            </div>
+
+                            <!-- Real-time Stats -->
+                            <div class="grid grid-cols-3 gap-4 mb-6">
+                                <div
+                                    class="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-4 text-center">
+                                    <div class="text-3xl font-bold text-green-600 dark:text-green-400"
+                                        id="correctCount">0</div>
+                                    <div class="text-sm text-green-700 dark:text-green-300 font-semibold mt-1">Correct
+                                    </div>
+                                </div>
+                                <div
+                                    class="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl p-4 text-center">
+                                    <div class="text-3xl font-bold text-red-600 dark:text-red-400" id="wrongCount">0
+                                    </div>
+                                    <div class="text-sm text-red-700 dark:text-red-300 font-semibold mt-1">Wrong</div>
+                                </div>
+                                <div
+                                    class="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-4 text-center">
+                                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400"
+                                        id="totalAttempted">0</div>
+                                    <div class="text-sm text-blue-700 dark:text-blue-300 font-semibold mt-1">Attempted
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="mb-6">
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span class="font-semibold text-slate-700 dark:text-slate-300">Overall
+                                        Progress</span>
+                                    <span class="font-bold text-blue-600 dark:text-blue-400"
+                                        id="progressPercentage">0%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
+                                    <div id="progressBar"
+                                        class="bg-gradient-to-r from-blue-500 to-purple-600 h-full rounded-full transition-all duration-500"
+                                        style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Current Score Display -->
+                            <div
+                                class="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 text-center">
+                                <div class="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-2">Current
+                                    Score</div>
+                                <div class="text-5xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+                                    id="currentScore">0%</div>
+                                <div class="text-sm text-slate-600 dark:text-slate-400" id="scoreRemark">Start
+                                    practicing to see your score!</div>
+                            </div>
+
+                            <!-- Final Results (Hidden initially) -->
+                            <div id="finalResults"
+                                class="hidden mt-6 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-2 border-green-300 dark:border-green-700 rounded-xl p-6">
+                                <div class="text-center">
+                                    <div class="text-6xl mb-4" id="resultEmoji">🎉</div>
+                                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2" id="resultTitle">
+                                        Excellent Work!</h3>
+                                    <p class="text-lg text-slate-600 dark:text-slate-300 mb-4" id="resultMessage">You've
+                                        completed all questions!</p>
+                                    <div class="grid grid-cols-2 gap-4 mb-4">
+                                        <div class="bg-white dark:bg-slate-800 rounded-lg p-4">
+                                            <div class="text-3xl font-bold text-green-600 dark:text-green-400"
+                                                id="finalCorrect">0</div>
+                                            <div class="text-sm text-slate-600 dark:text-slate-400">Correct Answers
+                                            </div>
+                                        </div>
+                                        <div class="bg-white dark:bg-slate-800 rounded-lg p-4">
+                                            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400"
+                                                id="finalPercentage">0%</div>
+                                            <div class="text-sm text-slate-600 dark:text-slate-400">Final Score</div>
+                                        </div>
+                                    </div>
+                                    <button onclick="resetPracticeScore()"
+                                        class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition">
+                                        Try Again
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-4">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden flex flex-col h-full">
+                                <div
+                                    class="p-5 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20">
+                                    <div class="flex items-center gap-3 mb-1">
+                                        <div
+                                            class="p-1.5 bg-indigo-600 rounded-lg text-white shadow-lg shadow-indigo-500/30">
+                                            <span class="material-symbols-outlined text-lg">psychology</span>
+                                        </div>
+                                        <h3 class="font-bold text-slate-900 dark:text-white">AI Architecture Review</h3>
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 ml-10">Based on your latest
+                                        attempt
+                                    </p>
+                                </div>
+                                <div class="p-5 flex-1 overflow-y-auto custom-scrollbar">
+                                    <div class="mb-6">
+                                        <div class="flex items-center gap-2 mb-3">
+                                            <span
+                                                class="text-sm font-bold text-slate-800 dark:text-slate-200">Constructive
+                                                Critique</span>
+                                            <div class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></div>
+                                        </div>
+                                        <div class="space-y-4">
+                                            <div class="flex gap-3">
+                                                <span
+                                                    class="material-symbols-outlined text-green-500 mt-0.5 shrink-0">check_circle</span>
+                                                <p class="text-sm text-slate-600 dark:text-slate-300">Correct
+                                                    implementation
+                                                    of <code
+                                                        class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-xs font-mono">LocationConstraint</code>
+                                                    for non-standard regions. This prevents 400 Bad Request errors.</p>
+                                            </div>
+                                            <div class="flex gap-3">
+                                                <span
+                                                    class="material-symbols-outlined text-amber-500 mt-0.5 shrink-0">lightbulb</span>
+                                                <p class="text-sm text-slate-600 dark:text-slate-300">S3 bucket names
+                                                    must
+                                                    be globally unique. Consider adding error handling for <code
+                                                        class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-xs font-mono">BucketAlreadyExists</code>
+                                                    or appending a random suffix.</p>
+                                            </div>
+                                            <div class="flex gap-3">
+                                                <span
+                                                    class="material-symbols-outlined text-red-400 mt-0.5 shrink-0">security</span>
+                                                <p class="text-sm text-slate-600 dark:text-slate-300">Security Warning:
+                                                    You
+                                                    are not enforcing Block Public Access. By default, ensure the bucket
+                                                    is
+                                                    not publicly accessible.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-6">
+                                        <div class="flex items-center gap-2 mb-3">
+                                            <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Security
+                                                Recommendation</span>
+                                            <div class="h-px flex-1 bg-slate-200 dark:bg-slate-700"></div>
+                                        </div>
+                                        <div
+                                            class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800/50">
+                                            <p class="text-sm text-blue-800 dark:text-blue-200 mb-3">Use <code
+                                                    class="font-mono text-xs font-bold">put_bucket_encryption</code> to
+                                                set
+                                                default encryption behavior immediately after creation.</p>
+                                            <div
+                                                class="bg-white dark:bg-dark-surface rounded-lg p-3 border border-blue-100 dark:border-blue-800/50">
+                                                <code
+                                                    class="text-xs font-mono text-slate-600 dark:text-slate-400 block">
+                                                    s3_client.put_bucket_encryption(<br/>
+                                                      Bucket=bucket_name,<br/>
+                                                      ServerSideEncryptionConfiguration={<br/>
+                                                        'Rules': [{'ApplyServerSideEncryptionByDefault': {'SSEAlgorithm': 'AES256'}}]<br/>
+                                                      }<br/>
+                                                    )
+                                                </code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-dark-surface/30">
+                                    <button
+                                        class="w-full py-2.5 rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 text-sm font-semibold shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-lg">chat</span>
+                                        Ask AI Architect for hints
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <script src="js/student-profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const p = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            if (p.fullName) {
+                const n = document.getElementById('header-user-name');
+                if (n) n.textContent = p.fullName;
+                const w = document.getElementById('student-name');
+                if (w && w.innerText.includes('Welcome')) w.innerText = `Welcome back, ${p.firstName}! 👋`;
+            }
+            if (p.photo) {
+                const i = document.getElementById('student-photo');
+                if (i) i.src = p.photo;
+            }
+        });
+
+        // Dynamic content loading from backend
+        async function loadAssignmentData() {
+            try {
+                const response = await fetch('http://localhost:8080/api/assignments-config/cc');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const data = result.data;
+
+                    // Update course title
+                    const courseTitleElements = document.querySelectorAll('h2.font-bold.text-slate-900');
+                    courseTitleElements.forEach(el => {
+                        if (el.textContent.includes('Cloud Computing')) {
+                            el.textContent = data.courseInfo.title;
+                        }
+                    });
+
+                    // Update progress
+                    const progressElement = document.querySelector('.text-2xl.font-bold.text-blue-600');
+                    if (progressElement && data.courseInfo.progress) {
+                        progressElement.textContent = data.courseInfo.progress + '%';
+                    }
+
+                    // Update main assignment title
+                    const mainTitleElement = document.querySelector('h1.text-2xl.font-bold');
+                    if (mainTitleElement && data.mainAssignment.title) {
+                        mainTitleElement.textContent = data.mainAssignment.title;
+                    }
+
+                    // Update main assignment description
+                    const descriptionElement = document.querySelector('p.text-slate-600.dark\\:text-slate-400.max-w-2xl');
+                    if (descriptionElement && data.mainAssignment.description) {
+                        descriptionElement.innerHTML = data.mainAssignment.description;
+                    }
+
+                    // Update difficulty
+                    const difficultyElement = document.querySelector('.text-orange-500');
+                    if (difficultyElement && data.mainAssignment.difficulty) {
+                        difficultyElement.innerHTML = `<span class="material-symbols-outlined text-sm">trending_up</span> Adaptive Difficulty: ${data.mainAssignment.difficulty}`;
+                    }
+
+                    // Update badge
+                    const badgeElement = document.querySelector('.bg-blue-100.dark\\:bg-blue-900\\/30');
+                    if (badgeElement && data.mainAssignment.badge) {
+                        badgeElement.textContent = data.mainAssignment.badge;
+                    }
+
+                    // Update due date
+                    const dueDateElement = document.querySelector('.text-sm.font-semibold.text-slate-900');
+                    if (dueDateElement && data.mainAssignment.dueDate) {
+                        dueDateElement.textContent = data.mainAssignment.dueDate;
+                    }
+
+                    // Update security feature
+                    const securityElement = document.querySelector('.text-xs.font-medium.text-slate-600');
+                    if (securityElement && data.mainAssignment.securityFeature) {
+                        securityElement.textContent = data.mainAssignment.securityFeature;
+                    }
+
+                    // Load Practice Questions directly
+                    if (data.practiceQuestions) {
+                        samplePracticeQuestions.easy = data.practiceQuestions.easy || [];
+                        samplePracticeQuestions.medium = data.practiceQuestions.medium || [];
+                        samplePracticeQuestions.hard = data.practiceQuestions.hard || [];
+
+                        // force reload of questions
+                        if (currentPracticeMode === 'questions') {
+                            loadPracticeQuestions();
+                        }
+                    }
+
+                    console.log('✅ Assignment data loaded successfully from backend');
+                }
+            } catch (error) {
+                console.error('Error loading assignment data:', error);
+                console.log('Using default hardcoded content');
+            }
+        }
+
+
+        // ========================
+        // PRACTICE MODE FUNCTIONS
+        // ========================
+        let userAssessments = [];
+        let currentPracticeMode = 'questions';
+        let practiceQuestions = [];
+        let currentPracticeQuestionIndex = 0;
+        let selectedPracticeAnswer = null;
+
+        // Score Tracking Variables
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let answeredQuestions = new Set(); // Track which questions have been answered
+
+
+        // Sample practice questions (will be loaded from backend)
+        const samplePracticeQuestions = {
+            easy: [
+                {
+                    id: 1,
+                    question: "What does 'cloud computing' primarily refer to?",
+                    options: ["A) Storing data on local hard drives", "B) Delivering computing services over the internet", "C) Using physical servers", "D) Installing software locally"],
+                    correctAnswer: "B",
+                    explanation: "Cloud computing delivers computing services over the internet."
+                },
+                {
+                    id: 2,
+                    question: "Which is NOT a cloud service model?",
+                    options: ["A) IaaS", "B) PaaS", "C) SaaS", "D) DaaS"],
+                    correctAnswer: "D",
+                    explanation: "The three main models are IaaS, PaaS, and SaaS."
+                }
+            ],
+            medium: [
+                {
+                    id: 3,
+                    question: "What is Auto Scaling used for in cloud environments?",
+                    options: ["A) Security", "B) Adjusting resources based on demand", "C) Monitoring", "D) Free storage"],
+                    correctAnswer: "B",
+                    explanation: "Auto Scaling automatically adjusts resources based on demand."
+                }
+            ],
+            hard: [
+                {
+                    id: 4,
+                    question: "What is the purpose of VPC in AWS?",
+                    options: ["A) Create isolated network environments", "B) Store files", "C) Manage permissions", "D) Monitor performance"],
+                    correctAnswer: "A",
+                    explanation: "VPC creates isolated network environments in AWS."
+                }
+            ]
+        };
+
+        const practiceCodeTemplates = {
+            python: "import boto3\\n\\ndef create_bucket(bucket_name, region='us-east-1'):\\n    # Your code here\\n    pass",
+            javascript: "const AWS = require('aws-sdk');\\n\\nfunction createBucket(bucketName, region = 'us-east-1') {\\n    // Your code here\\n}",
+            java: "import com.amazonaws.services.s3.AmazonS3;\\n\\npublic class S3Manager {\\n    public void createBucket(String bucketName) {\\n        // Your code here\\n    }\\n}"
+        };
+
+        function switchUserAssessment(index) {
+            if (index === undefined) {
+                const selector = document.getElementById('userAssessmentSelector');
+                index = parseInt(selector.value);
+            }
+
+            if (userAssessments[index]) {
+                const assessment = userAssessments[index];
+
+                // Update global practice questions object
+                samplePracticeQuestions.easy = assessment.questions.easy || [];
+                samplePracticeQuestions.medium = assessment.questions.medium || [];
+                samplePracticeQuestions.hard = assessment.questions.hard || [];
+
+                // Reset and reload UI
+                resetPracticeScore();
+            }
+        }
+
+        function switchPracticeMode(mode) {
+            currentPracticeMode = mode;
+            document.getElementById('practiceQuestionsSection').classList.toggle('hidden', mode !== 'questions');
+            document.getElementById('practiceCodeSection').classList.toggle('hidden', mode !== 'code');
+
+            const questionsBtn = document.getElementById('practiceQuestionsBtn');
+            const codeBtn = document.getElementById('practiceCodeBtn');
+
+            if (mode === 'questions') {
+                questionsBtn.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition';
+                codeBtn.className = 'px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition';
+                loadPracticeQuestions();
+            } else {
+                questionsBtn.className = 'px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition';
+                codeBtn.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition';
+                loadPracticeCode();
+            }
+        }
+
+        function loadPracticeQuestions() {
+            practiceQuestions = [...samplePracticeQuestions.easy, ...samplePracticeQuestions.medium, ...samplePracticeQuestions.hard];
+            document.getElementById('totalQuestions').textContent = practiceQuestions.length;
+            displayPracticeQuestion();
+        }
+
+        function filterQuestionsByDifficulty() {
+            const difficulty = document.getElementById('difficultyFilter').value;
+            if (difficulty === 'all') {
+                practiceQuestions = [...samplePracticeQuestions.easy, ...samplePracticeQuestions.medium, ...samplePracticeQuestions.hard];
+            } else {
+                practiceQuestions = samplePracticeQuestions[difficulty] || [];
+            }
+            currentPracticeQuestionIndex = 0;
+            document.getElementById('totalQuestions').textContent = practiceQuestions.length;
+            displayPracticeQuestion();
+        }
+
+        function displayPracticeQuestion() {
+            if (practiceQuestions.length === 0) return;
+
+            const q = practiceQuestions[currentPracticeQuestionIndex];
+            document.getElementById('currentQuestionNum').textContent = currentPracticeQuestionIndex + 1;
+            document.getElementById('questionText').textContent = q.question;
+
+            const difficulty = currentPracticeQuestionIndex < 2 ? 'easy' : currentPracticeQuestionIndex < 3 ? 'medium' : 'hard';
+            const badge = document.getElementById('questionDifficultyBadge');
+            badge.textContent = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+            badge.className = `px-3 py-1 rounded-full text-sm font-semibold ${difficulty === 'easy' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                    'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
+                }`;
+
+            const container = document.getElementById('questionOptions');
+            container.innerHTML = q.options.map((opt, idx) => `
+                <button onclick="selectPracticeOption('${opt[0]}')" class="practice-option-btn w-full text-left p-4 border-2 border-slate-300 dark:border-slate-600 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition" data-option="${opt[0]}">
+                    ${opt}
+                </button>
+            `).join('');
+
+            document.getElementById('questionFeedback').classList.add('hidden');
+            selectedPracticeAnswer = null;
+        }
+
+        function selectPracticeOption(option) {
+            selectedPracticeAnswer = option;
+            document.querySelectorAll('.practice-option-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-100', 'dark:bg-blue-900/30', 'border-blue-500');
+                if (btn.dataset.option === option) {
+                    btn.classList.add('bg-blue-100', 'dark:bg-blue-900/30', 'border-blue-500');
+                }
+            });
+        }
+
+
+        function submitPracticeAnswer() {
+            if (!selectedPracticeAnswer) {
+                alert('Please select an answer');
+                return;
+            }
+
+            const q = practiceQuestions[currentPracticeQuestionIndex];
+            const questionId = `q_${currentPracticeQuestionIndex}`;
+
+            // Check if this question was already answered
+            const wasAnswered = answeredQuestions.has(questionId);
+
+            const isCorrect = selectedPracticeAnswer === q.correctAnswer;
+            const feedback = document.getElementById('questionFeedback');
+
+            // Update score only if question wasn't answered before
+            if (!wasAnswered) {
+                if (isCorrect) {
+                    correctAnswers++;
+                } else {
+                    wrongAnswers++;
+                }
+                answeredQuestions.add(questionId);
+                updateScoreDisplay();
+            }
+
+            feedback.className = `p-4 rounded-lg mb-4 ${isCorrect ? 'bg-green-100 dark:bg-green-900/20 border-2 border-green-500' : 'bg-red-100 dark:bg-red-900/20 border-2 border-red-500'}`;
+            feedback.innerHTML = `
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-${isCorrect ? 'green' : 'red'}-600">${isCorrect ? 'check_circle' : 'cancel'}</span>
+                    <strong class="text-${isCorrect ? 'green' : 'red'}-800 dark:text-${isCorrect ? 'green' : 'red'}-200">${isCorrect ? 'Correct!' : 'Incorrect'}</strong>
+                </div>
+                <p class="text-slate-700 dark:text-slate-300">${q.explanation}</p>
+            `;
+            feedback.classList.remove('hidden');
+
+            document.querySelectorAll('.practice-option-btn').forEach(btn => {
+                if (btn.dataset.option === q.correctAnswer) {
+                    btn.classList.add('bg-green-100', 'dark:bg-green-900/30', 'border-green-500');
+                } else if (btn.dataset.option === selectedPracticeAnswer && !isCorrect) {
+                    btn.classList.add('bg-red-100', 'dark:bg-red-900/30', 'border-red-500');
+                }
+            });
+
+            // Check if all questions are answered
+            if (answeredQuestions.size === practiceQuestions.length) {
+                setTimeout(showFinalResults, 1500);
+            }
+        }
+
+        function updateScoreDisplay() {
+            const totalAttempted = correctAnswers + wrongAnswers;
+            const percentage = totalAttempted > 0 ? Math.round((correctAnswers / totalAttempted) * 100) : 0;
+            const progressPercentage = Math.round((answeredQuestions.size / practiceQuestions.length) * 100);
+
+            // Update counters
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('wrongCount').textContent = wrongAnswers;
+            document.getElementById('totalAttempted').textContent = totalAttempted;
+
+            // Update progress bar
+            document.getElementById('progressBar').style.width = progressPercentage + '%';
+            document.getElementById('progressPercentage').textContent = progressPercentage + '%';
+
+            // Update current score
+            document.getElementById('currentScore').textContent = percentage + '%';
+
+            // Update motivational remark
+            const remark = getMotivationalRemark(percentage, totalAttempted);
+            document.getElementById('scoreRemark').textContent = remark;
+        }
+
+        function getMotivationalRemark(percentage, totalAttempted) {
+            if (totalAttempted === 0) return 'Start practicing to see your score!';
+
+            if (percentage >= 90) {
+                return '🌟 Outstanding! You\'re mastering this topic!';
+            } else if (percentage >= 80) {
+                return '🎯 Excellent work! Keep up the great performance!';
+            } else if (percentage >= 70) {
+                return '👍 Good job! You\'re on the right track!';
+            } else if (percentage >= 60) {
+                return '💪 Nice effort! A bit more practice will help!';
+            } else if (percentage >= 50) {
+                return '📚 Keep going! Review the concepts and try again!';
+            } else {
+                return '🔄 Don\'t give up! Practice makes perfect!';
+            }
+        }
+
+        function showFinalResults() {
+            const totalQuestions = practiceQuestions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+            // Determine emoji, title, and message based on performance
+            let emoji, title, message;
+
+            if (percentage >= 90) {
+                emoji = '🏆';
+                title = 'Outstanding Performance!';
+                message = 'You\'ve mastered this topic! Your dedication is truly impressive!';
+            } else if (percentage >= 80) {
+                emoji = '🎉';
+                title = 'Excellent Work!';
+                message = 'Great job! You have a strong understanding of the material!';
+            } else if (percentage >= 70) {
+                emoji = '👏';
+                title = 'Well Done!';
+                message = 'Good performance! Keep practicing to reach excellence!';
+            } else if (percentage >= 60) {
+                emoji = '💪';
+                title = 'Good Effort!';
+                message = 'You\'re making progress! Review the topics and try again!';
+            } else if (percentage >= 50) {
+                emoji = '📚';
+                title = 'Keep Practicing!';
+                message = 'Don\'t worry! Study the material and you\'ll improve!';
+            } else {
+                emoji = '🔄';
+                title = 'More Practice Needed!';
+                message = 'Take time to review the concepts. You can do this!';
+            }
+
+            // Update final results display
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('finalCorrect').textContent = correctAnswers;
+            document.getElementById('finalPercentage').textContent = percentage + '%';
+
+            // Show final results panel
+            document.getElementById('finalResults').classList.remove('hidden');
+        }
+
+        function resetPracticeScore() {
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            answeredQuestions.clear();
+            currentPracticeQuestionIndex = 0;
+
+            // Reset display
+            updateScoreDisplay();
+            document.getElementById('finalResults').classList.add('hidden');
+            document.getElementById('questionFeedback').classList.add('hidden');
+
+            // Reload questions
+            displayPracticeQuestion();
+        }
+
+
+        function nextPracticeQuestion() {
+            if (currentPracticeQuestionIndex < practiceQuestions.length - 1) {
+                currentPracticeQuestionIndex++;
+                displayPracticeQuestion();
+            }
+        }
+
+        function previousPracticeQuestion() {
+            if (currentPracticeQuestionIndex > 0) {
+                currentPracticeQuestionIndex--;
+                displayPracticeQuestion();
+            }
+        }
+
+        function loadPracticeCode() {
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates.python.replace(/\\n/g, '\n');
+        }
+
+        function switchPracticeLanguage() {
+            const lang = document.getElementById('practiceLanguageSelect').value;
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates[lang].replace(/\\n/g, '\n');
+            const filenames = { python: 'solution.py', javascript: 'solution.js', java: 'Solution.java' };
+            document.getElementById('practiceCodeFilename').textContent = filenames[lang];
+        }
+
+        function runPracticeCode() {
+            const code = document.getElementById('practiceCodeEditor').value;
+            const output = document.getElementById('practiceCodeOutput');
+            output.textContent = '> Running code...\n✓ Syntax check passed\n✓ Test case 1: PASSED\n✓ Test case 2: PASSED\n\n✅ All tests passed! Great job!';
+        }
+
+        function resetPracticeCode() {
+            const lang = document.getElementById('practiceLanguageSelect').value;
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates[lang].replace(/\\n/g, '\n');
+            document.getElementById('practiceCodeOutput').textContent = 'Ready to run...';
+        }
+
+        // Initialize practice mode
+        loadPracticeQuestions();
+
+        // Load data when page loads
+        loadAssignmentData();
+    </script>
+    <script src="js/access-control.js"></script>
+</body>
+
+</html>

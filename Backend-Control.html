@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH-PRO AI - Backend Server Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .status-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.checking {
+            background: #fbbf24;
+        }
+
+        .status-indicator.online {
+            background: #10b981;
+        }
+
+        .status-indicator.offline {
+            background: #ef4444;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .status-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .info-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-section li:last-child {
+            border-bottom: none;
+        }
+
+        .info-section li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .quick-link {
+            padding: 10px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 TECH-PRO AI Backend Server</h1>
+        <p class="subtitle">Control Panel</p>
+
+        <div class="status-card">
+            <div class="status-indicator checking" id="statusIndicator"></div>
+            <span class="status-text" id="statusText">Checking server status...</span>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Important:</strong> The backend server must be running for authentication, student management,
+            payment configuration, and batch management features to work.
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-success" onclick="checkStatus()">🔄 Check Status</button>
+            <button class="btn btn-primary" onclick="openInstructions()">📖 View Instructions</button>
+            <button class="btn btn-primary" onclick="testAPI()">🧪 Test API</button>
+        </div>
+
+        <div class="info-section">
+            <h3>📋 How to Start the Backend</h3>
+            <ul>
+                <li>Double-click <strong>start-backend.bat</strong> (shows console)</li>
+                <li>Double-click <strong>start-backend-hidden.vbs</strong> (runs silently)</li>
+                <li>Or run manually: <code>cd backend && node server.js</code></li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h3>🌐 Pages Requiring Backend</h3>
+            <div class="quick-links">
+                <a href="A2Signup.html" class="quick-link">Signup</a>
+                <a href="A3Login.html" class="quick-link">Login</a>
+                <a href="A9Admin.html" class="quick-link">Admin</a>
+                <a href="Online.html" class="quick-link">Online</a>
+                <a href="Offline.html" class="quick-link">Offline</a>
+                <a href="Hybrid.html" class="quick-link">Hybrid</a>
+                <a href="AIlearning.html" class="quick-link">AI Learning</a>
+                <a href="Pay.html" class="quick-link">Payment</a>
+            </div>
+        </div>
+
+        <div class="alert alert-warning" id="offlineWarning" style="display: none;">
+            <strong>⚠️ Backend Offline:</strong> Please start the backend server using one of the methods above.
+        </div>
+    </div>
+
+    <script>
+        let isOnline = false;
+
+        async function checkStatus() {
+            const indicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const offlineWarning = document.getElementById('offlineWarning');
+
+            indicator.className = 'status-indicator checking';
+            statusText.textContent = 'Checking server status...';
+
+            try {
+                const response = await fetch('http://localhost:8080/api/students', {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    indicator.className = 'status-indicator online';
+                    statusText.textContent = '✅ Backend Server is ONLINE (Port 8080)';
+                    offlineWarning.style.display = 'none';
+                    isOnline = true;
+                } else {
+                    throw new Error('Server responded with error');
+                }
+            } catch (error) {
+                indicator.className = 'status-indicator offline';
+                statusText.textContent = '❌ Backend Server is OFFLINE';
+                offlineWarning.style.display = 'block';
+                isOnline = false;
+            }
+        }
+
+        async function testAPI() {
+            if (!isOnline) {
+                alert('⚠️ Backend server is offline. Please start it first.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8080/api/students');
+                const data = await response.json();
+                alert(`✅ API Test Successful!\n\nTotal Students: ${data.count}\n\nThe backend is working correctly.`);
+            } catch (error) {
+                alert('❌ API Test Failed!\n\nError: ' + error.message);
+            }
+        }
+
+        function openInstructions() {
+            window.open('README-BACKEND.md', '_blank');
+        }
+
+        // Auto-check status on page load
+        window.addEventListener('load', () => {
+            checkStatus();
+            // Re-check every 10 seconds
+            setInterval(checkStatus, 10000);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Artificial Intelligence AI Assistant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2233",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .bg-overlay-image {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfp4ylADa58d_Dh-XYy3TCjyhn0H23sLmDA39CvpCb2xc-aaKN85KmOKKvOcvhiUSCsDSZDFErOT8axsCcuCNe12FXQoIDajzNuhuFdEWcnw2qYT3vrlOFVpT04zlr6bE5mqV_jrZa0NB4es4wbYR9oZYgBwQW2R1mVEBzDhTTw4CD-_aO_7aIJb3Wi6b7aKBzkobJoUqvtiSvRJYE48jkULEOOx0bKy8pITq95RvFGxZVoJLoow0RrJcPs35aOM0-482thXbOqObE');
+        }
+
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .bg-grid-pattern {
+            background-image: linear-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 100% 2rem;
+            margin-top: 4.5rem;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen w-screen flex flex-col">
+    <header
+        class="flex-none flex items-center justify-between px-8 py-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm z-30 sticky top-0 border-b border-slate-200 dark:border-white/5 w-full">
+        <div class="flex items-center gap-4 max-w-7xl mx-auto w-full justify-between">
+            <div class="flex items-center gap-4">
+                <a href="A5Dashboard.html" class="bg-primary/10 p-2 rounded-lg hover:bg-primary/20 transition-colors"
+                    title="Back to Dashboard">
+                    <span class="material-symbols-outlined text-primary">arrow_back</span>
+                </a>
+                <div class="bg-primary/10 p-2 rounded-lg lg:hidden">
+                    <span class="material-symbols-outlined text-primary">psychology</span>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight text-slate-800 dark:text-white flex items-center gap-3">
+                    <span class="bg-primary/10 p-1.5 rounded-lg hidden lg:block"><span
+                            class="material-symbols-outlined text-primary text-xl">psychology</span></span>
+                    Artificial Intelligence
+                    <span class="text-slate-400 font-normal text-lg">/</span>
+                    <span class="text-primary">Neural Networks</span>
+                </h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <nav class="hidden md:flex items-center gap-4 mr-4">
+                    <a href="A5Dashboard.html"
+                        class="text-sm font-medium text-slate-500 hover:text-primary transition-colors">Dashboard</a>
+                    <a href="A6Catlog.html"
+                        class="text-sm font-medium text-slate-500 hover:text-primary transition-colors">Courses</a>
+                </nav>
+                <div
+                    class="hidden md:flex items-center text-xs text-slate-500 dark:text-slate-400 font-medium bg-slate-200 dark:bg-white/5 px-3 py-1.5 rounded-full">
+                    <span class="material-symbols-outlined text-sm mr-1.5">schedule</span>
+                    14 mins remaining
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    <span class="text-primary text-xs font-bold tracking-wide">AI ACTIVE</span>
+                </div>
+                <div
+                    class="size-9 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs ml-2 cursor-pointer hover:ring-2 ring-primary ring-offset-2 ring-offset-background-dark transition-all">
+                    JD</div>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 lg:p-8 scroll-smooth w-full">
+        <div class="max-w-5xl mx-auto space-y-8 pb-24">
+            <div
+                class="relative w-full aspect-video bg-black group overflow-hidden rounded-2xl shadow-2xl flex flex-col border border-slate-200 dark:border-white/10">
+                <div class="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-overlay bg-overlay-image">
+                </div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 flex flex-col justify-between p-8 z-10">
+                    <div class="flex justify-between items-start">
+                        <div
+                            class="bg-black/60 rounded-lg px-3 py-1 text-xs font-bold text-white backdrop-blur-md border border-white/10 flex items-center gap-2">
+                            <span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+                            LIVE SESSION
+                        </div>
+                        <div
+                            class="bg-black/60 rounded-lg px-3 py-1 text-xs font-bold text-white backdrop-blur-sm border border-white/10">
+                            HD • CC</div>
+                    </div>
+                    <button id="mainPlayBtn"
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full size-24 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 transition-all group-hover:scale-110 shadow-2xl shadow-primary/20">
+                        <span class="material-symbols-outlined text-6xl ml-2 fill-icon">play_arrow</span>
+                    </button>
+                    <div class="mt-auto w-full flex flex-col items-center">
+                        <div class="w-full flex items-end justify-between mb-6">
+                            <div
+                                class="flex items-center gap-4 bg-black/40 backdrop-blur-xl p-2 pr-5 rounded-full border border-white/10 hover:bg-black/60 transition-colors cursor-pointer">
+                                <div
+                                    class="size-14 rounded-full border-2 border-primary overflow-hidden shadow-lg shadow-primary/30 relative">
+                                    <img alt="AI female avatar face close up" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm97sI5Wu9X-H9bNTD_7zKgD2N8D3OfhjP9F9sotk29A7R7gC4nu061bPzIv_-u10hRC8XTK0_eSfIRCVEzFXCqHfn7m7GajQzUHH3QAyt4NVTd6mT7OzD58bDwqnkiAp1-Xyhc39SJC025sbZTeziXBRXUPL2UmtqP6wobbcNj745Wg_Maan7CFvuoQOwpdo20Nxipjp7EAnUi9XqrBhvVBVIrdWYj4VVx2nr0i5d2kalhMMQsBo5FOmOW0gtSMdbwHdYXNmzrxKn" />
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-bold">Sarah</p>
+                                    <p class="text-primary text-[10px] font-bold uppercase tracking-wider">AI Tutor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-black/70 backdrop-blur-md rounded-2xl p-6 text-center border border-white/10 mb-6 transition-transform hover:scale-[1.01] max-w-3xl w-full shadow-2xl">
+                            <p class="text-white text-lg md:text-xl font-medium leading-relaxed font-display">
+                                <span class="text-primary font-bold mr-2">AI:</span> Neural networks are composed of
+                                layers of nodes, similar to neurons in the human brain, which process information in
+                                parallel.
+                            </p>
+                        </div>
+                        <div
+                            class="w-full flex items-center gap-4 text-white text-xs font-medium bg-black/40 p-3 rounded-xl backdrop-blur-sm border border-white/5">
+                            <span>04:20</span>
+                            <div
+                                class="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer group/progress">
+                                <div class="h-full bg-primary w-1/3 rounded-full relative">
+                                    <div
+                                        class="absolute right-0 top-1/2 -translate-y-1/2 size-3 bg-white rounded-full shadow opacity-0 group-hover/progress:opacity-100 transition-opacity">
+                                    </div>
+                                </div>
+                            </div>
+                            <span>12:45</span>
+                            <div class="flex gap-3 ml-2">
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">volume_up</span>
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">settings</span>
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">fullscreen</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <details
+                    class="group bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden transition-all duration-300">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors select-none">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-indigo-500/10 p-2 rounded-lg">
+                                <span class="material-symbols-outlined text-indigo-500">format_list_numbered</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800 dark:text-white">Chapters</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Current: 2. Introduction to Neural
+                                    Networks</p>
+                            </div>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-black/20">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            <a class="flex items-center gap-3 p-3 rounded-lg bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:border-primary/50 transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">1. AI
+                                    Fundamentals</span>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary/30 text-primary"
+                                href="#">
+                                <span class="material-symbols-outlined text-lg animate-pulse">play_circle</span>
+                                <span class="text-sm font-bold">2. Neural Networks</span>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 opacity-60"
+                                href="#">
+                                <span class="material-symbols-outlined text-slate-400 text-lg">lock</span>
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">3. Deep
+                                    Learning</span>
+                            </a>
+                        </div>
+                    </div>
+                </details>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                    <div class="lg:col-span-8">
+                        <details
+                            class="group bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden h-full"
+                            open="">
+                            <summary
+                                class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors select-none sticky top-0 bg-white dark:bg-surface-dark z-10 border-b border-transparent group-open:border-slate-100 dark:group-open:border-white/5">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-primary/10 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 dark:text-white">Smart Notes</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">AI-generated key takeaways
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded border border-primary/20 font-bold uppercase tracking-wider hidden sm:block">Live
+                                        Sync</span>
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                                </div>
+                            </summary>
+                            <div class="p-4 bg-slate-50/50 dark:bg-black/20 space-y-3">
+                                <div
+                                    class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:shadow-md transition-shadow cursor-pointer">
+                                    <div
+                                        class="mt-1.5 size-2 rounded-full bg-primary flex-shrink-0 shadow-[0_0_10px_rgba(19,91,236,0.5)]">
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-start">
+                                            <p class="text-sm font-bold text-slate-800 dark:text-white">Biological
+                                                Inspiration</p>
+                                            <span
+                                                class="text-[10px] text-slate-400 bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">02:15</span>
+                                        </div>
+                                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                                            Neural networks mimic the human brain's structure, consisting of neurons
+                                            (nodes) and synapses (weights).</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 hover:shadow-md transition-shadow cursor-pointer">
+                                    <div
+                                        class="mt-1.5 size-2 rounded-full bg-purple-500 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-start">
+                                            <p class="text-sm font-bold text-slate-800 dark:text-white">The Perceptron
+                                            </p>
+                                            <span
+                                                class="text-[10px] text-slate-400 bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 rounded">04:45</span>
+                                        </div>
+                                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">The
+                                            simplest form of a neural network. It takes inputs, applies weights, sums
+                                            them up, and passes through an activation function.</p>
+                                    </div>
+                                </div>
+                                <button
+                                    class="w-full py-2 flex items-center justify-center gap-2 text-xs font-bold text-primary uppercase tracking-wide hover:bg-primary/5 rounded-lg border border-dashed border-primary/30 transition-colors">
+                                    <span class="material-symbols-outlined text-sm">add</span>
+                                    Generate more notes
+                                </button>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-col gap-4">
+                        <details
+                            class="group bg-slate-900 dark:bg-surface-dark rounded-xl border border-slate-700 dark:border-white/10 shadow-lg overflow-hidden relative"
+                            open="">
+                            <div
+                                class="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/30 transition-all">
+                            </div>
+                            <summary
+                                class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors select-none relative z-10">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-white">lightbulb</span>
+                                    <h3 class="font-bold text-white">Concept Summary</h3>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-slate-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="p-5 pt-0 relative z-10 border-t border-white/5 mt-2">
+                                <h4 class="text-2xl font-bold text-white mt-4">Neuron</h4>
+                                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-3">Fundamental Unit
+                                </p>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                    A computational unit that takes input, processes it using a mathematical function
+                                    (activation), and produces an output.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-1 rounded bg-white/10 text-white/90 text-[10px] font-bold border border-white/10">Weights</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-white/10 text-white/90 text-[10px] font-bold border border-white/10">Bias</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-white/10 text-white/90 text-[10px] font-bold border border-white/10">Activation</span>
+                                </div>
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden flex-1">
+                            <summary
+                                class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5 transition-colors select-none">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-orange-500">folder_open</span>
+                                    </div>
+                                    <h3 class="font-bold text-slate-800 dark:text-white">Resources</h3>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-slate-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div
+                                class="p-2 border-t border-slate-100 dark:border-white/5 grid grid-cols-2 gap-2 bg-slate-50/50 dark:bg-black/20">
+                                <button
+                                    class="flex flex-col items-center justify-center p-3 rounded-lg hover:bg-white dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all text-center gap-2 group/btn">
+                                    <span
+                                        class="material-symbols-outlined text-red-500 text-3xl group-hover/btn:scale-110 transition-transform">picture_as_pdf</span>
+                                    <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Cheat
+                                        Sheet</span>
+                                </button>
+                                <button
+                                    class="flex flex-col items-center justify-center p-3 rounded-lg hover:bg-white dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all text-center gap-2 group/btn">
+                                    <span
+                                        class="material-symbols-outlined text-orange-500 text-3xl group-hover/btn:scale-110 transition-transform">slideshow</span>
+                                    <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Lecture
+                                        Slides</span>
+                                </button>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <section
+                    class="flex flex-col h-full bg-white dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-white/5 p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-slate-800 dark:text-white font-bold text-lg flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">co_present</span>
+                            Current Slide
+                        </h3>
+                        <div class="flex gap-2">
+                            <button
+                                class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 transition-colors">
+                                <span class="material-symbols-outlined text-sm">chevron_left</span>
+                            </button>
+                            <span class="text-xs font-bold py-1.5">14 / 42</span>
+                            <button
+                                class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 transition-colors">
+                                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="relative flex-1 w-full rounded-xl bg-slate-100 dark:bg-black/40 mb-4 overflow-hidden group cursor-pointer border border-slate-200 dark:border-white/5 aspect-[4/3] md:aspect-auto">
+                        <img alt="Diagram showing neural network architecture" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGe56TCDYgqh8uZ0atONhe1Gtw6GWoBHoYqku9NxoAnak0h5S2HoDCrM04zLrRZuHAc6b6Cmeu7ASdFPimC0LZ-CnJM6OnadxZOj8_pwzjr_zbwehdPv68JND5ePO060eyKVA0-fWVB69UtcyaShpruJLxip38298IFGTzZZyZFak1SxUcwMeiT9q-0X332zSTiQ5ek4hpXpjy4I_fC2veq02WwPgh-D978dtO0YeZrg-o8XljN3jgs4Gp14AYYRP1WIFHA8sSmmTd" />
+                        <div
+                            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span class="material-symbols-outlined text-white text-4xl drop-shadow-lg">zoom_in</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 bg-slate-50 dark:bg-background-dark/50 p-3 rounded-xl border border-slate-100 dark:border-white/5 mt-auto">
+                        <button
+                            class="size-12 rounded-full bg-primary flex items-center justify-center text-white shrink-0 hover:bg-blue-600 shadow-lg shadow-primary/30 transition-all hover:scale-105 active:scale-95 group/mic">
+                            <span class="material-symbols-outlined text-2xl group-hover/mic:animate-pulse">mic</span>
+                        </button>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-slate-800 dark:text-white text-sm font-bold truncate">Contextual Q&amp;A</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs mt-0.5 truncate">Tap to ask about the
+                                diagram</p>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="flex flex-col h-full bg-amber-50 dark:bg-[#1a1812] rounded-2xl border border-amber-200 dark:border-amber-900/30 p-5 shadow-sm relative overflow-hidden">
+                    <div class="absolute inset-0 pointer-events-none opacity-50 dark:opacity-10 bg-grid-pattern">
+                    </div>
+                    <div class="flex items-center justify-between mb-4 relative z-10">
+                        <h3 class="text-amber-900 dark:text-amber-100 font-bold text-lg flex items-center gap-2">
+                            <span class="material-symbols-outlined text-amber-600">edit_note</span>
+                            My Notes
+                        </h3>
+                        <button
+                            class="text-amber-700 dark:text-amber-400 text-xs font-bold flex items-center gap-1.5 hover:bg-amber-100 dark:hover:bg-amber-900/40 px-3 py-1.5 rounded-lg transition-colors border border-amber-200 dark:border-amber-800/50">
+                            <span class="material-symbols-outlined text-base">picture_as_pdf</span>
+                            Export PDF
+                        </button>
+                    </div>
+                    <div class="flex-1 flex flex-col relative z-10">
+                        <div
+                            class="flex items-center gap-1 mb-2 pb-2 border-b border-amber-200 dark:border-amber-800/30">
+                            <button
+                                class="p-1 hover:bg-amber-200/50 dark:hover:bg-amber-800/30 rounded text-amber-800 dark:text-amber-500"><span
+                                    class="material-symbols-outlined text-lg">format_bold</span></button>
+                            <button
+                                class="p-1 hover:bg-amber-200/50 dark:hover:bg-amber-800/30 rounded text-amber-800 dark:text-amber-500"><span
+                                    class="material-symbols-outlined text-lg">format_italic</span></button>
+                            <button
+                                class="p-1 hover:bg-amber-200/50 dark:hover:bg-amber-800/30 rounded text-amber-800 dark:text-amber-500"><span
+                                    class="material-symbols-outlined text-lg">format_list_bulleted</span></button>
+                            <div class="ml-auto text-xs font-bold text-amber-800/50 dark:text-amber-500/50 uppercase">
+                                Today, 10:42 AM</div>
+                        </div>
+                        <textarea
+                            class="flex-1 w-full bg-transparent border-none resize-none text-slate-800 dark:text-amber-100 placeholder-amber-800/30 dark:placeholder-amber-500/30 text-base focus:ring-0 leading-8"
+                            placeholder="Start typing your thoughts on neural networks..."></textarea>
+                    </div>
+                    <div
+                        class="flex justify-end mt-3 pt-3 border-t border-amber-200 dark:border-amber-800/30 relative z-10">
+                        <button
+                            class="text-xs font-bold text-amber-700 dark:text-amber-500 hover:text-amber-900 dark:hover:text-amber-400 flex items-center gap-1 transition-colors">
+                            <span class="material-symbols-outlined text-sm">add_circle</span>
+                            Add Timestamp (04:22)
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <div class="absolute bottom-8 right-8 z-40 pointer-events-none">
+        <button
+            class="pointer-events-auto shadow-[0_8px_30px_rgb(0,0,0,0.3)] bg-primary hover:bg-blue-600 text-white rounded-full px-6 py-4 flex items-center gap-3 transition-all transform hover:scale-105 active:scale-95 group border-4 border-white dark:border-surface-dark">
+            <div class="bg-white/20 rounded-full p-1.5 group-hover:bg-white/30 transition-colors">
+                <span class="material-symbols-outlined text-2xl block">smart_toy</span>
+            </div>
+            <div class="text-left">
+                <span class="font-bold text-sm tracking-wide block">Ask AI Tutor</span>
+                <span class="text-[10px] opacity-80 block font-medium">Online • Context Aware</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Video Player Script Integration -->
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Track Visit
+            const courseName = 'Artificial Intelligence';
+            const pageName = 'AiAI.html';
+
+            // Re-implement trackPageVisit locally if not available globally
+            const trackVisit = () => {
+                localStorage.setItem('lastCoursePage', pageName);
+                localStorage.setItem('lastCourse', courseName);
+                localStorage.setItem('lastVisit', new Date().toISOString());
+                console.log(`📍 Tracked visit: ${courseName}`);
+            };
+            trackVisit();
+
+            // 2. Progress Tracking Logic
+            const totalChapters = 12; // Example total
+            let completedChapters = parseInt(localStorage.getItem(`${courseName}_completed`) || '0');
+
+            // Update UI with saved progress
+            const updateProgressUI = () => {
+                const percentage = Math.round((completedChapters / totalChapters) * 100);
+                // Find a place to show this or just update localStorage for dashboard
+                console.log(`Current Progress: ${percentage}%`);
+
+                // Save to global courseProgress for dashboard
+                const progress = {
+                    currentCourse: courseName,
+                    completedLessons: completedChapters,
+                    totalLessons: totalChapters,
+                    percentage: percentage,
+                    lastUpdated: new Date().toISOString()
+                };
+                localStorage.setItem('courseProgress', JSON.stringify(progress));
+            };
+
+            // 3. Make Chapter Links Functional
+            const chapterLinks = document.querySelectorAll('details .grid a');
+            chapterLinks.forEach((link, idx) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Mark as complete visually
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if (icon && !icon.classList.contains('text-green-500')) {
+                        icon.textContent = 'check_circle';
+                        icon.classList.add('text-green-500');
+                        icon.classList.remove('text-slate-400');
+
+                        // Update progress
+                        completedChapters = Math.max(completedChapters, idx + 1);
+                        localStorage.setItem(`${courseName}_completed`, completedChapters);
+                        updateProgressUI();
+
+                        // Show toast
+                        const toast = document.createElement('div');
+                        toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+                        toast.textContent = `Lesson ${idx + 1} Completed!`;
+                        document.body.appendChild(toast);
+                        setTimeout(() => toast.remove(), 3000);
+                    }
+                });
+            });
+
+            // Initial update
+            updateProgressUI();
+        });
+    </script>
+    <script>
+        // Configure video ID for this course
+        window.courseVideoId = 'ad79nYk2keg'; // "What Is Artificial Intelligence?" (Simplilearn)
+    </script>
+    <script src="js/video-player-configurable.js?v=3"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

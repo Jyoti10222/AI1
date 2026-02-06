@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Professional Exam Designer</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #137fec;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .active-question {
+            background-color: rgb(241 245 249);
+            /* slate-100 */
+            border-left: 4px solid #137fec !important;
+        }
+
+        .dark .active-question {
+            background-color: rgb(30 41 59);
+            /* slate-800 */
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-100 font-display overflow-hidden h-screen flex flex-col">
+
+    <!-- Header -->
+    <header
+        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b] px-6 py-3 shrink-0 z-20">
+        <div class="flex items-center gap-5">
+            <a class="flex items-center justify-center text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors rounded-full p-1 hover:bg-slate-100 dark:hover:bg-slate-800"
+                href="A11Builder.html">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <div class="flex items-center gap-3 text-[#0d141b] dark:text-white">
+                <div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">school</span>
+                </div>
+                <div>
+                    <h2 class="text-base font-bold leading-tight tracking-[-0.015em]" id="exam-title-display">AI-TECH
+                        PRO</h2>
+                    <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                        <span id="course-name">Calculus 101</span>
+                        <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                        <span>Assessment Builder</span>
+                    </div>
+                </div>
+            </div>
+            <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+            <div id="save-status"
+                class="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-xs font-medium">
+                <span class="size-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <span>Unsaved changes</span>
+            </div>
+        </div>
+        <div class="flex flex-1 justify-end gap-6 items-center">
+            <div class="flex gap-3">
+                <button id="btn-preview"
+                    class="flex items-center justify-center gap-2 rounded-lg h-9 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+                    <span class="truncate">Preview</span>
+                </button>
+                <button id="btn-publish"
+                    class="flex items-center justify-center gap-2 rounded-lg h-9 px-6 bg-primary text-white text-sm font-bold shadow-sm hover:bg-blue-600 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">publish</span>
+                    <span class="truncate">Publish</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex flex-1 overflow-hidden h-full">
+        <!-- Left Sidebar: Exam Structure -->
+        <aside
+            class="w-80 flex-none flex flex-col border-r border-slate-200 dark:border-slate-800 bg-background-light dark:bg-[#0b1219]">
+            <div
+                class="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-white dark:bg-[#15202b]">
+                <h3 class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-slate-400 text-[20px]">list_alt</span>
+                    Exam Structure
+                </h3>
+                <button class="text-primary hover:text-blue-700 text-xs font-bold uppercase tracking-wider"
+                    onclick="renderSidebar()">Refresh</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-3 space-y-3" id="question-list-container">
+                <!-- Dynamic Questions Go Here -->
+            </div>
+            <div
+                class="p-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b] grid grid-cols-2 gap-2">
+                <button
+                    class="flex items-center justify-center gap-2 h-9 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">library_add</span>
+                    From Bank
+                </button>
+                <button id="btn-add-question"
+                    class="flex items-center justify-center gap-2 h-9 rounded bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">add</span>
+                    Create New
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content: Question Editor -->
+        <section class="flex-1 flex flex-col min-w-0 bg-white dark:bg-[#101922] relative" id="main-editor-area">
+            <!-- Dynamic Content injected by renderEditor() -->
+            <div class="flex items-center justify-center h-full text-slate-400">
+                <p>Select a question to edit or create a new one.</p>
+            </div>
+        </section>
+
+        <!-- Right Sidebar: Properties & AI -->
+        <aside
+            class="w-96 flex-none flex flex-col border-l border-slate-200 dark:border-slate-800 bg-background-light dark:bg-[#0b1219]">
+            <div class="flex border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b]">
+                <button class="flex-1 py-3 text-sm font-bold text-primary border-b-2 border-primary bg-primary/5">AI
+                    Assistant</button>
+                <button
+                    class="flex-1 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Properties</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-5 space-y-6">
+                <!-- AI Panel -->
+                <div id="ai-panel">
+                    <div
+                        class="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 border border-indigo-100 dark:border-indigo-800 rounded-xl p-4 shadow-sm relative overflow-hidden">
+                        <div class="absolute -top-6 -right-6 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl"></div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="material-symbols-outlined text-indigo-600 dark:text-indigo-400">auto_awesome</span>
+                            <h4 class="text-sm font-bold text-indigo-900 dark:text-indigo-200">Smart Analysis</h4>
+                        </div>
+                        <p class="text-xs text-indigo-800 dark:text-indigo-300 leading-relaxed mb-4">
+                            Select a question to get AI suggestions and improvements.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 mt-6">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Content
+                            Generation</label>
+                        <div class="relative">
+                            <textarea id="ai-prompt"
+                                class="w-full bg-white dark:bg-[#15202b] border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm focus:ring-primary focus:border-primary min-h-[80px]"
+                                placeholder="Ask AI to generate distractors, explanations, or variations..."></textarea>
+                            <button id="btn-ai-send"
+                                class="absolute bottom-2 right-2 p-1.5 bg-primary text-white rounded-md hover:bg-blue-600 transition-colors">
+                                <span class="material-symbols-outlined text-[18px] block">send</span>
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="btn-ai-quick px-3 py-1.5 bg-white dark:bg-[#15202b] border border-slate-200 dark:border-slate-700 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-colors">Generate
+                                Distractors</button>
+                            <button
+                                class="btn-ai-quick px-3 py-1.5 bg-white dark:bg-[#15202b] border border-slate-200 dark:border-slate-700 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-colors">Fix
+                                Grammar</button>
+                            <button
+                                class="btn-ai-quick px-3 py-1.5 bg-white dark:bg-[#15202b] border border-slate-200 dark:border-slate-700 rounded-full text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-colors">Make
+                                Harder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        // ------------------------------------------------------------------
+        // STATE INITIALIZATION
+        // ------------------------------------------------------------------
+        const STORAGE_KEY = 'jetking_assessment_data';
+        let examData = {
+            title: "Mid-Term Assessment",
+            course: "Calculus 101",
+            status: "DRAFT",
+            questions: []
+        };
+        let selectedQuestionId = null;
+
+        function uuid() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
+
+        // ------------------------------------------------------------------
+        // PERSISTENCE
+        // ------------------------------------------------------------------
+        function loadData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                try {
+                    examData = JSON.parse(stored);
+                } catch (e) { console.error("Load failed", e); }
+            } else {
+                // Seed Default Data
+                examData.questions = [
+                    {
+                        id: uuid(),
+                        title: "Derivative Rules",
+                        text: "Calculate the derivative of f(x) = 3x^4 - 2x^2 + 5",
+                        type: "Multiple Choice",
+                        points: 5,
+                        options: [
+                            { id: uuid(), text: "12x^3 - 4x", isCorrect: true },
+                            { id: uuid(), text: "12x^3 - 4x + 5", isCorrect: false },
+                            { id: uuid(), text: "3x^3 - 2x", isCorrect: false }
+                        ],
+                        difficulty: 4,
+                        tags: ["Calculus", "Derivatives"]
+                    },
+                    {
+                        id: uuid(),
+                        title: "Chain Rule",
+                        text: "Explain the chain rule in your own words.",
+                        type: "Essay",
+                        points: 15,
+                        options: [],
+                        difficulty: 3,
+                        tags: ["Theory"]
+                    }
+                ];
+                saveData();
+            }
+
+            // Restore selection or select first
+            if (examData.questions.length > 0) {
+                selectedQuestionId = examData.questions[0].id;
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(examData));
+            updateSaveStatus('Saved just now');
+            renderSidebar(); // Refresh sidebar titles
+        }
+
+        function updateSaveStatus(msg) {
+            const el = document.getElementById('save-status');
+            el.innerHTML = `<span class="size-1.5 rounded-full bg-green-500"></span> ${msg}`;
+            el.className = "flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-xs font-medium";
+
+            setTimeout(() => {
+                el.innerHTML = `<span class="size-1.5 rounded-full bg-amber-500 animate-pulse"></span> Unsaved changes`;
+                el.className = "flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-xs font-medium";
+            }, 3000);
+        }
+
+        // ------------------------------------------------------------------
+        // RENDERING
+        // ------------------------------------------------------------------
+        function renderSidebar() {
+            const container = document.getElementById('question-list-container');
+            container.innerHTML = '';
+
+            if (examData.questions.length === 0) {
+                container.innerHTML = `<div class="text-center text-xs text-slate-400 p-4">No questions yet.</div>`;
+                return;
+            }
+
+            examData.questions.forEach((q, index) => {
+                const el = document.createElement('div');
+                const isActive = q.id === selectedQuestionId;
+                el.className = `relative bg-white dark:bg-[#15202b] border border-transparent hover:border-slate-300 dark:hover:border-slate-600 rounded-lg p-3 group cursor-pointer transition-all ${isActive ? 'active-question shadow-md' : ''}`;
+                el.onclick = () => { selectedQuestionId = q.id; renderApp(); };
+
+                el.innerHTML = `
+                        <div class="flex items-start gap-3">
+                            <div class="text-slate-400 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span class="material-symbols-outlined text-[18px]">drag_indicator</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-xs font-bold text-slate-500 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">Q${index + 1}</span>
+                                    <span class="text-[10px] font-medium text-slate-400">${getShortType(q.type)} • ${q.points}pts</span>
+                                </div>
+                                <p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">${q.title}</p>
+                                <p class="text-xs text-slate-500 truncate mt-0.5">${q.text.substring(0, 30)}...</p>
+                            </div>
+                            <button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 p-1" onclick="deleteQuestion('${q.id}', event)">
+                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                            </button>
+                        </div>
+                  `;
+                container.appendChild(el);
+            });
+        }
+
+        function getShortType(type) {
+            if (type === 'Multiple Choice') return 'MCQ';
+            if (type === 'True/False') return 'Bool';
+            return 'Essay';
+        }
+
+        function renderEditor() {
+            const container = document.getElementById('main-editor-area');
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+
+            if (!q) {
+                container.innerHTML = `<div class="flex items-center justify-center h-full text-slate-400"><p>Select a question or create new.</p></div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="px-8 py-5 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex justify-between items-start">
+                        <div class="w-full max-w-2xl">
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Question Title</label>
+                            <input id="input-title" class="w-full bg-transparent text-xl font-bold text-slate-900 dark:text-white border-none p-0 focus:ring-0 placeholder-slate-400" 
+                                type="text" value="${q.title}" onblur="updateQuestion('title', this.value)" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <span class="text-xs text-slate-500 font-medium">Points:</span>
+                                <input id="input-points" class="w-12 h-6 text-sm text-center bg-white dark:bg-[#101922] border border-slate-300 dark:border-slate-600 rounded focus:border-primary focus:ring-primary" 
+                                    type="number" value="${q.points}" onchange="updateQuestion('points', this.value)" />
+                            </div>
+                            <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <span class="text-xs text-slate-500 font-medium">Type:</span>
+                                <select id="input-type" class="h-6 py-0 pl-2 pr-7 text-xs bg-transparent border-none font-medium focus:ring-0 text-slate-800 dark:text-slate-200 cursor-pointer"
+                                     onchange="updateQuestion('type', this.value)">
+                                    <option ${q.type === 'Multiple Choice' ? 'selected' : ''}>Multiple Choice</option>
+                                    <option ${q.type === 'Essay' ? 'selected' : ''}>Essay</option>
+                                    <option ${q.type === 'True/False' ? 'selected' : ''}>True/False</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-8 lg:px-16" id="editor-scroll-area">
+                    <div class="max-w-4xl mx-auto space-y-8 pb-20">
+                        <div class="space-y-3">
+                             <div class="flex items-center justify-between">
+                                <label class="text-sm font-bold text-slate-700 dark:text-slate-300">Question Text</label>
+                                <!-- Mock Editor Toolbar -->
+                                <div class="flex gap-1">
+                                    <button class="p-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+                                    <button class="p-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+                                    <button class="p-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"><span class="material-symbols-outlined text-[20px]">image</span></button>
+                                </div>
+                            </div>
+                            <div class="border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm bg-white dark:bg-[#15202b] min-h-[140px] p-4 group focus-within:ring-2 focus-within:ring-primary transition-all">
+                                <textarea id="input-text" class="w-full h-full bg-transparent border-none focus:ring-0 resize-none text-slate-800 dark:text-slate-200 leading-relaxed" 
+                                    placeholder="Type your question here..." onblur="updateQuestion('text', this.value)">${q.text}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Answer Options Section -->
+                        <div class="space-y-4">
+                            ${renderAnswerOptions(q)}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAnswerOptions(q) {
+            if (q.type === 'Essay') return `<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-dashed border-slate-300 text-center text-slate-500 text-sm">Student will type their answer here.</div>`;
+
+            let html = `
+                <div class="flex items-center justify-between">
+                    <label class="text-sm font-bold text-slate-700 dark:text-slate-300">Answer Options</label>
+                    <button class="text-xs text-primary font-bold hover:underline" onclick="addOption()">+ Add Option</button>
+                </div>
+            `;
+
+            if (q.options) {
+                q.options.forEach((opt, idx) => {
+                    const isCorrect = opt.isCorrect ? 'checked' : '';
+                    const bgClass = opt.isCorrect ? 'bg-green-50/50 dark:bg-green-900/10 border-green-200 dark:border-green-900' : 'bg-white dark:bg-[#15202b] border-slate-200 dark:border-slate-700';
+
+                    html += `
+                        <div class="flex items-center gap-3 p-3 rounded-lg border ${bgClass} transition-colors group">
+                            <input type="radio" name="correct_ans_${q.id}" class="text-green-600 focus:ring-green-500 size-4 cursor-pointer" 
+                                ${isCorrect} onchange="setCorrectOption('${opt.id}')">
+                            <span class="text-sm font-bold text-slate-400 w-6">${String.fromCharCode(65 + idx)}</span>
+                            <input class="flex-1 bg-transparent border-none p-0 text-slate-800 dark:text-slate-200 focus:ring-0 font-medium" 
+                                type="text" value="${opt.text}" onblur="updateOption('${opt.id}', this.value)" />
+                            <button class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 transition-opacity" onclick="deleteOption('${opt.id}')">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
+                     `;
+                });
+            }
+            return html;
+        }
+
+        // ------------------------------------------------------------------
+        // LOGIC ACTIONS
+        // ------------------------------------------------------------------
+        function addQuestion() {
+            const newQ = {
+                id: uuid(),
+                title: "New Question",
+                text: "",
+                type: "Multiple Choice",
+                points: 5,
+                options: [
+                    { id: uuid(), text: "Option 1", isCorrect: true },
+                    { id: uuid(), text: "Option 2", isCorrect: false }
+                ],
+                difficulty: 3,
+                tags: []
+            };
+            examData.questions.push(newQ);
+            selectedQuestionId = newQ.id;
+            saveData();
+            renderApp();
+        }
+
+        function deleteQuestion(id, event) {
+            if (event) event.stopPropagation();
+            if (!confirm("Delete this question?")) return;
+
+            examData.questions = examData.questions.filter(q => q.id !== id);
+            if (selectedQuestionId === id) {
+                selectedQuestionId = examData.questions.length > 0 ? examData.questions[0].id : null;
+            }
+            saveData();
+            renderApp();
+        }
+
+        function updateQuestion(field, value) {
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+            if (q) {
+                if (field === 'points') value = parseInt(value) || 0;
+                q[field] = value;
+                saveData();
+            }
+        }
+
+        function addOption() {
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+            if (q) {
+                q.options.push({ id: uuid(), text: "New Option", isCorrect: false });
+                saveData();
+                renderEditor(); // re-render just editor part ideally
+            }
+        }
+
+        function deleteOption(optId) {
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+            if (q) {
+                q.options = q.options.filter(o => o.id !== optId);
+                saveData();
+                renderEditor();
+            }
+        }
+
+        function updateOption(optId, text) {
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+            if (q) {
+                const opt = q.options.find(o => o.id === optId);
+                if (opt) opt.text = text;
+                saveData();
+            }
+        }
+
+        function setCorrectOption(optId) {
+            const q = examData.questions.find(x => x.id === selectedQuestionId);
+            if (q) {
+                q.options.forEach(o => o.isCorrect = (o.id === optId));
+                saveData();
+                renderEditor(); // re-render to update bg styles
+            }
+        }
+
+        function renderApp() {
+            renderSidebar();
+            renderEditor();
+        }
+
+        // ------------------------------------------------------------------
+        // AI & GLOBAL
+        // ------------------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            renderApp();
+
+            document.getElementById('btn-add-question').addEventListener('click', addQuestion);
+
+            document.getElementById('btn-publish').addEventListener('click', () => {
+                examData.status = 'PUBLISHED';
+                saveData();
+                alert('Assessment Published!');
+                const badge = document.getElementById('save-status');
+                badge.innerHTML = 'PUBLISHED';
+                badge.className = 'flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold';
+            });
+
+            document.getElementById('btn-preview').addEventListener('click', () => {
+                alert("Preview Mode: This would hide edit controls and show the student view.");
+            });
+
+            // AI Buttons
+            document.getElementById('btn-ai-send').addEventListener('click', () => {
+                const prompt = document.getElementById('ai-prompt').value;
+                if (prompt.trim()) {
+                    alert(`AI is generating content for: "${prompt}"...`);
+                    // Mock response append
+                    const q = examData.questions.find(x => x.id === selectedQuestionId);
+                    if (q) {
+                        q.text += "\n\n(AI generated additional context here...)";
+                        saveData();
+                        renderEditor();
+                    }
+                }
+            });
+
+            const quickBtns = document.querySelectorAll('.btn-ai-quick');
+            quickBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.innerText;
+                    alert(`AI is running: ${action}`);
+                    // Mock actions
+                    if (action === 'Generate Distractors') addOption();
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,909 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Testing Assignment Admin - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left h1 {
+            color: #1a1a2e;
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-left p {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #f0f0f0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .list-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .list-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .status-msg {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .status-msg.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-msg.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .material-symbols-outlined {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        .code-editor {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>
+                    <span class="material-symbols-outlined" style="font-size: 32px; color: #667eea;">automation</span>
+                    Automation Testing Assignment Admin
+                </h1>
+                <p>Manage all content for A86Automan.html assignment page</p>
+            </div>
+            <div class="header-actions">
+                <a href="A86Automan.html" class="nav-link" target="_blank">
+                    <span class="material-symbols-outlined">open_in_new</span>
+                    View Assignment Page
+                </a>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">school</span>
+                    <h2>Course Information</h2>
+                </div>
+                <div class="form-group">
+                    <label>Course Title</label>
+                    <input type="text" id="courseTitle" placeholder="Enter course title">
+                </div>
+                <div class="form-group">
+                    <label>Progress (%)</label>
+                    <input type="number" id="courseProgress" min="0" max="100" placeholder="0-100">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">assignment</span>
+                    <h2>Main Assignment Details</h2>
+                </div>
+                <div class="form-group">
+                    <label>Badge Text</label>
+                    <input type="text" id="mainBadge" placeholder="e.g., ML Challenge">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <select id="mainDifficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon</label>
+                        <input type="text" id="mainIcon" placeholder="e.g., neurology">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Assignment Title</label>
+                    <input type="text" id="mainTitle" placeholder="Enter assignment title">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="mainDescription" placeholder="Enter assignment description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="text" id="mainDueDate" placeholder="e.g., Oct 25, 11:59 PM">
+                    </div>
+                    <div class="form-group">
+                        <label>Security Feature</label>
+                        <input type="text" id="mainSecurity" placeholder="e.g., AI Plagiarism Check Enabled">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">code</span>
+                    <h2>Code Editor Settings</h2>
+                </div>
+                <div class="form-group">
+                    <label>Filename</label>
+                    <input type="text" id="codeFilename" placeholder="e.g., neural_network.py">
+                </div>
+                <div class="form-group">
+                    <label>Code Content</label>
+                    <textarea id="codeContent" class="code-editor" placeholder="Enter code content here..."></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">list</span>
+                    <h2>Sidebar Assignments List</h2>
+                </div>
+                <div id="assignmentsList"></div>
+                <button class="btn-secondary" onclick="addAssignment()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Assignment
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">history</span>
+                    <h2>Submission History</h2>
+                </div>
+                <div id="submissionHistory"></div>
+                <button class="btn-secondary" onclick="addSubmission()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Submission
+                </button>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">quiz</span>
+                    <h2>Practice Questions & Challenges</h2>
+                </div>
+
+                <!-- Tabs -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid #eee;">
+                    <button id="tab-questions" class="btn-secondary" onclick="switchPracticeTab('questions')"
+                        style="background: #e0e7ff; color: #4338ca; border-bottom: 2px solid #4338ca; border-radius: 6px 6px 0 0;">Questions</button>
+                    <button id="tab-challenges" class="btn-secondary" onclick="switchPracticeTab('challenges')"
+                        style="background: transparent; border-bottom: 2px solid transparent; border-radius: 6px 6px 0 0;">Code
+                        Challenges</button>
+                </div>
+
+                <!-- Questions Panel -->
+                <div id="panel-questions">
+                    <div class="form-row" style="margin-bottom: 1rem;">
+                        <button class="btn-secondary" onclick="openQuestionModal('easy')">+ Add Easy Question</button>
+                        <button class="btn-secondary" onclick="openQuestionModal('medium')">+ Add Medium
+                            Question</button>
+                        <button class="btn-secondary" onclick="openQuestionModal('hard')">+ Add Hard Question</button>
+                    </div>
+                    <div id="practiceQuestionsList"></div>
+                </div>
+
+                <!-- Challenges Panel -->
+                <div id="panel-challenges" style="display: none;">
+                    <div style="margin-bottom: 1rem;">
+                        <button class="btn-secondary" onclick="addCodeChallenge()">+ Add Code Challenge</button>
+                    </div>
+                    <div id="codeChallengesList"></div>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">automation</span>
+                    <h2>AI Feedback Section</h2>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Section Title</label>
+                        <input type="text" id="aiFeedbackTitle" placeholder="e.g., AI Model Review">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle</label>
+                        <input type="text" id="aiFeedbackSubtitle" placeholder="e.g., Based on your latest attempt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="aiFeedbackButton" placeholder="e.g., Ask AI for ML tips">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Title</label>
+                    <input type="text" id="aiRecommendationTitle" placeholder="e.g., Implementation Hint">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Message</label>
+                    <textarea id="aiRecommendationMessage" placeholder="Enter recommendation message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Code Snippet</label>
+                    <textarea id="aiCodeSnippet" class="code-editor" placeholder="Enter code snippet"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+            <button class="btn-primary" onclick="saveAllChanges()">
+                <span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'automan';
+        let assignmentsListData = [];
+        let submissionHistoryData = [];
+        let critiquesData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+                    document.getElementById('courseTitle').value = data.courseInfo.title || '';
+                    document.getElementById('courseProgress').value = data.courseInfo.progress || 0;
+                    document.getElementById('mainBadge').value = data.mainAssignment.badge || '';
+                    document.getElementById('mainDifficulty').value = data.mainAssignment.difficulty || 'Medium';
+                    document.getElementById('mainIcon').value = data.mainAssignment.icon || '';
+                    document.getElementById('mainTitle').value = data.mainAssignment.title || '';
+                    document.getElementById('mainDescription').value = data.mainAssignment.description || '';
+                    document.getElementById('mainDueDate').value = data.mainAssignment.dueDate || '';
+                    document.getElementById('mainSecurity').value = data.mainAssignment.securityFeature || '';
+                    document.getElementById('codeFilename').value = data.codeEditor.filename || '';
+                    document.getElementById('codeContent').value = data.codeEditor.code?.replace(/\\n/g, '\n') || '';
+                    document.getElementById('aiFeedbackTitle').value = data.aiFeedback.title || '';
+                    document.getElementById('aiFeedbackSubtitle').value = data.aiFeedback.subtitle || '';
+                    document.getElementById('aiFeedbackButton').value = data.aiFeedback.buttonText || '';
+                    document.getElementById('aiRecommendationTitle').value = data.aiFeedback.recommendation?.title || '';
+                    document.getElementById('aiRecommendationMessage').value = data.aiFeedback.recommendation?.message || '';
+                    document.getElementById('aiCodeSnippet').value = data.aiFeedback.recommendation?.codeSnippet?.replace(/\\n/g, '\n') || '';
+                    assignmentsListData = data.assignmentsList || [];
+                    submissionHistoryData = data.submissionHistory || [];
+                    critiquesData = data.aiFeedback.critiques || [];
+
+                    // Practice Data
+                    practiceQuestionsData = data.practiceQuestions || { easy: [], medium: [], hard: [] };
+                    codeChallengesData = data.codeChallenges || [];
+
+                    renderAssignmentsList();
+                    renderSubmissionHistory();
+                    renderPracticeQuestions();
+                    renderCodeChallenges();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showStatus('Unable to connect to backend. Make sure the server is running.', 'error');
+            }
+        }
+
+        function renderAssignmentsList() {
+            const container = document.getElementById('assignmentsList');
+            container.innerHTML = assignmentsListData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>${item.title}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editAssignment(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteAssignment(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Icon: ${item.icon} | Note: ${item.note}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSubmissionHistory() {
+            const container = document.getElementById('submissionHistory');
+            container.innerHTML = submissionHistoryData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>Attempt #${item.attempt}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editSubmission(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteSubmission(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Message: ${item.message} | Time: ${item.time}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAssignment() {
+            const title = prompt('Assignment Title:');
+            if (!title) return;
+            const status = prompt('Status (completed/in-progress/pending/needs-revision):') || 'pending';
+            const icon = prompt('Icon name:') || 'assignment';
+            const note = prompt('Note:') || '';
+            assignmentsListData.push({ title, status, icon, note });
+            renderAssignmentsList();
+        }
+
+        function editAssignment(index) {
+            const item = assignmentsListData[index];
+            item.title = prompt('Assignment Title:', item.title) || item.title;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            item.note = prompt('Note:', item.note) || item.note;
+            renderAssignmentsList();
+        }
+
+        function deleteAssignment(index) {
+            if (confirm('Delete this assignment?')) {
+                assignmentsListData.splice(index, 1);
+                renderAssignmentsList();
+            }
+        }
+
+        function addSubmission() {
+            const attempt = parseInt(prompt('Attempt Number:')) || 1;
+            const status = prompt('Status (failed/error/success):') || 'failed';
+            const message = prompt('Message:') || '';
+            const time = prompt('Time:') || new Date().toLocaleTimeString();
+            const icon = prompt('Icon:') || 'error';
+            submissionHistoryData.push({ attempt, status, message, time, icon });
+            renderSubmissionHistory();
+        }
+
+        function editSubmission(index) {
+            const item = submissionHistoryData[index];
+            item.attempt = parseInt(prompt('Attempt Number:', item.attempt)) || item.attempt;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.message = prompt('Message:', item.message) || item.message;
+            item.time = prompt('Time:', item.time) || item.time;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            renderSubmissionHistory();
+        }
+
+        function deleteSubmission(index) {
+            if (confirm('Delete this submission?')) {
+                submissionHistoryData.splice(index, 1);
+                renderSubmissionHistory();
+            }
+        }
+
+        async function saveAllChanges() {
+            const data = {
+                id: ASSIGNMENT_ID,
+                pageTitle: 'Assignments & Practice - Automation Testing',
+                courseInfo: {
+                    title: document.getElementById('courseTitle').value,
+                    progress: parseInt(document.getElementById('courseProgress').value) || 0
+                },
+                assignmentsList: assignmentsListData,
+                mainAssignment: {
+                    badge: document.getElementById('mainBadge').value,
+                    difficulty: document.getElementById('mainDifficulty').value,
+                    title: document.getElementById('mainTitle').value,
+                    description: document.getElementById('mainDescription').value,
+                    dueDate: document.getElementById('mainDueDate').value,
+                    securityFeature: document.getElementById('mainSecurity').value,
+                    icon: document.getElementById('mainIcon').value
+                },
+                codeEditor: {
+                    filename: document.getElementById('codeFilename').value,
+                    code: document.getElementById('codeContent').value.replace(/\n/g, '\\n')
+                },
+                submissionHistory: submissionHistoryData,
+                aiFeedback: {
+                    title: document.getElementById('aiFeedbackTitle').value,
+                    subtitle: document.getElementById('aiFeedbackSubtitle').value,
+                    critiques: critiquesData,
+                    recommendation: {
+                        title: document.getElementById('aiRecommendationTitle').value,
+                        message: document.getElementById('aiRecommendationMessage').value,
+                        codeSnippet: document.getElementById('aiCodeSnippet').value.replace(/\n/g, '\\n')
+                    },
+                    buttonText: document.getElementById('aiFeedbackButton').value
+                },
+                practiceQuestions: practiceQuestionsData,
+                codeChallenges: codeChallengesData
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showStatus('âœ“ All changes saved successfully!', 'success');
+                } else {
+                    showStatus('âœ— Failed to save changes: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                showStatus('âœ— Network error. Make sure the backend server is running.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.innerHTML = `<div class="status-msg ${type}">${message}</div>`;
+            setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+        }
+
+        <!-- Question Editor Modal -->
+        <div id="questionModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; bg-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+            <div style="background: white; padding: 2rem; rounded: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                <h3 style="margin-bottom: 1rem;" id="modalTitle">Add Question</h3>
+                <input type="hidden" id="modalDifficulty">
+                    <input type="hidden" id="modalIndex">
+
+                        <div class="form-group">
+                            <label>Question Text</label>
+                            <textarea id="modalQuestion" style="width: 100%; height: 80px;"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Options (One per line)</label>
+                            <textarea id="modalOptions" style="width: 100%; height: 100px;" placeholder="A) Option 1&#10;B) Option 2..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Correct Answer</label>
+                            <select id="modalCorrect">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Explanation</label>
+                            <textarea id="modalExplanation" style="width: 100%; height: 80px;"></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                            <button class="btn-secondary" onclick="closeQuestionModal()">Cancel</button>
+                            <button class="btn-primary" onclick="saveQuestionFromModal()" style="width: auto;">Save Question</button>
+                        </div>
+                    </div>
+            </div>
+
+            <script>
+                const API_BASE = 'http://localhost:8080/api/assignments-config';
+                const ASSIGNMENT_ID = 'automan';
+                let assignmentsListData = [];
+                let submissionHistoryData = [];
+                let critiquesData = [];
+
+                // New Data Structures
+                let practiceQuestionsData = {easy: [], medium: [], hard: [] };
+                let codeChallengesData = [];
+
+                async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+                document.getElementById('courseTitle').value = data.courseInfo.title || '';
+                document.getElementById('courseProgress').value = data.courseInfo.progress || 0;
+                document.getElementById('mainBadge').value = data.mainAssignment.badge || '';
+                document.getElementById('mainDifficulty').value = data.mainAssignment.difficulty || 'Medium';
+                document.getElementById('mainIcon').value = data.mainAssignment.icon || '';
+                document.getElementById('mainTitle').value = data.mainAssignment.title || '';
+                document.getElementById('mainDescription').value = data.mainAssignment.description || '';
+                document.getElementById('mainDueDate').value = data.mainAssignment.dueDate || '';
+                document.getElementById('mainSecurity').value = data.mainAssignment.securityFeature || '';
+                document.getElementById('codeFilename').value = data.codeEditor.filename || '';
+                document.getElementById('codeContent').value = data.codeEditor.code?.replace(/\\n/g, '\n') || '';
+                document.getElementById('aiFeedbackTitle').value = data.aiFeedback.title || '';
+                document.getElementById('aiFeedbackSubtitle').value = data.aiFeedback.subtitle || '';
+                document.getElementById('aiFeedbackButton').value = data.aiFeedback.buttonText || '';
+                document.getElementById('aiRecommendationTitle').value = data.aiFeedback.recommendation?.title || '';
+                document.getElementById('aiRecommendationMessage').value = data.aiFeedback.recommendation?.message || '';
+                document.getElementById('aiCodeSnippet').value = data.aiFeedback.recommendation?.codeSnippet?.replace(/\\n/g, '\n') || '';
+                assignmentsListData = data.assignmentsList || [];
+                submissionHistoryData = data.submissionHistory || [];
+                critiquesData = data.aiFeedback.critiques || [];
+
+                // Practice Data
+                practiceQuestionsData = data.practiceQuestions || {easy: [], medium: [], hard: [] };
+                codeChallengesData = data.codeChallenges || [];
+
+                renderAssignmentsList();
+                renderSubmissionHistory();
+                renderPracticeQuestions();
+                renderCodeChallenges();
+                }
+            } catch (error) {
+                    console.error('Error loading data:', error);
+                showStatus('Unable to connect to backend. Make sure the server is running.', 'error');
+            }
+        }
+
+                // ... [Existing render functions] ...
+
+                // --- Practice Mode Functions ---
+
+                function switchPracticeTab(tab) {
+                    document.getElementById('panel-questions').style.display = tab === 'questions' ? 'block' : 'none';
+                document.getElementById('panel-challenges').style.display = tab === 'challenges' ? 'block' : 'none';
+
+                // Update styles
+                const btnQ = document.getElementById('tab-questions');
+                const btnC = document.getElementById('tab-challenges');
+
+                if(tab === 'questions') {
+                    btnQ.style.background = '#e0e7ff'; btnQ.style.color = '#4338ca'; btnQ.style.borderColor = '#4338ca';
+                btnC.style.background = 'transparent'; btnC.style.color = '#333'; btnC.style.borderColor = 'transparent';
+            } else {
+                    btnC.style.background = '#e0e7ff'; btnC.style.color = '#4338ca'; btnC.style.borderColor = '#4338ca';
+                btnQ.style.background = 'transparent'; btnQ.style.color = '#333'; btnQ.style.borderColor = 'transparent';
+            }
+        }
+
+                function renderPracticeQuestions() {
+            const container = document.getElementById('practiceQuestionsList');
+                let html = '';
+            
+            ['easy', 'medium', 'hard'].forEach(diff => {
+                const questions = practiceQuestionsData[diff] || [];
+                if (questions.length > 0) {
+                    html += `<h4 style="margin: 1rem 0; text-transform: capitalize; color: #667eea;">${diff} Questions</h4>`;
+                    questions.forEach((q, idx) => {
+                    html += `
+                        <div class="list-item">
+                            <div class="list-item-header">
+                                <span style="font-weight: 500;">${q.question.substring(0, 60)}...</span>
+                                <div class="list-item-actions">
+                                    <button class="btn-secondary" onclick="editPracticeQuestion('${diff}', ${idx})">Edit</button>
+                                    <button class="btn-danger btn-secondary" onclick="deletePracticeQuestion('${diff}', ${idx})">Delete</button>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #666;">
+                                Answer: ${q.correctAnswer} | Options: ${q.options.length}
+                            </div>
+                        </div>`;
+                    });
+                }
+            });
+
+                if (html === '') html = '<p class="status-msg">No practice questions added yet.</p>';
+                container.innerHTML = html;
+        }
+
+                // --- Question Modal Logic ---
+                function openQuestionModal(difficulty, editIndex = null) {
+            const modal = document.getElementById('questionModal');
+                modal.style.display = 'flex';
+                document.getElementById('modalDifficulty').value = difficulty;
+
+                if (editIndex !== null) {
+                // Edit Mode
+                const q = practiceQuestionsData[difficulty][editIndex];
+                document.getElementById('modalTitle').textContent = `Edit ${difficulty} Question`;
+                document.getElementById('modalIndex').value = editIndex;
+                document.getElementById('modalQuestion').value = q.question;
+                document.getElementById('modalOptions').value = q.options.join('\n');
+                document.getElementById('modalCorrect').value = q.correctAnswer;
+                document.getElementById('modalExplanation').value = q.explanation;
+            } else {
+                    // Add Mode
+                    document.getElementById('modalTitle').textContent = `Add ${difficulty} Question`;
+                document.getElementById('modalIndex').value = '-1';
+                document.getElementById('modalQuestion').value = '';
+                document.getElementById('modalOptions').value = '';
+                document.getElementById('modalCorrect').value = 'A';
+                document.getElementById('modalExplanation').value = '';
+            }
+        }
+
+                function closeQuestionModal() {
+                    document.getElementById('questionModal').style.display = 'none';
+        }
+
+                function saveQuestionFromModal() {
+            const diff = document.getElementById('modalDifficulty').value;
+                const idx = parseInt(document.getElementById('modalIndex').value);
+
+                const newQ = {
+                    question: document.getElementById('modalQuestion').value,
+                options: document.getElementById('modalOptions').value.split('\n').filter(o => o.trim() !== ''),
+                correctAnswer: document.getElementById('modalCorrect').value,
+                explanation: document.getElementById('modalExplanation').value
+            };
+
+                if (!newQ.question || newQ.options.length < 2) {
+                    alert("Please provide a question and at least 2 options.");
+                return;
+            }
+
+                if (idx === -1) {
+                // Add
+                if (!practiceQuestionsData[diff]) practiceQuestionsData[diff] = [];
+                practiceQuestionsData[diff].push(newQ);
+            } else {
+                    // Update
+                    practiceQuestionsData[diff][idx] = newQ;
+            }
+
+                closeQuestionModal();
+                renderPracticeQuestions();
+        }
+
+                function editPracticeQuestion(difficulty, index) {
+                    openQuestionModal(difficulty, index);
+        }
+
+                function deletePracticeQuestion(difficulty, index) {
+            if(confirm('Delete this question?')) {
+                    practiceQuestionsData[difficulty].splice(index, 1);
+                renderPracticeQuestions();
+            }
+        }
+
+                // --- Code Challenge Logic ---
+
+                function renderCodeChallenges() {
+            const container = document.getElementById('codeChallengesList');
+            container.innerHTML = codeChallengesData.map((c, i) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>${c.title}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editCodeChallenge(${i})">Edit</button>
+                            <button class="btn-danger btn-secondary" onclick="deleteCodeChallenge(${i})">Delete</button>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #666;">${c.description}</p>
+                </div>
+            `).join('') || '<p class="status-msg">No code challenges added yet.</p>';
+        }
+
+        function addCodeChallenge() {
+            const title = prompt("Challenge Title:");
+            if(!title) return;
+            const desc = prompt("Description:");
+
+            codeChallengesData.push({
+                title: title,
+                description: desc,
+                languages: {
+                    python: { template: "def solution():\n    pass" },
+                    javascript: { template: "function solution() {\n}" },
+                    java: { template: "public class Solution {\n    public void solve() {\n    }\n}" }
+                }
+            });
+            renderCodeChallenges();
+        }
+
+        function editCodeChallenge(index) {
+            const c = codeChallengesData[index];
+            c.title = prompt("Title:", c.title) || c.title;
+            c.description = prompt("Description:", c.description) || c.description;
+            renderCodeChallenges();
+        }
+
+        function deleteCodeChallenge(index) {
+            if(confirm('Delete challenge?')) {
+                codeChallengesData.splice(index, 1);
+                renderCodeChallenges();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>

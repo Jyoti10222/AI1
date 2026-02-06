@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Admin Login Portal</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #111a22;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #324d67;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #406282;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-dark font-display text-white overflow-x-hidden antialiased selection:bg-primary/30 selection:text-white">
+  <div class="relative flex min-h-screen w-full flex-row">
+    <div
+      class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-[#111a22] z-10 w-full lg:w-[45%] xl:w-[40%] border-r border-[#324d67]/30 shadow-2xl">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <div class="flex flex-col gap-3 pb-8">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined text-primary text-4xl">admin_panel_settings</span>
+            <span class="text-xl font-bold tracking-tight text-white">TECH-PRO AI Admin</span>
+          </div>
+          <p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Admin Portal</p>
+          <p class="text-[#92adc9] text-base font-normal leading-normal">Welcome back. Please enter your credentials to
+            access the admin suite.</p>
+        </div>
+        <div class="mt-6">
+          <form action="#" class="space-y-6" method="POST">
+            <div class="flex flex-col gap-1">
+              <label class="text-white text-base font-medium leading-normal pb-2" for="email">Email Address or Phone
+                no</label>
+              <div class="relative">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                  <span class="material-symbols-outlined text-[#92adc9]">mail</span>
+                </div>
+                <input autocomplete="email"
+                  class="form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#324d67] bg-[#192633] focus:border-primary h-14 placeholder:text-[#92adc9]/50 pl-12 pr-4 text-base font-normal leading-normal transition-all duration-200"
+                  id="email" name="email" placeholder="abc@gmail.com" required="" type="email" value="" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-white text-base font-medium leading-normal pb-2" for="password">Password</label>
+              <div class="relative flex w-full items-stretch rounded-lg group">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 z-10">
+                  <span class="material-symbols-outlined text-[#92adc9]">lock</span>
+                </div>
+                <input autocomplete="current-password"
+                  class="form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#324d67] bg-[#192633] focus:border-primary h-14 placeholder:text-[#92adc9]/50 pl-12 pr-12 text-base font-normal leading-normal transition-all duration-200 rounded-r-none border-r-0"
+                  id="password" name="password" placeholder="••••••••••••" required="" type="password" />
+                <button
+                  class="text-[#92adc9] hover:text-white flex border border-[#324d67] bg-[#192633] hover:bg-[#203040] items-center justify-center pr-4 pl-2 rounded-r-lg border-l-0 transition-colors cursor-pointer group-focus-within:border-primary group-focus-within:ring-2 group-focus-within:ring-primary/50 group-focus-within:ring-l-0"
+                  type="button">
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="flex gap-6 justify-between items-center">
+                <p class="text-[#92adc9] text-xs font-medium uppercase tracking-wider">Security Check</p>
+                <p class="text-[#92adc9] text-sm font-normal leading-normal">Medium</p>
+              </div>
+              <div class="rounded-full bg-[#324d67] h-1.5 overflow-hidden">
+                <div class="h-full rounded-full bg-primary shadow-[0_0_10px_rgba(19,127,236,0.6)]" style="width: 40%;">
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex items-center">
+                <input
+                  class="h-4 w-4 rounded border-[#324d67] bg-[#192633] text-primary focus:ring-primary/50 focus:ring-offset-[#111a22]"
+                  id="remember-me" name="remember-me" type="checkbox" />
+                <label class="ml-2 block text-sm text-[#92adc9] hover:text-white cursor-pointer transition-colors"
+                  for="remember-me">Remember me</label>
+              </div>
+              <div class="text-sm">
+                <a class="font-medium text-primary hover:text-primary/80 transition-colors" href="#">Forgot
+                  password?</a>
+              </div>
+            </div>
+            <!-- <div class="flex flex-col gap-1 pt-2">
+<label class="text-white text-base font-medium leading-normal pb-2" for="captcha">Security Verification</label>
+<div class="flex gap-3">
+<div class="relative flex h-14 w-36 flex-none items-center justify-center overflow-hidden rounded-lg border border-[#324d67] bg-[#0f151b] select-none">
+<span class="z-10 font-mono text-xl font-bold tracking-[0.2em] text-white/90 italic" style="text-shadow: 2px 2px 0px rgba(19, 127, 236, 0.3);">7K9b2</span>
+</div>
+<div class="relative flex-1">
+<input class="form-input flex w-full h-14 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#324d67] bg-[#192633] focus:border-primary placeholder:text-[#92adc9]/50 px-4 text-base font-normal leading-normal transition-all duration-200" id="captcha" name="captcha" placeholder="Enter code" required="" type="text"/>
+</div>
+<button class="group flex h-14 w-14 flex-none items-center justify-center rounded-lg border border-[#324d67] bg-[#192633] transition-all hover:bg-[#203040] hover:border-primary/50 focus:ring-2 focus:ring-primary/50 focus:outline-none" type="button">
+<span class="material-symbols-outlined text-[#92adc9] transition-transform group-hover:rotate-180 group-hover:text-white">refresh</span>
+</button>
+</div>
+</div> -->
+            <div>
+              <div class="space-y-2">
+                <label class="block text-sm font-medium text-slate-300">
+                  CAPTCHA Verification
+                </label>
+
+                <div class="flex items-center gap-4">
+                  <span id="captchaText"
+                    class="select-none rounded-lg bg-slate-800 px-4 py-2 text-lg font-bold tracking-widest text-white">
+                  </span>
+
+                  <button type="button" onclick="generateCaptcha()" class="text-sm text-primary hover:underline">
+                    Refresh
+                  </button>
+                </div>
+
+                <input type="text" id="captchaInput" placeholder="Enter CAPTCHA"
+                  class="mt-2 block w-full rounded-lg border border-slate-600 bg-slate-900 text-white placeholder-slate-400 focus:border-primary focus:ring-primary"
+                  required />
+              </div>
+
+              <button onclick="adminLogin(event)"
+                class="group relative flex w-full justify-center rounded-lg bg-primary py-4 px-4 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#111a22] transition-all duration-200"
+                type="submit">
+
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <span class="material-symbols-outlined text-white/60 group-hover:text-white transition-colors">
+                    verified_user
+                  </span>
+                </span>
+
+                Secure Login
+              </button>
+
+
+            </div>
+          </form>
+        </div>
+        <div class="mt-10 border-t border-[#324d67]/50 pt-6">
+          <div class="flex items-center justify-center gap-2 opacity-60">
+            <span class="material-symbols-outlined text-[#92adc9] text-sm">security</span>
+            <p class="text-xs text-[#92adc9]">Protected by Enterprise Guard SSL</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden relative lg:block lg:flex-1 bg-[#0f172a] overflow-hidden">
+      <div class="absolute inset-0 w-full h-full bg-cover bg-center"
+        data-alt="Abstract dark 3D network nodes connecting representing AI neural networks"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCB4GqHRknp29e5SBq99pRK2QXSGoFwdSC-QghHDeHW5_KYnYNeb6DlwVJ07BDVvsIFT9t4HVfXLKYkDVPUJhrptAizyliwtKZlU6yilDp-10F_I3tiw0SmhjwURu4HTAAzD_bLfa2skKyLxhNZoXfKDnX-Xxf0dGRfLP5CMiyiinnjXQtgJaAmRFwViMMk7oX4TOXvD8EkkurDSIwUhmVYaDlVaMIZpe6bOnmPiD06Am0r-g7w-nQoqXzM7jbL1SRWs71BvOVIidQ');">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-l from-transparent via-[#111a22]/50 to-[#111a22]"></div>
+      <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+      <div
+        class="absolute bottom-12 right-12 max-w-md p-6 bg-[#111a22]/80 backdrop-blur-md rounded-xl border border-[#324d67]/50 shadow-2xl">
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-primary/20 rounded-lg">
+            <span class="material-symbols-outlined text-primary">auto_graph</span>
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-1">AI-Powered Analytics</h3>
+            <p class="text-[#92adc9] text-sm leading-relaxed">
+              Monitor student engagement and course performance in real-time with our new predictive admin dashboard.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let generatedCaptcha = "";
+
+    function generateCaptcha() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+      let captcha = "";
+      for (let i = 0; i < 6; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      generatedCaptcha = captcha;
+      document.getElementById("captchaText").innerText = captcha;
+      document.getElementById("captchaInput").value = "";
+    }
+
+    window.onload = generateCaptcha;
+
+    async function adminLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const captchaEntered = document.getElementById("captchaInput").value.trim();
+
+      if (captchaEntered !== generatedCaptcha) {
+        alert("Invalid CAPTCHA. Please try again.");
+        generateCaptcha();
+        return;
+      }
+
+      try {
+        const response = await fetch('http://127.0.0.1:8080/api/admins/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const text = await response.text();
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch (e) {
+          throw new Error("Invalid Server Response (Non-JSON):\n" + text.substring(0, 200));
+        }
+
+        if (result.success) {
+          localStorage.setItem("isAdminLoggedIn", "true");
+          localStorage.setItem("adminUser", JSON.stringify(result.admin));
+          alert("Login successful! A confirmation email has been sent to " + result.admin.email);
+          window.location.href = "A9Admin.html";
+        } else {
+          alert(result.message || "Incorrect email or password");
+          generateCaptcha();
+        }
+      } catch (error) {
+        console.error('CRITICAL: Login fetch error:', error);
+        alert("Server connection failed!\n\nDetails: " + error.message + "\n\nPlease ensure the backend is running on port 8080 and visit http://127.0.0.1:8080/api/health to confirm.");
+      }
+    }
+  </script>
+
+
+
+</body>
+
+</html>

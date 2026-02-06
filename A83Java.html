@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Assignments &amp; Practice - Java Programming</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary h-screen overflow-hidden flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex-none">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="#">
+                        <div
+                            class="size-9 rounded-xl bg-gradient-to-br from-green-600 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-green-500/20 group-hover:shadow-green-500/30 transition-all">
+                            <span class="material-symbols-outlined">code</span>
+                        </div>
+                        <h2
+                            class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                            TECH-PRO CODE</h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Catalog</a>
+                        <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-green-600 pb-0.5"
+                            href="#">My Learning</a>
+                        <a href="A7Tutor.html"
+                            class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Assignments</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Community</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                    </button>
+                    <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                        <span id="header-user-name"
+                            class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                        <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-green-500 to-emerald-500 p-[2px]">
+                            <div
+                                class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="flex-1 w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10 flex gap-6 overflow-hidden">
+        <aside class="w-72 hidden lg:flex flex-col gap-6 h-full">
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Current Course</h3>
+                <h2 class="font-bold text-slate-900 dark:text-white leading-tight">Java Programming</h2>
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-600 rounded-full w-[65%]"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500">65%</span>
+                </div>
+            </div>
+            <!-- Assignments List Removed -->
+            <div
+                class="p-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-dark-card rounded-2xl shadow-sm mt-6">
+                <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Practice Progress</h3>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-sm text-slate-600 dark:text-slate-400">Questions Solved</span>
+                    <span class="text-sm font-bold text-slate-900 dark:text-white ml-auto"
+                        id="progressPercentage">0%</span>
+                </div>
+                <div class="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div id="progressBar" class="h-full bg-blue-600 rounded-full transition-all duration-500"
+                        style="width: 0%"></div>
+                </div>
+            </div>
+        </aside>
+        <section class="flex-1 flex flex-col gap-6 overflow-hidden">
+            <!-- Top Controls -->
+            <div
+                class="flex justify-between items-center bg-white dark:bg-dark-card p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex gap-4">
+                    <button id="practiceQuestionsBtn" onclick="switchPracticeMode('questions')"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition hover:bg-blue-700">
+                        <span class="material-symbols-outlined">quiz</span> Practice Questions
+                    </button>
+                    <button id="practiceCodeBtn" onclick="switchPracticeMode('code')"
+                        class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition hover:bg-slate-300 dark:hover:bg-slate-600">
+                        <span class="material-symbols-outlined">code</span> Code Practice
+                    </button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <select id="difficultyFilter" onchange="filterQuestionsByDifficulty()"
+                        class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-blue-500">
+                        <option value="all">All Difficulties</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                    <div
+                        class="flex items-center gap-4 px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-green-500">check_circle</span>
+                            <span class="font-bold text-slate-700 dark:text-slate-300" id="correctCount">0</span>
+                        </div>
+                        <div class="w-px h-4 bg-slate-300 dark:bg-slate-600"></div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-red-500">cancel</span>
+                            <span class="font-bold text-slate-700 dark:text-slate-300" id="wrongCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions Mode Section -->
+            <div id="practiceQuestionsSection" class="flex-1 flex flex-col gap-6 overflow-hidden">
+                <div
+                    class="flex-1 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col relative">
+                    <!-- Progress Header -->
+                    <div
+                        class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-dark-surface/50">
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-medium text-slate-500">Question <span
+                                    id="currentQuestionNum">1</span> / <span id="totalQuestions">0</span></span>
+                            <span id="questionDifficultyBadge"
+                                class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">Loading...</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Score: <span
+                                    id="currentScore"
+                                    class="text-blue-600 dark:text-blue-400 font-bold">0%</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Question Content -->
+                    <div class="flex-1 p-8 overflow-y-auto custom-scrollbar">
+                        <h2 id="questionText"
+                            class="text-xl font-bold text-slate-900 dark:text-white mb-8 leading-relaxed">Select a
+                            difficulty to start practicing.</h2>
+
+                        <div id="questionOptions" class="grid grid-cols-1 gap-4 max-w-3xl">
+                            <!-- Options injected here -->
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="questionFeedback" class="mt-8 hidden">
+                            <!-- Feedback injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Navigation Footer -->
+                    <div
+                        class="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-dark-surface/50 flex justify-between items-center">
+                        <button onclick="previousPracticeQuestion()"
+                            class="px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition flex items-center gap-2">
+                            <span class="material-symbols-outlined">arrow_back</span> Previous
+                        </button>
+                        <div id="scoreRemark" class="text-sm font-medium text-slate-500 italic">Let's solve some
+                            problems!</div>
+                        <div class="flex gap-3">
+                            <button onclick="submitPracticeAnswer()"
+                                class="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition transform active:scale-95">
+                                Submit Answer
+                            </button>
+                            <button onclick="nextPracticeQuestion()"
+                                class="px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition flex items-center gap-2">
+                                Next <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Final Results Overlay -->
+                    <div id="finalResults"
+                        class="absolute inset-0 bg-white/95 dark:bg-dark-bg/95 backdrop-blur-sm z-50 flex flex-col items-center justify-center text-center hidden">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6 shadow-xl animate-bounce">
+                            <span class="text-5xl" id="resultEmoji">🏆</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2" id="resultTitle">Outstanding
+                            Performance!</h2>
+                        <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-md" id="resultMessage">You've mastered
+                            this topic!</p>
+
+                        <div class="grid grid-cols-3 gap-8 mb-8">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-slate-900 dark:text-white mb-1" id="finalCorrect">0
+                                </div>
+                                <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Correct</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600 mb-1" id="finalPercentage">0%</div>
+                                <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Score</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-slate-900 dark:text-white mb-1" id="totalAttempted">
+                                    0</div>
+                                <div class="text-xs text-slate-500 uppercase tracking-wider font-bold">Attempted</div>
+                            </div>
+                        </div>
+
+                        <button onclick="resetPracticeScore()"
+                            class="px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold hover:scale-105 transition transform shadow-xl flex items-center gap-2">
+                            <span class="material-symbols-outlined">replay</span> Practice Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Practice Section -->
+            <div id="practiceCodeSection" class="hidden flex-1 flex flex-col gap-6 overflow-hidden">
+                <div
+                    class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col h-full">
+                    <div
+                        class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-dark-surface/50">
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-slate-400">code</span>
+                                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                    id="practiceCodeFilename">Solution.java</span>
+                            </div>
+                            <select id="practiceLanguageSelect" onchange="switchPracticeLanguage()"
+                                class="text-sm border-none bg-transparent text-slate-600 focus:ring-0 cursor-pointer">
+                                <option value="java">Java</option>
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="resetPracticeCode()"
+                                class="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded hover:bg-slate-200 dark:hover:bg-slate-700"
+                                title="Reset Code">
+                                <span class="material-symbols-outlined text-lg">refresh</span>
+                            </button>
+                            <button onclick="runPracticeCode()"
+                                class="px-4 py-1.5 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">play_arrow</span> Run
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 lg:grid-cols-2">
+                        <textarea id="practiceCodeEditor"
+                            class="w-full h-full p-4 font-mono text-sm bg-[#1e1e1e] text-slate-300 resize-none focus:outline-none"
+                            spellcheck="false">// Write your solution here...
+public class Solution {
+    public void solve() {
+        // Your code here
+    }
+}</textarea>
+                        <div
+                            class="border-l border-slate-200 dark:border-slate-700 bg-[#1e1e1e] p-4 font-mono text-sm text-slate-300 overflow-y-auto">
+                            <div class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Output</div>
+                            <div id="practiceCodeOutput" class="whitespace-pre-wrap">Ready to run...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // ========================
+        // PRACTICE MODE LOGIC
+        // ========================
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'java';
+        let practiceQuestions = [];
+        let currentPracticeQuestionIndex = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let answeredQuestions = new Set();
+        let selectedPracticeAnswer = null;
+        let currentPracticeMode = 'questions'; // 'questions' or 'code'
+
+        let samplePracticeQuestions = {
+            easy: [],
+            medium: [],
+            hard: []
+        };
+
+        const practiceCodeTemplates = {
+            python: "def solve():\n    # Your code here\n    pass",
+            javascript: "function solve() {\n    // Your code here\n}",
+            java: "public class Solution {\n    public void solve() {\n        // Your code here\n    }\n}"
+        };
+
+        function switchPracticeMode(mode) {
+            currentPracticeMode = mode;
+            document.getElementById('practiceQuestionsSection').classList.toggle('hidden', mode !== 'questions');
+            document.getElementById('practiceCodeSection').classList.toggle('hidden', mode !== 'code');
+
+            const questionsBtn = document.getElementById('practiceQuestionsBtn');
+            const codeBtn = document.getElementById('practiceCodeBtn');
+
+            if (mode === 'questions') {
+                questionsBtn.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition';
+                codeBtn.className = 'px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition';
+                loadPracticeQuestions();
+            } else {
+                questionsBtn.className = 'px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-semibold flex items-center gap-2 transition';
+                codeBtn.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 transition';
+                loadPracticeCode();
+            }
+        }
+
+        function loadPracticeQuestions() {
+            practiceQuestions = [...samplePracticeQuestions.easy, ...samplePracticeQuestions.medium, ...samplePracticeQuestions.hard];
+            document.getElementById('totalQuestions').textContent = practiceQuestions.length;
+            displayPracticeQuestion();
+        }
+
+        function filterQuestionsByDifficulty() {
+            const difficulty = document.getElementById('difficultyFilter').value;
+            if (difficulty === 'all') {
+                practiceQuestions = [...samplePracticeQuestions.easy, ...samplePracticeQuestions.medium, ...samplePracticeQuestions.hard];
+            } else {
+                practiceQuestions = samplePracticeQuestions[difficulty] || [];
+            }
+            currentPracticeQuestionIndex = 0;
+            document.getElementById('totalQuestions').textContent = practiceQuestions.length;
+            displayPracticeQuestion();
+        }
+
+        function displayPracticeQuestion() {
+            if (practiceQuestions.length === 0) {
+                document.getElementById('questionText').textContent = 'No questions available for this difficulty.';
+                document.getElementById('questionOptions').innerHTML = '';
+                return;
+            }
+
+            const q = practiceQuestions[currentPracticeQuestionIndex];
+            document.getElementById('currentQuestionNum').textContent = currentPracticeQuestionIndex + 1;
+            document.getElementById('questionText').textContent = q.question;
+
+            // Determine difficulty label
+            let difficulty = 'easy';
+            if (samplePracticeQuestions.medium.includes(q)) difficulty = 'medium';
+            if (samplePracticeQuestions.hard.includes(q)) difficulty = 'hard';
+
+            const badge = document.getElementById('questionDifficultyBadge');
+            badge.textContent = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+            badge.className = `px-3 py-1 rounded-full text-sm font-semibold ${difficulty === 'easy' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                    'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
+                }`;
+
+            const container = document.getElementById('questionOptions');
+            container.innerHTML = q.options.map((opt, idx) => `
+                <button onclick="selectPracticeOption('${opt[0]}')" class="practice-option-btn w-full text-left p-4 border-2 border-slate-300 dark:border-slate-600 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition" data-option="${opt[0]}">
+                    ${opt}
+                </button>
+            `).join('');
+
+            document.getElementById('questionFeedback').classList.add('hidden');
+            selectedPracticeAnswer = null;
+        }
+
+        function selectPracticeOption(option) {
+            selectedPracticeAnswer = option;
+            document.querySelectorAll('.practice-option-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-100', 'dark:bg-blue-900/30', 'border-blue-500');
+                if (btn.dataset.option === option) {
+                    btn.classList.add('bg-blue-100', 'dark:bg-blue-900/30', 'border-blue-500');
+                }
+            });
+        }
+
+        function submitPracticeAnswer() {
+            if (!selectedPracticeAnswer) {
+                alert('Please select an answer');
+                return;
+            }
+
+            const q = practiceQuestions[currentPracticeQuestionIndex];
+            const questionId = q.id || `q_${currentPracticeQuestionIndex}`; // Use ID if available
+
+            const wasAnswered = answeredQuestions.has(questionId);
+            const isCorrect = selectedPracticeAnswer === q.correctAnswer;
+            const feedback = document.getElementById('questionFeedback');
+
+            if (!wasAnswered) {
+                if (isCorrect) {
+                    correctAnswers++;
+                } else {
+                    wrongAnswers++;
+                }
+                answeredQuestions.add(questionId);
+                updateScoreDisplay();
+            }
+
+            feedback.className = `p-4 rounded-lg mb-4 ${isCorrect ? 'bg-green-100 dark:bg-green-900/20 border-2 border-green-500' : 'bg-red-100 dark:bg-red-900/20 border-2 border-red-500'}`;
+            feedback.innerHTML = `
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined text-${isCorrect ? 'green' : 'red'}-600">${isCorrect ? 'check_circle' : 'cancel'}</span>
+                    <strong class="text-${isCorrect ? 'green' : 'red'}-800 dark:text-${isCorrect ? 'green' : 'red'}-200">${isCorrect ? 'Correct!' : 'Incorrect'}</strong>
+                </div>
+                <p class="text-slate-700 dark:text-slate-300">${q.explanation || ''}</p>
+            `;
+            feedback.classList.remove('hidden');
+
+            document.querySelectorAll('.practice-option-btn').forEach(btn => {
+                if (btn.dataset.option === q.correctAnswer) {
+                    btn.classList.add('bg-green-100', 'dark:bg-green-900/30', 'border-green-500');
+                } else if (btn.dataset.option === selectedPracticeAnswer && !isCorrect) {
+                    btn.classList.add('bg-red-100', 'dark:bg-red-900/30', 'border-red-500');
+                }
+            });
+
+            if (answeredQuestions.size === practiceQuestions.length && practiceQuestions.length > 0) {
+                setTimeout(showFinalResults, 1500);
+            }
+        }
+
+        function updateScoreDisplay() {
+            const totalAttempted = correctAnswers + wrongAnswers;
+            const percentage = totalAttempted > 0 ? Math.round((correctAnswers / totalAttempted) * 100) : 0;
+            const progressPercentage = practiceQuestions.length > 0 ? Math.round((answeredQuestions.size / practiceQuestions.length) * 100) : 0;
+
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('wrongCount').textContent = wrongAnswers;
+            document.getElementById('totalAttempted').textContent = totalAttempted;
+            document.getElementById('progressBar').style.width = progressPercentage + '%';
+            document.getElementById('progressPercentage').textContent = progressPercentage + '%';
+            document.getElementById('currentScore').textContent = percentage + '%';
+
+            const remark = getMotivationalRemark(percentage, totalAttempted);
+            document.getElementById('scoreRemark').textContent = remark;
+        }
+
+        function getMotivationalRemark(percentage, totalAttempted) {
+            if (totalAttempted === 0) return 'Start practicing to see your score!';
+            if (percentage >= 90) return '🌟 Outstanding! You\'re mastering this topic!';
+            if (percentage >= 80) return '🎯 Excellent work! Keep up the great performance!';
+            if (percentage >= 70) return '👍 Good job! You\'re on the right track!';
+            if (percentage >= 60) return '💪 Nice effort! A bit more practice will help!';
+            return '🔄 Don\'t give up! Practice makes perfect!';
+        }
+
+        function showFinalResults() {
+            const totalQuestions = practiceQuestions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            let emoji = '🔄', title = 'More Practice Needed!', message = 'Take time to review the concepts.';
+
+            if (percentage >= 90) { emoji = '🏆'; title = 'Outstanding Performance!'; message = 'You\'ve mastered this topic!'; }
+            else if (percentage >= 80) { emoji = '🎉'; title = 'Excellent Work!'; message = 'Great job!'; }
+            else if (percentage >= 70) { emoji = '👏'; title = 'Well Done!'; message = 'Good performance!'; }
+
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('finalCorrect').textContent = correctAnswers;
+            document.getElementById('finalPercentage').textContent = percentage + '%';
+            document.getElementById('finalResults').classList.remove('hidden');
+        }
+
+        function resetPracticeScore() {
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            answeredQuestions.clear();
+            currentPracticeQuestionIndex = 0;
+            updateScoreDisplay();
+            document.getElementById('finalResults').classList.add('hidden');
+            document.getElementById('questionFeedback').classList.add('hidden');
+            displayPracticeQuestion();
+        }
+
+        function nextPracticeQuestion() {
+            if (currentPracticeQuestionIndex < practiceQuestions.length - 1) {
+                currentPracticeQuestionIndex++;
+                displayPracticeQuestion();
+            }
+        }
+
+        function previousPracticeQuestion() {
+            if (currentPracticeQuestionIndex > 0) {
+                currentPracticeQuestionIndex--;
+                displayPracticeQuestion();
+            }
+        }
+
+        function loadPracticeCode() {
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates.python.replace(/\\n/g, '\n');
+        }
+
+        function switchPracticeLanguage() {
+            const lang = document.getElementById('practiceLanguageSelect').value;
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates[lang].replace(/\\n/g, '\n');
+            const filenames = { python: 'solution.py', javascript: 'solution.js', java: 'Solution.java' };
+            document.getElementById('practiceCodeFilename').textContent = filenames[lang];
+        }
+
+        function runPracticeCode() {
+            const output = document.getElementById('practiceCodeOutput');
+            output.textContent = '> Running code...\n✓ Syntax check passed\n✓ Test case 1: PASSED\n\n✅ Tests passed!';
+        }
+
+        function resetPracticeCode() {
+            const lang = document.getElementById('practiceLanguageSelect').value;
+            document.getElementById('practiceCodeEditor').value = practiceCodeTemplates[lang].replace(/\\n/g, '\n');
+            document.getElementById('practiceCodeOutput').textContent = 'Ready to run...';
+        }
+
+        async function loadAssignmentData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+
+                    // Load Practice Questions directly
+                    if (data.practiceQuestions) {
+                        samplePracticeQuestions.easy = data.practiceQuestions.easy || [];
+                        samplePracticeQuestions.medium = data.practiceQuestions.medium || [];
+                        samplePracticeQuestions.hard = data.practiceQuestions.hard || [];
+
+                        // force reload of questions
+                        if (currentPracticeMode === 'questions') {
+                            loadPracticeQuestions();
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        loadPracticeQuestions();
+        loadAssignmentData();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const p = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            if (p.fullName) {
+                const n = document.getElementById('header-user-name');
+                if (n) n.textContent = p.fullName;
+                const w = document.getElementById('student-name');
+                if (w && w.innerText.includes('Welcome')) w.innerText = `Welcome back, ${p.firstName}! 👋`;
+            }
+            if (p.photo) {
+                const i = document.getElementById('student-photo');
+                if (i) i.src = p.photo;
+            }
+        });
+    </script>
+    <script src="js/access-control.js"></script>
+</body>
+
+</html>

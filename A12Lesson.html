@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lesson Editor - LMS Studio</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+
+<body
+    class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-200 min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Top Navigation Bar -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-gray-900 px-6 py-3 shadow-sm">
+        <div class="flex items-center gap-4 text-[#0d141b] dark:text-white">
+            <div class="size-8 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined">school</span>
+            </div>
+            <h2 class="text-[#0d141b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">TECH-PRO AI
+            </h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+            <nav class="hidden md:flex items-center gap-9">
+                <a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                    href="#">Dashboard</a>
+                <a class="text-primary text-sm font-medium leading-normal" href="#">Courses</a>
+                <a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal"
+                    href="#">Analytics</a>
+            </nav>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-100 dark:border-slate-800"
+                data-alt="User profile avatar showing a smiling person"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJEQ4z_aabhHxjzgy6omGJS4imEoEz0v3wtemvLHbmCwYaQL7kH3J5VrJ5ltTEcnWQJFVkETenN-ueHrDTe1RVhIlnxdRc1m8ABY3Sj0Fn_0XbgkUHCbcU1qKr58ULYr3ghPvdX2Bb3CrtrT_TELnEI5tD7FUKIAp62w7h7MHT0wenlVSf4NcEfo5D4-L8ELAXz0KvI5sNb201YsCyOvYS5B1jIQMSXLWAx8W-bUk00B75siA2knLl1sOV9K7Se3SC9WBnj7kfdNA");'>
+            </div>
+        </div>
+    </header>
+    <!-- Editor Toolbar / Secondary Header -->
+    <div class="bg-white dark:bg-gray-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Left: Back Button & Title -->
+            <div class="flex flex-1 w-full md:w-auto items-center gap-6">
+                <a class="group flex items-center justify-center rounded-lg h-10 px-3 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 gap-2 text-sm font-bold transition-colors"
+                    href="A11Builder.html">
+                    <span
+                        class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    <!-- <span class="hidden sm:inline">Back to Builder</span> -->
+                </a>
+                <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
+                <div class="flex-1 max-w-md">
+                    <label class="sr-only">Lesson Title</label>
+                    <input
+                        class="w-full bg-transparent text-xl font-bold text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-0 border-none p-0"
+                        placeholder="Enter lesson title..." value="Advanced Python Concepts: Decorators" />
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Last saved 2 minutes ago</p>
+                </div>
+            </div>
+            <!-- Right: Actions -->
+            <div class="flex w-full md:w-auto items-center justify-end gap-4">
+                <!-- Live Preview Toggle -->
+                <div
+                    class="flex items-center gap-3 bg-slate-100 dark:bg-gray-800 rounded-full px-4 py-2 border border-slate-200 dark:border-slate-700">
+                    <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Live Preview</span>
+                    <label
+                        class="relative flex h-5 w-9 cursor-pointer items-center rounded-full border-none bg-slate-300 dark:bg-slate-600 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-colors">
+                        <div class="h-4 w-4 rounded-full bg-white shadow-sm"></div>
+                        <input class="invisible absolute" type="checkbox" />
+                    </label>
+                </div>
+                <!-- Publish Button -->
+                <button
+                    class="flex items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-blue-600 transition-colors text-white text-sm font-bold shadow-md shadow-blue-500/20">
+                    <span class="truncate">Publish Changes</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Area -->
+    <main class="flex-1 w-full max-w-[1400px] mx-auto p-4 md:p-8 flex gap-8">
+        <!-- Left Sidebar: Block Toolbox (Desktop Only) -->
+        <aside class="hidden lg:flex w-16 flex-col gap-4 sticky top-4 self-start">
+            <div
+                class="flex flex-col gap-2 items-center bg-white dark:bg-gray-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 tooltip-trigger"
+                    title="Text Block">
+                    <span class="material-symbols-outlined">title</span>
+                </button>
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 tooltip-trigger"
+                    title="Image">
+                    <span class="material-symbols-outlined">image</span>
+                </button>
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 tooltip-trigger"
+                    title="Video">
+                    <span class="material-symbols-outlined">smart_display</span>
+                </button>
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 tooltip-trigger"
+                    title="Quiz">
+                    <span class="material-symbols-outlined">quiz</span>
+                </button>
+                <div class="w-6 h-px bg-slate-200 dark:bg-slate-700 my-1"></div>
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-primary tooltip-trigger"
+                    title="Checkpoint">
+                    <span class="material-symbols-outlined">flag</span>
+                </button>
+            </div>
+        </aside>
+        <!-- Center: The Canvas -->
+        <section class="flex-1 flex flex-col gap-6 max-w-3xl mx-auto w-full">
+            <!-- Text Block (Active) -->
+            <div
+                class="group relative bg-white dark:bg-gray-900 rounded-xl border-2 border-primary shadow-sm p-6 md:p-8 transition-all">
+                <!-- Drag Handle -->
+                <div
+                    class="absolute left-2 top-1/2 -translate-y-1/2 cursor-move text-slate-300 dark:text-slate-600 hover:text-primary p-2">
+                    <span class="material-symbols-outlined">drag_indicator</span>
+                </div>
+                <!-- Context Toolbar (Simulated) -->
+                <div
+                    class="absolute -top-12 left-0 bg-slate-800 text-white rounded-lg shadow-lg flex items-center p-1 gap-1 z-10 animate-fade-in-up">
+                    <button class="p-1.5 hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined text-sm">format_bold</span></button>
+                    <button class="p-1.5 hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined text-sm">format_italic</span></button>
+                    <button class="p-1.5 hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined text-sm">link</span></button>
+                    <div class="w-px h-4 bg-slate-600 mx-1"></div>
+                    <button class="p-1.5 hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined text-sm">format_list_bulleted</span></button>
+                </div>
+                <div class="pl-8">
+                    <p class="text-slate-800 dark:text-slate-200 text-lg leading-relaxed outline-none">
+                        Decorators are a very powerful and useful tool in Python since it allows programmers to modify
+                        the behavior of function or class. Decorators allow us to wrap another function in order to
+                        extend the behavior of the wrapped function, without permanently modifying it.
+                    </p>
+                </div>
+            </div>
+            <!-- Interstitial Add Button -->
+            <div
+                class="group flex items-center justify-center py-2 -my-3 z-0 opacity-0 hover:opacity-100 transition-opacity">
+                <div class="h-px w-full bg-primary/30 group-hover:w-1/3 transition-all"></div>
+                <button
+                    class="mx-4 size-8 flex items-center justify-center rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                </button>
+                <div class="h-px w-full bg-primary/30 group-hover:w-1/3 transition-all"></div>
+            </div>
+            <!-- Checkpoint Module -->
+            <div
+                class="relative bg-blue-50 dark:bg-slate-800/50 rounded-xl border border-blue-200 dark:border-blue-900/50 p-4 md:p-6 flex items-start gap-4 shadow-sm">
+                <div
+                    class="absolute left-2 top-1/2 -translate-y-1/2 cursor-move text-slate-300 dark:text-slate-600 hover:text-primary p-2">
+                    <span class="material-symbols-outlined">drag_indicator</span>
+                </div>
+                <div class="pl-8 w-full flex items-center gap-4">
+                    <div
+                        class="size-12 rounded-full bg-blue-100 dark:bg-blue-900/30 text-primary flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-2xl">flag</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-primary uppercase tracking-wide mb-1">Checkpoint 1</h4>
+                        <p class="text-slate-900 dark:text-white font-semibold">Concept Verification: Function Wrapping
+                        </p>
+                    </div>
+                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Interstitial Add Button -->
+            <div
+                class="group flex items-center justify-center py-2 -my-3 z-0 opacity-0 hover:opacity-100 transition-opacity">
+                <div class="h-px w-full bg-primary/30 group-hover:w-1/3 transition-all"></div>
+                <button
+                    class="mx-4 size-8 flex items-center justify-center rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                </button>
+                <div class="h-px w-full bg-primary/30 group-hover:w-1/3 transition-all"></div>
+            </div>
+            <!-- Media Block -->
+            <div
+                class="relative bg-white dark:bg-gray-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 md:p-8">
+                <div
+                    class="absolute left-2 top-1/2 -translate-y-1/2 cursor-move text-slate-300 dark:text-slate-600 hover:text-primary p-2">
+                    <span class="material-symbols-outlined">drag_indicator</span>
+                </div>
+                <div class="pl-8">
+                    <div
+                        class="aspect-video w-full rounded-lg bg-slate-100 dark:bg-slate-800 flex flex-col items-center justify-center border border-dashed border-slate-300 dark:border-slate-700 relative overflow-hidden group/video cursor-pointer">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-slate-50 dark:from-slate-800 dark:to-slate-700 opacity-50">
+                        </div>
+                        <!-- Placeholder Image -->
+                        <div class="absolute inset-0 bg-cover bg-center opacity-40 grayscale group-hover/video:grayscale-0 transition-all duration-500"
+                            data-alt="Abstract code syntax highlighting background pattern"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDm7C0n901eKkUNh4hIbLlUElR1tvAU8GXcio0t4zLSfMl1KfGQAoCFUwcI2HgdlZHApgSiCJFBNu3kcuKVAnCSfbKnjoHfxc-1hr6x6vo_tmpoc8DHAJXpwzTbs-WEVFn0zq380gt85dtE48tyfZWIqADa_0VLidGFOyzxQKLh6quQ7GQXaC3NZ0i6JNG7g_aM_uJYSWZiOcRUJq1eIYT9uhGVDvw5b767H_OE5Hx6lVqxyfnsa0QuIc2ZrJzRbndNKAiXNMXb7JQ");'>
+                        </div>
+                        <div class="relative z-10 flex flex-col items-center gap-2">
+                            <div
+                                class="size-16 rounded-full bg-white/90 dark:bg-gray-900/90 text-primary flex items-center justify-center shadow-lg group-hover/video:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-4xl ml-1">play_arrow</span>
+                            </div>
+                            <p
+                                class="text-sm font-medium text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-black/50 px-3 py-1 rounded-full">
+                                Understanding @wraps</p>
+                        </div>
+                    </div>
+                    <input
+                        class="mt-4 w-full bg-transparent border-b border-transparent focus:border-slate-300 hover:border-slate-200 dark:hover:border-slate-700 p-2 text-sm text-center text-slate-500 placeholder:text-slate-400 focus:outline-none transition-colors"
+                        placeholder="Add a caption for this video (optional)" />
+                </div>
+            </div>
+            <!-- Bottom Action -->
+            <div class="flex justify-center pt-4">
+                <button
+                    class="flex items-center gap-2 px-6 py-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-primary hover:text-primary hover:bg-blue-50 dark:hover:bg-slate-800/50 transition-all w-full justify-center group">
+                    <span class="material-symbols-outlined group-hover:scale-110 transition-transform">add_circle</span>
+                    <span class="font-medium">Add New Block</span>
+                </button>
+            </div>
+        </section>
+        <!-- Right Sidebar: Assistant & History -->
+        <aside class="hidden xl:flex w-80 flex-col gap-6 shrink-0 h-[calc(100vh-140px)] sticky top-28">
+            <!-- Tabs -->
+            <div class="flex p-1 bg-slate-200 dark:bg-slate-800 rounded-lg">
+                <button
+                    class="flex-1 py-1.5 px-3 rounded-md bg-white dark:bg-gray-700 shadow-sm text-sm font-semibold text-slate-900 dark:text-white transition-all">AI
+                    Suggestions</button>
+                <button
+                    class="flex-1 py-1.5 px-3 rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all">History</button>
+            </div>
+            <div class="flex-1 overflow-y-auto pr-2 flex flex-col gap-4">
+                <!-- AI Card 1 -->
+                <div
+                    class="p-4 rounded-xl border border-violet-200 dark:border-violet-900/30 bg-gradient-to-br from-white to-violet-50 dark:from-gray-900 dark:to-violet-950/20 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-2 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <span class="material-symbols-outlined text-violet-500 text-lg">auto_awesome</span>
+                    </div>
+                    <h5 class="text-sm font-bold text-slate-800 dark:text-white mb-2 pr-6">Enhance Clarity</h5>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                        The paragraph on "Decorators" uses passive voice 3 times. Consider rewriting for active
+                        engagement.
+                    </p>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex-1 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors">Apply
+                            Fix</button>
+                        <button class="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><span
+                                class="material-symbols-outlined text-base">close</span></button>
+                    </div>
+                </div>
+                <!-- AI Card 2 -->
+                <div
+                    class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-900/30 bg-gradient-to-br from-white to-emerald-50 dark:from-gray-900 dark:to-emerald-950/20 shadow-sm relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-2 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <span class="material-symbols-outlined text-emerald-500 text-lg">psychology</span>
+                    </div>
+                    <h5 class="text-sm font-bold text-slate-800 dark:text-white mb-2 pr-6">Generate Quiz</h5>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                        Create a 3-question quiz based on the "Concept Verification" checkpoint?
+                    </p>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-1.5 px-3 rounded-lg transition-colors">Generate</button>
+                        <button class="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><span
+                                class="material-symbols-outlined text-base">close</span></button>
+                    </div>
+                </div>
+                <!-- History Divider -->
+                <div class="flex items-center gap-2 py-2">
+                    <div class="h-px bg-slate-200 dark:bg-slate-700 flex-1"></div>
+                    <span class="text-xs font-medium text-slate-400 uppercase">Recent Activity</span>
+                    <div class="h-px bg-slate-200 dark:bg-slate-700 flex-1"></div>
+                </div>
+                <!-- History Items -->
+                <div class="space-y-3">
+                    <div class="flex gap-3 items-start group cursor-pointer">
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="size-2 rounded-full bg-primary mt-1.5"></div>
+                            <div class="w-px h-6 bg-slate-200 dark:bg-slate-800 group-last:hidden"></div>
+                        </div>
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-800 dark:text-white group-hover:text-primary transition-colors">
+                                Auto-save</p>
+                            <p class="text-[10px] text-slate-500">Just now</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start group cursor-pointer">
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="size-2 rounded-full bg-slate-300 dark:bg-slate-600 mt-1.5"></div>
+                            <div class="w-px h-6 bg-slate-200 dark:bg-slate-800 group-last:hidden"></div>
+                        </div>
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">
+                                Added "Video Block"</p>
+                            <p class="text-[10px] text-slate-500">14 mins ago</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start group cursor-pointer">
+                        <div class="flex flex-col items-center gap-1">
+                            <div class="size-2 rounded-full bg-slate-300 dark:bg-slate-600 mt-1.5"></div>
+                            <div class="w-px h-6 bg-slate-200 dark:bg-slate-800 group-last:hidden"></div>
+                        </div>
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">
+                                Version 1.0 Published</p>
+                            <p class="text-[10px] text-slate-500">Yesterday, 4:20 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>

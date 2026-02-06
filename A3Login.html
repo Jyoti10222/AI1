@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login Screen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div
+                class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+            </div>
+        </div>
+        <header
+            class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <a class="flex items-center gap-2 group" href="#">
+                            <div
+                                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2
+                                class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                TECH-PRO AI</h2>
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 dark:text-slate-400 hidden sm:inline-block">Don't have an
+                            account?</span>
+                        <a href="A2Signup.html" target="_blank"
+                            class="flex h-9 items-center justify-center px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:shadow-sm"
+                            href="A2Signup.html" target="_blank">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col justify-center py-12 relative z-10">
+            <div class="mx-auto w-full max-w-md px-4 sm:px-6">
+                <div class="text-center mb-10">
+                    <h1
+                        class="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-3 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
+                        Welcome back
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+                        Enter your credentials to access your workspace.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-dark-card rounded-3xl shadow-2xl shadow-slate-200/50 dark:shadow-black/50 border border-slate-100 dark:border-slate-700 overflow-hidden relative">
+                    <div class="p-8 sm:p-10 space-y-8">
+                        <div class="space-y-3">
+                            <button
+                                class="w-full flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow group">
+                                <svg class="h-5 w-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+                                    <path
+                                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                        fill="#4285F4"></path>
+                                    <path
+                                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                        fill="#34A853"></path>
+                                    <path
+                                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                        fill="#FBBC05"></path>
+                                    <path
+                                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                        fill="#EA4335"></path>
+                                </svg>
+                                Sign in with Google
+                            </button>
+                            <button
+                                class="w-full flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow group">
+                                <span
+                                    class="material-symbols-outlined text-slate-500 transition-transform group-hover:scale-110">business</span>
+                                Sign in with SSO
+                            </button>
+                        </div>
+                        <div class="relative flex items-center gap-4 py-2">
+                            <div
+                                class="h-px flex-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700">
+                            </div>
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Or via
+                                Email</span>
+                            <div
+                                class="h-px flex-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700">
+                            </div>
+                        </div>
+                        <div class="space-y-5">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                    for="email">Work Email or Phone no</label>
+                                <div class="relative group">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-500">
+                                        <span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+                                    </div>
+                                    <input
+                                        class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm pl-11 h-12 transition-all focus:bg-white dark:focus:bg-slate-800"
+                                        id="email" placeholder="name@company.com" type="email" />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                        for="password">Password</label>
+                                </div>
+                                <div class="relative group">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-500">
+                                        <span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+                                    </div>
+                                    <input
+                                        class="block w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white sm:text-sm pl-11 pr-10 h-12 transition-all focus:bg-white dark:focus:bg-slate-800"
+                                        id="password" placeholder="••••••••" type="password" />
+                                    <div
+                                        class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                                        <span class="material-symbols-outlined text-[20px]">visibility</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-1">
+                                <div class="flex items-center">
+                                    <input
+                                        class="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-800"
+                                        id="device-trust" name="device-trust" type="checkbox" />
+                                    <label
+                                        class="ml-2 block text-sm text-slate-600 dark:text-slate-400 cursor-pointer select-none"
+                                        for="device-trust">
+                                        Trust this device
+                                    </label>
+                                </div>
+                                <a class="text-sm font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                                    href="ForgotPassword.html">
+                                    Forgot password?
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="A4Onboarding.html" target="_blank"><button type="button"
+                                    class="allow-access w-full relative overflow-hidden group flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 text-base font-bold text-white"
+                                    onclick="loginSuccess()">
+                                    Log In
+                                    <span class="material-symbols-outlined text-[20px] ml-2">login</span>
+                                </button></a>
+
+
+
+                        </div>
+
+                        <p class="text-xs text-center text-slate-500 dark:text-slate-400">
+                            Protected by reCAPTCHA and subject to the <a
+                                class="text-blue-600 hover:text-blue-700 dark:text-blue-400 hover:underline transition-colors"
+                                href="#">Privacy Policy</a> and <a
+                                class="text-blue-600 hover:text-blue-700 dark:text-blue-400 hover:underline transition-colors"
+                                href="#">Terms of Service</a>.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                        Trouble logging in? <a class="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                            href="#">Contact IT Support</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 py-8 relative z-10">
+            <div
+                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-400">© 2024 TECH-PRO AI Inc. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Privacy
+                        Policy</a>
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Terms of
+                        Service</a>
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Cookie
+                        Settings</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- <script>
+function loginSuccess() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // 🚫 Block empty fields
+    if (!email || !password) {
+        alert("Please enter email and password.");
+        return;
+    }
+
+    // ✅ Dummy credentials (you can change these)
+    const validEmail = "student@gmail.com";
+    const validPassword = "1234";
+
+    // 🚫 Invalid credentials
+    if (email !== validEmail || password !== validPassword) {
+        alert("Invalid email or password.");
+        return;
+    }
+
+    // ✅ Successful login
+    localStorage.setItem("isLoggedIn", "true");
+    window.location.href = "Studentform.html";
+}
+</script> -->
+
+    <script>
+        function loginSuccess() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // Empty check
+            if (!email || !password) {
+                alert("Please enter email and password.");
+                return;
+            }
+
+            // Validate email OR phone number
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^(\+91|91)?[6-9]\d{9}$/;
+
+            if (!emailRegex.test(email) && !phoneRegex.test(email.replace(/\s+/g, ''))) {
+                alert("Please enter a valid email address or phone number.");
+                return;
+            }
+
+            // 🔥 BACKEND AUTHENTICATION
+            fetch("http://127.0.0.1:8080/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+                .then(async res => {
+                    const contentType = res.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        return { status: res.status, data: await res.json(), type: 'json' };
+                    } else {
+                        return { status: res.status, data: await res.text(), type: 'text' };
+                    }
+                })
+                .then(result => {
+                    if (result.type === 'json' && result.data.success) {
+                        // Set session flag
+                        localStorage.setItem("isLoggedIn", "true");
+
+                        // Store user profile
+                        localStorage.setItem("userProfile", JSON.stringify(result.data.user));
+                        localStorage.setItem("userEmail", result.data.user.email);
+                        localStorage.setItem("userFirstName", result.data.user.firstName);
+                        localStorage.setItem("userLastName", result.data.user.lastName);
+
+                        // Show success message
+                        alert("Login successful! Welcome back, " + result.data.user.firstName + ".");
+
+                        // ✅ redirect to onboarding
+                        window.location.href = "A4Onboarding.html";
+                    }
+                    else {
+                        // Handle errors (text or json error message)
+                        const errorMsg = result.type === 'json' ? result.data.message : result.data;
+
+                        if (errorMsg === "INVALID_EMAIL" || errorMsg.includes("INVALID_EMAIL")) {
+                            alert("The email address or phone number you entered is not valid. Please check and try again.");
+                        }
+                        else if (errorMsg === "INVALID_CREDENTIALS" || errorMsg.includes("INVALID_CREDENTIALS")) {
+                            alert("Invalid credentials. The email/phone or password you entered is incorrect. Please try again or sign up if you don't have an account.");
+                        }
+                        else if (errorMsg === "MISSING_FIELDS" || errorMsg.includes("MISSING_FIELDS")) {
+                            alert("Please enter both email/phone and password.");
+                        }
+                        else {
+                            alert("Login failed: " + (errorMsg || "Unexpected error"));
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("Backend error:", error);
+                    alert("Unable to connect to the server. Please ensure the backend server is running on port 8080.");
+                });
+        }
+    </script>
+
+
+
+</body>
+
+</html>

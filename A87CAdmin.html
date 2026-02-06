@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Assignment Admin - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left h1 {
+            color: #1a1a2e;
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-left p {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #f0f0f0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .list-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .list-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .status-msg {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .status-msg.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-msg.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .material-symbols-outlined {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        .code-editor {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>
+                    <span class="material-symbols-outlined" style="font-size: 32px; color: #667eea;">memory</span>
+                    C Programming Assignment Admin
+                </h1>
+                <p>Manage all content for A87C.html assignment page</p>
+            </div>
+            <div class="header-actions">
+                <a href="A87C.html" class="nav-link" target="_blank">
+                    <span class="material-symbols-outlined">open_in_new</span>
+                    View Assignment Page
+                </a>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">school</span>
+                    <h2>Course Information</h2>
+                </div>
+                <div class="form-group">
+                    <label>Course Title</label>
+                    <input type="text" id="courseTitle" placeholder="Enter course title">
+                </div>
+                <div class="form-group">
+                    <label>Progress (%)</label>
+                    <input type="number" id="courseProgress" min="0" max="100" placeholder="0-100">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">assignment</span>
+                    <h2>Main Assignment Details</h2>
+                </div>
+                <div class="form-group">
+                    <label>Badge Text</label>
+                    <input type="text" id="mainBadge" placeholder="e.g., ML Challenge">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <select id="mainDifficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon</label>
+                        <input type="text" id="mainIcon" placeholder="e.g., neurology">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Assignment Title</label>
+                    <input type="text" id="mainTitle" placeholder="Enter assignment title">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="mainDescription" placeholder="Enter assignment description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="text" id="mainDueDate" placeholder="e.g., Oct 25, 11:59 PM">
+                    </div>
+                    <div class="form-group">
+                        <label>Security Feature</label>
+                        <input type="text" id="mainSecurity" placeholder="e.g., AI Plagiarism Check Enabled">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">code</span>
+                    <h2>Code Editor Settings</h2>
+                </div>
+                <div class="form-group">
+                    <label>Filename</label>
+                    <input type="text" id="codeFilename" placeholder="e.g., neural_network.py">
+                </div>
+                <div class="form-group">
+                    <label>Code Content</label>
+                    <textarea id="codeContent" class="code-editor" placeholder="Enter code content here..."></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">list</span>
+                    <h2>Sidebar Assignments List</h2>
+                </div>
+                <div id="assignmentsList"></div>
+                <button class="btn-secondary" onclick="addAssignment()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Assignment
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">history</span>
+                    <h2>Submission History</h2>
+                </div>
+                <div id="submissionHistory"></div>
+                <button class="btn-secondary" onclick="addSubmission()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Submission
+                </button>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">memory</span>
+                    <h2>AI Feedback Section</h2>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Section Title</label>
+                        <input type="text" id="aiFeedbackTitle" placeholder="e.g., AI Model Review">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle</label>
+                        <input type="text" id="aiFeedbackSubtitle" placeholder="e.g., Based on your latest attempt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="aiFeedbackButton" placeholder="e.g., Ask AI for ML tips">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Title</label>
+                    <input type="text" id="aiRecommendationTitle" placeholder="e.g., Implementation Hint">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Message</label>
+                    <textarea id="aiRecommendationMessage" placeholder="Enter recommendation message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Code Snippet</label>
+                    <textarea id="aiCodeSnippet" class="code-editor" placeholder="Enter code snippet"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+            <button class="btn-primary" onclick="saveAllChanges()">
+                <span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'c';
+        let assignmentsListData = [];
+        let submissionHistoryData = [];
+        let critiquesData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+                    document.getElementById('courseTitle').value = data.courseInfo.title || '';
+                    document.getElementById('courseProgress').value = data.courseInfo.progress || 0;
+                    document.getElementById('mainBadge').value = data.mainAssignment.badge || '';
+                    document.getElementById('mainDifficulty').value = data.mainAssignment.difficulty || 'Medium';
+                    document.getElementById('mainIcon').value = data.mainAssignment.icon || '';
+                    document.getElementById('mainTitle').value = data.mainAssignment.title || '';
+                    document.getElementById('mainDescription').value = data.mainAssignment.description || '';
+                    document.getElementById('mainDueDate').value = data.mainAssignment.dueDate || '';
+                    document.getElementById('mainSecurity').value = data.mainAssignment.securityFeature || '';
+                    document.getElementById('codeFilename').value = data.codeEditor.filename || '';
+                    document.getElementById('codeContent').value = data.codeEditor.code?.replace(/\\n/g, '\n') || '';
+                    document.getElementById('aiFeedbackTitle').value = data.aiFeedback.title || '';
+                    document.getElementById('aiFeedbackSubtitle').value = data.aiFeedback.subtitle || '';
+                    document.getElementById('aiFeedbackButton').value = data.aiFeedback.buttonText || '';
+                    document.getElementById('aiRecommendationTitle').value = data.aiFeedback.recommendation?.title || '';
+                    document.getElementById('aiRecommendationMessage').value = data.aiFeedback.recommendation?.message || '';
+                    document.getElementById('aiCodeSnippet').value = data.aiFeedback.recommendation?.codeSnippet?.replace(/\\n/g, '\n') || '';
+                    assignmentsListData = data.assignmentsList || [];
+                    submissionHistoryData = data.submissionHistory || [];
+                    critiquesData = data.aiFeedback.critiques || [];
+                    renderAssignmentsList();
+                    renderSubmissionHistory();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showStatus('Unable to connect to backend. Make sure the server is running.', 'error');
+            }
+        }
+
+        function renderAssignmentsList() {
+            const container = document.getElementById('assignmentsList');
+            container.innerHTML = assignmentsListData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>${item.title}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editAssignment(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteAssignment(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Icon: ${item.icon} | Note: ${item.note}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSubmissionHistory() {
+            const container = document.getElementById('submissionHistory');
+            container.innerHTML = submissionHistoryData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>Attempt #${item.attempt}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editSubmission(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteSubmission(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Message: ${item.message} | Time: ${item.time}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAssignment() {
+            const title = prompt('Assignment Title:');
+            if (!title) return;
+            const status = prompt('Status (completed/in-progress/pending/needs-revision):') || 'pending';
+            const icon = prompt('Icon name:') || 'assignment';
+            const note = prompt('Note:') || '';
+            assignmentsListData.push({ title, status, icon, note });
+            renderAssignmentsList();
+        }
+
+        function editAssignment(index) {
+            const item = assignmentsListData[index];
+            item.title = prompt('Assignment Title:', item.title) || item.title;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            item.note = prompt('Note:', item.note) || item.note;
+            renderAssignmentsList();
+        }
+
+        function deleteAssignment(index) {
+            if (confirm('Delete this assignment?')) {
+                assignmentsListData.splice(index, 1);
+                renderAssignmentsList();
+            }
+        }
+
+        function addSubmission() {
+            const attempt = parseInt(prompt('Attempt Number:')) || 1;
+            const status = prompt('Status (failed/error/success):') || 'failed';
+            const message = prompt('Message:') || '';
+            const time = prompt('Time:') || new Date().toLocaleTimeString();
+            const icon = prompt('Icon:') || 'error';
+            submissionHistoryData.push({ attempt, status, message, time, icon });
+            renderSubmissionHistory();
+        }
+
+        function editSubmission(index) {
+            const item = submissionHistoryData[index];
+            item.attempt = parseInt(prompt('Attempt Number:', item.attempt)) || item.attempt;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.message = prompt('Message:', item.message) || item.message;
+            item.time = prompt('Time:', item.time) || item.time;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            renderSubmissionHistory();
+        }
+
+        function deleteSubmission(index) {
+            if (confirm('Delete this submission?')) {
+                submissionHistoryData.splice(index, 1);
+                renderSubmissionHistory();
+            }
+        }
+
+        async function saveAllChanges() {
+            const data = {
+                id: ASSIGNMENT_ID,
+                pageTitle: 'Assignments & Practice - C Programming',
+                courseInfo: {
+                    title: document.getElementById('courseTitle').value,
+                    progress: parseInt(document.getElementById('courseProgress').value) || 0
+                },
+                assignmentsList: assignmentsListData,
+                mainAssignment: {
+                    badge: document.getElementById('mainBadge').value,
+                    difficulty: document.getElementById('mainDifficulty').value,
+                    title: document.getElementById('mainTitle').value,
+                    description: document.getElementById('mainDescription').value,
+                    dueDate: document.getElementById('mainDueDate').value,
+                    securityFeature: document.getElementById('mainSecurity').value,
+                    icon: document.getElementById('mainIcon').value
+                },
+                codeEditor: {
+                    filename: document.getElementById('codeFilename').value,
+                    code: document.getElementById('codeContent').value.replace(/\n/g, '\\n')
+                },
+                submissionHistory: submissionHistoryData,
+                aiFeedback: {
+                    title: document.getElementById('aiFeedbackTitle').value,
+                    subtitle: document.getElementById('aiFeedbackSubtitle').value,
+                    critiques: critiquesData,
+                    recommendation: {
+                        title: document.getElementById('aiRecommendationTitle').value,
+                        message: document.getElementById('aiRecommendationMessage').value,
+                        codeSnippet: document.getElementById('aiCodeSnippet').value.replace(/\n/g, '\\n')
+                    },
+                    buttonText: document.getElementById('aiFeedbackButton').value
+                }
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showStatus('âœ“ All changes saved successfully!', 'success');
+                } else {
+                    showStatus('âœ— Failed to save changes: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                showStatus('âœ— Network error. Make sure the backend server is running.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.innerHTML = `<div class="status-msg ${type}">${message}</div>`;
+            setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>

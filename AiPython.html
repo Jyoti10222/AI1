@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Python Full Stack AI Assistant</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#306998", // Python Blue
+                        "secondary": "#ffd43b", // Python Yellow
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary~* {
+            animation: sweep .3s ease-in-out;
+        }
+
+        @keyframes sweep {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen w-screen flex flex-col">
+    <header
+        class="flex-shrink-0 flex items-center justify-between px-6 lg:px-12 py-4 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md z-40 border-b border-slate-200 dark:border-white/5 sticky top-0">
+        <div class="flex items-center gap-4">
+            <div class="bg-gradient-to-br from-primary to-blue-600 p-2 rounded-lg shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined text-white">terminal</span>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight text-slate-800 dark:text-white leading-none">Python Full
+                    Stack</h1>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Module 4: Django &amp; React
+                    Integration</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div
+                class="hidden md:flex items-center text-xs text-slate-500 dark:text-slate-400 font-medium bg-slate-100 dark:bg-white/5 px-4 py-2 rounded-full border border-slate-200 dark:border-white/5">
+                <span class="material-symbols-outlined text-sm mr-2 text-slate-400">timer</span>
+                24 mins remaining
+            </div>
+            <div
+                class="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wide">AI ACTIVE</span>
+            </div>
+            <button
+                class="size-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
+                <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">settings</span>
+            </button>
+        </div>
+    </header>
+    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth w-full relative">
+        <div class="max-w-5xl mx-auto px-6 py-8 pb-32 space-y-8">
+            <div class="w-full relative group">
+                <div
+                    class="relative w-full aspect-video bg-black rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-white/10">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-60"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfp4ylADa58d_Dh-XYy3TCjyhn0H23sLmDA39CvpCb2xc-aaKN85KmOKKvOcvhiUSCsDSZDFErOT8axsCcuCNe12FXQoIDajzNuhuFdEWcnw2qYT3vrlOFVpT04zlr6bE5mqV_jrZa0NB4es4wbYR9oZYgBwQW2R1mVEBzDhTTw4CD-_aO_7aIJb3Wi6b7aKBzkobJoUqvtiSvRJYE48jkULEOOx0bKy8pITq95RvFGxZVoJLoow0RrJcPs35aOM0-482thXbOqObE');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 flex flex-col justify-between p-8 z-10">
+                        <div class="flex justify-between items-start">
+                            <div
+                                class="flex items-center gap-3 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                                <span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+                                <span class="text-white text-xs font-bold tracking-wide">LIVE SESSION</span>
+                            </div>
+                            <div
+                                class="bg-black/60 rounded-lg px-3 py-1 text-xs font-bold text-white backdrop-blur-sm border border-white/10">
+                                1080p • EN</div>
+                        </div>
+                        <button
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-full size-24 bg-white/10 hover:bg-primary/80 backdrop-blur-sm text-white border border-white/20 transition-all group-hover:scale-110 shadow-2xl">
+                            <span class="material-symbols-outlined text-6xl"
+                                style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        </button>
+                        <div
+                            class="absolute bottom-0 right-12 w-64 md:w-80 transition-transform hover:scale-105 origin-bottom z-20 hidden md:block">
+                            <div
+                                class="bg-surface-dark/90 backdrop-blur-xl p-3 rounded-t-2xl border-x border-t border-white/10 shadow-2xl flex items-center gap-4 mb-0">
+                                <div class="size-12 rounded-full border-2 border-primary overflow-hidden relative">
+                                    <img alt="AI Tutor" class="w-full h-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm97sI5Wu9X-H9bNTD_7zKgD2N8D3OfhjP9F9sotk29A7R7gC4nu061bPzIv_-u10hRC8XTK0_eSfIRCVEzFXCqHfn7m7GajQzUHH3QAyt4NVTd6mT7OzD58bDwqnkiAp1-Xyhc39SJC025sbZTeziXBRXUPL2UmtqP6wobbcNj745Wg_Maan7CFvuoQOwpdo20Nxipjp7EAnUi9XqrBhvVBVIrdWYj4VVx2nr0i5d2kalhMMQsBo5FOmOW0gtSMdbwHdYXNmzrxKn" />
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-bold">AI Tutor</p>
+                                    <div class="flex gap-0.5 mt-1">
+                                        <span class="w-0.5 h-2 bg-primary animate-pulse"></span>
+                                        <span class="w-0.5 h-3 bg-primary animate-pulse delay-75"></span>
+                                        <span class="w-0.5 h-2 bg-primary animate-pulse delay-150"></span>
+                                        <span class="w-0.5 h-4 bg-primary animate-pulse delay-100"></span>
+                                        <span class="w-0.5 h-2 bg-primary animate-pulse"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-auto w-full max-w-4xl mr-auto md:pr-96">
+                            <div
+                                class="bg-black/80 backdrop-blur-md rounded-xl p-5 text-left border border-white/10 mb-6 shadow-lg">
+                                <p class="text-white text-lg md:text-xl font-medium leading-relaxed font-display">
+                                    <span class="text-primary font-bold mr-2">AI:</span>
+                                    "When connecting React with Django, we typically use the Django REST Framework to
+                                    serialize our models into JSON data."
+                                </p>
+                            </div>
+                            <div
+                                class="flex items-center gap-4 text-white text-xs font-medium bg-black/40 p-3 rounded-lg backdrop-blur-sm">
+                                <span>08:15</span>
+                                <div
+                                    class="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer group/progress">
+                                    <div
+                                        class="h-full bg-gradient-to-r from-primary to-blue-400 w-2/5 rounded-full relative">
+                                        <div
+                                            class="absolute right-0 top-1/2 -translate-y-1/2 size-3 bg-white rounded-full shadow opacity-0 group-hover/progress:opacity-100 transition-opacity">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span>24:30</span>
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">volume_up</span>
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">closed_caption</span>
+                                <span
+                                    class="material-symbols-outlined text-lg cursor-pointer hover:text-primary">fullscreen</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden shadow-sm transition-all duration-300 open:shadow-md">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer select-none bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                                <span class="material-symbols-outlined">list_alt</span>
+                            </div>
+                            <span class="font-bold text-slate-800 dark:text-white">Course Chapters</span>
+                            <span
+                                class="text-xs font-medium text-slate-500 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-full">5
+                                Modules</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 dark:border-white/5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            <a class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all group/item"
+                                href="#">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">1. Python Basics
+                                    </p>
+                                    <p class="text-[10px] text-slate-500">Completed</p>
+                                </div>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all group/item"
+                                href="#">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">2. Advanced OOP
+                                    </p>
+                                    <p class="text-[10px] text-slate-500">Completed</p>
+                                </div>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all group/item"
+                                href="#">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">3. Django ORM
+                                    </p>
+                                    <p class="text-[10px] text-slate-500">Completed</p>
+                                </div>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 transition-all group/item"
+                                href="#">
+                                <span class="material-symbols-outlined text-primary">play_circle</span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-bold text-primary">4. Django &amp; React</p>
+                                    <p class="text-[10px] text-primary/70">In Progress</p>
+                                </div>
+                                <span class="text-xs font-bold text-primary">Current</span>
+                            </a>
+                            <a class="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all group/item opacity-60"
+                                href="#">
+                                <span class="material-symbols-outlined text-slate-400">lock</span>
+                                <div class="flex-1">
+                                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">5. Deployment
+                                    </p>
+                                    <p class="text-[10px] text-slate-500">Locked</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </details>
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden shadow-sm transition-all duration-300 open:shadow-md"
+                    open="">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer select-none bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-indigo-500/10 p-2 rounded-lg text-indigo-500">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <span class="font-bold text-slate-800 dark:text-white">Smart Notes</span>
+                            <span
+                                class="text-xs font-medium text-indigo-500 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">AI
+                                Generated</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 dark:border-white/5">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1 space-y-3">
+                                <div
+                                    class="p-3 rounded-lg bg-slate-50 dark:bg-background-dark border border-slate-100 dark:border-white/5 hover:border-primary/50 transition-colors cursor-pointer">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs font-bold text-primary">02:14</span>
+                                        <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">REST API
+                                            Concept</h4>
+                                    </div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Representational State
+                                        Transfer is an architectural style for providing standards between computer
+                                        systems on the web.</p>
+                                </div>
+                                <div
+                                    class="p-3 rounded-lg bg-slate-50 dark:bg-background-dark border border-slate-100 dark:border-white/5 hover:border-primary/50 transition-colors cursor-pointer">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs font-bold text-primary">05:30</span>
+                                        <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">Serializers
+                                        </h4>
+                                    </div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Allows complex data such as
+                                        querysets and model instances to be converted to native Python datatypes that
+                                        can then be easily rendered into JSON.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="md:w-64 flex-shrink-0 flex items-center justify-center bg-slate-50 dark:bg-white/5 rounded-lg border border-dashed border-slate-300 dark:border-white/10">
+                                <button
+                                    class="flex flex-col items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors p-6">
+                                    <span class="material-symbols-outlined text-3xl">add_circle</span>
+                                    <span class="text-xs font-bold">Generate More Notes</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden shadow-sm transition-all duration-300 open:shadow-md">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer select-none bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-500/10 p-2 rounded-lg text-purple-500">
+                                <span class="material-symbols-outlined">psychology</span>
+                            </div>
+                            <span class="font-bold text-slate-800 dark:text-white">AI Concept Summary</span>
+                            <span
+                                class="text-[10px] font-bold text-white bg-red-500 px-2 py-0.5 rounded animate-pulse">LIVE</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                    </summary>
+                    <div class="p-0 border-t border-slate-200 dark:border-white/5">
+                        <div
+                            class="relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 dark:from-surface-dark dark:to-black">
+                            <div
+                                class="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none">
+                            </div>
+                            <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 relative z-10">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <h4 class="text-white text-2xl font-bold">MVT Architecture</h4>
+                                        <span
+                                            class="bg-white/20 text-white text-[10px] font-bold px-2 py-1 rounded">CORE
+                                            CONCEPT</span>
+                                    </div>
+                                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                        Django uses the <strong class="text-white">Model-View-Template</strong> pattern.
+                                        It's slightly different from the standard MVC. In Django, the 'View' describes
+                                        <em>which</em> data is presented, while the 'Template' describes <em>how</em>
+                                        the data is presented.
+                                    </p>
+                                    <div class="flex gap-2">
+                                        <span
+                                            class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-white/90 text-xs font-bold border border-white/5">Model
+                                            = Data</span>
+                                        <span
+                                            class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-white/90 text-xs font-bold border border-white/5">View
+                                            = Logic</span>
+                                        <span
+                                            class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-white/90 text-xs font-bold border border-white/5">Template
+                                            = UI</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full md:w-1/3 bg-white/5 rounded-xl p-4 border border-white/10 flex flex-col justify-center items-center text-center">
+                                    <span class="material-symbols-outlined text-4xl text-primary mb-2">schema</span>
+                                    <p class="text-white text-sm font-bold">Interactive Diagram</p>
+                                    <button
+                                        class="mt-3 px-4 py-2 bg-primary hover:bg-blue-600 text-white text-xs font-bold rounded-lg transition-colors w-full">
+                                        Explore Relationship
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden shadow-sm transition-all duration-300 open:shadow-md">
+                    <summary
+                        class="flex items-center justify-between p-4 cursor-pointer select-none bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500">
+                                <span class="material-symbols-outlined">folder_open</span>
+                            </div>
+                            <span class="font-bold text-slate-800 dark:text-white">Resources (Slides &amp; PDF)</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                    </summary>
+                    <div class="p-4 border-t border-slate-200 dark:border-white/5">
+                        <div class="flex flex-wrap gap-4">
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/5 transition-all w-full md:w-auto"
+                                href="#">
+                                <span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white">Lecture Slides.pdf</p>
+                                    <p class="text-[10px] text-slate-500">2.4 MB</p>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-400 text-sm ml-2">download</span>
+                            </a>
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/5 transition-all w-full md:w-auto"
+                                href="#">
+                                <span class="material-symbols-outlined text-orange-500">slideshow</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white">
+                                        Architecture_Diagrams.ppt</p>
+                                    <p class="text-[10px] text-slate-500">5.1 MB</p>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-400 text-sm ml-2">download</span>
+                            </a>
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/5 transition-all w-full md:w-auto"
+                                href="#">
+                                <span class="material-symbols-outlined text-blue-500">code</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white">Source_Code_v1.zip</p>
+                                    <p class="text-[10px] text-slate-500">128 KB</p>
+                                </div>
+                                <span class="material-symbols-outlined text-slate-400 text-sm ml-2">download</span>
+                            </a>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8">
+                <section
+                    class="flex flex-col h-full bg-white dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden">
+                    <div
+                        class="px-5 py-4 border-b border-slate-100 dark:border-white/5 flex items-center justify-between bg-slate-50/50 dark:bg-white/[0.02]">
+                        <h3 class="text-slate-800 dark:text-white font-bold text-base flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">co_present</span>
+                            Current Slide
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-slate-200 dark:bg-white/10 px-2 py-1 rounded">14/42</span>
+                            <button class="text-slate-400 hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined text-xl">fullscreen</span></button>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div
+                            class="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 group bg-slate-100 dark:bg-black/40">
+                            <img alt="Diagram showing Django architecture"
+                                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGe56TCDYgqh8uZ0atONhe1Gtw6GWoBHoYqku9NxoAnak0h5S2HoDCrM04zLrRZuHAc6b6Cmeu7ASdFPimC0LZ-CnJM6OnadxZOj8_pwzjr_zbwehdPv68JND5ePO060eyKVA0-fWVB69UtcyaShpruJLxip38298IFGTzZZyZFak1SxUcwMeiT9q-0X332zSTiQ5ek4hpXpjy4I_fC2veq02WwPgh-D978dtO0YeZrg-o8XljN3jgs4Gp14AYYRP1WIFHA8sSmmTd" />
+                            <div
+                                class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none">
+                                <span
+                                    class="material-symbols-outlined text-white text-4xl drop-shadow-lg">zoom_in</span>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-4 flex items-center gap-4 bg-slate-50 dark:bg-background-dark/50 p-3 rounded-xl border border-slate-100 dark:border-white/5">
+                            <button
+                                class="size-12 rounded-full bg-primary flex items-center justify-center text-white shrink-0 hover:bg-blue-600 shadow-lg shadow-primary/30 transition-all hover:scale-105 active:scale-95 group">
+                                <span class="material-symbols-outlined text-2xl group-hover:animate-pulse">mic</span>
+                            </button>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-slate-800 dark:text-white text-sm font-bold truncate">Architecture
+                                    Diagram</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-xs mt-0.5 truncate">Tap mic to ask
+                                    about MVT flow</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="flex flex-col h-full bg-yellow-50 dark:bg-yellow-900/10 rounded-2xl border border-yellow-200 dark:border-yellow-700/30 shadow-sm relative overflow-hidden">
+                    <div class="absolute inset-0 pointer-events-none opacity-40"
+                        style="background-image: linear-gradient(#e5e7eb 1px, transparent 1px); background-size: 100% 2rem; margin-top: 3.5rem;">
+                    </div>
+                    <div
+                        class="px-5 py-4 border-b border-yellow-200 dark:border-yellow-700/30 flex items-center justify-between bg-yellow-100/30 dark:bg-yellow-900/20">
+                        <h3 class="text-yellow-900 dark:text-yellow-100 font-bold text-base flex items-center gap-2">
+                            <span
+                                class="material-symbols-outlined text-yellow-600 dark:text-yellow-400">edit_note</span>
+                            My Notes
+                        </h3>
+                        <button
+                            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/50 dark:bg-black/20 text-yellow-800 dark:text-yellow-200 text-xs font-bold hover:bg-white dark:hover:bg-black/40 transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                            Export PDF
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col relative z-10">
+                        <div class="flex items-center justify-between mb-2">
+                            <span
+                                class="text-xs font-bold text-yellow-700 dark:text-yellow-500 uppercase tracking-wide">Session:
+                                Django Integration</span>
+                            <div class="flex gap-1">
+                                <button
+                                    class="p-1 hover:bg-yellow-200/50 dark:hover:bg-yellow-700/30 rounded text-yellow-700 dark:text-yellow-500"><span
+                                        class="material-symbols-outlined text-sm">format_bold</span></button>
+                                <button
+                                    class="p-1 hover:bg-yellow-200/50 dark:hover:bg-yellow-700/30 rounded text-yellow-700 dark:text-yellow-500"><span
+                                        class="material-symbols-outlined text-sm">format_list_bulleted</span></button>
+                            </div>
+                        </div>
+                        <textarea
+                            class="flex-1 w-full bg-transparent border-none resize-none text-slate-800 dark:text-yellow-100 placeholder-yellow-800/40 dark:placeholder-yellow-200/30 text-sm focus:ring-0 leading-8"
+                            placeholder="Start typing your notes here...
+• MVT is slightly different from MVC
+• View handles the logic, Template handles UI"></textarea>
+                        <div
+                            class="flex justify-between items-center mt-3 pt-3 border-t border-yellow-200 dark:border-yellow-700/30">
+                            <span class="text-[10px] text-yellow-600/70 dark:text-yellow-500/50 font-medium">Auto-saved
+                                2m ago</span>
+                            <button
+                                class="text-xs font-bold text-yellow-700 dark:text-yellow-500 hover:text-yellow-900 dark:hover:text-yellow-400 flex items-center gap-1 transition-colors">
+                                <span class="material-symbols-outlined text-sm">add_circle</span>
+                                Add Timestamp
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="shadow-[0_8px_30px_rgb(0,0,0,0.3)] bg-slate-900 dark:bg-white hover:bg-primary dark:hover:bg-primary text-white dark:text-slate-900 hover:text-white dark:hover:text-white rounded-full px-6 py-4 flex items-center gap-3 transition-all transform hover:scale-105 active:scale-95 group border border-white/10">
+            <div class="bg-white/10 dark:bg-slate-900/10 rounded-full p-1.5 transition-colors">
+                <span class="material-symbols-outlined text-2xl block">smart_toy</span>
+            </div>
+            <div class="text-left">
+                <span class="font-bold text-sm tracking-wide block">Ask AI Tutor</span>
+                <span class="text-[10px] opacity-70 block font-medium">Online • Python Expert</span>
+            </div>
+        </button>
+    </div>
+    <script>
+        // Configure video ID for this course
+        window.courseVideoId = '_uQrJ0TkZlc'; // "Python Programming Tutorial" (Mosh)
+    </script>
+    <script src="js/video-player-configurable.js?v=3"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

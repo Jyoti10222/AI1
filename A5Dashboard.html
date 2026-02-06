@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Learner Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .progress-striped {
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+            background-size: 1rem 1rem;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div
+                class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+            </div>
+        </div>
+        <header
+            class="sticky top-0 z-50 w-full bg-white/70 dark:bg-dark-bg/70 backdrop-blur-xl border-b border-white/20 dark:border-white/5 shadow-sm supports-[backdrop-filter]:bg-white/60">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-8">
+                        <a class="flex items-center gap-2 group" href="A5Dashboard.html">
+                            <div
+                                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2
+                                class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                                TECH-PRO AI</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                                href="A5Dashboard.html">Dashboard</a>
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="A6Catlog.html">All Courses</a>
+
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                                href="CertificationCenter.html">Certifications</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="relative hidden sm:block">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <span class="material-symbols-outlined text-[20px]">search</span>
+                            </span>
+                            <input
+                                class="w-64 rounded-full border border-slate-200 bg-slate-50 py-1.5 pl-10 pr-4 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder-slate-400 transition-all"
+                                placeholder="Search courses or skills..." type="text" />
+                        </div>
+                        <button id="notificationBtn"
+                            class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                        </button>
+                        <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                            <span id="header-user-name"
+                                class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                            <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px]">
+                                <div
+                                    class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                    <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <main class="flex-1 w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h1 id="student-name"
+                        class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Welcome back, Alex! 👋
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">
+                        You're on a <span class="font-semibold text-orange-500">5-day learning streak</span>. Keep it
+                        up!
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 text-sm font-medium shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined text-[20px] text-slate-500">calendar_month</span>
+                        My Schedule
+                    </button>
+                    <button
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium shadow-md shadow-blue-500/20 hover:bg-blue-500 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">add</span>
+                        Set New Goal
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 space-y-10">
+                    <div
+                        class="relative overflow-hidden rounded-3xl bg-white dark:bg-dark-card border border-white/20 dark:border-white/5 shadow-2xl shadow-blue-900/20 group hover:shadow-blue-500/20 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-indigo-900/80 z-10"></div>
+                        <img alt="AI Course Background"
+                            class="absolute inset-0 h-full w-full object-cover mix-blend-overlay opacity-60 transition-transform duration-1000 group-hover:scale-110"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuByzf44Qt2oNa6sDWkT7qzwMa3ThObX0Ld6hdP6I_Pjqq8ynba7qIS7MAndSJc_QDndtRZsn8mNh_eqO2FB_vy7_2P3_OOz0w35fqIOHQxrE-KRiF1yu-gEj4TXZ680-rg0Z4L4K4-GXlTardgg8Q8r47tEPscuEJ7H5x50Vjv0uP4Ii1HJzbx9xHihksaJy1VmVbgoTwu3VBkyJXfLL6rnm2vdBkY2QJ67jK1y_A6q75TsWUJGXs_Y8Y_pSo5ngTW6zNztcim8A70" />
+                        <div class="relative z-20 p-6 sm:p-8 text-white">
+                            <div class="flex items-start justify-between mb-8">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold border border-white/10">In
+                                    Progress</span>
+                                <button
+                                    class="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors">
+                                    <span class="material-symbols-outlined text-white">more_horiz</span>
+                                </button>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Advanced Generative AI for UX Design</h3>
+                            <p class="text-blue-100 mb-6 max-w-lg">Module 3: Integrating LLMs into Design Workflows.
+                                Learn how to leverage prompt engineering for rapid prototyping.</p>
+                            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                                <div class="w-full sm:max-w-xs">
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-blue-200 font-medium">65% Complete</span>
+                                        <span class="text-blue-200">24/38 Lessons</span>
+                                    </div>
+                                    <div class="h-2 w-full bg-white/20 rounded-full overflow-hidden">
+                                        <div
+                                            class="h-full bg-blue-400 w-[65%] rounded-full progress-striped animate-pulse">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="px-6 py-2.5 rounded-xl bg-white text-blue-900 font-bold shadow-lg hover:bg-blue-50 transition-all flex items-center gap-2">
+                                    <span class="material-symbols-outlined">play_circle</span>
+                                    Continue Learning
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-purple-500">auto_awesome</span>
+                                AI Recommended for You
+                            </h3>
+                            <div class="flex gap-2">
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                </button>
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Cloud Computing"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 98%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Cloud</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 12h 45m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Cloud Computing</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Master AWS &amp; Azure infrastructure with hands-on labs in serverless computing
+                                        and containerization.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +2k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Networking"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 95%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Infrastructure</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 8h 30m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Networking</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Deep dive into TCP/IP, routing protocols, and modern software-defined networking
+                                        architectures.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +1k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="AI"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 99%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Intelligence</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 15h 20m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        AI &amp; Machine Learning</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Comprehensive guide to Neural Networks, Machine Learning algorithms, and
+                                        Generative AI models.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +5k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Cybersecurity"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 94%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Security</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 10h 15m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Cybersecurity</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Learn ethical hacking, penetration testing, and enterprise security defense
+                                        strategies.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +3k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Java Full Stack"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 92%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Development</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 22h 00m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Java Full Stack</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Build enterprise-grade applications using Java Spring Boot, Hibernate, and
+                                        Angular frontend.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +4k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Python Full Stack"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 96%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">Development</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 18h 45m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Python Full Stack</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Modern web development with Django, FastAPI, and React. Includes REST API
+                                        design.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +6k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Automation Testing"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 89%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">QA</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 6h 30m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Automation Testing</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Master Selenium and Cypress for automated browser testing and CI/CD integration.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +2k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="group bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-white/5 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full">
+                                <div class="relative h-48 bg-slate-200 dark:bg-slate-800 shrink-0">
+                                    <img alt="Manual Testing"
+                                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA" />
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span
+                                            class="material-symbols-outlined text-5xl text-white drop-shadow-lg scale-90 group-hover:scale-100 transition-transform">play_circle</span>
+                                    </div>
+                                    <div
+                                        class="absolute top-3 left-3 px-2.5 py-1 bg-green-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg shadow-sm tracking-wide flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">auto_awesome</span> 85%
+                                        Match
+                                    </div>
+                                    <div
+                                        class="absolute bottom-3 right-3 h-8 w-8 bg-white/90 dark:bg-black/80 rounded-full flex items-center justify-center backdrop-blur shadow-sm hover:text-blue-600 transition-colors">
+                                        <span class="material-symbols-outlined text-sm">bookmark</span>
+                                    </div>
+                                </div>
+                                <div class="p-5 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span
+                                            class="text-[11px] font-bold text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/20 px-2.5 py-1 rounded-md uppercase tracking-wider">QA</span>
+                                        <div class="flex items-center text-slate-500 text-xs font-medium gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span> 4h 15m
+                                        </div>
+                                    </div>
+                                    <h4
+                                        class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                                        Manual Testing</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">
+                                        Foundations of software quality assurance, test planning, bug tracking, and
+                                        agile testing methodologies.
+                                    </p>
+                                    <div
+                                        class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-auto">
+                                        <div class="flex -space-x-2">
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-300 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-400 border-2 border-white dark:border-dark-card">
+                                            </div>
+                                            <div
+                                                class="w-6 h-6 rounded-full bg-slate-500 border-2 border-white dark:border-dark-card text-[8px] text-white flex items-center justify-center">
+                                                +1k</div>
+                                        </div>
+                                        <span
+                                            class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Preview <span
+                                                class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Skill Growth</h3>
+                                <p class="text-xs text-slate-500">Based on quiz results &amp; project completion</p>
+                            </div>
+                            <div id="skillToggleContainer" class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+                                <button
+                                    class="px-3 py-1 text-xs font-semibold rounded-md bg-white dark:bg-dark-surface text-slate-900 dark:text-white shadow-sm">Technical</button>
+                                <button
+                                    class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Soft
+                                    Skills</button>
+                            </div>
+                        </div>
+                        <div id="skillChartBars" class="relative h-48 w-full flex items-end justify-between px-2 gap-4">
+                            <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                                <div
+                                    class="w-full h-px bg-slate-100 dark:bg-slate-800 border-t border-dashed border-slate-200 dark:border-slate-700">
+                                </div>
+                                <div
+                                    class="w-full h-px bg-slate-100 dark:bg-slate-800 border-t border-dashed border-slate-200 dark:border-slate-700">
+                                </div>
+                                <div
+                                    class="w-full h-px bg-slate-100 dark:bg-slate-800 border-t border-dashed border-slate-200 dark:border-slate-700">
+                                </div>
+                                <div
+                                    class="w-full h-px bg-slate-100 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group w-full z-10">
+                                <div
+                                    class="relative w-full max-w-[40px] bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-40 overflow-hidden flex items-end">
+                                    <div
+                                        class="w-full bg-blue-500 dark:bg-blue-600 h-[75%] rounded-t-lg transition-all duration-500 group-hover:bg-blue-400">
+                                    </div>
+                                    <div
+                                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        75%</div>
+                                </div>
+                                <span class="text-[10px] font-medium text-slate-500 text-center uppercase">Python</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group w-full z-10">
+                                <div
+                                    class="relative w-full max-w-[40px] bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-40 overflow-hidden flex items-end">
+                                    <div
+                                        class="w-full bg-indigo-500 dark:bg-indigo-600 h-[45%] rounded-t-lg transition-all duration-500 group-hover:bg-indigo-400">
+                                    </div>
+                                    <div
+                                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        45%</div>
+                                </div>
+                                <span class="text-[10px] font-medium text-slate-500 text-center uppercase">Prompt
+                                    Eng.</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group w-full z-10">
+                                <div
+                                    class="relative w-full max-w-[40px] bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-40 overflow-hidden flex items-end">
+                                    <div
+                                        class="w-full bg-purple-500 dark:bg-purple-600 h-[90%] rounded-t-lg transition-all duration-500 group-hover:bg-purple-400">
+                                    </div>
+                                    <div
+                                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        90%</div>
+                                </div>
+                                <span class="text-[10px] font-medium text-slate-500 text-center uppercase">UI
+                                    Design</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group w-full z-10">
+                                <div
+                                    class="relative w-full max-w-[40px] bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-40 overflow-hidden flex items-end">
+                                    <div
+                                        class="w-full bg-pink-500 dark:bg-pink-600 h-[60%] rounded-t-lg transition-all duration-500 group-hover:bg-pink-400">
+                                    </div>
+                                    <div
+                                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        60%</div>
+                                </div>
+                                <span class="text-[10px] font-medium text-slate-500 text-center uppercase">Data
+                                    Viz</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group w-full z-10">
+                                <div
+                                    class="relative w-full max-w-[40px] bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-40 overflow-hidden flex items-end">
+                                    <div
+                                        class="w-full bg-cyan-500 dark:bg-cyan-600 h-[30%] rounded-t-lg transition-all duration-500 group-hover:bg-cyan-400">
+                                    </div>
+                                    <div
+                                        class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        30%</div>
+                                </div>
+                                <span class="text-[10px] font-medium text-slate-500 text-center uppercase">Cloud
+                                    Ops</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 space-y-8">
+                    <!-- Course progress chart -->
+                    <div
+                        class="bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl rounded-2xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm ring-1 ring-slate-900/5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Course Progress</h3>
+                            <span class="text-xs font-semibold text-slate-400">Overview</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-36 h-36 mx-auto">
+                                <canvas id="coursesChart" width="144" height="144"></canvas>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Track how many courses you've
+                                    completed versus pending.</p>
+                                <div class="mt-4 grid grid-cols-1 gap-3">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-3 h-3 rounded-full bg-emerald-500 block"></span>
+                                            <span
+                                                class="text-sm font-medium text-slate-700 dark:text-slate-200">Completed</span>
+                                        </div>
+                                        <span id="completedCount"
+                                            class="text-sm font-bold text-slate-900 dark:text-white">6</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-600 block"></span>
+                                            <span
+                                                class="text-sm font-medium text-slate-700 dark:text-slate-200">Pending</span>
+                                        </div>
+                                        <span id="pendingCount"
+                                            class="text-sm font-bold text-slate-900 dark:text-white">4</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl rounded-2xl border border-slate-200/60 dark:border-white/5 p-6 shadow-sm ring-1 ring-slate-900/5">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Upcoming</h3>
+                            <a class="text-xs font-semibold text-blue-600 hover:text-blue-500" href="#">View
+                                Calendar</a>
+                        </div>
+                        <div class="relative space-y-6">
+                            <div class="absolute left-[19px] top-2 bottom-2 w-[2px] bg-slate-100 dark:bg-slate-700">
+                            </div>
+                            <div class="relative flex gap-4">
+                                <div
+                                    class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-orange-600 text-sm">warning</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-orange-600 mb-0.5">Due Tomorrow, 5 PM</p>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">UX Capstone Project
+                                    </h4>
+                                    <p class="text-xs text-slate-500 mt-1">Submit via Peer Review Portal</p>
+                                </div>
+                            </div>
+                            <div class="relative flex gap-4">
+                                <div
+                                    class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-blue-600 text-sm">quiz</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-500 mb-0.5">Friday, 12th</p>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Weekly AI Quiz</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Module 4 Review</p>
+                                </div>
+                            </div>
+                            <div class="relative flex gap-4">
+                                <div
+                                    class="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-purple-600 text-sm">videocam</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-500 mb-0.5">Monday, 15th</p>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white">Mentor Session</h4>
+                                    <p class="text-xs text-slate-500 mt-1">With Sarah K. (Google)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer
+            class="bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 py-8 relative z-10 mt-auto">
+            <div
+                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-400">© 2024 TECH-PRO AI Inc. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Privacy
+                        Policy</a>
+                    <a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chart.js CDN + initialization for Course Progress -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 left-4 z-[9999] flex flex-col gap-2"></div>
+
+    <!-- Course Preview Modal -->
+    <div id="coursePreviewModal" class="fixed inset-0 z-[999] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="previewOverlay"></div>
+        <div
+            class="absolute inset-4 md:inset-[10%] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <!-- Modal Header -->
+            <div id="previewHeader"
+                class="relative h-48 md:h-64 bg-gradient-to-r from-blue-600 to-indigo-700 flex-shrink-0">
+                <img id="previewImage" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50"
+                    src="" alt="">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <button id="closePreview"
+                    class="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <div class="absolute bottom-4 left-6 right-6 text-white">
+                    <span id="previewBadge"
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-bold mb-3"></span>
+                    <h2 id="previewTitle" class="text-2xl md:text-3xl font-bold mb-2"></h2>
+                    <div class="flex items-center gap-4 text-sm text-white/80">
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-[16px]">schedule</span> <span
+                                id="previewDuration"></span></span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-[16px]">groups</span> <span
+                                id="previewStudents"></span></span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-[16px]">star</span> <span
+                                id="previewRating"></span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Body -->
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+                <div class="p-6 md:p-8">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Left: Course Info -->
+                        <div class="md:col-span-2 space-y-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">About This Course</h3>
+                                <p id="previewDescription" class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">What You'll Learn</h3>
+                                <ul id="previewSkills" class="grid md:grid-cols-2 gap-3"></ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Course Modules</h3>
+                                <div id="previewModules" class="space-y-3"></div>
+                            </div>
+                        </div>
+                        <!-- Right: Sidebar -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-5">
+                                <div class="text-center mb-4">
+                                    <span class="text-3xl font-black text-slate-900 dark:text-white">Free</span>
+                                    <p class="text-sm text-slate-500">Limited Access</p>
+                                </div>
+                                <button id="enrollBtn"
+                                    class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined">play_arrow</span> Start Learning
+                                </button>
+                                <button id="bookmarkBtn"
+                                    class="w-full mt-3 py-3 px-4 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-[20px]">bookmark_border</span> Add to
+                                    Bookmarks
+                                </button>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-5">
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-3">This course includes:</h4>
+                                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                    <li class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-blue-500 text-[18px]">play_circle</span>
+                                        Video lectures</li>
+                                    <li class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-blue-500 text-[18px]">code</span>
+                                        Hands-on labs</li>
+                                    <li class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-blue-500 text-[18px]">quiz</span>
+                                        Quizzes & assessments</li>
+                                    <li class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-blue-500 text-[18px]">workspace_premium</span>
+                                        Certificate</li>
+                                    <li class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-blue-500 text-[18px]">all_inclusive</span>
+                                        Lifetime access</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel"
+        class="fixed top-16 right-4 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 z-[100] hidden">
+        <div class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+            <h3 class="font-bold text-slate-900 dark:text-white">Notifications</h3>
+            <button id="markAllRead" class="text-xs text-blue-600 hover:text-blue-500">Mark all read</button>
+        </div>
+        <div class="max-h-80 overflow-y-auto custom-scrollbar">
+            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer border-l-4 border-orange-500">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">UX Capstone Project Due</p>
+                <p class="text-xs text-slate-500">Tomorrow at 5 PM</p>
+            </div>
+            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">New course recommendation</p>
+                <p class="text-xs text-slate-500">Based on your interests</p>
+            </div>
+            <div class="p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer">
+                <p class="text-sm font-medium text-slate-900 dark:text-white">Weekly quiz available</p>
+                <p class="text-xs text-slate-500">Module 4 Review</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div id="scheduleModal" class="fixed inset-0 z-[999] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeScheduleModal()"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">My Schedule</h3>
+                <button onclick="openAddEventModal()"
+                    class="text-sm px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-500">+ Add Event</button>
+            </div>
+            <div id="scheduleList" class="space-y-3 max-h-80 overflow-y-auto custom-scrollbar"></div>
+            <div id="savedGoalDisplay"
+                class="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 hidden">
+                <p class="text-xs font-semibold text-green-600 mb-1">Current Goal</p>
+                <p id="goalDisplayText" class="font-medium text-slate-900 dark:text-white"></p>
+            </div>
+            <button onclick="closeScheduleModal()"
+                class="mt-4 w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-colors">Close</button>
+        </div>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="fixed inset-0 z-[999] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCalendarModal()"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Calendar</h3>
+                <div class="flex items-center gap-2">
+                    <button onclick="changeMonth(-1)"
+                        class="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined">chevron_left</span></button>
+                    <span id="calendarMonth"
+                        class="font-semibold text-slate-900 dark:text-white min-w-[120px] text-center"></span>
+                    <button onclick="changeMonth(1)"
+                        class="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded"><span
+                            class="material-symbols-outlined">chevron_right</span></button>
+                </div>
+            </div>
+            <div class="grid grid-cols-7 gap-1 mb-2">
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Sun</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Mon</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Tue</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Wed</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Thu</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Fri</div>
+                <div class="text-center text-xs font-semibold text-slate-500 py-2">Sat</div>
+            </div>
+            <div id="calendarGrid" class="grid grid-cols-7 gap-1"></div>
+            <button onclick="closeCalendarModal()"
+                class="mt-4 w-full py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-colors">Close</button>
+        </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="fixed inset-0 z-[1000] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAddEventModal()"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Add Schedule Event</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Event Title</label>
+                    <input id="eventTitle" type="text"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                        placeholder="e.g., Project Review">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Date & Time</label>
+                    <input id="eventDate" type="datetime-local"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Type</label>
+                    <select id="eventType"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                        <option value="deadline">Deadline</option>
+                        <option value="quiz">Quiz</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeAddEventModal()"
+                    class="flex-1 py-2 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-colors">Cancel</button>
+                <button onclick="saveEvent()"
+                    class="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-colors">Save
+                    Event</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goal Modal -->
+    <div id="goalModal" class="fixed inset-0 z-[999] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeGoalModal()"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Set New Learning Goal</h3>
+            <div id="existingGoals" class="mb-4 hidden">
+                <p class="text-sm font-semibold text-slate-500 mb-2">Your Current Goals:</p>
+                <div id="goalsListDisplay" class="space-y-2 max-h-32 overflow-y-auto"></div>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Goal Title</label>
+                    <input id="goalTitle" type="text"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                        placeholder="e.g., Complete AI Course">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Target Date</label>
+                    <input id="goalDate" type="date"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Hours per
+                        week</label>
+                    <input id="goalHours" type="number" min="1" max="40" value="5"
+                        class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeGoalModal()"
+                    class="flex-1 py-2 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition-colors">Cancel</button>
+                <button onclick="saveGoal()"
+                    class="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-colors">Save
+                    Goal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ============ Course Data ============
+            const coursesData = {
+                'Cloud Computing': {
+                    category: 'Cloud',
+                    categoryColor: 'blue',
+                    duration: '12h 45m',
+                    students: '2,450+',
+                    rating: '4.9',
+                    match: '98%',
+                    description: 'Master AWS & Azure infrastructure with hands-on labs in serverless computing and containerization. This comprehensive course covers everything from basic cloud concepts to advanced deployment strategies.',
+                    skills: [
+                        'AWS EC2, S3, Lambda',
+                        'Azure Services',
+                        'Docker & Kubernetes',
+                        'Serverless Architecture',
+                        'Cloud Security',
+                        'Cost Optimization'
+                    ],
+                    modules: [
+                        { title: 'Introduction to Cloud Computing', lessons: 8, duration: '1h 30m' },
+                        { title: 'AWS Core Services', lessons: 12, duration: '3h 15m' },
+                        { title: 'Azure Fundamentals', lessons: 10, duration: '2h 45m' },
+                        { title: 'Containerization with Docker', lessons: 8, duration: '2h 00m' },
+                        { title: 'Kubernetes Orchestration', lessons: 10, duration: '3h 15m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8'
+                },
+                'Networking': {
+                    category: 'Infrastructure',
+                    categoryColor: 'purple',
+                    duration: '8h 30m',
+                    students: '1,850+',
+                    rating: '4.8',
+                    match: '95%',
+                    description: 'Deep dive into TCP/IP, routing protocols, and modern software-defined networking architectures. Learn to design, implement, and troubleshoot enterprise-grade networks.',
+                    skills: [
+                        'TCP/IP Protocol Suite',
+                        'Routing & Switching',
+                        'Network Security',
+                        'SDN & NFV',
+                        'Wireless Networks',
+                        'Network Troubleshooting'
+                    ],
+                    modules: [
+                        { title: 'Network Fundamentals', lessons: 10, duration: '2h 00m' },
+                        { title: 'TCP/IP Deep Dive', lessons: 8, duration: '1h 45m' },
+                        { title: 'Routing Protocols', lessons: 12, duration: '2h 30m' },
+                        { title: 'Network Security', lessons: 8, duration: '2h 15m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA'
+                },
+                'AI & Machine Learning': {
+                    category: 'Intelligence',
+                    categoryColor: 'indigo',
+                    duration: '15h 20m',
+                    students: '5,200+',
+                    rating: '4.9',
+                    match: '99%',
+                    description: 'Comprehensive guide to Neural Networks, Machine Learning algorithms, and Generative AI models. Build real-world AI applications from scratch.',
+                    skills: [
+                        'Python for ML',
+                        'Neural Networks',
+                        'TensorFlow & PyTorch',
+                        'NLP & Computer Vision',
+                        'Generative AI',
+                        'Model Deployment'
+                    ],
+                    modules: [
+                        { title: 'ML Fundamentals', lessons: 12, duration: '3h 00m' },
+                        { title: 'Deep Learning Basics', lessons: 10, duration: '3h 30m' },
+                        { title: 'Natural Language Processing', lessons: 8, duration: '2h 45m' },
+                        { title: 'Computer Vision', lessons: 10, duration: '3h 15m' },
+                        { title: 'Generative AI & LLMs', lessons: 8, duration: '2h 50m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8'
+                },
+                'Cybersecurity': {
+                    category: 'Security',
+                    categoryColor: 'red',
+                    duration: '10h 15m',
+                    students: '3,100+',
+                    rating: '4.8',
+                    match: '94%',
+                    description: 'Learn ethical hacking, penetration testing, and enterprise security defense strategies. Protect systems from modern cyber threats.',
+                    skills: [
+                        'Ethical Hacking',
+                        'Penetration Testing',
+                        'Network Defense',
+                        'Incident Response',
+                        'Security Auditing',
+                        'SIEM Tools'
+                    ],
+                    modules: [
+                        { title: 'Security Fundamentals', lessons: 8, duration: '2h 00m' },
+                        { title: 'Ethical Hacking Basics', lessons: 10, duration: '2h 45m' },
+                        { title: 'Penetration Testing', lessons: 12, duration: '3h 30m' },
+                        { title: 'Defense Strategies', lessons: 8, duration: '2h 00m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA'
+                },
+                'Java Full Stack': {
+                    category: 'Development',
+                    categoryColor: 'orange',
+                    duration: '22h 00m',
+                    students: '4,300+',
+                    rating: '4.7',
+                    match: '92%',
+                    description: 'Build enterprise-grade applications using Java Spring Boot, Hibernate, and Angular frontend. From basics to production deployment.',
+                    skills: [
+                        'Java Core & Advanced',
+                        'Spring Boot',
+                        'Hibernate ORM',
+                        'Angular Framework',
+                        'REST APIs',
+                        'Microservices'
+                    ],
+                    modules: [
+                        { title: 'Java Fundamentals', lessons: 15, duration: '4h 00m' },
+                        { title: 'Spring Framework', lessons: 12, duration: '4h 30m' },
+                        { title: 'Database with Hibernate', lessons: 10, duration: '3h 30m' },
+                        { title: 'Angular Frontend', lessons: 12, duration: '5h 00m' },
+                        { title: 'Building REST APIs', lessons: 10, duration: '5h 00m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8'
+                },
+                'Python Full Stack': {
+                    category: 'Development',
+                    categoryColor: 'yellow',
+                    duration: '18h 45m',
+                    students: '6,500+',
+                    rating: '4.9',
+                    match: '96%',
+                    description: 'Modern web development with Django, FastAPI, and React. Includes REST API design, authentication, and deployment.',
+                    skills: [
+                        'Python Advanced',
+                        'Django Framework',
+                        'FastAPI',
+                        'React Frontend',
+                        'PostgreSQL',
+                        'Docker Deployment'
+                    ],
+                    modules: [
+                        { title: 'Python Web Basics', lessons: 10, duration: '2h 45m' },
+                        { title: 'Django Deep Dive', lessons: 14, duration: '5h 00m' },
+                        { title: 'FastAPI Modern APIs', lessons: 10, duration: '3h 30m' },
+                        { title: 'React Integration', lessons: 12, duration: '4h 30m' },
+                        { title: 'Deployment & DevOps', lessons: 8, duration: '3h 00m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA'
+                },
+                'Automation Testing': {
+                    category: 'QA',
+                    categoryColor: 'teal',
+                    duration: '6h 30m',
+                    students: '2,100+',
+                    rating: '4.6',
+                    match: '89%',
+                    description: 'Master Selenium and Cypress for automated browser testing and CI/CD integration. Write robust, maintainable test suites.',
+                    skills: [
+                        'Selenium WebDriver',
+                        'Cypress Framework',
+                        'TestNG & JUnit',
+                        'CI/CD Integration',
+                        'Page Object Model',
+                        'API Testing'
+                    ],
+                    modules: [
+                        { title: 'Testing Fundamentals', lessons: 6, duration: '1h 15m' },
+                        { title: 'Selenium WebDriver', lessons: 10, duration: '2h 30m' },
+                        { title: 'Cypress Modern Testing', lessons: 8, duration: '2h 00m' },
+                        { title: 'CI/CD Pipelines', lessons: 4, duration: '45m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNUHrpkqNwVM_UAeMIFDY6C4v5Y_sdJQnigDzX0tDZFTyIMsEGGiCMpdA3IN4Zusbsl7OFGK4UaGYqinokJpnIHpda47yUj-1GELG8z86bm6ktdugM9Dq1TW56MDlLQ8iH74h96MBzj41cBOyySbU08m3l0PAtDU-WCRiwlh07ivV3dfiJOoCAp-wNyRnCpLs88gP1ISKdlxfyuREcd3PNUJIyClxmdvzaPqRVPJzu_1wD1-w62J0amur1uDf3jR9E_8eaCO0x1m8'
+                },
+                'Manual Testing': {
+                    category: 'QA',
+                    categoryColor: 'gray',
+                    duration: '4h 15m',
+                    students: '1,200+',
+                    rating: '4.5',
+                    match: '85%',
+                    description: 'Foundations of software quality assurance, test planning, bug tracking, and agile testing methodologies.',
+                    skills: [
+                        'Test Planning',
+                        'Test Case Design',
+                        'Bug Reporting',
+                        'Agile Testing',
+                        'Jira & Tools',
+                        'SQL for Testers'
+                    ],
+                    modules: [
+                        { title: 'QA Fundamentals', lessons: 8, duration: '1h 30m' },
+                        { title: 'Test Case Design', lessons: 6, duration: '1h 15m' },
+                        { title: 'Agile Testing', lessons: 6, duration: '1h 00m' },
+                        { title: 'Tools & Reporting', lessons: 4, duration: '30m' }
+                    ],
+                    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiXMBLm7Gi3cI8ZUGmurE_NqerCM4A2HdsoXdTQhJwDyc2MzZZZ-tYJmRuEVT8o5qANkJgACXjCuVt5_str8YtlTBHW7Kmw1jxk80VLPHvQortSx1HrOKG6Vg8Wbu6djwV8ARJpnN94MDg4RVsMJBbywp6LjyQq2fDVzmg62-RLNJ640qHhLWUK24_zW6IyR57J6E2dHvgh4QnS7107bcuqPrbgOIqGlsQY8IiEAlmRx4JIcu7B8nyVR4c6YgErb2pim9oS0IsixA'
+                }
+            };
+
+            // ============ Toast System ============
+            function showToast(msg, type = 'info', duration = 3000) {
+                const container = document.getElementById('toastContainer');
+                if (!container) return;
+                const el = document.createElement('div');
+                const colors = { success: 'bg-green-600', error: 'bg-red-600', info: 'bg-slate-800', warning: 'bg-orange-500' };
+                const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+                el.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg max-w-xs flex items-center gap-2 transform -translate-x-full transition-transform duration-300`;
+                el.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icons[type] || 'info'}</span><span>${msg}</span>`;
+                container.appendChild(el);
+                requestAnimationFrame(() => el.classList.remove('-translate-x-full'));
+                setTimeout(() => { el.classList.add('-translate-x-full'); setTimeout(() => el.remove(), 300); }, duration);
+            }
+
+            // ============ Bookmark System ============
+            const bookmarksKey = 'dashboard_bookmarks';
+            function getBookmarks() { try { return JSON.parse(localStorage.getItem(bookmarksKey) || '[]'); } catch { return []; } }
+            function saveBookmarks(arr) { localStorage.setItem(bookmarksKey, JSON.stringify(arr)); }
+            let currentPreviewCourse = null;
+
+            // ============ Course Preview Modal ============
+            const modal = document.getElementById('coursePreviewModal');
+            const overlay = document.getElementById('previewOverlay');
+            const closeBtn = document.getElementById('closePreview');
+
+            function openCoursePreview(courseName) {
+                const course = coursesData[courseName];
+                if (!course) { showToast('Course not found', 'error'); return; }
+                currentPreviewCourse = courseName;
+
+                document.getElementById('previewTitle').textContent = courseName;
+                document.getElementById('previewBadge').textContent = course.match + ' Match';
+                document.getElementById('previewDuration').textContent = course.duration;
+                document.getElementById('previewStudents').textContent = course.students + ' students';
+                document.getElementById('previewRating').textContent = course.rating;
+                document.getElementById('previewDescription').textContent = course.description;
+                document.getElementById('previewImage').src = course.image;
+
+                // Skills
+                const skillsList = document.getElementById('previewSkills');
+                skillsList.innerHTML = course.skills.map(skill => `
+            <li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                <span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span> ${skill}
+            </li>
+        `).join('');
+
+                // Modules
+                const modulesList = document.getElementById('previewModules');
+                modulesList.innerHTML = course.modules.map((mod, idx) => `
+            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold">${idx + 1}</span>
+                        <div>
+                            <h4 class="font-medium text-slate-900 dark:text-white">${mod.title}</h4>
+                            <p class="text-xs text-slate-500">${mod.lessons} lessons • ${mod.duration}</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+                </div>
+            </div>
+        `).join('');
+
+                // Update bookmark button
+                const bookmarks = getBookmarks();
+                const bookmarkBtn = document.getElementById('bookmarkBtn');
+                if (bookmarks.includes(courseName)) {
+                    bookmarkBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-yellow-500">bookmark</span> Bookmarked';
+                } else {
+                    bookmarkBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">bookmark_border</span> Add to Bookmarks';
+                }
+
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePreviewModal() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                currentPreviewCourse = null;
+            }
+
+            closeBtn?.addEventListener('click', closePreviewModal);
+            overlay?.addEventListener('click', closePreviewModal);
+
+            // Enroll button
+            document.getElementById('enrollBtn')?.addEventListener('click', () => {
+                showToast(`Enrolled in ${currentPreviewCourse}!`, 'success');
+                closePreviewModal();
+            });
+
+            // Bookmark button
+            document.getElementById('bookmarkBtn')?.addEventListener('click', () => {
+                if (!currentPreviewCourse) return;
+                const bookmarks = getBookmarks();
+                const btn = document.getElementById('bookmarkBtn');
+                if (bookmarks.includes(currentPreviewCourse)) {
+                    saveBookmarks(bookmarks.filter(b => b !== currentPreviewCourse));
+                    btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">bookmark_border</span> Add to Bookmarks';
+                    showToast('Removed from bookmarks', 'info');
+                } else {
+                    bookmarks.push(currentPreviewCourse);
+                    saveBookmarks(bookmarks);
+                    btn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-yellow-500">bookmark</span> Bookmarked';
+                    showToast('Added to bookmarks!', 'success');
+                }
+            });
+
+            // ============ Course Card Click Handlers ============
+            document.querySelectorAll('.group.bg-white.dark\\:bg-dark-card.rounded-2xl').forEach(card => {
+                const titleEl = card.querySelector('h4');
+                const courseName = titleEl?.textContent?.trim();
+
+                // Preview button click
+                const previewSpan = card.querySelector('span.text-xs.font-semibold.text-blue-600');
+                if (previewSpan) {
+                    previewSpan.style.cursor = 'pointer';
+                    previewSpan.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openCoursePreview(courseName);
+                    });
+                }
+
+                // Play button on image
+                const playIcon = card.querySelector('.material-symbols-outlined.text-5xl');
+                if (playIcon) {
+                    playIcon.parentElement.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openCoursePreview(courseName);
+                    });
+                }
+
+                // Bookmark toggle on card
+                const bookmarkIcon = card.querySelector('.material-symbols-outlined.text-sm');
+                if (bookmarkIcon && bookmarkIcon.textContent.trim() === 'bookmark') {
+                    const bookmarkBtn = bookmarkIcon.parentElement;
+                    bookmarkBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const bookmarks = getBookmarks();
+                        if (bookmarks.includes(courseName)) {
+                            saveBookmarks(bookmarks.filter(b => b !== courseName));
+                            bookmarkIcon.textContent = 'bookmark_border';
+                            showToast('Removed from bookmarks', 'info');
+                        } else {
+                            bookmarks.push(courseName);
+                            saveBookmarks(bookmarks);
+                            bookmarkIcon.textContent = 'bookmark';
+                            bookmarkIcon.classList.add('text-yellow-500');
+                            showToast(`${courseName} bookmarked!`, 'success');
+                        }
+                    });
+                    // Initialize state
+                    if (getBookmarks().includes(courseName)) {
+                        bookmarkIcon.textContent = 'bookmark';
+                        bookmarkIcon.classList.add('text-yellow-500');
+                    }
+                }
+
+                // Card click opens preview
+                card.addEventListener('click', () => openCoursePreview(courseName));
+            });
+
+
+
+            // ============ Notifications Panel ============
+            // ============ Header Logic (Search & Old Notif) ============
+            // Search
+            const searchInput = document.querySelector('input[placeholder*="Search"]');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter') {
+                        const query = searchInput.value.trim().toLowerCase();
+                        if (!query) return;
+                        const found = Object.keys(coursesData).find(c => c.toLowerCase().includes(query));
+                        if (found) {
+                            openCoursePreview(found);
+                            searchInput.value = '';
+                        } else {
+                            showToast('No courses found for "' + searchInput.value + '"', 'warning');
+                        }
+                    }
+                });
+            }
+
+            // Global Click to close panels
+            document.addEventListener('click', () => {
+                document.getElementById('notificationsPanel')?.classList.add('hidden');
+            });
+
+            // Notification Toggle (handled by new system but we need strictly the event)
+            // Notification Toggle
+            const nBtn = document.getElementById('notificationBtn');
+            if (nBtn) {
+                nBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const p = document.getElementById('notificationsPanel');
+                    p.classList.toggle('hidden');
+                });
+            }
+
+            // ============ Schedule & Goal Buttons ============
+            document.querySelectorAll('button').forEach(btn => {
+                const text = btn.textContent.trim();
+                if (text.includes('My Schedule')) {
+                    btn.addEventListener('click', () => document.getElementById('scheduleModal').classList.remove('hidden'));
+                }
+                if (text.includes('Set New Goal')) {
+                    btn.addEventListener('click', () => document.getElementById('goalModal').classList.remove('hidden'));
+                }
+                if (text.includes('Continue Learning')) {
+                    btn.addEventListener('click', () => {
+                        showToast('Resuming your course...', 'info');
+                    });
+                }
+            });
+
+            // ============ Skill Toggle (Technical/Soft Skills) ============
+            const skillBtns = document.querySelectorAll('.flex.bg-slate-100 button, .flex.dark\\:bg-slate-800 button');
+            skillBtns.forEach((btn, idx) => {
+                btn.addEventListener('click', () => {
+                    skillBtns.forEach(b => {
+                        b.classList.remove('bg-white', 'dark:bg-dark-surface', 'shadow-sm');
+                        b.classList.add('text-slate-500');
+                    });
+                    btn.classList.add('bg-white', 'dark:bg-dark-surface', 'shadow-sm');
+                    btn.classList.remove('text-slate-500');
+                    showToast(idx === 0 ? 'Showing Technical Skills' : 'Showing Soft Skills', 'info');
+                });
+            });
+
+            // ============ Notification System ============
+            const notifPanel = document.getElementById('notificationsPanel');
+            const notifBtnIcon = document.querySelector('#notificationBtn .material-symbols-outlined');
+
+            // Blink animation style
+            const styleSheet = document.createElement("style");
+            styleSheet.innerText = `
+                @keyframes blink-red { 0% { color: #ef4444; } 50% { color: #b91c1c; } 100% { color: #ef4444; } }
+                .notification-blink { animation: blink-red 1.5s infinite; position: relative; }
+                .notification-dot::after {
+                    content: ''; position: absolute; top: 0; right: 0; width: 8px; height: 8px;
+                    background-color: #ef4444; border-radius: 50%; border: 2px solid white;
+                }
+            `;
+            document.head.appendChild(styleSheet);
+
+            async function fetchNotifications() {
+                try {
+                    const res = await fetch('http://localhost:8080/api/notifications');
+                    const json = await res.json();
+                    let notifications = json.data || [];
+
+                    // User Request: "notified automatically for the upcoming batches"
+                    // Hack: We also fetch online config to check for today's batches
+                    try {
+                        const batchRes = await fetch('http://localhost:8080/api/online-config');
+                        const batchJson = await batchRes.json();
+                        if (batchJson.success && batchJson.data.batches) {
+                            const today = new Date().toLocaleDateString('en-US', { weekday: 'short' }); // e.g., "Fri"
+                            const todaysBatches = batchJson.data.batches.filter(b => b.day === today && b.status === 'active');
+
+                            todaysBatches.forEach(b => {
+                                // Add ephemeral notification for batch
+                                notifications.unshift({
+                                    id: `auto-batch-${b.id}-${today}`,
+                                    title: `Upcoming Batch: ${b.courseId}`,
+                                    message: `Your ${b.duration} batch with ${b.faculty} starts at ${b.startTime}.`,
+                                    type: 'info',
+                                    date: new Date().toISOString(),
+                                    isAuto: true
+                                });
+                            });
+                        }
+                    } catch (e) {
+                        console.warn('Could not fetch batch info for notifications', e);
+                    }
+
+                    renderNotifications(notifications);
+                } catch (err) {
+                    console.error('Failed to fetch notifications', err);
+                }
+            }
+
+            function renderNotifications(items) {
+                const list = notifPanel.querySelector('.max-h-80');
+                if (!list) return;
+
+                list.innerHTML = '';
+                const readIds = JSON.parse(localStorage.getItem('read_notifications') || '[]');
+                let unreadCount = 0;
+
+                if (items.length === 0) {
+                    list.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">No notifications</div>';
+                }
+
+                items.forEach(item => {
+                    const isRead = readIds.includes(item.id);
+                    if (!isRead) unreadCount++;
+
+                    const div = document.createElement('div');
+                    div.className = `p-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer border-l-4 ${item.type === 'error' ? 'border-red-500' :
+                        item.type === 'warning' ? 'border-orange-500' :
+                            item.type === 'success' ? 'border-green-500' : 'border-blue-500'
+                        } ${isRead ? 'opacity-60' : 'bg-blue-50/50 dark:bg-blue-900/10'}`;
+
+                    const timeStr = new Date(item.date).toLocaleDateString();
+
+                    div.innerHTML = `
+                        <p class="text-sm font-medium text-slate-900 dark:text-white">${item.title}</p>
+                        <p class="text-xs text-slate-500 mt-1">${item.message}</p>
+                        <p class="text-[10px] text-slate-400 mt-1 text-right">${timeStr}</p>
+                    `;
+                    list.appendChild(div);
+                });
+
+                // Handle Blinking/Dot
+                if (notifBtnIcon) {
+                    if (unreadCount > 0) {
+                        notifBtnIcon.classList.add('notification-blink', 'notification-dot');
+                    } else {
+                        notifBtnIcon.classList.remove('notification-blink', 'notification-dot');
+                    }
+                }
+
+                // Save current list for "Mark all read" reference
+                window.currentNotificationIds = items.map(i => i.id);
+            }
+
+            // Mark all read logic
+            const markReadBtn = document.getElementById('markAllRead');
+            if (markReadBtn) {
+                // Remove old listeners to avoid duplicates if any
+                const newBtn = markReadBtn.cloneNode(true);
+                markReadBtn.parentNode.replaceChild(newBtn, markReadBtn);
+
+                newBtn.addEventListener('click', () => {
+                    if (window.currentNotificationIds) {
+                        const currentRead = JSON.parse(localStorage.getItem('read_notifications') || '[]');
+                        const newRead = [...new Set([...currentRead, ...window.currentNotificationIds])];
+                        localStorage.setItem('read_notifications', JSON.stringify(newRead));
+
+                        showToast('All notifications marked as read', 'success');
+                        fetchNotifications(); // Re-render to update UI
+                    }
+                });
+            }
+
+            // Initial Load
+            fetchNotifications();
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotifications, 60000);
+
+            // ============ Navigation Arrows ============
+            const navBtns = document.querySelectorAll('button .material-symbols-outlined');
+            navBtns.forEach(icon => {
+                if (icon.textContent.includes('chevron_left') || icon.textContent.includes('chevron_right')) {
+                    icon.parentElement.addEventListener('click', () => {
+                        showToast(icon.textContent.includes('left') ? 'Previous courses' : 'Next courses', 'info');
+                    });
+                }
+            });
+
+            // ============ AI Tutor Chat ============
+            const aiChatBox = document.querySelector('.bg-white.dark\\:bg-dark-card.border.rounded-2xl.shadow-2xl.w-72');
+            const aiTutorBtn = document.querySelector('.h-14.w-14.rounded-full.bg-indigo-600');
+
+            if (aiChatBox && aiTutorBtn) {
+                const closeAI = aiChatBox.querySelector('button');
+                closeAI?.addEventListener('click', () => aiChatBox.classList.add('hidden'));
+
+                aiTutorBtn.addEventListener('click', () => {
+                    aiChatBox.classList.toggle('hidden');
+                });
+
+                // AI Chat buttons
+                aiChatBox.querySelectorAll('button').forEach(btn => {
+                    const text = btn.textContent.trim();
+                    if (text.includes('summarize')) {
+                        btn.addEventListener('click', () => {
+                            showToast('Generating summary of Module 3...', 'info');
+                            setTimeout(() => showToast('Summary ready! Check the chat', 'success'), 2000);
+                        });
+                    }
+                    if (text.includes('question')) {
+                        btn.addEventListener('click', () => {
+                            showToast('Ask me anything about your course!', 'info');
+                        });
+                    }
+                });
+            }
+
+            // ============ Badge Tooltips ============
+            document.querySelectorAll('.group.relative').forEach(badge => {
+                badge.addEventListener('click', () => {
+                    const tooltip = badge.querySelector('[class*="opacity-0"]');
+                    if (tooltip) {
+                        const text = tooltip.textContent.trim();
+                        if (text.includes('Locked')) {
+                            showToast('Complete more courses to unlock this badge!', 'warning');
+                        } else {
+                            showToast('Badge earned: ' + text, 'success');
+                        }
+                    }
+                });
+            });
+
+            // ============ Profile Click ============
+            const profileImg = document.querySelector('.h-9.w-9.rounded-full.bg-gradient-to-tr');
+            if (profileImg) {
+                profileImg.addEventListener('click', () => {
+                    showToast('Profile settings coming soon!', 'info');
+                });
+            }
+
+            // ============ Keyboard Shortcuts ============
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closePreviewModal();
+                    closeScheduleModal();
+                    closeGoalModal();
+                    notifPanel?.classList.add('hidden');
+                }
+            });
+
+            // ============ Chart Initialization ============
+            const completed = 6;
+            const pending = 4;
+            document.getElementById('completedCount').innerText = completed;
+            document.getElementById('pendingCount').innerText = pending;
+
+            const canvas = document.getElementById('coursesChart');
+            if (canvas) {
+                new Chart(canvas.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Completed', 'Pending'],
+                        datasets: [{
+                            data: [completed, pending],
+                            backgroundColor: ['#10B981', '#E5E7EB'],
+                            hoverBackgroundColor: ['#059669', '#d1d5db'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.parsed } }
+                        }
+                    }
+                });
+            }
+
+            console.log('%cTECH-PRO AI Dashboard Loaded', 'color: #3b82f6; font-size: 14px; font-weight: bold;');
+
+            // ============ Initialize Calendar, Schedule, Goals, Skills ============
+            initDashboardFeatures();
+        });
+
+        // ============ Toast Notification System ============
+        function showToast(msg, type = 'info', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const colors = { success: 'bg-green-600', error: 'bg-red-600', info: 'bg-slate-800', warning: 'bg-orange-500' };
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const el = document.createElement('div');
+            el.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg max-w-xs flex items-center gap-2 animate-pulse`;
+            el.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icons[type] || 'info'}</span><span>${msg}</span>`;
+            container.appendChild(el);
+            setTimeout(() => el.remove(), duration);
+        }
+
+        // ============ Events/Schedule Storage ============
+        const eventsKey = 'dashboard_events';
+        const defaultEvents = [
+            { id: 1, title: 'UX Capstone Project Due', date: '2026-01-10T17:00', type: 'deadline' },
+            { id: 2, title: 'Weekly AI Quiz', date: '2026-01-12T10:00', type: 'quiz' },
+            { id: 3, title: 'Mentor Session with Sarah K.', date: '2026-01-15T14:00', type: 'meeting' }
+        ];
+
+        function getEvents() {
+            try {
+                const stored = localStorage.getItem(eventsKey);
+                if (stored) return JSON.parse(stored);
+                localStorage.setItem(eventsKey, JSON.stringify(defaultEvents));
+                return defaultEvents;
+            } catch { return defaultEvents; }
+        }
+        function saveEvents(arr) { localStorage.setItem(eventsKey, JSON.stringify(arr)); }
+
+        // ============ Goals Storage ============
+        const goalsKey = 'dashboard_goals';
+        function getGoals() {
+            try { return JSON.parse(localStorage.getItem(goalsKey) || '[]'); }
+            catch { return []; }
+        }
+
+        // ============ Skills Data for Toggle ============
+        const technicalSkills = [
+            { name: 'Python', value: 75 },
+            { name: 'Prompt Eng.', value: 45 },
+            { name: 'UI Design', value: 90 },
+            { name: 'Data Viz', value: 60 },
+            { name: 'Cloud Ops', value: 30 }
+        ];
+        const softSkills = [
+            { name: 'Leadership', value: 80 },
+            { name: 'Communication', value: 85 },
+            { name: 'Problem Solving', value: 70 },
+            { name: 'Teamwork', value: 95 },
+            { name: 'Time Mgmt', value: 55 }
+        ];
+
+        function updateSkillChart(skillsData) {
+            const container = document.getElementById('skillChartBars');
+            if (!container) return;
+            const bars = container.querySelectorAll('.flex.flex-col.items-center.gap-2.group');
+            bars.forEach((bar, idx) => {
+                if (skillsData[idx]) {
+                    const skill = skillsData[idx];
+                    // Find the inner bar div that has the height style
+                    const barWrapper = bar.querySelector('.relative.w-full');
+                    const barFill = barWrapper?.querySelector('div:first-child');
+                    const tooltip = barWrapper?.querySelector('.absolute');
+                    const label = bar.querySelector('span');
+
+                    if (barFill) {
+                        barFill.style.height = skill.value + '%';
+                    }
+                    if (tooltip) {
+                        tooltip.textContent = skill.value + '%';
+                    }
+                    if (label) {
+                        label.textContent = skill.name;
+                    }
+                }
+            });
+        }
+
+        // ============ Calendar ============
+        let calendarDate = new Date();
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const monthLabel = document.getElementById('calendarMonth');
+            if (!grid || !monthLabel) return;
+
+            const year = calendarDate.getFullYear();
+            const month = calendarDate.getMonth();
+            monthLabel.textContent = months[month] + ' ' + year;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            const events = getEvents();
+
+            let html = '';
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="h-10"></div>';
+            }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const hasEvent = events.some(e => e.date && e.date.startsWith(dateStr));
+                const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
+                let classes = 'h-10 flex items-center justify-center rounded-lg text-sm cursor-pointer transition-colors text-slate-700 dark:text-slate-200 ';
+                if (isToday) classes += 'bg-blue-600 text-white font-bold ';
+                else classes += 'hover:bg-slate-100 dark:hover:bg-slate-700 ';
+                if (hasEvent) classes += 'ring-2 ring-orange-400 ';
+                html += `<div class="${classes}" data-date="${dateStr}">${day}</div>`;
+            }
+            grid.innerHTML = html;
+
+            // Add click handlers
+            grid.querySelectorAll('[data-date]').forEach(dayEl => {
+                dayEl.addEventListener('click', function () {
+                    const dateStr = this.getAttribute('data-date');
+                    selectCalendarDay(dateStr);
+                });
+            });
+        }
+
+        function changeMonth(delta) {
+            calendarDate.setMonth(calendarDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        function selectCalendarDay(dateStr) {
+            const dayEvents = getEvents().filter(e => e.date && e.date.startsWith(dateStr));
+            if (dayEvents.length) {
+                showToast('Events: ' + dayEvents.map(e => e.title).join(', '), 'info', 4000);
+            } else {
+                // Open add event modal with this date pre-filled
+                const eventDateInput = document.getElementById('eventDate');
+                if (eventDateInput) eventDateInput.value = dateStr + 'T09:00';
+                openAddEventModal();
+            }
+        }
+
+        function openCalendarModal() {
+            renderCalendar();
+            document.getElementById('calendarModal')?.classList.remove('hidden');
+        }
+        function closeCalendarModal() {
+            document.getElementById('calendarModal')?.classList.add('hidden');
+        }
+
+        // ============ Schedule/Events Functions ============
+        function renderScheduleList() {
+            const list = document.getElementById('scheduleList');
+            if (!list) return;
+            const events = getEvents().sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if (events.length === 0) {
+                list.innerHTML = '<p class="text-slate-500 text-center py-4">No scheduled events. Add one!</p>';
+                return;
+            }
+
+            const colorMap = { deadline: 'orange', quiz: 'blue', meeting: 'purple', other: 'slate' };
+
+            list.innerHTML = events.map(e => {
+                const c = colorMap[e.type] || 'slate';
+                const d = new Date(e.date);
+                const dateStr = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                return `
+                    <div class="p-3 bg-${c}-50 dark:bg-${c}-900/20 rounded-lg border border-${c}-200 dark:border-${c}-800 flex justify-between items-center group">
+                        <div>
+                            <p class="font-medium text-${c}-700 dark:text-${c}-300">${dateStr}, ${timeStr}</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">${e.title}</p>
+                        </div>
+                        <button class="text-red-500 hover:text-red-700 p-1 opacity-0 group-hover:opacity-100 transition-opacity" data-delete-id="${e.id}">
+                            <span class="material-symbols-outlined text-[18px]">delete</span>
+                        </button>
+                    </div>`;
+            }).join('');
+
+            // Add delete handlers
+            list.querySelectorAll('[data-delete-id]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = parseInt(this.getAttribute('data-delete-id'));
+                    deleteEvent(id);
+                });
+            });
+
+            // Show saved goals
+            const goals = getGoals();
+            const goalDisplay = document.getElementById('savedGoalDisplay');
+            const goalText = document.getElementById('goalDisplayText');
+            if (goals.length && goalDisplay && goalText) {
+                goalDisplay.classList.remove('hidden');
+                goalText.textContent = goals.map(g => `${g.title} (${g.hours}h/week)`).join(', ');
+            } else if (goalDisplay) {
+                goalDisplay.classList.add('hidden');
+            }
+        }
+
+        function deleteEvent(id) {
+            const events = getEvents().filter(e => e.id !== id);
+            saveEvents(events);
+            renderScheduleList();
+            renderCalendar();
+            showToast('Event deleted', 'info');
+        }
+
+        function openAddEventModal() {
+            document.getElementById('addEventModal')?.classList.remove('hidden');
+        }
+        function closeAddEventModal() {
+            document.getElementById('addEventModal')?.classList.add('hidden');
+        }
+        function saveEvent() {
+            const title = document.getElementById('eventTitle')?.value?.trim();
+            const date = document.getElementById('eventDate')?.value;
+            const type = document.getElementById('eventType')?.value || 'other';
+            if (!title) { showToast('Enter event title', 'warning'); return; }
+            if (!date) { showToast('Select a date', 'warning'); return; }
+            const events = getEvents();
+            events.push({ id: Date.now(), title, date, type });
+            saveEvents(events);
+            closeAddEventModal();
+            renderScheduleList();
+            renderCalendar();
+            showToast('Event added!', 'success');
+            document.getElementById('eventTitle').value = '';
+        }
+
+        // ============ Goal Functions ============
+        function showExistingGoals() {
+            const goals = getGoals();
+            const container = document.getElementById('existingGoals');
+            const list = document.getElementById('goalsListDisplay');
+            if (goals.length && container && list) {
+                container.classList.remove('hidden');
+                list.innerHTML = goals.map(g => `
+                    <div class="p-2 bg-slate-50 dark:bg-slate-700 rounded flex justify-between items-center">
+                        <span class="text-sm text-slate-700 dark:text-slate-200">${g.title} - ${g.hours}h/week</span>
+                        <button class="text-red-500 hover:text-red-700" data-goal-id="${g.id}">
+                            <span class="material-symbols-outlined text-[16px]">close</span>
+                        </button>
+                    </div>`).join('');
+                list.querySelectorAll('[data-goal-id]').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        deleteGoal(this.getAttribute('data-goal-id'));
+                    });
+                });
+            } else if (container) {
+                container.classList.add('hidden');
+            }
+        }
+        function deleteGoal(id) {
+            const goals = getGoals().filter(g => g.id != id);
+            localStorage.setItem(goalsKey, JSON.stringify(goals));
+            showExistingGoals();
+            renderScheduleList();
+            showToast('Goal removed', 'info');
+        }
+
+        // ============ Modal Functions ============
+        function closeScheduleModal() { document.getElementById('scheduleModal')?.classList.add('hidden'); }
+        function closeGoalModal() { document.getElementById('goalModal')?.classList.add('hidden'); }
+
+        function openScheduleModal() {
+            renderScheduleList();
+            document.getElementById('scheduleModal')?.classList.remove('hidden');
+        }
+        function openGoalModal() {
+            showExistingGoals();
+            document.getElementById('goalModal')?.classList.remove('hidden');
+        }
+
+        function saveGoal() {
+            const title = document.getElementById('goalTitle')?.value?.trim();
+            const date = document.getElementById('goalDate')?.value;
+            const hours = document.getElementById('goalHours')?.value || 5;
+            if (!title) { showToast('Enter a goal title', 'warning'); return; }
+            const goals = getGoals();
+            goals.push({ id: Date.now(), title, date, hours });
+            localStorage.setItem(goalsKey, JSON.stringify(goals));
+            showToast('Goal saved!', 'success');
+            document.getElementById('goalTitle').value = '';
+            document.getElementById('goalDate').value = '';
+            closeGoalModal();
+        }
+
+        // ============ Initialize All Dashboard Features ============
+        function initDashboardFeatures() {
+            // View Calendar link
+            document.querySelectorAll('a').forEach(a => {
+                if (a.textContent && a.textContent.includes('View Calendar')) {
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openCalendarModal();
+                    });
+                }
+            });
+
+            // My Schedule and Set New Goal buttons
+            document.querySelectorAll('button').forEach(btn => {
+                const text = btn.textContent?.trim() || '';
+                if (text.includes('My Schedule')) {
+                    btn.addEventListener('click', openScheduleModal);
+                }
+                if (text.includes('Set New Goal')) {
+                    btn.addEventListener('click', openGoalModal);
+                }
+            });
+
+            // Skill toggle buttons
+            const skillToggleContainer = document.getElementById('skillToggleContainer');
+            if (skillToggleContainer) {
+                const btns = skillToggleContainer.querySelectorAll('button');
+                btns.forEach((btn, idx) => {
+                    btn.addEventListener('click', () => {
+                        // Update button styles
+                        btns.forEach(b => {
+                            b.classList.remove('bg-white', 'dark:bg-dark-surface', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+                            b.classList.add('text-slate-500');
+                        });
+                        btn.classList.add('bg-white', 'dark:bg-dark-surface', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+                        btn.classList.remove('text-slate-500');
+
+                        // Update chart with appropriate skills
+                        const skills = idx === 0 ? technicalSkills : softSkills;
+                        updateSkillChart(skills);
+                        showToast(idx === 0 ? 'Showing Technical Skills' : 'Showing Soft Skills', 'info');
+                    });
+                });
+            }
+
+
+
+            // Close calendar modal with escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeCalendarModal();
+                    closeAddEventModal();
+                }
+            });
+        }
+    </script>
+    <script src="js/student-profile.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const p = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            if (p.fullName) {
+                const n = document.getElementById('header-user-name');
+                if (n) n.textContent = p.fullName;
+                const w = document.getElementById('student-name');
+                if (w && w.innerText.includes('Welcome')) w.innerText = `Welcome back, ${p.firstName}! 👋`;
+            }
+            if (p.photo) {
+                const i = document.getElementById('student-photo');
+                if (i) i.src = p.photo;
+            }
+        });
+    </script>
+    <script src="js/student-profile.js"></script>
+
+    <!-- Dashboard Real-Time Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎯 Dashboard real-time functionality loaded');
+
+            // 1. CONTINUE LEARNING - Redirect to Last Page
+            const continueBtn = Array.from(document.querySelectorAll('button')).find(btn =>
+                btn.textContent.includes('Continue Learning')
+            );
+
+            if (continueBtn) {
+                continueBtn.addEventListener('click', () => {
+                    const lastPage = localStorage.getItem('lastCoursePage') || 'AIlearning.html';
+                    const lastCourse = localStorage.getItem('lastCourse') || 'AI & Machine Learning';
+
+                    console.log(`📚 Continuing to: ${lastPage}`);
+                    showDashboardToast(`Resuming ${lastCourse}...`, 'success');
+
+                    setTimeout(() => {
+                        window.location.href = lastPage;
+                    }, 500);
+                });
+            }
+
+            // 2. LOGOUT FUNCTIONALITY
+            const header = document.querySelector('header .flex.items-center.gap-4');
+            if (header && !document.getElementById('logout-btn')) {
+                const logoutBtn = document.createElement('button');
+                logoutBtn.id = 'logout-btn';
+                logoutBtn.className = 'inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm font-medium hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors';
+                logoutBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">logout</span>Logout';
+
+                logoutBtn.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to logout?')) {
+                        localStorage.removeItem('studentProfile');
+                        localStorage.removeItem('lastCoursePage');
+                        localStorage.removeItem('lastCourse');
+                        localStorage.removeItem('courseProgress');
+
+                        showDashboardToast('Logging out...', 'info');
+
+                        setTimeout(() => {
+                            window.location.href = 'A3Login.html';
+                        }, 1000);
+                    }
+                });
+
+                header.insertBefore(logoutBtn, header.lastChild);
+            }
+
+            // 3. REAL-TIME COMPLETION PERCENTAGES
+            function updateCourseProgress() {
+                const progress = JSON.parse(localStorage.getItem('courseProgress') || '{}');
+
+                const defaultProgress = {
+                    currentCourse: 'Advanced Generative AI for UX Design',
+                    completedLessons: 24,
+                    totalLessons: 38,
+                    percentage: 65
+                };
+
+                const courseData = progress.currentCourse ? progress : defaultProgress;
+
+                const progressText = document.querySelector('.text-blue-200.font-medium');
+                if (progressText) {
+                    progressText.textContent = `${courseData.percentage}% Complete`;
+                }
+
+                const lessonsText = document.querySelector('.text-blue-200:not(.font-medium)');
+                if (lessonsText && lessonsText.textContent.includes('/')) {
+                    lessonsText.textContent = `${courseData.completedLessons}/${courseData.totalLessons} Lessons`;
+                }
+
+                const progressBar = document.querySelector('.bg-blue-400');
+                if (progressBar && progressBar.classList.contains('w-[65%]')) {
+                    progressBar.style.width = `${courseData.percentage}%`;
+                }
+
+                console.log(`📊 Progress updated: ${courseData.percentage}%`);
+            }
+
+            updateCourseProgress();
+            setInterval(updateCourseProgress, 30000);
+
+            // 4. MAKE ALL CARDS CLICKABLE
+            const coursePages = {
+                'Cloud Computing': 'AiCloud.html',
+                'Networking': 'AiNet.html',
+                'AI & Machine Learning': 'AiAI.html',
+                'Cybersecurity': 'AiCybersecurity.html',
+                'Java Full Stack': 'AiJava.html',
+                'Python Full Stack': 'AiPython.html',
+                'Automation Testing': 'AiAutomation.html',
+                'Manual Testing': 'AiManual.html'
+            };
+
+            const courseCards = document.querySelectorAll('.group.bg-white.dark\\:bg-dark-card.rounded-2xl');
+
+            courseCards.forEach(card => {
+                const titleElement = card.querySelector('h4');
+                if (titleElement) {
+                    const courseTitle = titleElement.textContent.trim();
+                    const coursePage = coursePages[courseTitle];
+
+                    if (coursePage) {
+                        card.style.cursor = 'pointer';
+
+                        card.addEventListener('click', () => {
+                            localStorage.setItem('lastCoursePage', coursePage);
+                            localStorage.setItem('lastCourse', courseTitle);
+
+                            showDashboardToast(`Opening ${courseTitle}...`, 'info');
+
+                            setTimeout(() => {
+                                window.location.href = coursePage;
+                            }, 500);
+                        });
+
+                        console.log(`✅ Card linked: ${courseTitle} → ${coursePage}`);
+                    }
+                }
+            });
+
+
+
+            // 6. SET NEW GOAL BUTTON
+            const goalBtn = Array.from(document.querySelectorAll('button')).find(btn =>
+                btn.textContent.includes('Set New Goal')
+            );
+
+            if (goalBtn) {
+                goalBtn.addEventListener('click', () => {
+                    const goal = prompt('What is your learning goal?');
+                    if (goal) {
+                        localStorage.setItem('learningGoal', goal);
+                        showDashboardToast(`Goal set: ${goal}`, 'success');
+                    }
+                });
+            }
+
+            // 7. TOAST NOTIFICATION
+            function showDashboardToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                const colors = {
+                    success: 'bg-green-500',
+                    error: 'bg-red-500',
+                    info: 'bg-blue-500',
+                    warning: 'bg-yellow-500'
+                };
+
+                toast.className = `fixed bottom-4 right-4 ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-opacity duration-300`;
+                toast.textContent = message;
+
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            window.showDashboardToast = showDashboardToast;
+
+            // 8. GLOBAL FUNCTIONS FOR COURSE PAGES
+            window.trackPageVisit = function (pageName, courseName) {
+                localStorage.setItem('lastCoursePage', pageName);
+                localStorage.setItem('lastCourse', courseName);
+                localStorage.setItem('lastVisit', new Date().toISOString());
+                console.log(`📍 Tracked visit: ${courseName} (${pageName})`);
+            };
+
+            window.updateProgress = function (courseName, completed, total) {
+                const percentage = Math.round((completed / total) * 100);
+                const progress = {
+                    currentCourse: courseName,
+                    completedLessons: completed,
+                    totalLessons: total,
+                    percentage: percentage,
+                    lastUpdated: new Date().toISOString()
+                };
+
+                localStorage.setItem('courseProgress', JSON.stringify(progress));
+                console.log(`📈 Progress saved: ${percentage}%`);
+            };
+
+            console.log('✅ Dashboard initialized with real-time features');
+            console.log('📚 Last page:', localStorage.getItem('lastCoursePage') || 'None');
+            console.log('📊 Progress:', localStorage.getItem('courseProgress') || 'None');
+        });
+    </script>
+</body>
+
+</html>

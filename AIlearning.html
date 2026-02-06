@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Available AI Courses</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script
+        id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#D0BB95", "background-light": "#f7f7f6", "background-dark": "#1d1a15" }, fontFamily: { display: "Lexend" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" } } } };</script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary/30 flex flex-col">
+    <header
+        class="sticky top-0 z-40 w-full bg-white/90 dark:bg-[#1c1f27]/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <button onclick="window.location.href='A4Onboarding.html'"
+                        class="flex items-center gap-2 px-3 py-2 text-primary hover:text-primary/80 transition">
+                        ← Back
+                    </button>
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined" style="font-size: 24px;">school</span>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">TECH-PRO AI</span>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="A1Homepage.html">Home</a>
+                    <a class="text-sm font-medium text-primary relative" href="#">
+                        Courses
+                        <span class="absolute -bottom-8 left-0 w-full h-1 bg-primary rounded-t-full"></span>
+                    </a>
+                    <a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors"
+                        href="A4Onboarding.html">Dashboard</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="p-2 rounded-full text-slate-400 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+                    <button class="flex items-center gap-2 group">
+                        <div
+                            class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden border-2 border-transparent group-hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-slate-400"
+                                style="font-size: 20px;">person</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- Subscription Banner -->
+        <div
+            class="mb-10 w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-primary/10 dark:to-primary/5 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-xl border border-slate-700/50 dark:border-primary/20">
+            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-wider mb-3">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+                        All Access Pass
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Unlock Unlimited Learning</h2>
+                    <p class="text-slate-300 max-w-xl text-sm sm:text-base">Get access to all 50+ AI and development
+                        courses, including new releases and mentor support.</p>
+                </div>
+                <div
+                    class="flex flex-col items-end gap-2 bg-white/5 dark:bg-black/20 p-4 rounded-xl border border-white/10 backdrop-blur-sm min-w-[200px]">
+                    <span class="text-slate-400 text-xs font-medium uppercase tracking-wider">Starting from</span>
+                    <div class="flex items-baseline gap-1">
+                        <span id="subscription-price" class="text-3xl font-bold text-white">₹4,999</span>
+                        <span id="subscription-period" class="text-slate-400 text-sm">/year</span>
+                    </div>
+                    <button onclick="window.location.href='Online.html'"
+                        class="w-full mt-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-end mb-10">
+            <div class="max-w-xl">
+                <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Available AI Courses</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-lg">Master the future of technology with our
+                    AI-powered curriculum. Learn from active experts 24/7.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto items-center">
+                <div class="relative w-full sm:w-80 lg:w-96 group">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span
+                            class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                    </div>
+                    <input id="course-search"
+                        class="block w-full pl-10 pr-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl leading-5 bg-white dark:bg-[#1c1f27] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm"
+                        placeholder="Search for courses (e.g. Python)..." type="text" />
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Courses Grid -->
+        <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Courses will be dynamically loaded here -->
+        </div>
+    </main>
+    <footer class="bg-white dark:bg-[#1c1f27] border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-slate-400 dark:text-slate-500">© 2023 AI Academy. Empowering the future of tech.</p>
+        </div>
+    </footer>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8080/api/homepage-config';
+
+        // Course images mapping - fallback if not in config
+        const fallbackImages = {
+            'ai-tech': 'images/ai_tech_card_bg.png',
+            'ai-nontech': 'images/ai_non_tech_card_bg.png',
+            'cybersecurity': 'images/cybersecurity_hero_bg.png',
+            'networking': 'images/networking_hero_bg.png',
+            'java-full-stack': 'images/java_hero_bg.png',
+            'python-full-stack': 'images/python_hero_bg.png',
+            'cloud-computing': 'images/cloud_computing_bg.png'
+        };
+
+        function createCourseCard(course) {
+            // Use image from config or fallback
+            const image = course.image || fallbackImages[course.id] || 'images/ai_tech_card_bg.png';
+
+            return `
+            <div class="group flex flex-col bg-white dark:bg-[#1c1f27] rounded-xl shadow-sm border border-slate-200 dark:border-transparent hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-300 overflow-hidden cursor-pointer h-full">
+                <div class="relative h-40 overflow-hidden bg-slate-200 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style='background-image: url("${image}");'></div>
+                    <div class="absolute top-2 left-2">
+                        <span class="inline-flex items-center gap-1.5 rounded bg-white/90 dark:bg-black/80 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-primary shadow-sm border border-primary/20">
+                            <span class="relative flex h-1.5 w-1.5">
+                                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+                            </span>
+                            Active Path
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col flex-1 p-4">
+                    <div class="mb-2 flex justify-between items-center">
+                        <span class="text-[10px] font-bold tracking-wider text-primary uppercase bg-primary/10 px-1.5 py-0.5 rounded">Learning Path</span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1 leading-tight group-hover:text-primary transition-colors line-clamp-1">${course.name}</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 flex-1 leading-snug">${course.description}</p>
+                    <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto">
+                        <div class="flex items-center gap-2 text-[10px] font-medium text-slate-400">
+                            <span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined" style="font-size: 14px;">smart_toy</span> AI Assisted</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="hidden md:block text-xs font-bold text-slate-700 dark:text-slate-300">Explore</span>
+                            <a href="${course.link}" target="_blank">
+                                <button class="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        async function fetchAndRenderCourses() {
+            try {
+                const response = await fetch(BACKEND_URL);
+                const result = await response.json();
+
+                if (result.success) {
+                    const { courses } = result.data;
+
+                    // Filter enabled courses
+                    const enabledCourses = courses.filter(c => c.enabled);
+
+                    // Store courses for search functionality
+                    allCourses = enabledCourses;
+
+                    // Render courses
+                    const coursesGrid = document.getElementById('courses-grid');
+                    coursesGrid.innerHTML = enabledCourses.map(course => createCourseCard(course)).join('');
+
+                    console.log('✅ AI courses loaded from homepage config');
+                }
+            } catch (error) {
+                console.warn('Backend not available, using static content.');
+                console.error('Error:', error);
+            }
+        }
+
+        // Store all courses for search
+        let allCourses = [];
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('course-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    filterCourses(searchTerm);
+                });
+            }
+        }
+
+        function filterCourses(searchTerm) {
+            const coursesGrid = document.getElementById('courses-grid');
+
+            if (!searchTerm) {
+                // Show all courses
+                coursesGrid.innerHTML = allCourses.map(course => createCourseCard(course)).join('');
+                return;
+            }
+
+            // Filter courses by name, description
+            const filteredCourses = allCourses.filter(course => {
+                return course.name.toLowerCase().includes(searchTerm) ||
+                    course.description.toLowerCase().includes(searchTerm);
+            });
+
+            if (filteredCourses.length === 0) {
+                coursesGrid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <span class="material-symbols-outlined text-slate-300 dark:text-slate-700" style="font-size: 64px;">search_off</span>
+                        <p class="text-slate-500 dark:text-slate-400 mt-4 text-lg">No courses found matching "${searchTerm}"</p>
+                    </div>
+                `;
+            } else {
+                coursesGrid.innerHTML = filteredCourses.map(course => createCourseCard(course)).join('');
+            }
+        }
+
+        // Fetch courses on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndRenderCourses();
+            setupSearch();
+        });
+    </script>
+    <script>
+        // Configure video ID for this page - General learning tutorial
+        window.courseVideoId = 'airAruvnKBE'; // Educationsonal AI video
+    </script>
+    <script src="js/video-player-configurable.js"></script>
+    <script src="js/student-profile.js"></script>
+</body>
+
+</html>

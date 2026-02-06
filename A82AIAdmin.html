@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Machine Learning Assignment Admin - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left h1 {
+            color: #1a1a2e;
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-left p {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #f0f0f0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .list-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .list-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .status-msg {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .status-msg.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-msg.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .material-symbols-outlined {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        .code-editor {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>
+                    <span class="material-symbols-outlined" style="font-size: 32px; color: #667eea;">psychology</span>
+                    AI & Machine Learning Assignment Admin
+                </h1>
+                <p>Manage all content for A82AI.html assignment page</p>
+            </div>
+            <div class="header-actions">
+                <a href="A82AI.html" class="nav-link" target="_blank">
+                    <span class="material-symbols-outlined">open_in_new</span>
+                    View Assignment Page
+                </a>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">school</span>
+                    <h2>Course Information</h2>
+                </div>
+                <div class="form-group">
+                    <label>Course Title</label>
+                    <input type="text" id="courseTitle" placeholder="Enter course title">
+                </div>
+                <div class="form-group">
+                    <label>Progress (%)</label>
+                    <input type="number" id="courseProgress" min="0" max="100" placeholder="0-100">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">assignment</span>
+                    <h2>Main Assignment Details</h2>
+                </div>
+                <div class="form-group">
+                    <label>Badge Text</label>
+                    <input type="text" id="mainBadge" placeholder="e.g., ML Challenge">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Difficulty</label>
+                        <select id="mainDifficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon</label>
+                        <input type="text" id="mainIcon" placeholder="e.g., neurology">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Assignment Title</label>
+                    <input type="text" id="mainTitle" placeholder="Enter assignment title">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="mainDescription" placeholder="Enter assignment description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="text" id="mainDueDate" placeholder="e.g., Oct 25, 11:59 PM">
+                    </div>
+                    <div class="form-group">
+                        <label>Security Feature</label>
+                        <input type="text" id="mainSecurity" placeholder="e.g., AI Plagiarism Check Enabled">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">code</span>
+                    <h2>Code Editor Settings</h2>
+                </div>
+                <div class="form-group">
+                    <label>Filename</label>
+                    <input type="text" id="codeFilename" placeholder="e.g., neural_network.py">
+                </div>
+                <div class="form-group">
+                    <label>Code Content</label>
+                    <textarea id="codeContent" class="code-editor" placeholder="Enter code content here..."></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">list</span>
+                    <h2>Sidebar Assignments List</h2>
+                </div>
+                <div id="assignmentsList"></div>
+                <button class="btn-secondary" onclick="addAssignment()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Assignment
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">history</span>
+                    <h2>Submission History</h2>
+                </div>
+                <div id="submissionHistory"></div>
+                <button class="btn-secondary" onclick="addSubmission()" style="width: 100%; margin-top: 1rem;">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Submission
+                </button>
+            </div>
+
+            <!-- Practice Questions Management -->
+            <div class="card" style="grid-column: 1 / -1; margin-top: 1rem;">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">quiz</span>
+                    <h2>Practice Questions & Challenges</h2>
+                </div>
+                <!-- Tabs -->
+                <div
+                    style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; flex-wrap: wrap;">
+                    <button id="easyTab" onclick="switchPracticeTab('easy')" class="btn-secondary"
+                        style="background: #667eea; color: white;">Easy</button>
+                    <button id="mediumTab" onclick="switchPracticeTab('medium')" class="btn-secondary">Medium</button>
+                    <button id="hardTab" onclick="switchPracticeTab('hard')" class="btn-secondary">Hard</button>
+                    <button id="codeTab" onclick="switchPracticeTab('code')" class="btn-secondary">Code
+                        Challenges</button>
+                </div>
+
+                <!-- Easy Questions Section -->
+                <div id="easyQuestionsSection">
+                    <div id="easyQuestionsList"></div>
+                    <button class="btn-secondary" onclick="addPracticeQuestion('easy')"
+                        style="width: 100%; margin-top: 1rem;">
+                        <span class="material-symbols-outlined">add</span> Add Easy Question
+                    </button>
+                </div>
+
+                <!-- Medium Questions Section -->
+                <div id="mediumQuestionsSection" style="display: none;">
+                    <div id="mediumQuestionsList"></div>
+                    <button class="btn-secondary" onclick="addPracticeQuestion('medium')"
+                        style="width: 100%; margin-top: 1rem;">
+                        <span class="material-symbols-outlined">add</span> Add Medium Question
+                    </button>
+                </div>
+
+                <!-- Hard Questions Section -->
+                <div id="hardQuestionsSection" style="display: none;">
+                    <div id="hardQuestionsList"></div>
+                    <button class="btn-secondary" onclick="addPracticeQuestion('hard')"
+                        style="width: 100%; margin-top: 1rem;">
+                        <span class="material-symbols-outlined">add</span> Add Hard Question
+                    </button>
+                </div>
+
+                <!-- Code Challenges Section -->
+                <div id="codeChallengesSection" style="display: none;">
+                    <div id="codeChallengesList"></div>
+                    <button class="btn-secondary" onclick="addCodeChallenge()" style="width: 100%; margin-top: 1rem;">
+                        <span class="material-symbols-outlined">add</span> Add Code Challenge
+                    </button>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <span class="material-symbols-outlined" style="color: #667eea;">psychology</span>
+                    <h2>AI Feedback Section</h2>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Section Title</label>
+                        <input type="text" id="aiFeedbackTitle" placeholder="e.g., AI Model Review">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle</label>
+                        <input type="text" id="aiFeedbackSubtitle" placeholder="e.g., Based on your latest attempt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="aiFeedbackButton" placeholder="e.g., Ask AI for ML tips">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Title</label>
+                    <input type="text" id="aiRecommendationTitle" placeholder="e.g., Implementation Hint">
+                </div>
+                <div class="form-group">
+                    <label>Recommendation Message</label>
+                    <textarea id="aiRecommendationMessage" placeholder="Enter recommendation message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Code Snippet</label>
+                    <textarea id="aiCodeSnippet" class="code-editor" placeholder="Enter code snippet"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+            <button class="btn-primary" onclick="saveAllChanges()">
+                <span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'ai';
+        let assignmentsListData = [];
+        let submissionHistoryData = [];
+        let critiquesData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+                if (result.success) {
+                    const data = result.data;
+                    document.getElementById('courseTitle').value = data.courseInfo.title || '';
+                    document.getElementById('courseProgress').value = data.courseInfo.progress || 0;
+                    document.getElementById('mainBadge').value = data.mainAssignment.badge || '';
+                    document.getElementById('mainDifficulty').value = data.mainAssignment.difficulty || 'Medium';
+                    document.getElementById('mainIcon').value = data.mainAssignment.icon || '';
+                    document.getElementById('mainTitle').value = data.mainAssignment.title || '';
+                    document.getElementById('mainDescription').value = data.mainAssignment.description || '';
+                    document.getElementById('mainDueDate').value = data.mainAssignment.dueDate || '';
+                    document.getElementById('mainSecurity').value = data.mainAssignment.securityFeature || '';
+                    document.getElementById('codeFilename').value = data.codeEditor.filename || '';
+                    document.getElementById('codeContent').value = data.codeEditor.code?.replace(/\\n/g, '\n') || '';
+                    document.getElementById('aiFeedbackTitle').value = data.aiFeedback.title || '';
+                    document.getElementById('aiFeedbackSubtitle').value = data.aiFeedback.subtitle || '';
+                    document.getElementById('aiFeedbackButton').value = data.aiFeedback.buttonText || '';
+                    document.getElementById('aiRecommendationTitle').value = data.aiFeedback.recommendation?.title || '';
+                    document.getElementById('aiRecommendationMessage').value = data.aiFeedback.recommendation?.message || '';
+                    document.getElementById('aiCodeSnippet').value = data.aiFeedback.recommendation?.codeSnippet?.replace(/\\n/g, '\n') || '';
+                    assignmentsListData = data.assignmentsList || [];
+                    submissionHistoryData = data.submissionHistory || [];
+                    critiquesData = data.aiFeedback.critiques || [];
+
+                    // Load Practice Questions
+                    const practice = data.practiceQuestions || { easy: [], medium: [], hard: [] };
+                    practiceQuestionsData = {
+                        easy: practice.easy || [],
+                        medium: practice.medium || [],
+                        hard: practice.hard || []
+                    };
+                    codeChallengesData = data.codeChallenges || [];
+
+                    renderAssignmentsList();
+                    renderSubmissionHistory();
+                    renderPracticeQuestions('easy');
+                    renderPracticeQuestions('medium');
+                    renderPracticeQuestions('hard');
+                    renderCodeChallenges();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showStatus('Unable to connect to backend. Make sure the server is running.', 'error');
+            }
+        }
+
+        function renderAssignmentsList() {
+            const container = document.getElementById('assignmentsList');
+            container.innerHTML = assignmentsListData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>${item.title}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editAssignment(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteAssignment(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Icon: ${item.icon} | Note: ${item.note}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSubmissionHistory() {
+            const container = document.getElementById('submissionHistory');
+            container.innerHTML = submissionHistoryData.map((item, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>Attempt #${item.attempt}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editSubmission(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteSubmission(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Status: ${item.status} | Message: ${item.message} | Time: ${item.time}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAssignment() {
+            const title = prompt('Assignment Title:');
+            if (!title) return;
+            const status = prompt('Status (completed/in-progress/pending/needs-revision):') || 'pending';
+            const icon = prompt('Icon name:') || 'assignment';
+            const note = prompt('Note:') || '';
+            assignmentsListData.push({ title, status, icon, note });
+            renderAssignmentsList();
+        }
+
+        function editAssignment(index) {
+            const item = assignmentsListData[index];
+            item.title = prompt('Assignment Title:', item.title) || item.title;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            item.note = prompt('Note:', item.note) || item.note;
+            renderAssignmentsList();
+        }
+
+        function deleteAssignment(index) {
+            if (confirm('Delete this assignment?')) {
+                assignmentsListData.splice(index, 1);
+                renderAssignmentsList();
+            }
+        }
+
+        function addSubmission() {
+            const attempt = parseInt(prompt('Attempt Number:')) || 1;
+            const status = prompt('Status (failed/error/success):') || 'failed';
+            const message = prompt('Message:') || '';
+            const time = prompt('Time:') || new Date().toLocaleTimeString();
+            const icon = prompt('Icon:') || 'error';
+            submissionHistoryData.push({ attempt, status, message, time, icon });
+            renderSubmissionHistory();
+        }
+
+        function editSubmission(index) {
+            const item = submissionHistoryData[index];
+            item.attempt = parseInt(prompt('Attempt Number:', item.attempt)) || item.attempt;
+            item.status = prompt('Status:', item.status) || item.status;
+            item.message = prompt('Message:', item.message) || item.message;
+            item.time = prompt('Time:', item.time) || item.time;
+            item.icon = prompt('Icon:', item.icon) || item.icon;
+            renderSubmissionHistory();
+        }
+
+        function deleteSubmission(index) {
+            if (confirm('Delete this submission?')) {
+                submissionHistoryData.splice(index, 1);
+                renderSubmissionHistory();
+            }
+        }
+
+        async function saveAllChanges() {
+            const data = {
+                id: ASSIGNMENT_ID,
+                pageTitle: 'Assignments & Practice - AI & Machine Learning',
+                courseInfo: {
+                    title: document.getElementById('courseTitle').value,
+                    progress: parseInt(document.getElementById('courseProgress').value) || 0
+                },
+                assignmentsList: assignmentsListData,
+                mainAssignment: {
+                    badge: document.getElementById('mainBadge').value,
+                    difficulty: document.getElementById('mainDifficulty').value,
+                    title: document.getElementById('mainTitle').value,
+                    description: document.getElementById('mainDescription').value,
+                    dueDate: document.getElementById('mainDueDate').value,
+                    securityFeature: document.getElementById('mainSecurity').value,
+                    icon: document.getElementById('mainIcon').value
+                },
+                codeEditor: {
+                    filename: document.getElementById('codeFilename').value,
+                    code: document.getElementById('codeContent').value.replace(/\n/g, '\\n')
+                },
+                submissionHistory: submissionHistoryData,
+                aiFeedback: {
+                    title: document.getElementById('aiFeedbackTitle').value,
+                    subtitle: document.getElementById('aiFeedbackSubtitle').value,
+                    critiques: critiquesData,
+                    recommendation: {
+                        title: document.getElementById('aiRecommendationTitle').value,
+                        message: document.getElementById('aiRecommendationMessage').value,
+                        codeSnippet: document.getElementById('aiCodeSnippet').value.replace(/\n/g, '\\n')
+                    },
+                    buttonText: document.getElementById('aiFeedbackButton').value
+                },
+                practiceQuestions: {
+                    easy: practiceQuestionsData.easy,
+                    medium: practiceQuestionsData.medium,
+                    hard: practiceQuestionsData.hard
+                },
+                codeChallenges: codeChallengesData
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showStatus('✓ All changes saved successfully!', 'success');
+                } else {
+                    showStatus('✗ Failed to save changes: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                showStatus('✗ Network error. Make sure the backend server is running.', 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.innerHTML = `<div class="status-msg ${type}">${message}</div>`;
+            setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+        }
+
+        // ========================
+        // PRACTICE MODE MANAGEMENT
+        // ========================
+        let practiceQuestionsData = { easy: [], medium: [], hard: [] };
+        let codeChallengesData = [];
+        let currentPracticeTab = 'easy';
+
+        function switchPracticeTab(tab) {
+            currentPracticeTab = tab;
+            ['easy', 'medium', 'hard', 'code'].forEach(t => {
+                const section = document.getElementById(t + (t === 'code' ? 'ChallengesSection' : 'QuestionsSection'));
+                const tabBtn = document.getElementById(t + 'Tab');
+                if (section) section.style.display = t === tab ? 'block' : 'none';
+                if (tabBtn) {
+                    tabBtn.style.background = t === tab ? '#667eea' : '#f0f0f0';
+                    tabBtn.style.color = t === tab ? 'white' : '#333';
+                }
+            });
+        }
+
+        function renderPracticeQuestions(difficulty) {
+            const container = document.getElementById(difficulty + 'QuestionsList');
+            if (!container) return;
+
+            container.innerHTML = practiceQuestionsData[difficulty].map((q, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>Q${index + 1}: ${q.question.substring(0, 50)}...</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editPracticeQuestion('${difficulty}', ${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deletePracticeQuestion('${difficulty}', ${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        Correct: ${q.correctAnswer} | ${q.options.length} options
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deletePracticeQuestion(difficulty, index) {
+            if (confirm('Delete this question?')) {
+                practiceQuestionsData[difficulty].splice(index, 1);
+                renderPracticeQuestions(difficulty);
+            }
+        }
+
+        function addCodeChallenge() {
+            const title = prompt('Challenge title:');
+            if (!title) return;
+            const description = prompt('Description:') || '';
+            const pythonTemplate = prompt('Python template code:') || '';
+            const jsTemplate = prompt('JavaScript template code:') || '';
+            const javaTemplate = prompt('Java template code:') || '';
+
+            const newChallenge = {
+                id: Date.now(),
+                title,
+                description,
+                languages: {
+                    python: { template: pythonTemplate },
+                    javascript: { template: jsTemplate },
+                    java: { template: javaTemplate }
+                }
+            };
+
+            codeChallengesData.push(newChallenge);
+            renderCodeChallenges();
+        }
+
+        function renderCodeChallenges() {
+            const container = document.getElementById('codeChallengesList');
+            if (!container) return;
+
+            container.innerHTML = codeChallengesData.map((c, index) => `
+                <div class="list-item">
+                    <div class="list-item-header">
+                        <strong>${c.title}</strong>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="editCodeChallenge(${index})">Edit</button>
+                            <button class="btn-secondary btn-danger" onclick="deleteCodeChallenge(${index})">Delete</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666;">
+                        ${c.description.substring(0, 60)}... | ${Object.keys(c.languages).length} languages
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function editCodeChallenge(index) {
+            const c = codeChallengesData[index];
+            c.title = prompt('Challenge title:', c.title) || c.title;
+            c.description = prompt('Description:', c.description) || c.description;
+            c.languages.python.template = prompt('Python template:', c.languages.python.template) || c.languages.python.template;
+            c.languages.javascript.template = prompt('JavaScript template:', c.languages.javascript.template) || c.languages.javascript.template;
+            c.languages.java.template = prompt('Java template:', c.languages.java.template) || c.languages.java.template;
+            renderCodeChallenges();
+        }
+
+        function deleteCodeChallenge(index) {
+            if (confirm('Delete this code challenge?')) {
+                codeChallengesData.splice(index, 1);
+                renderCodeChallenges();
+            }
+        }
+
+        // Modal Management Variables
+        let currentModalMode = 'add'; // 'add' or 'edit'
+        let currentModalDifficulty = '';
+        let currentModalIndex = -1;
+
+        function openQuestionModal(mode, difficulty, index = -1) {
+            currentModalMode = mode;
+            currentModalDifficulty = difficulty;
+            currentModalIndex = index;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const questionInput = document.getElementById('modalQuestion');
+            const optA = document.getElementById('modalOptionA');
+            const optB = document.getElementById('modalOptionB');
+            const optC = document.getElementById('modalOptionC');
+            const optD = document.getElementById('modalOptionD');
+            const correctSelect = document.getElementById('modalCorrectAnswer');
+            const explanationInput = document.getElementById('modalExplanation');
+
+            modalTitle.textContent = mode === 'add' ? 'Add New Question' : 'Edit Question';
+
+            if (mode === 'edit' && index >= 0) {
+                const q = practiceQuestionsData[difficulty][index];
+                questionInput.value = q.question;
+                // Parse options assuming format "A) Text"
+                optA.value = q.options[0].replace(/^[A-Z]\)\s*/, '');
+                optB.value = q.options[1].replace(/^[A-Z]\)\s*/, '');
+                optC.value = q.options[2].replace(/^[A-Z]\)\s*/, '');
+                optD.value = q.options[3].replace(/^[A-Z]\)\s*/, '');
+                correctSelect.value = q.correctAnswer;
+                explanationInput.value = q.explanation;
+            } else {
+                // Clear form for add mode
+                questionInput.value = '';
+                optA.value = '';
+                optB.value = '';
+                optC.value = '';
+                optD.value = '';
+                correctSelect.value = 'A';
+                explanationInput.value = '';
+            }
+
+            document.getElementById('questionModal').style.display = 'flex';
+        }
+
+        function closeQuestionModal() {
+            document.getElementById('questionModal').style.display = 'none';
+        }
+
+        function saveQuestionFromModal() {
+            const question = document.getElementById('modalQuestion').value.trim();
+            const valA = document.getElementById('modalOptionA').value.trim();
+            const valB = document.getElementById('modalOptionB').value.trim();
+            const valC = document.getElementById('modalOptionC').value.trim();
+            const valD = document.getElementById('modalOptionD').value.trim();
+            const correctAnswer = document.getElementById('modalCorrectAnswer').value;
+            const explanation = document.getElementById('modalExplanation').value.trim();
+
+            if (!question || !valA || !valB || !valC || !valD) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const questionObj = {
+                id: currentModalMode === 'edit' ? practiceQuestionsData[currentModalDifficulty][currentModalIndex].id : Date.now(),
+                question: question,
+                options: [
+                    `A) ${valA}`,
+                    `B) ${valB}`,
+                    `C) ${valC}`,
+                    `D) ${valD}`
+                ],
+                correctAnswer: correctAnswer,
+                explanation: explanation
+            };
+
+            if (currentModalMode === 'add') {
+                practiceQuestionsData[currentModalDifficulty].push(questionObj);
+            } else {
+                practiceQuestionsData[currentModalDifficulty][currentModalIndex] = questionObj;
+            }
+
+            renderPracticeQuestions(currentModalDifficulty);
+            closeQuestionModal();
+            showStatus(`${currentModalMode === 'add' ? 'Added' : 'Updated'} question successfully. Remember to Save All Changes!`, 'success');
+        }
+
+        function addPracticeQuestion(difficulty) {
+            openQuestionModal('add', difficulty);
+        }
+
+        function editPracticeQuestion(difficulty, index) {
+            openQuestionModal('edit', difficulty, index);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+    <div id="questionModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card"
+            style="width: 600px; max-width: 90%; max-height: 90vh; overflow-y: auto; background: white; padding: 2rem; border-radius: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 id="modalTitle" style="margin: 0; font-size: 1.5rem; color: #1e293b;">Edit Question</h2>
+                <button onclick="closeQuestionModal()"
+                    style="background: none; border: none; cursor: pointer; font-size: 1.5rem;">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea id="modalQuestion" rows="3"
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; resize: vertical;"></textarea>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Option A</label>
+                    <input type="text" id="modalOptionA"
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Option B</label>
+                    <input type="text" id="modalOptionB"
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Option C</label>
+                    <input type="text" id="modalOptionC"
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Option D</label>
+                    <input type="text" id="modalOptionD"
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 1rem;">
+                <label>Correct Answer</label>
+                <select id="modalCorrectAnswer"
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <option value="A">Option A</option>
+                    <option value="B">Option B</option>
+                    <option value="C">Option C</option>
+                    <option value="D">Option D</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 1rem;">
+                <label>Explanation (Optional)</label>
+                <textarea id="modalExplanation" rows="2"
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; resize: vertical;"
+                    placeholder="Explain why this answer is correct..."></textarea>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+                <button class="btn-secondary" onclick="closeQuestionModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveQuestionFromModal()">Save Question</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/access-control.js"></script>
+</body>
+
+</html>

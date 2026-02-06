@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Assignments &amp; Practice - Python Full Stack</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // blue-500
+                        "primary-hover": "#2563eb", // blue-600
+                        "dark-bg": "#0f172a", // slate-900
+                        "dark-card": "#1e293b", // slate-800
+                        "dark-surface": "#334155", // slate-700
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary h-screen overflow-hidden flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-purple-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-pink-400/20 dark:bg-rose-600/10 rounded-full blur-[80px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex-none">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="#">
+                        <div
+                            class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/30 transition-all">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                        </div>
+                        <h2
+                            class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors hidden md:block">
+                            TECH-PRO AI</h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a href="A4Onboarding.html" target="_blank"
+                            class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Onboarding</a>
+                        <a href="A7Tutor.html"
+                            class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                            href="#">Assignments</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Mentors</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="#">Community</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg"></span>
+                    </button>
+                    <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                        <span id="header-user-name"
+                            class="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200"></span>
+                        <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px]">
+                            <div
+                                class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                                <img id="student-photo" alt="Profile" class="h-full w-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKjiG51nV0IWcjp4yJNQYAGAIUbnd_bl0AmNi5nm4mn28qqvGLgZfI76YJ2i-N44buIN4c-s6cIjXvY6kG_MDEzL0r8mgBn0FBFcv7giTOS8a6cJB-DT1PtUdQaMjDIz2jqkmnkYHZ6gmtL3IrzJyexsAH1tC0HUUaCZzUjOWUf9oegXXV06z0PosdY_YHmsfp0rk_dPFIIDMae-xuhizCVgq7E6XEC785jLr3IokAA_JSdPf00-LfKnTibyAiGZLjaSIMHUYZ44" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="flex-1 w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 relative z-10 flex gap-6 overflow-hidden">
+        <aside class="w-72 hidden lg:flex flex-col gap-6 h-full">
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden p-5">
+                <label
+                    class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500 mb-2"
+                    for="course-filter">
+                    <span>Current Course</span>
+                    <span class="material-symbols-outlined text-sm">filter_list</span>
+                </label>
+                <div class="relative group">
+                    <select
+                        class="w-full appearance-none bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white font-bold text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block p-2.5 pr-10 transition-colors cursor-pointer shadow-sm"
+                        id="course-filter">
+                        <option selected="">Python Full Stack Masterclass</option>
+                        <option>Java Full Stack</option>
+                        <option>Cloud Computing</option>
+                        <option>AI &amp; Machine Learning</option>
+                        <option>Automation Testing</option>
+                        <option>Manual Testing</option>
+                        <option>Cybersecurity</option>
+                        <option>Networking</option>
+                    </select>
+                    <div
+                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500 group-hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">expand_more</span>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-600 rounded-full w-[45%]"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500">45%</span>
+                </div>
+            </div>
+            <div
+                class="flex-1 bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-900 dark:text-white">Practice Progress</h3>
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-slate-600 dark:text-slate-400">Questions Solved</span>
+                        <span class="text-sm font-bold text-slate-900 dark:text-white" id="progress-text">0/0</span>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%" id="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <section class="flex-1 flex flex-col gap-6 overflow-hidden">
+            <!-- Practice Mode Header & Toggle -->
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Practice Arena</h1>
+                    <p class="text-slate-600 dark:text-slate-400">Master Python Full Stack concepts through practice</p>
+                </div>
+                <div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+                    <button onclick="switchPracticeMode('questions')" id="btn-mode-questions"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-all bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400">
+                        Practice Questions
+                    </button>
+                    <button onclick="switchPracticeMode('code')" id="btn-mode-code"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">
+                        Code Practice
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUESTIONS MODE -->
+            <div id="mode-questions" class="flex-1 flex flex-col h-full overflow-hidden">
+                <!-- Difficulty Filter -->
+                <div class="mb-6 flex gap-2">
+                    <select id="difficultyFilter" onchange="filterQuestionsByDifficulty()"
+                        class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                        <option value="all">All Difficulties</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <!-- Question Card -->
+                <div
+                    class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 relative flex-1 flex flex-col overflow-hidden">
+                    <div id="question-content" class="flex-1 overflow-y-auto custom-scrollbar">
+                        <div class="flex justify-between items-start mb-4">
+                            <span id="q-difficulty"
+                                class="px-2 py-1 rounded text-xs font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Easy</span>
+                            <span class="text-sm text-slate-500" id="q-tracker">Question 1 of 10</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6" id="q-text">
+                            Loading question...
+                        </h3>
+                        <div class="space-y-3" id="q-options">
+                            <!-- Options injected here -->
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="q-feedback" class="mt-6 p-4 rounded-xl hidden">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-xl" id="fb-icon">check_circle</span>
+                                <div>
+                                    <h4 class="font-bold mb-1" id="fb-title">Correct!</h4>
+                                    <p class="text-sm" id="fb-message">Great job.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 flex justify-between">
+                        <button onclick="previousPracticeQuestion()" id="btn-prev" disabled
+                            class="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50">
+                            Previous
+                        </button>
+                        <button onclick="checkAnswer()" id="btn-check"
+                            class="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium">
+                            Check Answer
+                        </button>
+                        <button onclick="nextPracticeQuestion()" id="btn-next"
+                            class="hidden px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium">
+                            Next Question
+                        </button>
+                    </div>
+
+                    <!-- Results Overlay -->
+                    <div id="results-overlay"
+                        class="absolute inset-0 bg-white/95 dark:bg-dark-card/95 z-10 flex-col items-center justify-center hidden">
+                        <div class="text-center p-8 max-w-md">
+                            <div
+                                class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-blue-600 dark:text-blue-400">emoji_events</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Practice Complete!</h2>
+                            <p class="text-slate-600 dark:text-slate-400 mb-6">You've completed this practice session.
+                            </p>
+
+                            <div class="flex justify-center gap-8 mb-8">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white" id="final-score">0
+                                    </div>
+                                    <div class="text-xs text-slate-500 uppercase tracking-wide">Score</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-slate-900 dark:text-white" id="final-accuracy">
+                                        0%</div>
+                                    <div class="text-xs text-slate-500 uppercase tracking-wide">Accuracy</div>
+                                </div>
+                            </div>
+
+                            <button onclick="resetPractice()"
+                                class="px-6 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors w-full">
+                                Practice Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CODE PRACTICE MODE -->
+            <div id="mode-code" class="hidden flex-1 flex flex-col h-full overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <!-- Challenge List & Description -->
+                    <div class="flex flex-col gap-4 h-full overflow-hidden">
+                        <div
+                            class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-4 flex-1 overflow-y-auto">
+                            <h3 class="font-bold text-lg mb-4 text-slate-900 dark:text-white">Challenges</h3>
+                            <div class="space-y-2" id="challenges-list">
+                                <!-- Challenges injected here -->
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 max-h-[40%] overflow-y-auto">
+                            <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white" id="challenge-title">
+                                Select a Challenge</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400" id="challenge-desc">Choose a coding
+                                challenge from the list to begin.</p>
+                        </div>
+                    </div>
+
+                    <!-- Code Editor -->
+                    <div class="lg:col-span-2 flex flex-col h-full gap-4 overflow-hidden">
+                        <div
+                            class="bg-[#1e1e1e] rounded-2xl border border-slate-700 shadow-lg flex flex-col flex-1 overflow-hidden">
+                            <div
+                                class="flex items-center justify-between px-4 py-2 border-b border-slate-700 bg-[#252526]">
+                                <span class="text-sm font-mono text-slate-300">main.py</span>
+                                <div class="flex gap-2">
+                                    <button class="text-xs bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                                        onclick="runCode()">Run Code</button>
+                                </div>
+                            </div>
+                            <textarea id="code-editor"
+                                class="flex-1 bg-[#1e1e1e] text-slate-300 font-mono p-4 text-sm focus:outline-none resize-none"
+                                spellcheck="false"># Select a challenge to load code...</textarea>
+                        </div>
+
+                        <!-- Output Console -->
+                        <div class="h-32 bg-black rounded-2xl border border-slate-800 p-4 font-mono text-xs text-green-400 overflow-y-auto"
+                            id="console-output">
+                            > Ready...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/student-profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const p = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+            if (p.fullName) {
+                const n = document.getElementById('header-user-name');
+                if (n) n.textContent = p.fullName;
+                const w = document.getElementById('student-name');
+                if (w && w.innerText.includes('Welcome')) w.innerText = `Welcome back, ${p.firstName}! 👋`;
+            }
+            if (p.photo) {
+                const i = document.getElementById('student-photo');
+                if (i) i.src = p.photo;
+            }
+        });
+    </script>
+    <script src="js/access-control.js"></script>
+    <script src="js/student-profile.js"></script>
+    <script src="js/student-profile.js"></script>
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const ASSIGNMENT_ID = 'assignment';
+
+        let currentMode = 'questions'; // questions | code
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedDifficulty = 'all';
+        let filteredQuestions = [];
+        let practiceQuestions = {};
+        let codeChallenges = [];
+
+        // Fallback data
+        let samplePracticeQuestions = {
+            easy: [
+                { question: "What is a correct syntax to output 'Hello World' in Python?", options: ["print('Hello World')", "p('Hello World')", "echo 'Hello World'", "Console.WriteLine('Hello World')"], correctAnswer: "A", explanation: "In Python, `print()` is the function to output text." },
+                { question: "Which one is NOT a legal variable name?", options: ["_myvar", "my_var", "my-var", "myVar"], correctAnswer: "C", explanation: "Hyphens are not allowed in Python variable names." }
+            ],
+            medium: [
+                { question: "What is the correct file extension for Python files?", options: [".pyt", ".pt", ".py", ".pyth"], correctAnswer: "C", explanation: ".py is the standard extension." }
+            ],
+            hard: [
+                { question: "Which method is used to remove whitespace from both ends?", options: ["strip()", "trim()", "len()", "ptrim()"], correctAnswer: "A", explanation: "strip() removes leading and trailing whitespaces." }
+            ]
+        };
+
+        let currentChallengeIndex = -1;
+
+        async function loadAssignmentData() {
+            try {
+                const response = await fetch(`${API_BASE}/${ASSIGNMENT_ID}`);
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const data = result.data;
+                    // Merge practice questions
+                    if (data.practiceQuestions) {
+                        practiceQuestions = data.practiceQuestions;
+                        // Ensure keys
+                        if (!practiceQuestions.easy) practiceQuestions.easy = [];
+                        if (!practiceQuestions.medium) practiceQuestions.medium = [];
+                        if (!practiceQuestions.hard) practiceQuestions.hard = [];
+                    } else {
+                        practiceQuestions = samplePracticeQuestions;
+                    }
+
+                    codeChallenges = data.codeChallenges || [];
+                } else {
+                    practiceQuestions = samplePracticeQuestions;
+                }
+            } catch (error) {
+                console.error('Error loading config:', error);
+                practiceQuestions = samplePracticeQuestions;
+            }
+
+            // Initialize
+            filterQuestionsByDifficulty();
+            loadCodeChallengesList();
+        }
+
+        // --- Practice Questions Logic ---
+
+        function switchPracticeMode(mode) {
+            currentMode = mode;
+            const btnQ = document.getElementById('btn-mode-questions');
+            const btnC = document.getElementById('btn-mode-code');
+            const viewQ = document.getElementById('mode-questions');
+            const viewC = document.getElementById('mode-code');
+
+            if (mode === 'questions') {
+                btnQ.classList.replace('text-slate-600', 'bg-white');
+                btnQ.classList.replace('bg-transparent', 'shadow-sm');
+                btnQ.classList.add('text-blue-600');
+
+                btnC.classList.remove('bg-white', 'shadow-sm', 'text-blue-600');
+                btnC.classList.add('text-slate-600');
+
+                viewQ.classList.remove('hidden');
+                viewC.classList.add('hidden');
+            } else {
+                btnC.classList.replace('text-slate-600', 'bg-white');
+                btnC.classList.replace('bg-transparent', 'shadow-sm');
+                btnC.classList.add('text-blue-600');
+
+                btnQ.classList.remove('bg-white', 'shadow-sm', 'text-blue-600');
+                btnQ.classList.add('text-slate-600');
+
+                viewC.classList.remove('hidden');
+                viewQ.classList.add('hidden');
+            }
+        }
+
+        function filterQuestionsByDifficulty() {
+            selectedDifficulty = document.getElementById('difficultyFilter').value;
+            filteredQuestions = [];
+
+            if (selectedDifficulty === 'all') {
+                filteredQuestions = [
+                    ...practiceQuestions.easy.map(q => ({ ...q, difficulty: 'Easy' })),
+                    ...practiceQuestions.medium.map(q => ({ ...q, difficulty: 'Medium' })),
+                    ...practiceQuestions.hard.map(q => ({ ...q, difficulty: 'Hard' }))
+                ];
+            } else {
+                filteredQuestions = practiceQuestions[selectedDifficulty].map(q => ({
+                    ...q,
+                    difficulty: selectedDifficulty.charAt(0).toUpperCase() + selectedDifficulty.slice(1)
+                }));
+            }
+
+            // Shuffle
+            filteredQuestions.sort(() => Math.random() - 0.5);
+
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('results-overlay').classList.add('hidden');
+            loadPracticeQuestions();
+            updateScoreDisplay();
+        }
+
+        function loadPracticeQuestions() {
+            if (filteredQuestions.length === 0) {
+                document.getElementById('question-content').innerHTML = '<div class="p-8 text-center text-slate-500">No questions available for this difficulty.</div>';
+                return;
+            }
+
+            const q = filteredQuestions[currentQuestionIndex];
+            document.getElementById('q-difficulty').textContent = q.difficulty;
+            document.getElementById('q-difficulty').className = `px-2 py-1 rounded text-xs font-bold uppercase ${q.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
+                    q.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
+                        'bg-red-100 text-red-700'
+                }`;
+
+            document.getElementById('q-tracker').textContent = `Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
+            document.getElementById('q-text').textContent = q.question;
+
+            const optionsHtml = q.options.map((opt, idx) => {
+                const letter = String.fromCharCode(65 + idx); // A, B, C, D
+                return `
+            <div onclick="selectPracticeOption(this, '${letter}')" class="practice-option group flex items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 cursor-pointer transition-all bg-slate-50 dark:bg-slate-800/50">
+                <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 flex items-center justify-center font-bold text-slate-500 group-hover:text-blue-500 group-hover:border-blue-500 transition-colors">
+                    ${letter}
+                </div>
+                <div class="flex-1 text-slate-700 dark:text-slate-300 font-medium">${opt}</div>
+            </div>`;
+            }).join('');
+
+            document.getElementById('q-options').innerHTML = optionsHtml;
+            document.getElementById('q-feedback').classList.add('hidden');
+            document.getElementById('btn-next').classList.add('hidden');
+            document.getElementById('btn-check').classList.remove('hidden');
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+        }
+
+        let selectedAnswer = null;
+
+        function selectPracticeOption(el, val) {
+            if (document.getElementById('q-feedback').classList.contains('hidden') === false) return; // Already answered
+
+            document.querySelectorAll('.practice-option').forEach(d => {
+                d.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+                d.querySelector('div:first-child').classList.remove('bg-blue-500', 'text-white', 'border-blue-500');
+            });
+
+            el.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-blue-900/20');
+            el.querySelector('div:first-child').classList.add('bg-blue-500', 'text-white', 'border-blue-500');
+            selectedAnswer = val;
+        }
+
+        function checkAnswer() {
+            if (!selectedAnswer) return;
+
+            const q = filteredQuestions[currentQuestionIndex];
+            const isCorrect = selectedAnswer === q.correctAnswer;
+            const feedbackEl = document.getElementById('q-feedback');
+
+            feedbackEl.classList.remove('hidden', 'bg-green-50', 'bg-red-50', 'text-green-800', 'text-red-800');
+            document.getElementById('fb-icon').textContent = isCorrect ? 'check_circle' : 'cancel';
+            document.getElementById('fb-title').textContent = isCorrect ? 'Correct!' : 'Incorrect';
+            document.getElementById('fb-message').textContent = isCorrect ? 'Great job! ' + q.explanation : `The correct answer was ${q.correctAnswer}. ${q.explanation}`;
+
+            if (isCorrect) {
+                score++;
+                feedbackEl.classList.add('bg-green-50', 'text-green-800');
+                document.getElementById('fb-icon').className = 'material-symbols-outlined text-xl text-green-600';
+            } else {
+                feedbackEl.classList.add('bg-red-50', 'text-red-800');
+                document.getElementById('fb-icon').className = 'material-symbols-outlined text-xl text-red-600';
+            }
+
+            document.getElementById('btn-check').classList.add('hidden');
+            document.getElementById('btn-next').classList.remove('hidden');
+            updateScoreDisplay();
+        }
+
+        function nextPracticeQuestion() {
+            if (currentQuestionIndex < filteredQuestions.length - 1) {
+                currentQuestionIndex++;
+                selectedAnswer = null;
+                loadPracticeQuestions();
+            } else {
+                showFinalResults();
+            }
+        }
+
+        function previousPracticeQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                selectedAnswer = null; // Reset selection on navigate back for simplicity or keep state
+                loadPracticeQuestions();
+            }
+        }
+
+        function showFinalResults() {
+            document.getElementById('results-overlay').classList.remove('hidden');
+            document.getElementById('results-overlay').style.display = 'flex';
+            document.getElementById('final-score').textContent = `${score}/${filteredQuestions.length}`;
+            const accuracy = Math.round((score / filteredQuestions.length) * 100) || 0;
+            document.getElementById('final-accuracy').textContent = `${accuracy}%`;
+        }
+
+        function resetPractice() {
+            filterQuestionsByDifficulty();
+        }
+
+        function updateScoreDisplay() {
+            const total = filteredQuestions.length;
+            document.getElementById('progress-text').textContent = `${score}/${total}`;
+            const pct = total === 0 ? 0 : (score / total) * 100;
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+        }
+
+        // --- Code Practice Logic ---
+
+        function loadCodeChallengesList() {
+            const list = document.getElementById('challenges-list');
+            if (codeChallenges.length === 0) {
+                list.innerHTML = '<div class="text-sm text-slate-500 text-center py-4">No code challenges available.</div>';
+                return;
+            }
+
+            list.innerHTML = codeChallenges.map((c, i) => `
+            <div onclick="loadPracticeCode(${i})" class="p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-500 cursor-pointer transition-colors bg-slate-50 dark:bg-slate-800/50 group">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-bold text-slate-700 dark:text-slate-200 group-hover:text-blue-600">${c.title}</span>
+                    <span class="material-symbols-outlined text-slate-400 group-hover:text-blue-500">chevron_right</span>
+                </div>
+                <p class="text-xs text-slate-500 line-clamp-2">${c.description}</p>
+            </div>
+        `).join('');
+        }
+
+        function loadPracticeCode(index) {
+            currentChallengeIndex = index;
+            const c = codeChallenges[index];
+            document.getElementById('challenge-title').textContent = c.title;
+            document.getElementById('challenge-desc').textContent = c.description;
+
+            // Default to Python template or empty
+            const tpl = c.languages && c.languages.python ? c.languages.python.template : "# Write your solution here";
+            document.getElementById('code-editor').value = tpl;
+            document.getElementById('console-output').textContent = "> Ready...";
+        }
+
+        function runCode() {
+            const code = document.getElementById('code-editor').value;
+            const consoleEl = document.getElementById('console-output');
+            consoleEl.innerHTML = `> Running code...\n`;
+
+            // Mock Execution
+            setTimeout(() => {
+                consoleEl.innerHTML += `\n> Output:\n  Hello World\n  Test Case 1: [PASS]\n  Test Case 2: [PASS]\n\n> Execution finished in 0.02s`;
+            }, 800);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAssignmentData);
+    </script>
+</body>
+
+</html>

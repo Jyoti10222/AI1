@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Counseling - Tech-Pro AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .chat-message {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-indicator span {
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white/10 backdrop-blur-md border-b border-white/20">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+                <button onclick="window.location.href='CounselingHub.html'"
+                    class="flex items-center gap-2 text-white hover:text-purple-200 transition-colors">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    <span class="font-semibold">Back to Hub</span>
+                </button>
+
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-2 bg-green-500 px-4 py-2 rounded-full">
+                        <span class="w-2 h-2 bg-white rounded-full pulse-dot"></span>
+                        <span class="text-white font-bold text-sm">24/7 Online</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Chat Area -->
+            <div class="lg:col-span-2 bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+                <!-- Chat Header -->
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-6 flex items-center gap-4">
+                    <div class="relative">
+                        <img id="chat-avatar" src="" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+                        <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-400 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h2 class="text-white font-bold text-xl">AI Counselor</h2>
+                        <p class="text-purple-100 text-sm">Always here to help</p>
+                    </div>
+                    <button onclick="toggleView('query')"
+                        class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined">edit_note</span>
+                    </button>
+                </div>
+
+                <!-- Chat Messages -->
+                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto bg-gray-50" style="max-height: 500px;">
+                    <!-- Welcome Message -->
+                    <div class="chat-message flex gap-3 mb-4">
+                        <img src="" class="ai-msg-avatar w-10 h-10 rounded-full">
+                        <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-md max-w-md">
+                            <p class="text-gray-800">👋 Hello! I'm your AI counselor. I'm here to listen and help you
+                                24/7. How can I support you today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator (hidden by default) -->
+                <div id="typing-indicator" class="px-6 pb-2 hidden">
+                    <div class="flex gap-3">
+                        <img src="" class="ai-msg-avatar w-10 h-10 rounded-full">
+                        <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-md">
+                            <div class="typing-indicator flex gap-1">
+                                <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="p-4 bg-white border-t border-gray-200">
+                    <div class="flex gap-3">
+                        <input type="text" id="chat-input" placeholder="Type your message..."
+                            class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-purple-500 transition-colors"
+                            onkeypress="if(event.key==='Enter') sendMessage()">
+                        <button onclick="sendMessage()"
+                            class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-3xl p-6 shadow-xl">
+                    <h3 class="font-bold text-xl mb-4 text-gray-800">Quick Actions</h3>
+
+                    <div class="space-y-3">
+                        <button onclick="toggleView('query')"
+                            class="w-full bg-purple-50 hover:bg-purple-100 p-4 rounded-xl transition-colors flex items-center gap-3 group">
+                            <span
+                                class="material-symbols-outlined text-3xl text-purple-600 group-hover:scale-110 transition-transform">edit_note</span>
+                            <div class="text-left">
+                                <h4 class="font-bold text-gray-800">Submit Query</h4>
+                                <p class="text-xs text-gray-600">Get detailed response</p>
+                            </div>
+                        </button>
+
+                        <button onclick="window.location.href='InPersonCounseling.html'"
+                            class="w-full bg-blue-50 hover:bg-blue-100 p-4 rounded-xl transition-colors flex items-center gap-3 group">
+                            <span
+                                class="material-symbols-outlined text-3xl text-blue-600 group-hover:scale-110 transition-transform">groups</span>
+                            <div class="text-left">
+                                <h4 class="font-bold text-gray-800">Book In-Person</h4>
+                                <p class="text-xs text-gray-600">Face-to-face session</p>
+                            </div>
+                        </button>
+
+                        <button onclick="clearChat()"
+                            class="w-full bg-gray-50 hover:bg-gray-100 p-4 rounded-xl transition-colors flex items-center gap-3 group">
+                            <span
+                                class="material-symbols-outlined text-3xl text-gray-600 group-hover:scale-110 transition-transform">refresh</span>
+                            <div class="text-left">
+                                <h4 class="font-bold text-gray-800">New Session</h4>
+                                <p class="text-xs text-gray-600">Start fresh</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl p-6 shadow-xl text-white">
+                    <span class="material-symbols-outlined text-5xl mb-3">info</span>
+                    <h3 class="font-bold text-lg mb-2">Confidential & Secure</h3>
+                    <p class="text-sm text-purple-100">All conversations are private and encrypted. Your data is safe
+                        with us.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Query Submission Modal -->
+        <div id="query-modal"
+            class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-3xl p-8 max-w-2xl w-full shadow-2xl">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Submit Your Query</h2>
+                    <button onclick="toggleView('chat')" class="text-gray-400 hover:text-gray-600">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+
+                <form onsubmit="submitQuery(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Your Name</label>
+                        <input type="text" id="query-name" required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-purple-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                        <input type="email" id="query-email" required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-purple-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Your Query</label>
+                        <textarea id="query-text" required rows="6"
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-purple-500 resize-none"
+                            placeholder="Describe your concern in detail..."></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">send</span>
+                        Submit Query
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const avatarImages = [
+            'C:/Users/jyoti mulimani/.gemini/antigravity/brain/b528f349-3a48-441c-86af-134c576b940e/ai_counselor_1_1769163966969.png',
+            'C:/Users/jyoti mulimani/.gemini/antigravity/brain/b528f349-3a48-441c-86af-134c576b940e/ai_counselor_2_1769163983903.png',
+            'C:/Users/jyoti mulimani/.gemini/antigravity/brain/b528f349-3a48-441c-86af-134c576b940e/ai_counselor_3_1769164012743.png'
+        ];
+        let currentAvatarIndex = 0;
+
+        // Initialize avatars
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('chat-avatar').src = avatarImages[0];
+            document.querySelectorAll('.ai-msg-avatar').forEach(img => {
+                img.src = avatarImages[0];
+            });
+
+            // Rotate avatar every 2 seconds
+            setInterval(() => {
+                currentAvatarIndex = (currentAvatarIndex + 1) % avatarImages.length;
+                document.getElementById('chat-avatar').src = avatarImages[currentAvatarIndex];
+            }, 2000);
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            document.getElementById('typing-indicator').classList.remove('hidden');
+
+            // Simulate AI response
+            setTimeout(() => {
+                document.getElementById('typing-indicator').classList.add('hidden');
+                const responses = [
+                    "I understand how you're feeling. Can you tell me more about that?",
+                    "That's a valid concern. Let's work through this together.",
+                    "Thank you for sharing. I'm here to support you through this.",
+                    "I hear you. Would you like to explore this further or book an in-person session?",
+                    "It's completely normal to feel this way. How long have you been experiencing this?"
+                ];
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(response, 'ai');
+            }, 1500);
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message flex gap-3 mb-4';
+
+            if (sender === 'user') {
+                messageDiv.classList.add('justify-end');
+                messageDiv.innerHTML = `
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-2xl rounded-tr-none shadow-md max-w-md">
+                        <p>${text}</p>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <img src="${avatarImages[currentAvatarIndex]}" class="w-10 h-10 rounded-full">
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-md max-w-md">
+                        <p class="text-gray-800">${text}</p>
+                    </div>
+                `;
+            }
+
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function toggleView(view) {
+            if (view === 'query') {
+                document.getElementById('query-modal').classList.remove('hidden');
+            } else {
+                document.getElementById('query-modal').classList.add('hidden');
+            }
+        }
+
+        async function submitQuery(event) {
+            event.preventDefault();
+
+            const data = {
+                name: document.getElementById('query-name').value,
+                email: document.getElementById('query-email').value,
+                query: document.getElementById('query-text').value,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/api/ai-queries', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('✅ Query submitted successfully! We\'ll respond to your email within 24 hours.');
+                    toggleView('chat');
+                    event.target.reset();
+                } else {
+                    alert('❌ Failed to submit query. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Connection error. Please check if the server is running.');
+            }
+        }
+
+        function clearChat() {
+            const messagesDiv = document.getElementById('chat-messages');
+            messagesDiv.innerHTML = `
+                <div class="chat-message flex gap-3 mb-4">
+                    <img src="${avatarImages[0]}" class="w-10 h-10 rounded-full">
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-md max-w-md">
+                        <p class="text-gray-800">👋 Hello! I'm your AI counselor. I'm here to listen and help you 24/7. How can I support you today?</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

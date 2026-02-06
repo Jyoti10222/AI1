@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI-TECH PRO Global Command</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bc",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111a22",
+                        "card-dark": "#1a2632",
+                        "border-dark": "#233648",
+                        "text-secondary": "#92adc9",
+                        "danger": "#ef4444",
+                        "warning": "#f59e0b",
+                        "success": "#10b981"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display overflow-x-hidden">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-6 py-3 sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="size-8 text-primary">
+                        <span class="material-symbols-outlined text-4xl">admin_panel_settings</span>
+                    </div>
+                    <h2 class="text-white text-xl font-bold leading-tight tracking-tight">AI-TECH PRO <a
+                            href="A9Admin.html" target="_blank"><span
+                                class="text-text-secondary font-normal text-sm ml-2">Super Admin</span></h2></a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-white text-sm font-medium border-b-2 border-primary pb-0.5" href="#">Global
+                        Overview</a>
+                    <a class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">System Health</a>
+                    <a class="text-text-secondary hover:text-white transition-colors text-sm font-medium" href="#">User
+                        Management</a>
+                    <a class="text-text-secondary hover:text-white transition-colors text-sm font-medium" href="#">AI
+                        Ethics</a>
+                    <a class="text-text-secondary hover:text-white transition-colors text-sm font-medium"
+                        href="#">Billing</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <span
+                        class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary material-symbols-outlined text-[20px]">search</span>
+                    <input
+                        class="h-10 w-64 rounded-lg bg-[#233648] border-none pl-10 pr-4 text-sm text-white placeholder-text-secondary focus:ring-1 focus:ring-primary"
+                        placeholder="Search logs, incidents..." />
+                </div>
+                <button class="relative text-text-secondary hover:text-white">
+                    <span class="material-symbols-outlined">notifications_active</span>
+                    <span
+                        class="absolute top-0 right-0 size-2 bg-danger rounded-full border-2 border-background-dark"></span>
+                </button>
+                <div class="size-9 rounded-full bg-cover bg-center cursor-pointer border border-border-dark"
+                    data-alt="User profile picture of an administrator"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBpIaH1BF2LXtFtfedvY2YRXffjUNWT8An3W_rrB8Ec30uNHUdW3Tm2LH8K20oWP1A7C6cZOtUFJdpNYBTtLeuO1S-ciCgowbEKPBd1c0rpN0BR9jH5M-LEpME5O80RK7Dx53W_xdEz4fXLUs2vQuMO_mA1h1vxdgGXUWqRywuuOxUIlBe8FozyOQnmfKIaG3EMHhijCLQPDrJGPJ4pxNvUhAKGtHABq8oJHe6vJgHt3mmXD1lCRiy9txYalGC9suyKreM5qVTmc8");'>
+                </div>
+            </div>
+        </header>
+        <div class="layout-container flex h-full grow flex-col max-w-[1440px] mx-auto w-full">
+            <div class="px-6 py-6 border-b border-border-dark">
+                <div class="mb-4">
+                    <a class="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                        href="A1Homepage.html">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Return to Homepage
+                    </a>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">Global Command
+                            Center</h1>
+                        <p class="text-text-secondary text-base font-normal">System-wide monitoring, resource
+                            allocation, and AI model governance.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#233648] hover:bg-[#2f455a] transition-colors text-white text-sm font-medium border border-border-dark">
+                            <span class="material-symbols-outlined text-[20px]">settings</span>
+                            Configure Dashboard
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-medium">
+                            <span class="material-symbols-outlined text-[20px]">summarize</span>
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 overflow-x-auto scrollbar-hide pb-2">
+                    <span class="material-symbols-outlined text-text-secondary">tune</span>
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 border border-primary/30 pl-3 pr-2 transition-all hover:bg-primary/30">
+                        <p class="text-primary text-sm font-medium">Region: Global</p>
+                        <span class="material-symbols-outlined text-primary text-[18px]">public</span>
+                    </button>
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] hover:bg-[#2d4257] pl-4 pr-3 transition-colors border border-border-dark">
+                        <p class="text-white text-sm font-medium">Server Cluster: AWS-East</p>
+                        <span class="material-symbols-outlined text-white text-[20px]">expand_more</span>
+                    </button>
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] hover:bg-[#2d4257] pl-4 pr-3 transition-colors border border-border-dark">
+                        <p class="text-white text-sm font-medium">Timeframe: Real-time</p>
+                        <span class="material-symbols-outlined text-white text-[20px]">expand_more</span>
+                    </button>
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#233648] hover:bg-[#2d4257] pl-4 pr-3 transition-colors border border-border-dark">
+                        <p class="text-white text-sm font-medium">Model Ver: v4.2.0</p>
+                        <span class="material-symbols-outlined text-white text-[20px]">expand_more</span>
+                    </button>
+                    <button
+                        class="ml-auto flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg text-text-secondary hover:text-white pl-2 pr-2">
+                        <span class="material-symbols-outlined text-lg">refresh</span>
+                        <p class="text-sm font-medium">Refresh Data</p>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div class="lg:col-span-8 flex flex-col gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-3 opacity-10">
+                                <span class="material-symbols-outlined text-6xl text-primary">payments</span>
+                            </div>
+                            <p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Est. Monthly
+                                Cost</p>
+                            <div class="flex items-end gap-3 mt-1">
+                                <p class="text-white text-3xl font-bold">$12,450</p>
+                                <span
+                                    class="flex items-center text-green-500 text-xs font-medium bg-green-500/10 px-2 py-0.5 rounded">-4.2%</span>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-border-dark/50">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-text-secondary">Budget Usage</span>
+                                    <span class="text-white font-medium">68%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-[#111a22] rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-[68%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-3 opacity-10">
+                                <span class="material-symbols-outlined text-6xl text-warning">memory</span>
+                            </div>
+                            <p class="text-text-secondary text-sm font-medium uppercase tracking-wider">GPU Utilization
+                            </p>
+                            <div class="flex items-end gap-3 mt-1">
+                                <p class="text-white text-3xl font-bold">87%</p>
+                                <span
+                                    class="flex items-center text-warning text-xs font-medium bg-warning/10 px-2 py-0.5 rounded">High
+                                    Load</span>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-border-dark/50 flex gap-2">
+                                <button class="text-xs text-primary font-medium hover:underline">Provision +2
+                                    Nodes</button>
+                                <span class="text-border-dark">|</span>
+                                <button class="text-xs text-text-secondary hover:text-white">View Details</button>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-3 opacity-10">
+                                <span class="material-symbols-outlined text-6xl text-success">group</span>
+                            </div>
+                            <p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Active Learners
+                            </p>
+                            <div class="flex items-end gap-3 mt-1">
+                                <p class="text-white text-3xl font-bold">8,241</p>
+                                <span
+                                    class="flex items-center text-success text-xs font-medium bg-success/10 px-2 py-0.5 rounded">+124
+                                    today</span>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-border-dark/50">
+                                <div class="flex items-center gap-2 text-xs text-text-secondary">
+                                    <span class="size-2 rounded-full bg-success animate-pulse"></span>
+                                    <span>System Operational</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="rounded-xl border border-border-dark bg-card-dark flex flex-col">
+                            <div class="p-5 border-b border-border-dark flex justify-between items-center">
+                                <h3 class="text-white font-bold text-base flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">monitor_heart</span>
+                                    Student Well-being Index
+                                </h3>
+                                <button class="text-text-secondary hover:text-white">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col justify-end">
+                                <div class="flex items-end justify-between gap-2 h-40">
+                                    <div
+                                        class="w-full bg-[#111a22] rounded-t-sm h-[30%] hover:bg-primary/20 transition-colors group relative">
+                                        <div
+                                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs p-1 rounded whitespace-nowrap">
+                                            Stressed: 15%</div>
+                                    </div>
+                                    <div
+                                        class="w-full bg-[#111a22] rounded-t-sm h-[45%] hover:bg-primary/20 transition-colors group relative">
+                                        <div
+                                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs p-1 rounded whitespace-nowrap">
+                                            Anxious: 22%</div>
+                                    </div>
+                                    <div
+                                        class="w-full bg-primary/40 rounded-t-sm h-[85%] hover:bg-primary/60 transition-colors group relative">
+                                        <div
+                                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs p-1 rounded whitespace-nowrap">
+                                            Balanced: 65%</div>
+                                    </div>
+                                    <div
+                                        class="w-full bg-success/40 rounded-t-sm h-[60%] hover:bg-success/60 transition-colors group relative">
+                                        <div
+                                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs p-1 rounded whitespace-nowrap">
+                                            Motivated: 40%</div>
+                                    </div>
+                                    <div
+                                        class="w-full bg-[#111a22] rounded-t-sm h-[20%] hover:bg-primary/20 transition-colors group relative">
+                                        <div
+                                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs p-1 rounded whitespace-nowrap">
+                                            Disengaged: 8%</div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between mt-3 text-xs text-text-secondary text-center">
+                                    <span>Week 1</span>
+                                    <span>Week 2</span>
+                                    <span>Week 3</span>
+                                    <span>Week 4</span>
+                                    <span>Current</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border border-border-dark bg-card-dark flex flex-col">
+                            <div class="p-5 border-b border-border-dark flex justify-between items-center">
+                                <h3 class="text-white font-bold text-base flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">school</span>
+                                    Academic Risk Areas
+                                </h3>
+                                <button class="text-xs font-medium text-primary hover:text-white transition-colors">View
+                                    All Courses</button>
+                            </div>
+                            <div class="p-5 flex flex-col gap-4">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-white">Advanced Python</span>
+                                        <span class="text-xs font-mono text-danger">High Risk (12%)</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-[#111a22] rounded-full overflow-hidden flex">
+                                        <div class="h-full bg-danger w-[12%]"></div>
+                                        <div class="h-full bg-warning w-[24%]"></div>
+                                        <div class="h-full bg-success w-[64%]"></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-white">Data Visualization</span>
+                                        <span class="text-xs font-mono text-warning">Med Risk (5%)</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-[#111a22] rounded-full overflow-hidden flex">
+                                        <div class="h-full bg-danger w-[5%]"></div>
+                                        <div class="h-full bg-warning w-[15%]"></div>
+                                        <div class="h-full bg-success w-[80%]"></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-white">AI Ethics 101</span>
+                                        <span class="text-xs font-mono text-success">Low Risk (1%)</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-[#111a22] rounded-full overflow-hidden flex">
+                                        <div class="h-full bg-danger w-[1%]"></div>
+                                        <div class="h-full bg-warning w-[4%]"></div>
+                                        <div class="h-full bg-success w-[95%]"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-start gap-4 mt-2">
+                                    <div class="flex items-center gap-1"><span
+                                            class="size-2 rounded-full bg-danger"></span><span
+                                            class="text-xs text-text-secondary">At Risk</span></div>
+                                    <div class="flex items-center gap-1"><span
+                                            class="size-2 rounded-full bg-warning"></span><span
+                                            class="text-xs text-text-secondary">Struggling</span></div>
+                                    <div class="flex items-center gap-1"><span
+                                            class="size-2 rounded-full bg-success"></span><span
+                                            class="text-xs text-text-secondary">On Track</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-border-dark bg-card-dark flex flex-col">
+                        <div
+                            class="p-5 border-b border-border-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-primary/20 rounded-lg text-primary">
+                                    <span class="material-symbols-outlined">smart_toy</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-base">AI Model Performance &amp; Ethics</h3>
+                                    <p class="text-text-secondary text-xs">Monitoring bias scores and retraining
+                                        schedules.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button
+                                    class="px-3 py-1.5 text-xs font-medium text-text-secondary border border-border-dark rounded hover:text-white hover:bg-[#233648]">Export
+                                    CSV</button>
+                                <button
+                                    class="px-3 py-1.5 text-xs font-medium text-white bg-primary rounded hover:bg-primary-dark">Schedule
+                                    Retraining</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="border-b border-border-dark bg-[#111a22]/50 text-xs text-text-secondary uppercase tracking-wider">
+                                        <th class="p-4 font-medium">Student Name</th>
+                                        <th class="p-4 font-medium">Student ID</th>
+                                        <th class="p-4 font-medium">Course</th>
+                                        <th class="p-4 font-medium">Joined Date</th>
+                                        <th class="p-4 font-medium">Status</th>
+                                        <th class="p-4 font-medium text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activityTableBody" class="text-sm divide-y divide-border-dark">
+                                    <!-- Rows will be populated by JS -->
+                                    <tr class="group hover:bg-[#1f2d3b] transition-colors">
+                                        <td colspan="6" class="p-4 text-center text-text-secondary">Loading real-time
+                                            data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-bold text-white">System Alerts</h2>
+                        <span
+                            class="px-2 py-1 rounded bg-danger/20 text-danger text-xs font-bold border border-danger/30">3
+                            Critical</span>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-text-secondary text-[18px]">filter_alt</span>
+                        </div>
+                        <input
+                            class="block w-full py-3 pl-10 pr-4 text-sm text-white bg-card-dark border border-border-dark rounded-xl focus:ring-primary focus:border-primary placeholder-text-secondary"
+                            placeholder="Filter alerts by type..." type="text" />
+                    </div>
+                    <div class="flex flex-col gap-4 h-[calc(100vh-300px)] overflow-y-auto pr-1">
+                        <div
+                            class="rounded-xl border border-danger/40 bg-card-dark p-4 shadow-lg shadow-danger/5 relative overflow-hidden group">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-danger"></div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-danger text-xl">warning</span>
+                                    <span class="text-white font-bold text-sm">Model Drift Detected</span>
+                                </div>
+                                <span class="text-[10px] text-text-secondary bg-[#111a22] px-1.5 py-0.5 rounded">10m
+                                    ago</span>
+                            </div>
+                            <p class="text-xs text-text-secondary mb-3">
+                                NLP Module v4.2 showing unexpected output patterns in "History" module. Bias threshold
+                                exceeded.
+                            </p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-danger text-white text-xs font-medium py-2 rounded hover:bg-danger/90">Rollback
+                                    Model</button>
+                                <button
+                                    class="flex-1 bg-[#233648] text-white text-xs font-medium py-2 rounded border border-border-dark hover:bg-[#2f455a]">View
+                                    Logs</button>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border border-warning/30 bg-card-dark p-4 relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-warning"></div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-warning text-xl">dns</span>
+                                    <span class="text-white font-bold text-sm">Latency Spike</span>
+                                </div>
+                                <span class="text-[10px] text-text-secondary bg-[#111a22] px-1.5 py-0.5 rounded">45m
+                                    ago</span>
+                            </div>
+                            <p class="text-xs text-text-secondary mb-3">
+                                API response time &gt; 500ms in AP-South region. Auto-scaling initiated but load remains
+                                high.
+                            </p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-[#233648] text-white text-xs font-medium py-2 rounded border border-border-dark hover:bg-[#2f455a]">Escalate</button>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border border-primary/30 bg-card-dark p-4 relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary text-xl">update</span>
+                                    <span class="text-white font-bold text-sm">Scheduled Maintenance</span>
+                                </div>
+                                <span class="text-[10px] text-text-secondary bg-[#111a22] px-1.5 py-0.5 rounded">2h
+                                    ago</span>
+                            </div>
+                            <p class="text-xs text-text-secondary mb-3">
+                                Database migration set for 02:00 UTC. Notifications sent to all Admins.
+                            </p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex-1 bg-[#233648] text-white text-xs font-medium py-2 rounded border border-border-dark hover:bg-[#2f455a]">Reschedule</button>
+                                <button
+                                    class="flex-1 bg-[#233648] text-white text-xs font-medium py-2 rounded border border-border-dark hover:bg-[#2f455a]">Details</button>
+                            </div>
+                        </div>
+                        <div
+                            class="rounded-xl border border-border-dark bg-card-dark/50 p-4 relative overflow-hidden opacity-70 hover:opacity-100 transition-opacity">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-success"></div>
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-success text-xl">check_circle</span>
+                                    <span class="text-text-secondary font-medium text-sm line-through">Payment Gateway
+                                        Err</span>
+                                </div>
+                                <span
+                                    class="text-[10px] text-text-secondary bg-[#111a22] px-1.5 py-0.5 rounded">Resolved</span>
+                            </div>
+                            <p class="text-xs text-text-secondary">
+                                Connectivity restored. 12 failed transactions re-queued.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-border-dark text-center">
+                        <button
+                            class="text-sm text-primary hover:text-white font-medium flex items-center justify-center gap-2 w-full py-2 hover:bg-[#233648] rounded transition-colors">
+                            View Incident History
+                            <span class="material-symbols-outlined text-lg">history</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = "http://localhost:8080/api";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchReportData();
+        });
+
+        async function fetchReportData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/students`);
+                if (!response.ok) throw new Error('Failed to fetch data');
+                const students = await response.json();
+
+                updateReportDashboard(students);
+            } catch (error) {
+                console.error("Error loading report data:", error);
+                // Handle error state in UI
+                document.getElementById('activityTableBody').innerHTML = '<tr><td colspan="6" class="p-4 text-center text-danger">Failed to load data. Ensure backend is running.</td></tr>';
+            }
+        }
+
+        function updateReportDashboard(students) {
+            // 1. Update Active Learners KPI
+            // Searching for the Active Learners card by its unique icon content or text
+            const kpiCards = document.querySelectorAll('.rounded-xl.border.bg-card-dark');
+            kpiCards.forEach(card => {
+                if (card.textContent.includes('Active Learners')) {
+                    const countEl = card.querySelector('.text-3xl.font-bold');
+                    if (countEl) countEl.textContent = students.length.toLocaleString();
+                }
+            });
+
+            // 2. Populate Recent Student Activity Table
+            const tableBody = document.getElementById('activityTableBody');
+            tableBody.innerHTML = ''; // Clear loading state
+
+            // Sort by ID descending (assuming higher ID = newer) or created date if available
+            // We'll trust the array order or sort by ID for now as a proxy for recency if date is missing
+            const recentStudents = [...students].reverse().slice(0, 10); // Show last 10
+
+            if (recentStudents.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-text-secondary">No recent activity found.</td></tr>';
+                return;
+            }
+
+            recentStudents.forEach(student => {
+                const tr = document.createElement('tr');
+                tr.className = 'group hover:bg-[#1f2d3b] transition-colors border-b border-border-dark last:border-0';
+
+                // Determine status (mock logic if status missing)
+                const status = student.status || 'Active';
+                let statusColor = 'green';
+                let statusBg = 'green';
+
+                if (status === 'Inactive') { statusColor = 'text-secondary'; statusBg = 'gray'; }
+
+                const joinedDate = student.createdAt
+                    ? new Date(student.createdAt).toLocaleDateString()
+                    : 'N/A';
+
+                tr.innerHTML = `
+                    <td class="p-4 font-medium text-white">${student.name || 'Unknown'}</td>
+                    <td class="p-4 text-text-secondary">#${student.id || '---'}</td>
+                    <td class="p-4 text-white">${student.desiredCourse || 'None'}</td>
+                    <td class="p-4 text-text-secondary">${joinedDate}</td>
+                    <td class="p-4">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-${statusBg}-500/10 text-${statusBg}-500">${status}</span>
+                    </td>
+                    <td class="p-4 text-right">
+                        <button class="text-text-secondary hover:text-white" onclick="viewStudentDetails('${student.id}')">
+                            <span class="material-symbols-outlined text-[18px]">visibility</span>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            // 3. Update Export Button Logic within the table header
+            // Assuming the export button is the one in the table header or near it.
+            // The original code had an "Export CSV" button in the table header section.
+            const exportBtns = document.querySelectorAll('button');
+            exportBtns.forEach(btn => {
+                if (btn.textContent.trim() === 'Export CSV') {
+                    btn.onclick = () => exportToCSV(students);
+                }
+            });
+        }
+
+        function exportToCSV(students) {
+            if (students.length === 0) {
+                alert("No data to export");
+                return;
+            }
+            const headers = ['ID', 'Name', 'Email', 'Phone', 'Course', 'Joined Date'];
+            const rows = students.map(s => [
+                s.id,
+                `"${s.name}"`,
+                s.email,
+                s.phone,
+                `"${s.desiredCourse}"`,
+                s.createdAt
+            ]);
+
+            const csvContent = "data:text/csv;charset=utf-8,"
+                + [headers.join(','), ...rows.map(e => e.join(','))].join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `student_report_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function viewStudentDetails(id) {
+            // Redirect to student detail view in A14Student (if supported) or just alert for now
+            // Or better, set search filter in A14Student.html via query param if we were building that
+            // For now, just a placeholder action
+            console.log("Viewing details for", id);
+        }
+    </script>
+</body>
+
+</html>
