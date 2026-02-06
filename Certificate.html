@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 print:bg-white">
+
+    <div class="mb-6 flex gap-4 print:hidden">
+        <button onclick="window.history.back()"
+            class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Back</button>
+        <button onclick="downloadCert()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Download
+            PDF</button>
+    </div>
+
+    <!-- Certificate Container -->
+    <div id="certificate"
+        class="w-[1100px] h-[750px] bg-white relative p-10 shadow-2xl border-[20px] border-double border-slate-700 text-center flex flex-col items-center justify-between overflow-hidden">
+
+        <!-- Watermark/Background -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center">
+            <svg class="w-[600px] h-[600px]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
+            </svg>
+        </div>
+
+        <!-- Decorative Corners -->
+        <div class="absolute top-4 left-4 w-16 h-16 border-t-4 border-l-4 border-yellow-600"></div>
+        <div class="absolute top-4 right-4 w-16 h-16 border-t-4 border-r-4 border-yellow-600"></div>
+        <div class="absolute bottom-4 left-4 w-16 h-16 border-b-4 border-l-4 border-yellow-600"></div>
+        <div class="absolute bottom-4 right-4 w-16 h-16 border-b-4 border-r-4 border-yellow-600"></div>
+
+        <!-- Header -->
+        <div class="mt-8 z-10">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl drop-shadow-md">
+                    T</div>
+                <span class="text-2xl font-bold tracking-widest text-slate-800 font-[Inter]">TECH-PRO AI</span>
+            </div>
+            <h1 class="text-5xl font-bold text-slate-900 font-['Cinzel'] tracking-wider uppercase mt-6">Certificate of
+                Completion</h1>
+            <p class="text-lg text-slate-500 mt-2 font-[Inter] tracking-wide">is hereby awarded to</p>
+        </div>
+
+        <!-- Student Name -->
+        <div class="my-6 z-10">
+            <h2 id="studentName"
+                class="text-6xl text-blue-900 font-['Great_Vibes'] py-4 border-b-2 border-slate-200 px-12 inline-block min-w-[500px]">
+                Student Name</h2>
+        </div>
+
+        <!-- Course Details -->
+        <div class="z-10 max-w-3xl">
+            <p class="text-xl text-slate-700 font-[Inter] leading-relaxed">
+                For successfully completing the comprehensive training and assessments for the course
+            </p>
+            <h3 id="courseName" class="text-3xl font-bold text-slate-900 font-['Cinzel'] mt-4 mb-6 text-blue-700">Course
+                Name</h3>
+            <p class="text-base text-slate-500 italic max-w-2xl mx-auto">
+                This certification acknowledges the recipient's proficiency and dedication to mastering the curriculum
+                set forth by TECH-PRO AI Institute.
+            </p>
+        </div>
+
+        <!-- Footer / Signatures -->
+        <div class="w-full flex justify-between items-end px-16 mt-8 z-10">
+            <div class="text-center">
+                <p id="certDate" class="text-lg font-bold text-slate-800 border-t border-slate-400 pt-2 px-8">January
+                    21, 2026</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Date Issued</p>
+            </div>
+            <div class="mb-4">
+                <div
+                    class="w-24 h-24 bg-yellow-500/20 rounded-full flex items-center justify-center border-2 border-yellow-600 relative">
+                    <span class="text-[10px] uppercase font-bold text-yellow-800 absolute top-2">Official</span>
+                    <span class="text-4xl">🏅</span>
+                    <span class="text-[10px] uppercase font-bold text-yellow-800 absolute bottom-2">Seal</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <div
+                    class="h-10 mb-[-10px] w-40 mx-auto bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg')] bg-cover bg-no-repeat bg-center opacity-70">
+                </div>
+                <p class="text-lg font-bold text-slate-800 border-t border-slate-400 pt-2 px-8">Kashif Khan</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Program Director</p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-2 text-[10px] text-slate-400">ID: CERT-<span id="certId">12345678</span></div>
+    </div>
+
+    <script>
+        // Populate Data
+        const params = new URLSearchParams(window.location.search);
+        const course = params.get('course') || 'Advanced AI Certification';
+        const profile = JSON.parse(localStorage.getItem('studentProfile') || '{}');
+        const name = profile.fullName || "Alex Johnson";
+
+        document.getElementById('courseName').innerText = course;
+        document.getElementById('studentName').innerText = name;
+
+        const date = new Date();
+        document.getElementById('certDate').innerText = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('certId').innerText = Math.random().toString(36).substr(2, 9).toUpperCase();
+
+        function downloadCert() {
+            const element = document.getElementById('certificate');
+            const opt = {
+                margin: 0,
+                filename: `${name.replace(/\s+/g, '_')}_Certificate.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+
+</html>

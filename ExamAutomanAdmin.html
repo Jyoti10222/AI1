@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Testing Exam Admin - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-btn.active {
+            background: #10b981;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-green-600"
+                            style="font-size: 40px;">automation</span>
+                        Automation Testing Exam Admin
+                    </h1>
+                    <p class="text-gray-600 mt-2">Manage questions and code challenges</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="ExamAutoman.html"
+                        class="px-4 py-2 bg-green-100 hover:bg-green-200 rounded-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined">visibility</span>
+                        Preview Exam
+                    </a>
+                    <a href="ExamBuilder.html"
+                        class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+            <div class="flex gap-2 border-b pb-4">
+                <button onclick="switchTab('easy')" id="easyTab"
+                    class="tab-btn px-6 py-3 rounded-lg font-semibold bg-green-600 text-white">Easy Questions</button>
+                <button onclick="switchTab('medium')" id="mediumTab"
+                    class="tab-btn px-6 py-3 rounded-lg font-semibold">Medium Questions</button>
+                <button onclick="switchTab('hard')" id="hardTab" class="tab-btn px-6 py-3 rounded-lg font-semibold">Hard
+                    Questions</button>
+                <button onclick="switchTab('code')" id="codeTab" class="tab-btn px-6 py-3 rounded-lg font-semibold">Code
+                    Challenges</button>
+            </div>
+        </div>
+
+        <!-- Easy Questions Section -->
+        <div id="easySection" class="bg-white rounded-2xl shadow-xl p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Easy Questions</h2>
+                <button onclick="addQuestion('easy')"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Question
+                </button>
+            </div>
+            <div id="easyQuestions" class="space-y-4"></div>
+        </div>
+
+        <!-- Medium Questions Section -->
+        <div id="mediumSection" class="hidden bg-white rounded-2xl shadow-xl p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Medium Questions</h2>
+                <button onclick="addQuestion('medium')"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Question
+                </button>
+            </div>
+            <div id="mediumQuestions" class="space-y-4"></div>
+        </div>
+
+        <!-- Hard Questions Section -->
+        <div id="hardSection" class="hidden bg-white rounded-2xl shadow-xl p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Hard Questions</h2>
+                <button onclick="addQuestion('hard')"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Question
+                </button>
+            </div>
+            <div id="hardQuestions" class="space-y-4"></div>
+        </div>
+
+        <!-- Code Challenges Section -->
+        <div id="codeSection" class="hidden bg-white rounded-2xl shadow-xl p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Code Challenges</h2>
+                <button onclick="addCodeChallenge()"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Challenge
+                </button>
+            </div>
+            <div id="codeChallenges" class="space-y-6"></div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="fixed bottom-8 right-8">
+            <button onclick="saveAll()"
+                class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-2xl flex items-center gap-2 text-lg font-bold">
+                <span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const COURSE_ID = 'automan';
+
+        let examData = {
+            easy: [],
+            medium: [],
+            hard: [],
+            code: []
+        };
+
+        function switchTab(tab) {
+            ['easy', 'medium', 'hard', 'code'].forEach(t => {
+                document.getElementById(t + 'Section').classList.add('hidden');
+                document.getElementById(t + 'Tab').classList.remove('active', 'bg-green-600', 'text-white');
+            });
+            document.getElementById(tab + 'Section').classList.remove('hidden');
+            document.getElementById(tab + 'Tab').classList.add('active', 'bg-green-600', 'text-white');
+        }
+
+        function addQuestion(difficulty) {
+            const id = Date.now();
+            const questionHTML = `
+                <div class="border-2 border-gray-200 rounded-lg p-6" data-id="${id}">
+                    <div class="flex justify-between mb-4">
+                        <h3 class="font-bold text-lg">Question #${examData[difficulty].length + 1}</h3>
+                        <button onclick="deleteQuestion('${difficulty}', ${id})" class="text-red-600 hover:text-red-800">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block font-semibold mb-2">Question Text</label>
+                            <textarea class="w-full p-3 border rounded-lg" rows="3" data-field="question"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-semibold mb-2">Option A</label>
+                                <input type="text" class="w-full p-3 border rounded-lg" data-field="optionA">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-2">Option B</label>
+                                <input type="text" class="w-full p-3 border rounded-lg" data-field="optionB">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-2">Option C</label>
+                                <input type="text" class="w-full p-3 border rounded-lg" data-field="optionC">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-2">Option D</label>
+                                <input type="text" class="w-full p-3 border rounded-lg" data-field="optionD">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-2">Correct Answer</label>
+                            <select class="w-full p-3 border rounded-lg" data-field="correctAnswer">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-2">Explanation</label>
+                            <textarea class="w-full p-3 border rounded-lg" rows="2" data-field="explanation"></textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById(difficulty + 'Questions').insertAdjacentHTML('beforeend', questionHTML);
+            examData[difficulty].push({ id });
+        }
+
+        function deleteQuestion(difficulty, id) {
+            if (confirm('Delete this question?')) {
+                document.querySelector(`[data-id="${id}"]`).remove();
+                examData[difficulty] = examData[difficulty].filter(q => q.id !== id);
+            }
+        }
+
+        function addCodeChallenge() {
+            const id = Date.now();
+            const challengeHTML = `
+                <div class="border-2 border-gray-200 rounded-lg p-6" data-id="${id}">
+                    <div class="flex justify-between mb-4">
+                        <h3 class="font-bold text-lg">Code Challenge #${examData.code.length + 1}</h3>
+                        <button onclick="deleteCodeChallenge(${id})" class="text-red-600 hover:text-red-800">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block font-semibold mb-2">Challenge Title</label>
+                            <input type="text" class="w-full p-3 border rounded-lg" data-field="title">
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-2">Description</label>
+                            <textarea class="w-full p-3 border rounded-lg" rows="3" data-field="description"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block font-semibold mb-2">Python Template</label>
+                                <textarea class="w-full p-3 border rounded-lg font-mono text-sm" rows="6" data-field="pythonTemplate"></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-2">JavaScript Template</label>
+                                <textarea class="w-full p-3 border rounded-lg font-mono text-sm" rows="6" data-field="jsTemplate"></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-2">Java Template</label>
+                                <textarea class="w-full p-3 border rounded-lg font-mono text-sm" rows="6" data-field="javaTemplate"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('codeChallenges').insertAdjacentHTML('beforeend', challengeHTML);
+            examData.code.push({ id });
+        }
+
+        function deleteCodeChallenge(id) {
+            if (confirm('Delete this code challenge?')) {
+                document.querySelector(`[data-id="${id}"]`).remove();
+                examData.code = examData.code.filter(c => c.id !== id);
+            }
+        }
+
+        async function saveAll() {
+            const data = {
+                practiceQuestions: {
+                    easy: collectQuestions('easy'),
+                    medium: collectQuestions('medium'),
+                    hard: collectQuestions('hard')
+                },
+                codeChallenges: collectCodeChallenges()
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/${COURSE_ID}/exam`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('✅ All changes saved successfully!');
+                } else {
+                    alert('❌ Failed to save changes');
+                }
+            } catch (error) {
+                console.error('Save error:', error);
+                alert('❌ Error saving changes');
+            }
+        }
+
+        function collectQuestions(difficulty) {
+            const questions = [];
+            document.querySelectorAll(`#${difficulty}Questions [data-id]`).forEach(el => {
+                const q = {
+                    id: parseInt(el.dataset.id),
+                    question: el.querySelector('[data-field="question"]').value,
+                    options: [
+                        'A) ' + el.querySelector('[data-field="optionA"]').value,
+                        'B) ' + el.querySelector('[data-field="optionB"]').value,
+                        'C) ' + el.querySelector('[data-field="optionC"]').value,
+                        'D) ' + el.querySelector('[data-field="optionD"]').value
+                    ],
+                    correctAnswer: el.querySelector('[data-field="correctAnswer"]').value,
+                    explanation: el.querySelector('[data-field="explanation"]').value
+                };
+                questions.push(q);
+            });
+            return questions;
+        }
+
+        function collectCodeChallenges() {
+            const challenges = [];
+            document.querySelectorAll('#codeChallenges [data-id]').forEach(el => {
+                const c = {
+                    id: parseInt(el.dataset.id),
+                    title: el.querySelector('[data-field="title"]').value,
+                    description: el.querySelector('[data-field="description"]').value,
+                    languages: {
+                        python: { template: el.querySelector('[data-field="pythonTemplate"]').value },
+                        javascript: { template: el.querySelector('[data-field="jsTemplate"]').value },
+                        java: { template: el.querySelector('[data-field="javaTemplate"]').value }
+                    }
+                };
+                challenges.push(c);
+            });
+            return challenges;
+        }
+
+        // Initialize with sample data
+        addQuestion('easy');
+        addQuestion('medium');
+        addQuestion('hard');
+        addCodeChallenge();
+    </script>
+</body>
+
+</html>

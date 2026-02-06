@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Services - Tech-Pro AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-16px) scale(1.03);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* AI Card Highlight Effect */
+        .ai-card {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 1.5rem;
+            padding: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .pulse-ring {
+            animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(1.15);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .avatar-image {
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .badge-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(34, 197, 94, 0.9);
+            }
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Layout Width Classes */
+        .ai-card-width {
+            width: 80%;
+        }
+
+        .inperson-card-width {
+            width: 20%;
+        }
+
+        @media (max-width: 768px) {
+
+            .ai-card-width,
+            .inperson-card-width {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-20 left-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse">
+        </div>
+        <div class="absolute top-40 right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative min-h-screen flex flex-col items-center justify-center p-2 md:p-4">
+        <!-- Header -->
+        <div class="text-center mb-6 float-animation">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+                Need Guidance?
+            </h1>
+            <p class="text-lg md:text-xl text-purple-100">
+                Choose your preferred counseling method
+            </p>
+        </div>
+
+        <!-- Cards Container - Horizontal Layout: 80% AI + 20% In-Person -->
+        <div class="flex flex-col md:flex-row gap-6 max-w-7xl w-full">
+
+            <!-- AI Counseling Card - 80% WIDTH - INTERACTIVE CONVERSATION LAYOUT -->
+            <div onclick="navigateTo('ai')"
+                class="ai-card ai-card-width card-hover cursor-pointer rounded-3xl p-4 md:p-6 shadow-2xl relative overflow-hidden group shimmer">
+                <!-- 24/7 Badge -->
+                <div
+                    class="absolute top-3 right-3 badge-glow bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 z-10">
+                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    24/7 Available
+                </div>
+
+                <!-- Main Content: Avatar Left + Chat Right -->
+                <div class="flex gap-4 mb-4">
+                    <!-- Left Side: AI Avatar -->
+                    <div class="w-2/5 flex flex-col items-center justify-center">
+                        <div class="relative w-full">
+                            <!-- Pulse Ring -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 rounded-2xl pulse-ring">
+                            </div>
+
+                            <!-- Avatar Images Container -->
+                            <div id="ai-avatar-container"
+                                class="relative w-full aspect-video rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
+                                <img src="" id="ai-avatar-1"
+                                    class="avatar-image absolute inset-0 w-full h-full object-cover"
+                                    style="opacity: 1;">
+                                <img src="" id="ai-avatar-2"
+                                    class="avatar-image absolute inset-0 w-full h-full object-cover"
+                                    style="opacity: 0;">
+                                <img src="" id="ai-avatar-3"
+                                    class="avatar-image absolute inset-0 w-full h-full object-cover"
+                                    style="opacity: 0;">
+                            </div>
+                        </div>
+
+                        <!-- AI Name Badge -->
+                        <div class="mt-3 text-center">
+                            <h3 class="text-xl font-bold gradient-text">AI Counselor</h3>
+                            <p class="text-xs text-gray-600">Always here to help</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Chat/Conversation Area -->
+                    <div class="w-3/5 flex flex-col justify-center">
+                        <!-- Speech Bubble from AI -->
+                        <div
+                            class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl rounded-tl-none p-4 mb-3 border-2 border-purple-200 shadow-lg relative">
+                            <div
+                                class="absolute -left-2 top-0 w-0 h-0 border-t-[20px] border-t-purple-200 border-r-[20px] border-r-transparent">
+                            </div>
+                            <div class="flex items-start gap-2 mb-2">
+                                <span class="material-symbols-outlined text-purple-600 text-xl">smart_toy</span>
+                                <p class="text-sm font-bold text-purple-900">AI Counselor</p>
+                            </div>
+                            <p class="text-sm text-gray-800 leading-relaxed">
+                                👋 Hi! I'm your AI counselor. I'm here to provide instant support, guidance, and
+                                personalized advice 24/7. How can I help you today?
+                            </p>
+                        </div>
+
+                        <!-- Interactive Chat Preview -->
+                        <div
+                            class="bg-white rounded-2xl rounded-tr-none p-3 border-2 border-gray-200 shadow-md relative">
+                            <div
+                                class="absolute -right-2 top-0 w-0 h-0 border-t-[20px] border-t-gray-200 border-l-[20px] border-l-transparent">
+                            </div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="material-symbols-outlined text-blue-600 text-lg">person</span>
+                                <p class="text-xs font-bold text-gray-700">You</p>
+                            </div>
+                            <p class="text-xs text-gray-600 italic">
+                                Start chatting with me...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Action Buttons in One Row -->
+                <div class="flex gap-2 justify-center flex-wrap">
+                    <div
+                        class="flex items-center gap-2 bg-gradient-to-r from-purple-50 to-pink-50 p-2 rounded-lg flex-1 min-w-[150px] hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-2xl text-purple-600">chat</span>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-xs">Live Chat</h3>
+                            <p class="text-[10px] text-gray-600">Talk in real-time</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-gradient-to-r from-purple-50 to-pink-50 p-2 rounded-lg flex-1 min-w-[150px] hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-2xl text-purple-600">edit_note</span>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-xs">Submit Query</h3>
+                            <p class="text-[10px] text-gray-600">Get detailed responses</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-gradient-to-r from-purple-50 to-pink-50 p-2 rounded-lg flex-1 min-w-[150px] hover:shadow-md transition-shadow">
+                        <span class="material-symbols-outlined text-2xl text-purple-600">psychology</span>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-xs">Smart AI</h3>
+                            <p class="text-[10px] text-gray-600">Personalized guidance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- In-Person Counseling Card - 20% WIDTH -->
+            <div onclick="navigateTo('offline')"
+                class="inperson-card-width card-hover cursor-pointer bg-white rounded-3xl p-6 shadow-2xl relative overflow-hidden group flex flex-col items-center">
+                <!-- Professional Badge -->
+                <div
+                    class="absolute top-3 right-3 bg-blue-500 text-white px-2 py-1 rounded-full text-[10px] font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">verified</span>
+                    Certified
+                </div>
+
+                <!-- Human Conversation Images - Compact Size with Auto-rotation -->
+                <div class="relative mb-4 mt-4">
+                    <div class="w-32 h-32 mx-auto relative">
+                        <!-- Pulse Ring -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl pulse-ring">
+                        </div>
+
+                        <!-- Images Container -->
+                        <div id="offline-images-container"
+                            class="relative w-full h-full rounded-xl overflow-hidden border-2 border-white shadow-xl">
+                            <img src="" id="offline-img-1"
+                                class="avatar-image absolute inset-0 w-full h-full object-cover" style="opacity: 1;">
+                            <img src="" id="offline-img-2"
+                                class="avatar-image absolute inset-0 w-full h-full object-cover" style="opacity: 0;">
+                            <img src="" id="offline-img-3"
+                                class="avatar-image absolute inset-0 w-full h-full object-cover" style="opacity: 0;">
+                            <img src="" id="offline-img-4"
+                                class="avatar-image absolute inset-0 w-full h-full object-cover" style="opacity: 0;">
+                            <img src="" id="offline-img-5"
+                                class="avatar-image absolute inset-0 w-full h-full object-cover" style="opacity: 0;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <div class="text-center mb-4">
+                    <h2
+                        class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 mb-2">
+                        In-Person
+                    </h2>
+                    <p class="text-gray-600 text-xs font-medium">
+                        Face-to-face
+                    </p>
+                </div>
+
+                <!-- Features with Icons - Compact -->
+                <div class="space-y-2 mb-4 w-full">
+                    <div class="flex flex-col items-center gap-1 bg-blue-50 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-2xl text-blue-600">location_on</span>
+                        <p class="text-[10px] text-gray-600 text-center">Multiple Locations</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 bg-blue-50 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-2xl text-blue-600">event</span>
+                        <p class="text-[10px] text-gray-600 text-center">Flexible Timing</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 bg-blue-50 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-2xl text-blue-600">person</span>
+                        <p class="text-[10px] text-gray-600 text-center">Expert Counselors</p>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <button
+                    class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-xl font-bold text-xs hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-105">
+                    <span class="material-symbols-outlined text-lg">calendar_month</span>
+                    Book
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="mt-16 text-center text-white/90">
+            <p class="text-base">
+                <span class="material-symbols-outlined text-lg align-middle">info</span>
+                All counseling sessions are confidential and professional
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let config = null;
+
+        // Load configuration from backend
+        async function loadConfig() {
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counseling/hub-config');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    config = result.data;
+                    loadImages();
+                    startAnimations();
+                } else {
+                    console.error('Failed to load config, using defaults');
+                    loadDefaultImages();
+                    startAnimations();
+                }
+            } catch (error) {
+                console.error('Error loading config:', error);
+                loadDefaultImages();
+                startAnimations();
+            }
+        }
+
+        // Load images from config
+        function loadImages() {
+            // Load AI avatars
+            if (config.aiCounselor.avatars && config.aiCounselor.avatars.length >= 3) {
+                document.getElementById('ai-avatar-1').src = config.aiCounselor.avatars[0];
+                document.getElementById('ai-avatar-2').src = config.aiCounselor.avatars[1];
+                document.getElementById('ai-avatar-3').src = config.aiCounselor.avatars[2];
+            }
+
+            // Load offline images
+            if (config.offlineCounselor.images && config.offlineCounselor.images.length >= 5) {
+                document.getElementById('offline-img-1').src = config.offlineCounselor.images[0];
+                document.getElementById('offline-img-2').src = config.offlineCounselor.images[1];
+                document.getElementById('offline-img-3').src = config.offlineCounselor.images[2];
+                document.getElementById('offline-img-4').src = config.offlineCounselor.images[3];
+                document.getElementById('offline-img-5').src = config.offlineCounselor.images[4];
+            }
+        }
+
+        // Fallback to default images
+        function loadDefaultImages() {
+            document.getElementById('ai-avatar-1').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_1_1769165259013.png';
+            document.getElementById('ai-avatar-2').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_2_1769165274331.png';
+            document.getElementById('ai-avatar-3').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_3_1769165290942.png';
+
+            document.getElementById('offline-img-1').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_1_1769165308290.png';
+            document.getElementById('offline-img-2').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_2_1769165327216.png';
+            document.getElementById('offline-img-3').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_3_1769165345266.png';
+            document.getElementById('offline-img-4').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_4_1769165363772.png';
+            document.getElementById('offline-img-5').src = 'C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_5_1769165380384.png';
+        }
+
+        // Start avatar animations
+        function startAnimations() {
+            // AI Avatar Animation (3 images)
+            const aiAvatars = ['ai-avatar-1', 'ai-avatar-2', 'ai-avatar-3'];
+            let aiIndex = 0;
+
+            function rotateAIAvatars() {
+                const current = document.getElementById(aiAvatars[aiIndex]);
+                current.style.opacity = '0';
+
+                aiIndex = (aiIndex + 1) % aiAvatars.length;
+
+                const next = document.getElementById(aiAvatars[aiIndex]);
+                next.style.opacity = '1';
+            }
+
+            // Rotate AI avatars every 2 seconds
+            setInterval(rotateAIAvatars, 2000);
+
+            // Offline Images Animation (5 images)
+            const offlineImages = ['offline-img-1', 'offline-img-2', 'offline-img-3', 'offline-img-4', 'offline-img-5'];
+            let offlineIndex = 0;
+
+            function rotateOfflineImages() {
+                const current = document.getElementById(offlineImages[offlineIndex]);
+                current.style.opacity = '0';
+
+                offlineIndex = (offlineIndex + 1) % offlineImages.length;
+
+                const next = document.getElementById(offlineImages[offlineIndex]);
+                next.style.opacity = '1';
+            }
+
+            // Rotate offline images every 2 seconds
+            setInterval(rotateOfflineImages, 2000);
+        }
+
+        // Navigation Functions
+        function navigateTo(type) {
+            if (type === 'ai') {
+                window.location.href = config?.aiCounselor?.link || 'AICounseling.html';
+            } else {
+                window.location.href = config?.offlineCounselor?.link || 'InPersonCounseling.html';
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', loadConfig);
+    </script>
+</body>
+
+</html>

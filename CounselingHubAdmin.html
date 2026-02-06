@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Hub Admin - Tech-Pro AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .image-preview {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-950 font-sans">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined filled text-purple-500 text-3xl">settings</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-white">Counseling Hub Admin</h1>
+                        <p class="text-xs text-gray-400">Manage avatars and content</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="saveConfig()"
+                        class="flex items-center gap-2 px-6 py-2.5 text-sm font-medium bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">save</span>
+                        Save Changes
+                    </button>
+                    <a href="CounselingHub.html" target="_blank"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-purple-400 hover:bg-purple-50/10 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                        Preview
+                    </a>
+                    <a href="A9Admin.html"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-800 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- AI Counselor Section -->
+        <div class="bg-gray-900 rounded-xl shadow-sm border border-gray-800 p-6 mb-8">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined filled text-purple-500 text-3xl">smart_toy</span>
+                <h2 class="text-2xl font-bold text-white">AI Counselor Configuration</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Title</label>
+                    <input type="text" id="ai-title" value="AI Counseling"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Subtitle</label>
+                    <input type="text" id="ai-subtitle" value="Instant support, anytime"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Badge Text</label>
+                    <input type="text" id="ai-badge" value="24/7 Available"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Button Text</label>
+                    <input type="text" id="ai-button" value="Start AI Session"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-400 mb-2">Link URL</label>
+                <input type="text" id="ai-link" value="AICounseling.html"
+                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-400 mb-3">AI Talking Avatars (3 images)</label>
+                <div class="grid grid-cols-3 gap-4" id="ai-avatars-preview">
+                    <!-- Preview will be loaded here -->
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Note: Avatar images are auto-generated. To change them, contact
+                    the system administrator.</p>
+            </div>
+        </div>
+
+        <!-- Offline Counselor Section -->
+        <div class="bg-gray-900 rounded-xl shadow-sm border border-gray-800 p-6">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined filled text-blue-500 text-3xl">groups</span>
+                <h2 class="text-2xl font-bold text-white">In-Person Counselor Configuration</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Title</label>
+                    <input type="text" id="offline-title" value="In-Person Counseling"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Subtitle</label>
+                    <input type="text" id="offline-subtitle" value="Face-to-face support"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Badge Text</label>
+                    <input type="text" id="offline-badge" value="Certified"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Button Text</label>
+                    <input type="text" id="offline-button" value="Book Appointment"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-400 mb-2">Link URL</label>
+                <input type="text" id="offline-link" value="InPersonCounseling.html"
+                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-blue-500 focus:outline-none">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-400 mb-3">Human Conversation Images (5 images)</label>
+                <div class="grid grid-cols-5 gap-4" id="offline-images-preview">
+                    <!-- Preview will be loaded here -->
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Note: Conversation images are auto-generated. To change them,
+                    contact the system administrator.</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message"
+            class="hidden fixed bottom-8 right-8 bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Configuration saved successfully!</span>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message"
+            class="hidden fixed bottom-8 right-8 bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3">
+            <span class="material-symbols-outlined">error</span>
+            <span id="error-text">Failed to save configuration</span>
+        </div>
+    </main>
+
+    <script>
+        let config = null;
+
+        // Load configuration on page load
+        document.addEventListener('DOMContentLoaded', loadConfig);
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counseling/hub-config');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    config = result.data;
+                    populateForm();
+                    loadPreviews();
+                } else {
+                    showError('Failed to load configuration');
+                }
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showError('Unable to connect to server');
+            }
+        }
+
+        function populateForm() {
+            // AI Counselor
+            document.getElementById('ai-title').value = config.aiCounselor.title || '';
+            document.getElementById('ai-subtitle').value = config.aiCounselor.subtitle || '';
+            document.getElementById('ai-badge').value = config.aiCounselor.badge || '';
+            document.getElementById('ai-button').value = config.aiCounselor.buttonText || '';
+            document.getElementById('ai-link').value = config.aiCounselor.link || '';
+
+            // Offline Counselor
+            document.getElementById('offline-title').value = config.offlineCounselor.title || '';
+            document.getElementById('offline-subtitle').value = config.offlineCounselor.subtitle || '';
+            document.getElementById('offline-badge').value = config.offlineCounselor.badge || '';
+            document.getElementById('offline-button').value = config.offlineCounselor.buttonText || '';
+            document.getElementById('offline-link').value = config.offlineCounselor.link || '';
+        }
+
+        function loadPreviews() {
+            // AI Avatars Preview
+            const aiPreviewContainer = document.getElementById('ai-avatars-preview');
+            aiPreviewContainer.innerHTML = '';
+
+            if (config.aiCounselor.avatars && config.aiCounselor.avatars.length > 0) {
+                config.aiCounselor.avatars.forEach((avatar, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'text-center';
+                    div.innerHTML = `
+                        <img src="${avatar}" class="image-preview mx-auto mb-2 border-2 border-purple-500">
+                        <p class="text-xs text-gray-400">Avatar ${index + 1}</p>
+                    `;
+                    aiPreviewContainer.appendChild(div);
+                });
+            }
+
+            // Offline Images Preview
+            const offlinePreviewContainer = document.getElementById('offline-images-preview');
+            offlinePreviewContainer.innerHTML = '';
+
+            if (config.offlineCounselor.images && config.offlineCounselor.images.length > 0) {
+                config.offlineCounselor.images.forEach((image, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'text-center';
+                    div.innerHTML = `
+                        <img src="${image}" class="image-preview mx-auto mb-2 border-2 border-blue-500">
+                        <p class="text-xs text-gray-400">Image ${index + 1}</p>
+                    `;
+                    offlinePreviewContainer.appendChild(div);
+                });
+            }
+        }
+
+        async function saveConfig() {
+            // Update config object with form values
+            config.aiCounselor.title = document.getElementById('ai-title').value;
+            config.aiCounselor.subtitle = document.getElementById('ai-subtitle').value;
+            config.aiCounselor.badge = document.getElementById('ai-badge').value;
+            config.aiCounselor.buttonText = document.getElementById('ai-button').value;
+            config.aiCounselor.link = document.getElementById('ai-link').value;
+
+            config.offlineCounselor.title = document.getElementById('offline-title').value;
+            config.offlineCounselor.subtitle = document.getElementById('offline-subtitle').value;
+            config.offlineCounselor.badge = document.getElementById('offline-badge').value;
+            config.offlineCounselor.buttonText = document.getElementById('offline-button').value;
+            config.offlineCounselor.link = document.getElementById('offline-link').value;
+
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counseling/hub-config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(config)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess();
+                } else {
+                    showError('Failed to save: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error saving config:', error);
+                showError('Unable to save configuration');
+            }
+        }
+
+        function showSuccess() {
+            const msg = document.getElementById('success-message');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 3000);
+        }
+
+        function showError(message) {
+            const msg = document.getElementById('error-message');
+            document.getElementById('error-text').textContent = message;
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

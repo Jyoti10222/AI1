@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Upskilling Courses - Tech | Tech-Pro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(19, 127, 236, 0.15);
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 180px;
+            border-radius: 12px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="A4Onboarding.html" class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#ef4444] text-[28px]">shield</span>
+                    <h1 class="text-xl font-black text-[#0d141b]">Tech-Pro AI</h1>
+                </a>
+                <button class="bg-[#ef4444] text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-[#dc2626]">My
+                    Dashboard</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center gap-2 text-sm">
+                <a href="A4Onboarding.html" class="text-[#4c739a] hover:text-[#137fec]">Home</a>
+                <span class="material-symbols-outlined text-[#4c739a] text-[16px]">chevron_right</span>
+                <a href="AITech.html" class="text-[#4c739a] hover:text-[#137fec]">AI for Tech</a>
+                <span class="material-symbols-outlined text-[#4c739a] text-[16px]">chevron_right</span>
+                <span class="text-[#0d141b] font-semibold">Upskilling</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <span
+                class="inline-block bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-bold uppercase mb-3">Upskilling</span>
+            <h1 class="text-3xl font-black text-[#0d141b] mb-2">Upgrade Technical Skills</h1>
+            <p class="text-base text-[#4c739a] max-w-2xl mx-auto">Master specific AI technologies and frameworks</p>
+        </div>
+    </section>
+
+    <!-- Requirements & Features -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-4 mb-8">
+                <!-- Compact Info Cards -->
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-symbols-outlined text-blue-600 text-[20px]">psychology</span>
+                        <h3 class="font-bold text-sm text-[#0d141b]">Goal</h3>
+                    </div>
+                    <p class="text-xs text-[#4c739a]">Enhance or update existing AI skills</p>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4 border border-purple-100">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-symbols-outlined text-purple-600 text-[20px]">menu_book</span>
+                        <h3 class="font-bold text-sm text-[#0d141b]">Content</h3>
+                    </div>
+                    <p class="text-xs text-[#4c739a]">Advanced ML, GenAI, MLOps</p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4 border border-green-100">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-symbols-outlined text-green-600 text-[20px]">code</span>
+                        <h3 class="font-bold text-sm text-[#0d141b]">Practice</h3>
+                    </div>
+                    <p class="text-xs text-[#4c739a]">Hands-on demos, mini projects</p>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-symbols-outlined text-orange-600 text-[20px]">construction</span>
+                        <h3 class="font-bold text-sm text-[#0d141b]">Tools</h3>
+                    </div>
+                    <p class="text-xs text-[#4c739a]">Python, LLM APIs, Cloud</p>
+                </div>
+            </div>
+
+            <!-- Auto-Rotating Carousel (Compact) -->
+            <div class="carousel-container shadow-md mb-8">
+                <div class="carousel-slide active"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                    <div class="text-center text-white p-4">
+                        <span class="material-symbols-outlined text-[40px] mb-2">terminal</span>
+                        <h3 class="text-lg font-bold">Tool-Based Exercises</h3>
+                        <p class="text-sm opacity-90">Practical implementation focus</p>
+                    </div>
+                </div>
+                <div class="carousel-slide"
+                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center;">
+                    <div class="text-center text-white p-4">
+                        <span class="material-symbols-outlined text-[40px] mb-2">widgets</span>
+                        <h3 class="text-lg font-bold">Mini Projects</h3>
+                        <p class="text-sm opacity-90">Build real-world portfolio items</p>
+                    </div>
+                </div>
+                <div class="carousel-slide"
+                    style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center;">
+                    <div class="text-center text-white p-4">
+                        <span class="material-symbols-outlined text-[40px] mb-2">verified</span>
+                        <h3 class="text-lg font-bold">Skill Badges</h3>
+                        <p class="text-sm opacity-90">Earn recognition for each skill</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-black text-[#0d141b] mb-6">Available Courses</h2>
+            <div id="coursesContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </div>
+    </section>
+
+    <div id="enrollModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-[#0d141b]">Confirm Enrollment</h3>
+                <button onclick="closeEnrollModal()" class="text-gray-400 hover:text-gray-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="enrollContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        async function loadCourses() {
+            try {
+                const response = await fetch(`${API_BASE}/ai-learning/tech/upskilling`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const courses = data.data.courses || [];
+                    renderCourses(courses);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('coursesContainer').innerHTML =
+                    '<p class="text-red-500 text-center col-span-3">Failed to load courses. Please check connection.</p>';
+            }
+        }
+
+        function renderCourses(courses) {
+            const container = document.getElementById('coursesContainer');
+            // Changed grid columns to 3 for compact appearance
+            container.className = "grid md:grid-cols-2 lg:grid-cols-3 gap-6";
+
+            container.innerHTML = courses.map(course => `
+                <div class="card-hover bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full transform transition-all hover:scale-[1.01]">
+                    <!-- Header Area -->
+                    <div class="bg-gradient-to-r from-blue-700 to-indigo-700 p-5 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-xl"></div>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="material-symbols-outlined text-[28px] bg-white/20 p-2 rounded-xl backdrop-blur-sm">school</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold tracking-wide backdrop-blur-sm border border-white/10">${course.level}</span>
+                            </div>
+                            <h3 class="text-xl font-black mt-2 leading-tight mb-2">${course.title}</h3>
+                            <div class="flex items-center gap-2 text-blue-100 text-xs font-medium">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                ${course.duration}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col flex-1">
+                        <p class="text-sm text-gray-600 mb-5 leading-relaxed line-clamp-3">${course.description}</p>
+                        
+                        <div class="mb-5">
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Key Topics</h4>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${course.topics.slice(0, 4).map(topic => `
+                                    <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-lg text-xs font-medium border border-blue-100">${topic}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="mt-auto flex items-end justify-between pt-4 border-t border-gray-100">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase mb-0.5">Tuition Fee</p>
+                                <div class="text-2xl font-black text-[#137fec]">₹${course.price.toLocaleString('en-IN')}</div>
+                            </div>
+                            <button onclick="redirectToEnroll('${course.title}', ${course.price})" 
+                                class="bg-[#137fec] text-white px-4 py-3 rounded-lg font-bold text-sm hover:bg-[#0066cc] shadow-md shadow-blue-500/30 transition-all hover:-translate-y-1">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function redirectToEnroll(title, price) {
+            window.location.href = `Studentform.html?course=${encodeURIComponent(title)}&price=${price}`;
+        }
+
+
+        function closeEnrollModal() {
+            document.getElementById('enrollModal').classList.add('hidden');
+        }
+
+        async function handleEnrollment(event, id, title, price) {
+            event.preventDefault();
+            const inputs = event.target.querySelectorAll('input');
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+
+            try {
+                const response = await fetch(`${API_BASE}/ai-learning/enroll`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: 'user_' + Date.now(),
+                        userName: name,
+                        userEmail: email,
+                        type: 'tech',
+                        mode: 'upskilling',
+                        itemId: id,
+                        itemTitle: title,
+                        price: price
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('✅ Enrollment successful!');
+                    window.location.href = 'Pay.html';
+                }
+            } catch (error) {
+                alert('❌ Enrollment failed');
+            }
+        }
+
+        loadCourses();
+
+        document.getElementById('enrollModal').addEventListener('click', function (e) {
+            if (e.target === this) closeEnrollModal();
+        });
+    </script>
+</body>
+
+</html>

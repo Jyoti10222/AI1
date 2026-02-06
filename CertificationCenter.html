@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Certification Center - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { primary: "#3b82f6", "dark-bg": "#0f172a", "dark-card": "#1e293b" },
+                    fontFamily: { sans: ["Inter", "sans-serif"] }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center gap-8">
+                        <a class="flex items-center gap-2 group" href="A5Dashboard.html">
+                            <div
+                                class="size-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                            </div>
+                            <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">TECH-PRO AI</h2>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-6">
+                            <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                                href="A5Dashboard.html">Dashboard</a>
+                            <a class="text-sm font-medium text-slate-900 dark:text-white border-b-2 border-blue-600 pb-0.5"
+                                href="#">Certifications</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-12">
+                <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Your Certifications</h1>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+                    View and download your official TECH-PRO AI certifications. Certificates are awarded upon successful
+                    completion of all course assessments and exams.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cert-grid">
+                <!-- Cards injected via JS -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const courses = [
+            { id: 'cloud', title: 'Cloud Computing', icon: 'cloud', color: 'blue' },
+            { id: 'network', title: 'Networking Infrastructure', icon: 'hub', color: 'purple' },
+            { id: 'ai', title: 'AI & Machine Learning', icon: 'smart_toy', color: 'indigo' },
+            { id: 'cyber', title: 'Cybersecurity', icon: 'security', color: 'red' },
+            { id: 'java', title: 'Java Full Stack', icon: 'code', color: 'orange' },
+            { id: 'python', title: 'Python Full Stack', icon: 'terminal', color: 'yellow' },
+            { id: 'auto', title: 'Automation Testing', icon: 'bug_report', color: 'teal' },
+            { id: 'manual', title: 'Manual Testing', icon: 'checklist', color: 'gray' }
+        ];
+
+        const grid = document.getElementById('cert-grid');
+
+        courses.forEach(c => {
+            const card = document.createElement('div');
+            card.className = "group bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-xl hover:border-blue-500/50 transition-all cursor-pointer flex flex-col items-center text-center";
+            card.onclick = () => window.location.href = `Certificate.html?course=${encodeURIComponent(c.title)}`;
+
+            card.innerHTML = `
+                <div class="w-16 h-16 rounded-full bg-${c.color}-100 dark:bg-${c.color}-900/20 text-${c.color}-600 dark:text-${c.color}-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">${c.icon}</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">${c.title}</h3>
+                <p class="text-sm text-slate-500 mb-6">Professional Certification</p>
+                <button class="mt-auto px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium group-hover:bg-blue-600 group-hover:text-white transition-colors flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">verified</span> View Certificate
+                </button>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

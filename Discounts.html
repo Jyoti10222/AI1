@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Discount Management Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="font-display bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-white transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-row overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="w-72 bg-white dark:bg-[#1a2632] border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between shrink-0 h-screen sticky top-0 hidden xl:flex">
+            <div class="flex flex-col gap-4 p-4">
+                <div class="flex gap-3 items-center mb-6">
+                    <div class="bg-center bg-no-repeat bg-cover rounded-full size-12 shadow-sm"
+                        data-alt="AI-TECH PRO Logo with abstract geometric shapes"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9f-MGchCcWoQZ9KxpG_I5hvcL9weprKCRCS0i2soe5d8EOMjLi1g8GotI8neeNZbFZHmQty4M2v59vjqw2JG4K5oY32b5k6U9RuXqdHEPbWFmG6GKrItmsfqvBqdPAUYTq-ZVU4DT4R6kLVw4Zaq2VlvIMp9F0pvTEcloQwOIC2bsSEcp4bk74IjSFvxYc2w1OuwPhl2tWCuAE74JI0qzWWy6-B8fpX_TKhNfJLpn6YnUnI643OjiDhEswaxhbaGbpbJNXptiQW4");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-slate-900 dark:text-white text-lg font-bold leading-normal">AI-TECH PRO</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">LMS Admin</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <a href="PricingDashboard.html"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[24px]">dashboard</span>
+                        <span class="text-sm font-medium">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+                        <span class="material-symbols-outlined text-[24px] fill-1">sell</span>
+                        <span class="text-sm font-medium">Discounts</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[24px]">group</span>
+                        <span class="text-sm font-medium">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[24px]">pie_chart</span>
+                        <span class="text-sm font-medium">Reports</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined text-[24px]">settings</span>
+                        <span class="text-sm font-medium">Settings</span>
+                    </a>
+                </div>
+            </div>
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <a href="PricingDashboard.html" target="_blank"><span class="text-sm font-medium">Log out</span></a>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col h-full overflow-y-auto">
+            <div class="p-6 md:p-10 w-full max-w-[1400px] mx-auto flex flex-col gap-8">
+                <!-- Header & Breadcrumbs Section -->
+                <div class="flex flex-col gap-6">
+                    <!-- Breadcrumbs -->
+                    <nav class="flex text-sm font-medium text-slate-500 dark:text-slate-400">
+                        <a class="hover:text-primary transition-colors" href="#">Home</a>
+                        <span class="mx-2">/</span>
+                        <a class="hover:text-primary transition-colors" href="#">LMS</a>
+                        <span class="mx-2">/</span>
+                        <span class="text-slate-900 dark:text-white font-semibold">Discount Management</span>
+                    </nav>
+                    <!-- Title & Actions -->
+                    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                        <div class="flex flex-col gap-1">
+                            <h1 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+                                Discount Management Hub</h1>
+                            <p class="text-slate-500 dark:text-slate-400 text-base">Overview of promotional campaigns
+                                across AI-TECH PRO</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <button id="btnViewAll"
+                                class="flex items-center justify-center gap-2 h-10 px-5 bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm">
+                                <span class="material-symbols-outlined text-[20px]">description</span>
+                                <span>View All Discounts</span>
+                            </button>
+                            <button id="btnCreateDiscount"
+                                class="flex items-center justify-center gap-2 h-10 px-5 bg-primary text-white text-sm font-bold rounded-lg hover:bg-blue-600 transition-colors shadow-md shadow-blue-500/20">
+                                <span class="material-symbols-outlined text-[20px]">add</span>
+                                <span>Create Discount</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Date Filter & Quick Stats -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
+                        <div class="flex items-center gap-2 text-slate-900 dark:text-white font-semibold">
+                            <span class="material-symbols-outlined text-primary">calendar_month</span>
+                            <span>October 2023</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="btn7"
+                                class="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors">7
+                                Days</button>
+                            <button id="btn30"
+                                class="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary">30
+                                Days</button>
+                            <button id="btn90"
+                                class="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors">90
+                                Days</button>
+                        </div>
+                    </div>
+                    <!-- KPI Cards Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Active Discounts Card -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+                                    <span class="material-symbols-outlined text-[24px]">local_activity</span>
+                                </div>
+                                <span
+                                    class="flex items-center text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-2 py-1 rounded">
+                                    <span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                    +16%
+                                </span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="activeCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white">12</span>
+                                <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Active
+                                    Discounts</span>
+                            </div>
+                        </div>
+                        <!-- Expired Discounts Card -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div
+                                    class="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400">
+                                    <span class="material-symbols-outlined text-[24px]">event_busy</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="expiredCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white">8</span>
+                                <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Expired
+                                    Discounts</span>
+                            </div>
+                        </div>
+                        <!-- Upcoming Discounts Card -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-500">
+                                    <span class="material-symbols-outlined text-[24px]">event_upcoming</span>
+                                </div>
+                                <span
+                                    class="flex items-center text-xs font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 dark:text-slate-400 px-2 py-1 rounded">
+                                    Next: Black Friday
+                                </span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="upcomingCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white">4</span>
+                                <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Upcoming
+                                    Campaigns</span>
+                            </div>
+                        </div>
+                        <!-- Usage Metrics Card -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div
+                                    class="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400">
+                                    <span class="material-symbols-outlined text-[24px]">bar_chart</span>
+                                </div>
+                                <span
+                                    class="flex items-center text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-2 py-1 rounded">
+                                    <span class="material-symbols-outlined text-[14px] mr-1">arrow_upward</span>
+                                    +245
+                                </span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="redemptionsCount"
+                                    class="text-3xl font-black text-slate-900 dark:text-white">1,450</span>
+                                <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Total
+                                    Redemptions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Content Grid: Charts & Widgets -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <!-- Left Column: Revenue & Usage Charts (Takes 2/3 width on LG) -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <!-- Revenue Impact Chart -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm p-6 flex flex-col gap-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Revenue Impact</h3>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">Discount usage vs. Revenue
+                                        generated</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-2xl font-black text-slate-900 dark:text-white">$12,500</p>
+                                    <p class="text-xs font-medium text-green-600 dark:text-green-400">+12% vs last month
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Simplified Chart Visual Representation -->
+                            <div
+                                class="relative h-64 w-full bg-slate-50 dark:bg-slate-900/50 rounded-lg flex items-end justify-between px-4 pb-0 pt-8 overflow-hidden">
+                                <!-- Bars representing revenue -->
+                                <div data-value="4200"
+                                    class="w-1/12 bg-primary/20 hover:bg-primary/30 h-[40%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">
+                                        $4,200</div>
+                                </div>
+                                <div data-value="5500"
+                                    class="w-1/12 bg-primary/30 hover:bg-primary/40 h-[55%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">
+                                        $5,500</div>
+                                </div>
+                                <div data-value="4500"
+                                    class="w-1/12 bg-primary/40 hover:bg-primary/50 h-[45%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                </div>
+                                <div data-value="7000"
+                                    class="w-1/12 bg-primary/50 hover:bg-primary/60 h-[70%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                </div>
+                                <div data-value="9200"
+                                    class="w-1/12 bg-primary hover:bg-primary/90 h-[85%] rounded-t-sm transition-all relative revBar cursor-pointer shadow-lg shadow-blue-500/20">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap">
+                                        $9,200</div>
+                                </div>
+                                <div data-value="6000"
+                                    class="w-1/12 bg-primary/60 hover:bg-primary/70 h-[60%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                </div>
+                                <div data-value="5000"
+                                    class="w-1/12 bg-primary/40 hover:bg-primary/50 h-[50%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                </div>
+                                <div data-value="6500"
+                                    class="w-1/12 bg-primary/30 hover:bg-primary/40 h-[65%] rounded-t-sm transition-all relative revBar cursor-pointer">
+                                </div>
+                                <!-- Line overlay (Trend) -->
+                                <svg class="absolute inset-0 w-full h-full pointer-events-none"
+                                    preserveaspectratio="none">
+                                    <path
+                                        d="M0,200 C50,180 100,100 150,120 S250,50 350,60 S450,100 550,80 S650,40 800,20"
+                                        fill="none" stroke="#137fec" stroke-linecap="round" stroke-width="3"></path>
+                                </svg>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-400 font-medium px-2">
+                                <span>Oct 1</span>
+                                <span>Oct 5</span>
+                                <span>Oct 10</span>
+                                <span>Oct 15</span>
+                                <span>Oct 20</span>
+                                <span>Oct 25</span>
+                                <span>Oct 30</span>
+                            </div>
+                        </div>
+                        <!-- Recent Activity & Status -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Status Distribution -->
+                            <div
+                                class="bg-white dark:bg-[#1a2632] rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm p-6">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Status Distribution
+                                </h3>
+                                <div class="flex items-center gap-6">
+                                    <div class="relative size-32 shrink-0">
+                                        <!-- CSS Conic Gradient for Donut Chart -->
+                                        <div class="size-full rounded-full"
+                                            style="background: conic-gradient(#137fec 0% 50%, #e2e8f0 50% 83%, #f97316 83% 100%);">
+                                        </div>
+                                        <div
+                                            class="absolute inset-4 bg-white dark:bg-[#1a2632] rounded-full flex items-center justify-center flex-col">
+                                            <span class="text-2xl font-black text-slate-900 dark:text-white">24</span>
+                                            <span class="text-[10px] uppercase font-bold text-slate-400">Total</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-3 flex-1">
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center gap-2">
+                                                <span class="size-3 rounded-full bg-primary"></span>
+                                                <span class="text-slate-600 dark:text-slate-300">Active</span>
+                                            </div>
+                                            <span class="font-bold text-slate-900 dark:text-white">50%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center gap-2">
+                                                <span class="size-3 rounded-full bg-slate-200 dark:bg-slate-600"></span>
+                                                <span class="text-slate-600 dark:text-slate-300">Expired</span>
+                                            </div>
+                                            <span class="font-bold text-slate-900 dark:text-white">33%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center gap-2">
+                                                <span class="size-3 rounded-full bg-orange-500"></span>
+                                                <span class="text-slate-600 dark:text-slate-300">Upcoming</span>
+                                            </div>
+                                            <span class="font-bold text-slate-900 dark:text-white">17%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Most Used Coupon -->
+                            <div
+                                class="bg-gradient-to-br from-primary to-blue-600 rounded-xl shadow-lg p-6 text-white relative overflow-hidden group">
+                                <div class="absolute top-0 right-0 p-4 opacity-10">
+                                    <span class="material-symbols-outlined text-[120px]">workspace_premium</span>
+                                </div>
+                                <div class="relative z-10 flex flex-col h-full justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span
+                                                class="bg-white/20 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Top
+                                                Performer</span>
+                                        </div>
+                                        <h3 class="text-2xl font-black tracking-tight mb-1">SUMMER2024</h3>
+                                        <p class="text-blue-100 text-sm">Seasonal Campaign</p>
+                                    </div>
+                                    <div class="flex items-end justify-between mt-6">
+                                        <div>
+                                            <p class="text-4xl font-bold">450</p>
+                                            <p class="text-xs text-blue-100 uppercase font-semibold opacity-80">
+                                                Redemptions</p>
+                                        </div>
+                                        <button id="copyTopCoupon"
+                                            class="bg-white text-primary hover:bg-blue-50 transition-colors size-10 rounded-full flex items-center justify-center shadow-md">
+                                            <span class="material-symbols-outlined">content_copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Sidebar Widgets (Takes 1/3 width on LG) -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Recent Activity Feed -->
+                        <div
+                            class="bg-white dark:bg-[#1a2632] rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col h-full">
+                            <div
+                                class="p-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h3>
+                                <button id="btnViewActivity" class="text-primary text-xs font-bold hover:underline">View
+                                    All</button>
+                            </div>
+                            <div class="flex flex-col p-2 overflow-y-auto max-h-[500px]">
+                                <!-- Activity Item 1 -->
+                                <div
+                                    class="flex gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-colors group cursor-pointer">
+                                    <div
+                                        class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 size-10 rounded-full flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                                    </div>
+                                    <div class="flex flex-col gap-0.5">
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">New Discount
+                                            Created</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">"Welcome2024" was added by
+                                            Admin.</p>
+                                        <span class="text-[10px] text-slate-400 font-medium mt-1">2 mins ago</span>
+                                    </div>
+                                </div>
+                                <!-- Activity Item 2 -->
+                                <div
+                                    class="flex gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-colors group cursor-pointer">
+                                    <div
+                                        class="bg-blue-100 dark:bg-blue-900/30 text-primary size-10 rounded-full flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">sell</span>
+                                    </div>
+                                    <div class="flex flex-col gap-0.5">
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">High Usage Alert
+                                        </p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">"FlashSale50" hit 100
+                                            uses.</p>
+                                        <span class="text-[10px] text-slate-400 font-medium mt-1">1 hour ago</span>
+                                    </div>
+                                </div>
+                                <!-- Activity Item 3 -->
+                                <div
+                                    class="flex gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-colors group cursor-pointer">
+                                    <div
+                                        class="bg-red-100 dark:bg-red-900/30 text-red-500 size-10 rounded-full flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">timer_off</span>
+                                    </div>
+                                    <div class="flex flex-col gap-0.5">
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">Discount Expired
+                                        </p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">"SeptSpecial" has ended.
+                                        </p>
+                                        <span class="text-[10px] text-slate-400 font-medium mt-1">5 hours ago</span>
+                                    </div>
+                                </div>
+                                <!-- Activity Item 4 -->
+                                <div
+                                    class="flex gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-colors group cursor-pointer">
+                                    <div
+                                        class="bg-slate-100 dark:bg-slate-700 text-slate-500 size-10 rounded-full flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-[20px]">edit</span>
+                                    </div>
+                                    <div class="flex flex-col gap-0.5">
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">Rule Updated</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Max redemption limit
+                                            changed for "EarlyBird".</p>
+                                        <span class="text-[10px] text-slate-400 font-medium mt-1">Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Quick Actions Card -->
+                        <div
+                            class="bg-gradient-to-b from-slate-800 to-slate-900 dark:from-[#202b36] dark:to-[#151e26] rounded-xl shadow-sm p-6 text-white">
+                            <h3 class="text-lg font-bold mb-4">Quick Shortcuts</h3>
+                            <div class="flex flex-col gap-3">
+                                <button id="btnExportCSV"
+                                    class="flex items-center justify-between w-full p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-[20px]">file_download</span>
+                                        <span class="text-sm font-medium">Export Report CSV</span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-[16px] opacity-50">arrow_forward</span>
+                                </button>
+                                <button id="btnAutoGen"
+                                    class="flex items-center justify-between w-full p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-[20px]">settings_suggest</span>
+                                        <span class="text-sm font-medium">Auto-Generate Codes</span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-[16px] opacity-50">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Modals: View All / Create Discount -->
+        <div id="modalOverlay" class="hidden fixed inset-0 bg-black/40 z-40"></div>
+
+        <div id="viewAllModal"
+            class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-3xl bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">All Discounts</h3>
+            <div id="discountsList" class="space-y-2 max-h-64 overflow-auto text-sm text-slate-700 dark:text-slate-200">
+            </div>
+            <div class="mt-4 text-right"><button id="closeViewAll"
+                    class="px-4 py-2 rounded bg-slate-100 dark:bg-slate-800">Close</button></div>
+        </div>
+
+        <div id="createModal"
+            class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Create Discount</h3>
+            <label class="block text-sm mb-2">Code</label>
+            <input id="newCode" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">Percent Off</label>
+            <input id="newPercent" type="number" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">Start Date</label>
+            <input id="newStart" type="date" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">End Date</label>
+            <input id="newEnd" type="date" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2"><input id="newActive" type="checkbox" checked class="mr-2" />
+                Active</label>
+            <div class="flex gap-2 justify-end mt-4"><button id="cancelCreate"
+                    class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitCreate"
+                    class="px-4 py-2 rounded bg-primary text-white">Create</button></div>
+        </div>
+
+        <!-- Edit Modal (re-uses same fields for editing) -->
+        <div id="editModal"
+            class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Edit Discount</h3>
+            <input id="editId" type="hidden" />
+            <label class="block text-sm mb-2">Code</label>
+            <input id="editCode" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">Percent Off</label>
+            <input id="editPercent" type="number" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">Start Date</label>
+            <input id="editStart" type="date" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2">End Date</label>
+            <input id="editEnd" type="date" class="w-full mb-3 p-2 rounded border" />
+            <label class="block text-sm mb-2"><input id="editActive" type="checkbox" class="mr-2" /> Active</label>
+            <div id="editErrors" class="text-sm text-red-500 mb-2 hidden"></div>
+            <div class="flex gap-2 justify-end mt-4"><button id="cancelEdit"
+                    class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitEdit"
+                    class="px-4 py-2 rounded bg-primary text-white">Save</button></div>
+        </div>
+
+        <!-- Toast container -->
+        <div id="toastContainer" class="fixed bottom-6 right-6 flex flex-col gap-2 z-50"></div>
+
+        <!-- Activity Modal -->
+        <div id="activityModal"
+            class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-lg bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-3">Recent Activity</h3>
+            <div id="activityList" class="space-y-2 max-h-64 overflow-auto text-sm text-slate-700 dark:text-slate-200">
+            </div>
+            <div class="mt-4 text-right"><button id="closeActivity"
+                    class="px-4 py-2 rounded bg-slate-100 dark:bg-slate-800">Close</button></div>
+        </div>
+
+    </div>
+
+    <script>
+            // Discounts interactivity: localStorage-backed management, CSV export, copy code, dark mode
+            (() => {
+                const KEY = 'discounts_v1';
+
+                // helpers
+                function uid() { return 'd_' + Math.random().toString(36).slice(2, 9); }
+                function nowISO() { return new Date().toISOString(); }
+                function load() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+                function save(arr) { localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+                // seed sample if empty
+                function ensureSeed() {
+                    const arr = load(); if (arr.length === 0) {
+                        const sample = [
+                            { id: uid(), code: 'SUMMER2024', percent: 20, start: '2024-06-01', end: '2024-09-30', active: true, redemptions: 450, created: nowISO() },
+                            { id: uid(), code: 'FlashSale50', percent: 50, start: '2023-09-01', end: '2023-09-10', active: false, redemptions: 100, created: nowISO() },
+                            { id: uid(), code: 'Welcome2024', percent: 15, start: '2024-01-01', end: '2024-12-31', active: true, redemptions: 120, created: nowISO() },
+                            { id: uid(), code: 'BLACKFRIDAY', percent: 40, start: '2024-11-20', end: '2024-11-30', active: true, redemptions: 280, created: nowISO() },
+                            { id: uid(), code: 'NEWYEAR25', percent: 25, start: '2025-01-01', end: '2025-01-15', active: true, redemptions: 0, created: nowISO() }
+                        ]; save(sample);
+                    }
+                }
+
+                function classify(d) {
+                    const today = new Date().setHours(0, 0, 0, 0);
+                    const s = d.start ? new Date(d.start).setHours(0, 0, 0, 0) : 0;
+                    const e = d.end ? new Date(d.end).setHours(0, 0, 0, 0) : Infinity;
+                    if (e < today) return 'expired';
+                    if (s > today) return 'upcoming';
+                    return d.active ? 'active' : 'expired';
+                }
+
+                function getStatusBadge(status) {
+                    const colors = {
+                        active: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+                        expired: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400',
+                        upcoming: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
+                    };
+                    return `<span class="ml-2 text-xs px-2 py-0.5 rounded-full ${colors[status] || colors.expired}">${status}</span>`;
+                }
+
+                function renderKPIs() {
+                    const arr = load();
+                    let active = 0, expired = 0, upcoming = 0, redemptions = 0;
+                    arr.forEach(d => { const c = classify(d); if (c === 'active') active++; else if (c === 'expired') expired++; else if (c === 'upcoming') upcoming++; redemptions += Number(d.redemptions || 0); });
+                    const activeEl = document.getElementById('activeCount');
+                    const expiredEl = document.getElementById('expiredCount');
+                    const upcomingEl = document.getElementById('upcomingCount');
+                    const redemptionsEl = document.getElementById('redemptionsCount');
+                    if (activeEl) activeEl.textContent = active;
+                    if (expiredEl) expiredEl.textContent = expired;
+                    if (upcomingEl) upcomingEl.textContent = upcoming;
+                    if (redemptionsEl) redemptionsEl.textContent = redemptions.toLocaleString();
+
+                    // Update donut chart
+                    const total = active + expired + upcoming;
+                    if (total > 0) {
+                        const activePercent = Math.round((active / total) * 100);
+                        const expiredPercent = Math.round((expired / total) * 100);
+                        const upcomingPercent = 100 - activePercent - expiredPercent;
+                        const donut = document.querySelector('[style*="conic-gradient"]');
+                        if (donut) {
+                            donut.style.background = `conic-gradient(#137fec 0% ${activePercent}%, #e2e8f0 ${activePercent}% ${activePercent + expiredPercent}%, #f97316 ${activePercent + expiredPercent}% 100%)`;
+                        }
+                        const totalEl = donut?.parentElement?.querySelector('.text-2xl');
+                        if (totalEl) totalEl.textContent = total;
+                    }
+                }
+
+                function renderDiscountsList(filterStatus = null) {
+                    const out = document.getElementById('discountsList'); if (!out) return; out.innerHTML = '';
+                    let discounts = load();
+                    if (filterStatus) {
+                        discounts = discounts.filter(d => classify(d) === filterStatus);
+                    }
+                    if (discounts.length === 0) {
+                        out.innerHTML = '<div class="text-center py-8 text-slate-500">No discounts found</div>';
+                        return;
+                    }
+                    discounts.forEach(d => {
+                        const status = classify(d);
+                        const el = document.createElement('div');
+                        el.className = 'p-3 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors';
+                        el.innerHTML = `
+                            <div class="flex-1">
+                                <div class="font-bold text-slate-900 dark:text-white flex items-center">
+                                    ${d.code} ${getStatusBadge(status)}
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">${d.percent}% off — ${d.start} to ${d.end}</div>
+                                <div class="text-xs text-slate-400 mt-1">${d.redemptions || 0} redemptions</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button data-id="${d.id}" class="btnCopy text-xs px-2 py-1.5 rounded bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                                    <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                                </button>
+                                <button data-id="${d.id}" class="btnEdit text-xs px-3 py-1.5 rounded bg-primary text-white hover:bg-blue-600 transition-colors">Edit</button>
+                                <button data-id="${d.id}" class="btnToggle text-xs px-3 py-1.5 rounded ${d.active ? 'bg-orange-100 text-orange-700 hover:bg-orange-200' : 'bg-green-100 text-green-700 hover:bg-green-200'} transition-colors">${d.active ? 'Deactivate' : 'Activate'}</button>
+                                <button data-id="${d.id}" class="btnDelete text-xs px-2 py-1.5 rounded bg-red-100 text-red-700 hover:bg-red-200 transition-colors">
+                                    <span class="material-symbols-outlined text-[14px]">delete</span>
+                                </button>
+                            </div>`;
+                        out.appendChild(el);
+                    });
+
+                    // Attach event listeners
+                    out.querySelectorAll('.btnCopy').forEach(b => b.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        const id = b.dataset.id; const arr = load(); const d = arr.find(x => x.id === id);
+                        if (d && navigator.clipboard) {
+                            navigator.clipboard.writeText(d.code).then(() => showToast('Copied: ' + d.code, 'success'));
+                        }
+                    }));
+                    out.querySelectorAll('.btnEdit').forEach(b => b.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        const id = b.dataset.id; const arr = load(); const d = arr.find(x => x.id === id); if (!d) return;
+                        document.getElementById('editId').value = d.id;
+                        document.getElementById('editCode').value = d.code;
+                        document.getElementById('editPercent').value = d.percent;
+                        document.getElementById('editStart').value = d.start;
+                        document.getElementById('editEnd').value = d.end;
+                        document.getElementById('editActive').checked = !!d.active;
+                        document.getElementById('editErrors').classList.add('hidden');
+                        document.getElementById('modalOverlay').classList.remove('hidden');
+                        document.getElementById('editModal').classList.remove('hidden');
+                    }));
+                    out.querySelectorAll('.btnToggle').forEach(b => b.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        const id = b.dataset.id; const arr = load(); const idx = arr.findIndex(x => x.id === id); if (idx === -1) return;
+                        arr[idx].active = !arr[idx].active; save(arr); renderKPIs(); renderDiscountsList();
+                        showToast((arr[idx].active ? 'Activated ' : 'Deactivated ') + arr[idx].code, 'success');
+                    }));
+                    out.querySelectorAll('.btnDelete').forEach(b => b.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        const id = b.dataset.id; const arr = load(); const idx = arr.findIndex(x => x.id === id);
+                        if (idx === -1) return;
+                        if (confirm('Delete discount "' + arr[idx].code + '"?')) {
+                            const code = arr[idx].code;
+                            arr.splice(idx, 1); save(arr); renderKPIs(); renderDiscountsList();
+                            showToast('Deleted: ' + code, 'success');
+                        }
+                    }));
+                }
+
+                // Toast helper with animation
+                function showToast(msg, type = 'info', timeout = 3000) {
+                    const container = document.getElementById('toastContainer'); if (!container) return;
+                    const el = document.createElement('div');
+                    const colors = {
+                        error: 'bg-red-600',
+                        success: 'bg-green-600',
+                        info: 'bg-slate-800 dark:bg-slate-700'
+                    };
+                    el.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg max-w-xs transform transition-all duration-300 flex items-center gap-2`;
+                    const icons = { success: 'check_circle', error: 'error', info: 'info' };
+                    el.innerHTML = `<span class="material-symbols-outlined text-[18px]">${icons[type] || icons.info}</span><span>${msg}</span>`;
+                    container.appendChild(el);
+                    requestAnimationFrame(() => el.classList.add('translate-y-0', 'opacity-100'));
+                    setTimeout(() => {
+                        el.classList.add('opacity-0', 'translate-y-2');
+                        setTimeout(() => el.remove(), 300);
+                    }, timeout);
+                }
+
+                // Modal overlay click to close
+                const overlay = document.getElementById('modalOverlay');
+                if (overlay) {
+                    overlay.addEventListener('click', () => {
+                        document.querySelectorAll('#viewAllModal, #createModal, #editModal, #activityModal').forEach(m => m.classList.add('hidden'));
+                        overlay.classList.add('hidden');
+                    });
+                }
+
+                // copy top coupon
+                const copyBtn = document.getElementById('copyTopCoupon');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', () => {
+                        const arr = load();
+                        const topActive = arr.find(d => classify(d) === 'active');
+                        const top = topActive ? topActive.code : 'SUMMER2024';
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(top).then(() => {
+                                showToast('Coupon copied: ' + top, 'success');
+                                copyBtn.innerHTML = '<span class="material-symbols-outlined">check</span>';
+                                setTimeout(() => { copyBtn.innerHTML = '<span class="material-symbols-outlined">content_copy</span>'; }, 2000);
+                            }, () => showToast('Unable to copy', 'error'));
+                        } else {
+                            showToast('Copy not supported', 'error');
+                        }
+                    });
+                }
+
+                // date range filters with visual feedback
+                let activeRangeDays = 30;
+                function applyRange(days) {
+                    activeRangeDays = days;
+                    const buttons = { 7: 'btn7', 30: 'btn30', 90: 'btn90' };
+                    Object.entries(buttons).forEach(([d, id]) => {
+                        const btn = document.getElementById(id);
+                        if (!btn) return;
+                        if (parseInt(d) === days) {
+                            btn.className = 'text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary';
+                        } else {
+                            btn.className = 'text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors';
+                        }
+                    });
+                    showToast(`Showing data for last ${days} days`, 'info');
+                    renderKPIs();
+                }
+
+                const btn7 = document.getElementById('btn7');
+                const btn30 = document.getElementById('btn30');
+                const btn90 = document.getElementById('btn90');
+                if (btn7) btn7.addEventListener('click', () => applyRange(7));
+                if (btn30) btn30.addEventListener('click', () => applyRange(30));
+                if (btn90) btn90.addEventListener('click', () => applyRange(90));
+
+                // View All Modal
+                const btnViewAll = document.getElementById('btnViewAll');
+                const closeViewAll = document.getElementById('closeViewAll');
+                if (btnViewAll) btnViewAll.addEventListener('click', () => {
+                    renderDiscountsList();
+                    document.getElementById('modalOverlay').classList.remove('hidden');
+                    document.getElementById('viewAllModal').classList.remove('hidden');
+                });
+                if (closeViewAll) closeViewAll.addEventListener('click', () => {
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('viewAllModal').classList.add('hidden');
+                });
+
+                // Create Discount Modal
+                const btnCreateDiscount = document.getElementById('btnCreateDiscount');
+                const cancelCreate = document.getElementById('cancelCreate');
+                const submitCreate = document.getElementById('submitCreate');
+
+                if (btnCreateDiscount) btnCreateDiscount.addEventListener('click', () => {
+                    // Reset form
+                    document.getElementById('newCode').value = '';
+                    document.getElementById('newPercent').value = '';
+                    document.getElementById('newStart').value = new Date().toISOString().slice(0, 10);
+                    document.getElementById('newEnd').value = new Date(Date.now() + 30 * 24 * 3600 * 1000).toISOString().slice(0, 10);
+                    document.getElementById('newActive').checked = true;
+                    document.getElementById('modalOverlay').classList.remove('hidden');
+                    document.getElementById('createModal').classList.remove('hidden');
+                });
+                if (cancelCreate) cancelCreate.addEventListener('click', () => {
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('createModal').classList.add('hidden');
+                });
+                if (submitCreate) submitCreate.addEventListener('click', () => {
+                    const codeEl = document.getElementById('newCode');
+                    const percentEl = document.getElementById('newPercent');
+                    const startEl = document.getElementById('newStart');
+                    const endEl = document.getElementById('newEnd');
+                    const code = codeEl.value.trim().toUpperCase();
+                    const percent = Number(percentEl.value);
+                    const start = startEl.value || new Date().toISOString().slice(0, 10);
+                    const end = endEl.value || new Date().toISOString().slice(0, 10);
+
+                    // validation
+                    if (!code) { showToast('Please enter a discount code', 'error'); codeEl.focus(); return; }
+                    if (code.length < 3) { showToast('Code must be at least 3 characters', 'error'); codeEl.focus(); return; }
+                    if (load().some(d => d.code.toUpperCase() === code)) { showToast('Code already exists', 'error'); codeEl.focus(); return; }
+                    if (isNaN(percent) || percent <= 0 || percent > 100) { showToast('Percent must be 1-100', 'error'); percentEl.focus(); return; }
+                    if (new Date(start) > new Date(end)) { showToast('Start date must be before end date', 'error'); startEl.focus(); return; }
+
+                    const active = document.getElementById('newActive').checked;
+                    const arr = load();
+                    arr.unshift({ id: uid(), code, percent, start, end, active, redemptions: 0, created: nowISO() });
+                    save(arr);
+                    renderKPIs();
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('createModal').classList.add('hidden');
+                    showToast('Discount "' + code + '" created!', 'success');
+                });
+
+                // Quick shortcuts - Export CSV
+                const btnExportCSV = document.getElementById('btnExportCSV');
+                if (btnExportCSV) btnExportCSV.addEventListener('click', () => {
+                    const arr = load();
+                    if (arr.length === 0) { showToast('No discounts to export', 'info'); return; }
+                    const keys = ['code', 'percent', 'start', 'end', 'active', 'redemptions', 'created'];
+                    const headers = ['Code', 'Discount %', 'Start Date', 'End Date', 'Status', 'Redemptions', 'Created'];
+                    const lines = [headers.join(',')];
+                    arr.forEach(d => {
+                        lines.push(keys.map(k => {
+                            let val = d[k] || '';
+                            if (k === 'active') val = d[k] ? 'Active' : 'Inactive';
+                            return JSON.stringify(val);
+                        }).join(','));
+                    });
+                    const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'discounts_' + new Date().toISOString().slice(0, 10) + '.csv';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                    showToast('CSV exported successfully!', 'success');
+                });
+
+                // Quick shortcuts - Auto-Generate Codes
+                const btnAutoGen = document.getElementById('btnAutoGen');
+                if (btnAutoGen) btnAutoGen.addEventListener('click', () => {
+                    const prefixes = ['SAVE', 'DEAL', 'OFF', 'PROMO', 'FLASH'];
+                    const count = 5;
+                    const arr = load();
+                    const newCodes = [];
+                    for (let i = 0; i < count; i++) {
+                        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                        const code = prefix + Math.random().toString(36).slice(2, 6).toUpperCase();
+                        const percent = [5, 10, 15, 20, 25][Math.floor(Math.random() * 5)];
+                        arr.unshift({
+                            id: uid(),
+                            code,
+                            percent,
+                            start: new Date().toISOString().slice(0, 10),
+                            end: new Date(Date.now() + (7 + Math.floor(Math.random() * 23)) * 24 * 3600 * 1000).toISOString().slice(0, 10),
+                            active: true,
+                            redemptions: 0,
+                            created: nowISO()
+                        });
+                        newCodes.push(code);
+                    }
+                    save(arr);
+                    renderKPIs();
+                    showToast('Generated ' + count + ' codes: ' + newCodes.slice(0, 2).join(', ') + '...', 'success');
+                });
+
+                // Chart bar interactions with tooltip
+                document.querySelectorAll('.revBar').forEach(b => {
+                    b.addEventListener('click', () => {
+                        const v = b.dataset.value || '0';
+                        showToast('Revenue: $' + Number(v).toLocaleString(), 'info');
+                    });
+                    b.addEventListener('mouseenter', () => {
+                        b.style.transform = 'scaleY(1.05)';
+                        b.style.transformOrigin = 'bottom';
+                    });
+                    b.addEventListener('mouseleave', () => {
+                        b.style.transform = 'scaleY(1)';
+                    });
+                });
+
+                // KPI card clicks -> open view modal filtered by status
+                function setupKPIClick(elementId, status, message) {
+                    const el = document.getElementById(elementId);
+                    if (el) {
+                        const card = el.closest('div[class*="rounded-xl"]');
+                        if (card) {
+                            card.style.cursor = 'pointer';
+                            card.addEventListener('click', () => {
+                                renderDiscountsList(status);
+                                document.getElementById('modalOverlay').classList.remove('hidden');
+                                document.getElementById('viewAllModal').classList.remove('hidden');
+                                showToast(message, 'info');
+                            });
+                        }
+                    }
+                }
+                setupKPIClick('activeCount', 'active', 'Showing active discounts');
+                setupKPIClick('expiredCount', 'expired', 'Showing expired discounts');
+                setupKPIClick('upcomingCount', 'upcoming', 'Showing upcoming discounts');
+
+                // Activity view
+                const btnViewActivity = document.getElementById('btnViewActivity');
+                const closeActivity = document.getElementById('closeActivity');
+
+                if (btnViewActivity) btnViewActivity.addEventListener('click', () => {
+                    const arr = load();
+                    const activities = [];
+
+                    // Generate activities from discounts
+                    arr.slice(0, 4).forEach(d => {
+                        if (classify(d) === 'active') {
+                            activities.push({ title: 'Discount Active', msg: `"${d.code}" is currently active with ${d.redemptions} uses`, when: 'Now', icon: 'check_circle', color: 'text-green-500' });
+                        } else if (classify(d) === 'expired') {
+                            activities.push({ title: 'Discount Expired', msg: `"${d.code}" has ended`, when: 'Recently', icon: 'timer_off', color: 'text-red-500' });
+                        } else {
+                            activities.push({ title: 'Upcoming Discount', msg: `"${d.code}" starts on ${d.start}`, when: 'Scheduled', icon: 'schedule', color: 'text-orange-500' });
+                        }
+                    });
+
+                    const out = document.getElementById('activityList');
+                    out.innerHTML = '';
+                    activities.forEach(a => {
+                        const el = document.createElement('div');
+                        el.className = 'p-3 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer';
+                        el.innerHTML = `
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined ${a.color} text-[20px]">${a.icon}</span>
+                                <div class="flex-1">
+                                    <div class="font-bold text-slate-900 dark:text-white">${a.title}</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">${a.msg}</div>
+                                    <div class="text-[10px] text-slate-400 mt-1">${a.when}</div>
+                                </div>
+                            </div>`;
+                        el.addEventListener('click', () => showToast(a.msg, 'info'));
+                        out.appendChild(el);
+                    });
+                    document.getElementById('modalOverlay').classList.remove('hidden');
+                    document.getElementById('activityModal').classList.remove('hidden');
+                });
+
+                if (closeActivity) closeActivity.addEventListener('click', () => {
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('activityModal').classList.add('hidden');
+                });
+
+                // Activity items in sidebar click -> toast with details
+                document.querySelectorAll('.group.cursor-pointer').forEach(el => {
+                    el.addEventListener('click', () => {
+                        const title = el.querySelector('p') ? el.querySelector('p').textContent : 'Activity';
+                        const details = el.querySelector('p + p') ? el.querySelector('p + p').textContent : '';
+                        showToast(title + ': ' + details, 'info');
+                    });
+                });
+
+                // Edit modal handlers
+                const cancelEdit = document.getElementById('cancelEdit');
+                const submitEdit = document.getElementById('submitEdit');
+
+                if (cancelEdit) cancelEdit.addEventListener('click', () => {
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('editModal').classList.add('hidden');
+                });
+
+                if (submitEdit) submitEdit.addEventListener('click', () => {
+                    const id = document.getElementById('editId').value;
+                    const code = document.getElementById('editCode').value.trim().toUpperCase();
+                    const percent = Number(document.getElementById('editPercent').value);
+                    const start = document.getElementById('editStart').value || new Date().toISOString().slice(0, 10);
+                    const end = document.getElementById('editEnd').value || new Date().toISOString().slice(0, 10);
+                    const active = document.getElementById('editActive').checked;
+                    const errEl = document.getElementById('editErrors');
+                    errEl.classList.add('hidden');
+                    errEl.textContent = '';
+
+                    if (!code) { errEl.textContent = 'Code is required'; errEl.classList.remove('hidden'); return; }
+                    if (isNaN(percent) || percent <= 0 || percent > 100) { errEl.textContent = 'Percent must be 1-100'; errEl.classList.remove('hidden'); return; }
+                    if (new Date(start) > new Date(end)) { errEl.textContent = 'Start must be before end'; errEl.classList.remove('hidden'); return; }
+
+                    const arr = load();
+                    const idx = arr.findIndex(x => x.id === id);
+                    if (idx === -1) { showToast('Discount not found', 'error'); return; }
+
+                    // Check for duplicate code
+                    if (arr.some((d, i) => i !== idx && d.code.toUpperCase() === code)) {
+                        errEl.textContent = 'Code already exists'; errEl.classList.remove('hidden'); return;
+                    }
+
+                    arr[idx].code = code;
+                    arr[idx].percent = percent;
+                    arr[idx].start = start;
+                    arr[idx].end = end;
+                    arr[idx].active = !!active;
+                    save(arr);
+                    renderKPIs();
+                    renderDiscountsList();
+                    document.getElementById('modalOverlay').classList.add('hidden');
+                    document.getElementById('editModal').classList.add('hidden');
+                    showToast('Discount "' + code + '" updated!', 'success');
+                });
+
+                // Dark mode toggle (if header has a toggle)
+                const htmlEl = document.documentElement;
+                function toggleDarkMode() {
+                    htmlEl.classList.toggle('dark');
+                    localStorage.setItem('darkMode', htmlEl.classList.contains('dark'));
+                }
+                // Apply saved dark mode preference
+                if (localStorage.getItem('darkMode') === 'true') {
+                    htmlEl.classList.add('dark');
+                }
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    // Escape to close modals
+                    if (e.key === 'Escape') {
+                        document.querySelectorAll('#viewAllModal, #createModal, #editModal, #activityModal').forEach(m => m.classList.add('hidden'));
+                        document.getElementById('modalOverlay')?.classList.add('hidden');
+                    }
+                    // Ctrl/Cmd + N for new discount
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+                        e.preventDefault();
+                        document.getElementById('btnCreateDiscount')?.click();
+                    }
+                });
+
+                // Initial setup
+                ensureSeed();
+                renderKPIs();
+
+                // Log initialization
+                console.log('Discount Management Hub initialized. Loaded', load().length, 'discounts.');
+            })();
+    </script>
+
+</body>
+
+</html>

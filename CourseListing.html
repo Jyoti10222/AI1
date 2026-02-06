@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Study Materials - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "primary-hover": "#2563eb",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                        "dark-surface": "#334155",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.5s ease-out',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                            '50%': { opacity: '0.8', boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' },
+                        },
+                        'slide-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2px;
+            border-radius: 1rem;
+        }
+
+        .gradient-border-content {
+            background: #1e293b;
+            border-radius: calc(1rem - 2px);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[600px] h-[600px] bg-blue-500/20 dark:bg-blue-600/10 rounded-full blur-[120px] animate-blob">
+        </div>
+        <div class="absolute top-[30%] right-[10%] w-[500px] h-[500px] bg-purple-500/20 dark:bg-purple-600/10 rounded-full blur-[120px] animate-blob"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[10%] left-[40%] w-[400px] h-[400px] bg-pink-500/20 dark:bg-pink-600/10 rounded-full blur-[100px] animate-blob"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-lg shadow-black/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="A5Dashboard.html">
+                        <div
+                            class="size-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all group-hover:scale-110 animate-pulse-glow">
+                            <span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+                        </div>
+                        <h2
+                            class="text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden md:block">
+                            TECH-PRO AI
+                        </h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-sm font-semibold text-slate-900 dark:text-white border-b-2 border-blue-600 pb-1"
+                            href="CourseListing.html">Study Materials</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="A5Dashboard.html">Dashboard</a>
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="A6Catlog.html">All Courses</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg animate-pulse"></span>
+                    </button>
+                    <div
+                        class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] hover:scale-110 transition-transform cursor-pointer">
+                        <div
+                            class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">person</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+        <!-- Hero Section -->
+        <div class="mb-12 text-center animate-slide-up">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 dark:bg-blue-500/20 border border-blue-500/20 mb-6">
+                <span
+                    class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-sm animate-pulse">auto_awesome</span>
+                <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">AI-Powered Learning
+                    Materials</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-4">
+                <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    Explore Study Materials
+                </span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                Access curated learning resources across all courses. Download PDFs, presentations, and watch video
+                tutorials.
+            </p>
+        </div>
+
+        <!-- Search & Filter Bar -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4 animate-slide-up" style="animation-delay: 0.1s;">
+            <div class="flex-1 relative group">
+                <div
+                    class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300">
+                </div>
+                <div
+                    class="relative flex items-center bg-white dark:bg-dark-card rounded-xl shadow-lg ring-1 ring-slate-200 dark:ring-slate-700">
+                    <span class="pl-4 text-blue-500 material-symbols-outlined">search</span>
+                    <input
+                        class="w-full px-4 py-4 bg-transparent border-0 focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 font-medium"
+                        placeholder="Search courses, modules, or materials..." type="text" id="searchInput" />
+                </div>
+            </div>
+            <select
+                class="px-6 py-4 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg">
+                <option>All Courses</option>
+                <option>Java Full Stack</option>
+                <option>Python Full Stack</option>
+                <option>Artificial Intelligence</option>
+                <option>Cybersecurity</option>
+                <option>Networking</option>
+            </select>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="courseGrid">
+
+            <!-- Java Full Stack -->
+            <a href="CourseDetail.html?course=java" class="course-card block group">
+                <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="gradient-border-content p-6 h-full">
+                        <div class="relative mb-6 overflow-hidden rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 animate-pulse">
+                            </div>
+                            <div class="relative p-8 flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-8xl text-orange-500 animate-float">code</span>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 px-3 py-1 bg-orange-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                42 Materials
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors">
+                            Java Full Stack
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Spring Boot, Hibernate, Angular, Microservices
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">folder</span>
+                                8 Modules
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                1.2k Downloads
+                            </span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-orange-500 to-red-500 w-[75%]"></div>
+                            </div>
+                            <span class="text-xs font-bold text-orange-400">75%</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Python Full Stack -->
+            <a href="CourseDetail.html?course=python" class="course-card block group">
+                <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="gradient-border-content p-6 h-full">
+                        <div class="relative mb-6 overflow-hidden rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-green-500/20 animate-pulse">
+                            </div>
+                            <div class="relative p-8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-8xl text-yellow-500 animate-float"
+                                    style="animation-delay: 1s;">terminal</span>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 px-3 py-1 bg-yellow-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                38 Materials
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-yellow-400 transition-colors">
+                            Python Full Stack
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Django, FastAPI, React, REST APIs
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">folder</span>
+                                7 Modules
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                980 Downloads
+                            </span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-yellow-500 to-green-500 w-[60%]"></div>
+                            </div>
+                            <span class="text-xs font-bold text-yellow-400">60%</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Artificial Intelligence -->
+            <a href="CourseDetail.html?course=ai" class="course-card block group">
+                <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="gradient-border-content p-6 h-full">
+                        <div class="relative mb-6 overflow-hidden rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 animate-pulse">
+                            </div>
+                            <div class="relative p-8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-8xl text-purple-500 animate-float"
+                                    style="animation-delay: 2s;">psychology</span>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 px-3 py-1 bg-purple-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                56 Materials
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-purple-400 transition-colors">
+                            Artificial Intelligence
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Machine Learning, Deep Learning, NLP, Computer Vision
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">folder</span>
+                                10 Modules
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                2.1k Downloads
+                            </span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 w-[45%]"></div>
+                            </div>
+                            <span class="text-xs font-bold text-purple-400">45%</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Cybersecurity -->
+            <a href="CourseDetail.html?course=cyber" class="course-card block group">
+                <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: 0.5s;">
+                    <div class="gradient-border-content p-6 h-full">
+                        <div class="relative mb-6 overflow-hidden rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-rose-500/20 animate-pulse">
+                            </div>
+                            <div class="relative p-8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-8xl text-red-500 animate-float"
+                                    style="animation-delay: 3s;">shield</span>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 px-3 py-1 bg-red-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                34 Materials
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-red-400 transition-colors">
+                            Cybersecurity
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Ethical Hacking, Penetration Testing, Network Security
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">folder</span>
+                                6 Modules
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                1.5k Downloads
+                            </span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-red-500 to-rose-500 w-[30%]"></div>
+                            </div>
+                            <span class="text-xs font-bold text-red-400">30%</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Networking -->
+            <a href="CourseDetail.html?course=networking" class="course-card block group">
+                <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="gradient-border-content p-6 h-full">
+                        <div class="relative mb-6 overflow-hidden rounded-xl">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 animate-pulse">
+                            </div>
+                            <div class="relative p-8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-8xl text-blue-500 animate-float"
+                                    style="animation-delay: 4s;">hub</span>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 px-3 py-1 bg-blue-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                28 Materials
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                            Networking
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            TCP/IP, CCNA, Routing Protocols, SDN
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">folder</span>
+                                5 Modules
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                850 Downloads
+                            </span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2">
+                            <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-500 w-[20%]"></div>
+                            </div>
+                            <span class="text-xs font-bold text-blue-400">20%</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let allCourses = [];
+
+        // Get student info from localStorage
+        const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+        const studentId = localStorage.getItem('studentId');
+
+        // Course config with icons and gradients
+        const courseConfig = {
+            'java': {
+                icon: 'code',
+                gradient: 'from-orange-500 to-red-500',
+                bgGradient: 'from-orange-500/20 to-red-500/20',
+                color: 'orange'
+            },
+            'python': {
+                icon: 'terminal',
+                gradient: 'from-yellow-500 to-green-500',
+                bgGradient: 'from-yellow-500/20 to-green-500/20',
+                color: 'yellow'
+            },
+            'ai': {
+                icon: 'psychology',
+                gradient: 'from-purple-500 to-pink-500',
+                bgGradient: 'from-purple-500/20 to-pink-500/20',
+                color: 'purple'
+            },
+            'cyber': {
+                icon: 'shield',
+                gradient: 'from-red-500 to-rose-500',
+                bgGradient: 'from-red-500/20 to-rose-500/20',
+                color: 'red'
+            },
+            'networking': {
+                icon: 'hub',
+                gradient: 'from-blue-500 to-cyan-500',
+                bgGradient: 'from-blue-500/20 to-cyan-500/20',
+                color: 'blue'
+            }
+        };
+
+        // Load courses on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadCourses();
+            setupSearch();
+        });
+
+        // Load courses from API
+        async function loadCourses() {
+            try {
+                let url = `${API_BASE}/courses`;
+
+                // Filter by student registration
+                if (studentId) {
+                    url += `?studentId=${studentId}`;
+                }
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    allCourses = data.courses;
+                    renderCourses(allCourses);
+                }
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                // Fallback to showing existing static courses
+            }
+        }
+
+        // Render courses dynamically
+        function renderCourses(courses) {
+            const courseGrid = document.getElementById('courseGrid');
+            if (!courseGrid || courses.length === 0) return;
+
+            courseGrid.innerHTML = '';
+
+            courses.forEach((course, index) => {
+                const config = courseConfig[course.id] || courseConfig['ai'];
+                const delay = (index + 2) * 0.1;
+
+                const courseCard = createCourseCard(course, config, delay);
+                courseGrid.insertAdjacentHTML('beforeend', courseCard);
+            });
+        }
+
+        // Create course card HTML
+        function createCourseCard(course, config, delay) {
+            const materialCount = course.totalMaterials || 0;
+            const moduleCount = course.totalModules || 0;
+            const downloads = formatNumber(course.totalDownloads || 0);
+            const progress = course.progress || 0;
+
+            return `
+                <a href="CourseDetail.html?course=${course.id}" class="course-card block group" data-course-id="${course.id}">
+                    <div class="gradient-border hover-lift animate-slide-up" style="animation-delay: ${delay}s;">
+                        <div class="gradient-border-content p-6 h-full">
+                            <div class="relative mb-6 overflow-hidden rounded-xl">
+                                <div class="absolute inset-0 bg-gradient-to-br ${config.bgGradient} animate-pulse"></div>
+                                <div class="relative p-8 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-8xl text-${config.color}-500 animate-float" style="animation-delay: ${delay}s;">${config.icon}</span>
+                                </div>
+                                <div class="absolute top-3 right-3 px-3 py-1 bg-${config.color}-500/90 backdrop-blur text-white text-xs font-bold uppercase rounded-lg">
+                                    ${materialCount} Materials
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-black text-white mb-2 group-hover:text-${config.color}-400 transition-colors">
+                                ${course.name}
+                            </h3>
+                            <p class="text-slate-400 text-sm mb-4">
+                                ${course.description}
+                            </p>
+                            <div class="flex items-center justify-between text-xs text-slate-500">
+                                <span class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">folder</span>
+                                    ${moduleCount} Modules
+                                </span>
+                                <span class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                    ${downloads} Downloads
+                                </span>
+                            </div>
+                            <div class="mt-4 flex items-center gap-2">
+                                <div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r ${config.gradient} w-[${progress}%]"></div>
+                                </div>
+                                <span class="text-xs font-bold text-${config.color}-400">${progress}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Setup search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const courseCards = document.querySelectorAll('.course-card');
+
+                courseCards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Format number helper
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+        }
+    </script>
+
+</body>
+
+</html>

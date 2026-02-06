@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>In-Person Booking Confirmation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .bg-gradient-soft {
+            background: linear-gradient(180deg, rgba(19, 236, 55, 0.05) 0%, rgba(246, 248, 246, 1) 100%);
+        }
+
+        .dark .bg-gradient-soft {
+            background: linear-gradient(180deg, rgba(19, 236, 55, 0.05) 0%, rgba(16, 34, 19, 1) 100%);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark min-h-screen">
+    <div class="relative flex h-full min-h-screen w-full flex-col bg-gradient-soft overflow-x-hidden">
+        <!-- TopAppBar -->
+        <div class="flex items-center p-4 pb-2 justify-between">
+            <div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center cursor-pointer"
+                data-icon="ArrowBack">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </div>
+            <h2
+                class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
+                Confirmation</h2>
+        </div>
+        <div class="flex flex-col items-center justify-center px-4 pt-10 pb-6 text-center">
+            <!-- Success Icon -->
+            <div class="mb-6 flex items-center justify-center w-24 h-24 rounded-full bg-primary/20 text-primary">
+                <span class="material-symbols-outlined !text-6xl">check_circle</span>
+            </div>
+            <!-- HeadlineText -->
+            <h2 class="text-slate-900 dark:text-white tracking-light text-[28px] font-extrabold leading-tight pb-3">
+                Booking Request Sent Successfully!
+            </h2>
+            <!-- BodyText -->
+            <p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal max-w-sm">
+                Your request for an in-person session has been received. Our admin will confirm your appointment
+                shortly.
+            </p>
+        </div>
+        <!-- Meeting Details Card -->
+        <div class="p-4 @container">
+            <div
+                class="flex flex-col items-stretch justify-start rounded-xl shadow-lg bg-white dark:bg-slate-900 overflow-hidden border border-slate-100 dark:border-slate-800">
+                <div class="w-full bg-center bg-no-repeat aspect-[16/7] bg-cover"
+                    data-alt="Modern office building entrance with green plants"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEEVVfY0RVFwJmMY6lNO4YpsDwmb45f33Q46fsiCqjRToWMiq1--cj710vY0c1AWkbWRnYFyacGwMJmR_On3A911Br5Pq1brix9M4JJCXFpiWeMoBb-BUBw7zSRIeHUbEtBcqq-zdYKAe0IAHWIS50A1-Uv0QfpJpn-XvLgqzsRgS70zZrmmCfy6IYBcIv_0XypEbiee4fhZpe-hzvv7wf2Lha7_8PM80LyYY2IM2G-R8v3gTJoSfvm9TT9TtYgoAeKswtmj8vpKw");'>
+                </div>
+                <div class="flex w-full flex-col items-stretch justify-center gap-4 p-6">
+                    <div class="flex items-center justify-between">
+                        <p class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Meeting
+                            Details</p>
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Pending</span>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- Counselor -->
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5">person</span>
+                            <div>
+                                <p
+                                    class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide">
+                                    Student Name</p>
+                                <p id="confirm-name" class="text-slate-900 dark:text-white text-base font-medium">
+                                    Loading...</p>
+                            </div>
+                        </div>
+                        <!-- Date & Time -->
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5">calendar_today</span>
+                            <div>
+                                <p
+                                    class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide">
+                                    Date &amp; Time</p>
+                                <p id="confirm-datetime" class="text-slate-900 dark:text-white text-base font-medium">
+                                    Loading...</p>
+                            </div>
+                        </div>
+                        <!-- Mode -->
+                        <div class="flex items-start gap-3">
+                            <span id="mode-icon" class="material-symbols-outlined text-primary mt-0.5">videocam</span>
+                            <div>
+                                <p
+                                    class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide">
+                                    Meeting Mode</p>
+                                <p id="confirm-mode" class="text-slate-900 dark:text-white text-base font-medium">
+                                    Loading...</p>
+                            </div>
+                        </div>
+                        <!-- Course -->
+                        <div class="flex items-start gap-3 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <span class="material-symbols-outlined text-primary mt-0.5">school</span>
+                            <div class="flex-1">
+                                <p
+                                    class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wide">
+                                    Course Interest</p>
+                                <p id="confirm-course" class="text-slate-900 dark:text-white text-base font-medium">
+                                    Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="mt-auto p-4 space-y-3 pb-8">
+            <button
+                class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-4 bg-primary text-slate-900 text-base font-bold transition-all active:scale-[0.98]">
+                <span class="material-symbols-outlined mr-2">event</span>
+                <span class="truncate">Add to Calendar</span>
+            </button>
+            <button onclick="window.location.href='A4Onboarding.html'"
+                class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white text-base font-bold transition-all active:scale-[0.98]">
+                <span class="truncate">Return to Home</span>
+            </button>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Header Navigation
+                const backBtn = document.querySelector('.text-slate-900.dark\\:text-white.flex.size-12.shrink-0');
+                if (backBtn) {
+                    backBtn.onclick = () => window.location.href = 'CounselorOnline.html';
+                }
+
+                let bookingData = null;
+
+                try {
+                    bookingData = JSON.parse(localStorage.getItem('lastBooking'));
+
+                    if (bookingData) {
+                        const date = new Date(bookingData.selectedDate);
+                        const dateStr = date.toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+
+                        document.getElementById('confirm-datetime').textContent = `${dateStr} at ${bookingData.selectedTime}`;
+                        document.getElementById('confirm-mode').textContent = bookingData.mode === 'online' ? 'Online Description Link' : 'Face-to-Face description';
+                        document.getElementById('confirm-name').textContent = bookingData.name;
+                        document.getElementById('confirm-course').textContent = bookingData.course;
+
+                        // Update icon/text based on mode
+                        if (bookingData.mode === 'online') {
+                            document.getElementById('mode-icon').textContent = 'videocam';
+                            document.getElementById('confirm-mode').textContent = 'Online (Link will be emailed)';
+                        } else {
+                            document.getElementById('mode-icon').textContent = 'location_on';
+                            document.getElementById('confirm-mode').textContent = 'Face-to-Face (Institute Visit)';
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading booking data', e);
+                }
+
+                // Add to Calendar Functionality
+                const addToCalendarBtn = document.querySelector('button:has(span.material-symbols-outlined:contains("event"))');
+                if (addToCalendarBtn) {
+                    addToCalendarBtn.onclick = function () {
+                        if (!bookingData) {
+                            alert('No booking data found. Please try again.');
+                            return;
+                        }
+
+                        try {
+                            // Parse date and time
+                            const eventDate = new Date(bookingData.selectedDate);
+                            const [hours, minutes] = bookingData.selectedTime.split(':');
+                            eventDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+
+                            // Calculate end time (1 hour after start)
+                            const endDate = new Date(eventDate);
+                            endDate.setHours(endDate.getHours() + 1);
+
+                            // Format dates for ICS file (YYYYMMDDTHHMMSS)
+                            const formatICSDate = (date) => {
+                                const year = date.getFullYear();
+                                const month = String(date.getMonth() + 1).padStart(2, '0');
+                                const day = String(date.getDate()).padStart(2, '0');
+                                const hour = String(date.getHours()).padStart(2, '0');
+                                const minute = String(date.getMinutes()).padStart(2, '0');
+                                const second = String(date.getSeconds()).padStart(2, '0');
+                                return `${year}${month}${day}T${hour}${minute}${second}`;
+                            };
+
+                            const startTime = formatICSDate(eventDate);
+                            const endTime = formatICSDate(endDate);
+                            const now = formatICSDate(new Date());
+
+                            // Create ICS file content
+                            const modeText = bookingData.mode === 'online' ? 'Online Counseling Session' : 'In-Person Counseling Session';
+                            const location = bookingData.mode === 'online' ? 'Online (Link will be emailed)' : 'Tech-Pro AI Institute';
+
+                            const icsContent = [
+                                'BEGIN:VCALENDAR',
+                                'VERSION:2.0',
+                                'PRODID:-//Tech-Pro AI//Counseling Booking//EN',
+                                'CALSCALE:GREGORIAN',
+                                'METHOD:PUBLISH',
+                                'BEGIN:VEVENT',
+                                `UID:${bookingData.id || Date.now()}@techproai.com`,
+                                `DTSTAMP:${now}`,
+                                `DTSTART:${startTime}`,
+                                `DTEND:${endTime}`,
+                                `SUMMARY:${modeText} - ${bookingData.course}`,
+                                `DESCRIPTION:Counseling session for ${bookingData.course}\\nMode: ${modeText}\\nStudent: ${bookingData.name}`,
+                                `LOCATION:${location}`,
+                                'STATUS:CONFIRMED',
+                                'SEQUENCE:0',
+                                // Add reminders: 1 day before and 1 hour before
+                                'BEGIN:VALARM',
+                                'TRIGGER:-P1D',
+                                'ACTION:DISPLAY',
+                                'DESCRIPTION:Reminder: Counseling session tomorrow',
+                                'END:VALARM',
+                                'BEGIN:VALARM',
+                                'TRIGGER:-PT1H',
+                                'ACTION:DISPLAY',
+                                'DESCRIPTION:Reminder: Counseling session in 1 hour',
+                                'END:VALARM',
+                                'END:VEVENT',
+                                'END:VCALENDAR'
+                            ].join('\r\n');
+
+                            // Create and download ICS file
+                            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                            const link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = `counseling-session-${bookingData.course.replace(/\s+/g, '-').toLowerCase()}.ics`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+
+                            // Show success message
+                            alert('Calendar event downloaded! Open the file to add it to your calendar app.');
+                        } catch (error) {
+                            console.error('Error creating calendar event:', error);
+                            alert('Failed to create calendar event. Please try again.');
+                        }
+                    };
+                }
+            });
+        </script>
+        <!-- Safe Area Spacer for iOS -->
+        <div class="h-6 bg-transparent"></div>
+    </div>
+</body>
+
+</html>

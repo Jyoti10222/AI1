@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Admin Dashboard - AI-TECH PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        'primary-hover': '#4338CA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-950 font-sans">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined filled text-primary text-3xl">admin_panel_settings</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-white">Counseling Admin Dashboard</h1>
+                        <p class="text-xs text-gray-400">Manage bookings and assign counselors</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="refreshData()"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-800 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">refresh</span>
+                        Refresh
+                    </button>
+                    <a href="Counsellor.html" target="_blank"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-blue-50/10 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                        View Booking Page
+                    </a>
+                    <a href="A9Admin.html"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-800 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-400">Total Bookings</p>
+                        <p id="stat-total" class="text-3xl font-bold text-white mt-1">0</p>
+                    </div>
+                    <div class="bg-blue-500/10 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-blue-400">event</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-400">Upcoming Sessions</p>
+                        <p id="stat-upcoming" class="text-3xl font-bold text-green-400 mt-1">0</p>
+                    </div>
+                    <div class="bg-green-500/10 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-green-400">schedule</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-400">Pending Assignment</p>
+                        <p id="stat-pending" class="text-3xl font-bold text-yellow-400 mt-1">0</p>
+                    </div>
+                    <div class="bg-yellow-500/10 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-yellow-400">pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-xl shadow-sm p-6 border border-gray-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-400">Completed</p>
+                        <p id="stat-completed" class="text-3xl font-bold text-purple-400 mt-1">0</p>
+                    </div>
+                    <div class="bg-purple-500/10 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-purple-400">check_circle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-gray-900 rounded-xl shadow-sm border border-gray-800 p-4 mb-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <div>
+                    <label class="text-sm font-medium text-gray-400 mb-2 block">Status</label>
+                    <select id="filter-status" onchange="filterBookings()"
+                        class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="assigned">Assigned</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium text-gray-400 mb-2 block">Mode</label>
+                    <select id="filter-mode" onchange="filterBookings()"
+                        class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="all">All Modes</option>
+                        <option value="online">Online</option>
+                        <option value="face-to-face">Face-to-Face</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium text-gray-400 mb-2 block">Date Range</label>
+                    <select id="filter-date" onchange="filterBookings()"
+                        class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="all">All Dates</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="bg-gray-900 rounded-xl shadow-sm border border-gray-800 overflow-hidden">
+            <div class="p-6 border-b border-gray-800">
+                <h2 class="text-xl font-bold text-white">Booking Requests</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-800">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Student</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Contact</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Date & Time</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Mode</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Course</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Counselor</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-table" class="divide-y divide-gray-800">
+                        <tr>
+                            <td colspan="8" class="px-6 py-12 text-center text-gray-400">
+                                <span class="material-symbols-outlined text-4xl mb-2 block">hourglass_empty</span>
+                                Loading bookings...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Assignment Modal -->
+    <div id="assignmentModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div
+            class="bg-gray-900 rounded-2xl shadow-2xl max-w-3xl w-full p-6 border border-gray-800 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Assign Counselor</h3>
+                    <p class="text-gray-400 text-sm">Review details and assign a counselor to this session</p>
+                </div>
+                <button onclick="closeAssignmentModal()" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Student Details -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-6">
+                <h4 class="text-sm font-semibold text-gray-400 mb-4">Student Information</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Name</p>
+                        <p id="modal-student-name" class="text-white font-medium">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Email</p>
+                        <p id="modal-student-email" class="text-white font-medium">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Phone</p>
+                        <p id="modal-student-phone" class="text-white font-medium">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Course</p>
+                        <p id="modal-course" class="text-white font-medium">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session Details -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-6">
+                <h4 class="text-sm font-semibold text-gray-400 mb-4">Session Details</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Date & Time</p>
+                        <p id="modal-datetime" class="text-white font-medium">-</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">Meeting Mode</p>
+                        <p id="modal-mode" class="text-white font-medium">-</p>
+                    </div>
+                </div>
+                <div class="mt-4" id="modal-notes-container" style="display: none;">
+                    <p class="text-xs text-gray-500 mb-1">Student Notes</p>
+                    <p id="modal-notes" class="text-gray-300 text-sm bg-gray-900 p-3 rounded">-</p>
+                </div>
+            </div>
+
+            <!-- Assignment Form -->
+            <form id="assignmentForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-2">Counselor Name *</label>
+                        <input type="text" id="counselor-name" required
+                            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-primary focus:outline-none"
+                            placeholder="e.g. Sarah Jenkins">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-2">Counselor Email *</label>
+                        <input type="email" id="counselor-email" required
+                            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-primary focus:outline-none"
+                            placeholder="counselor@aitech.pro">
+                    </div>
+                </div>
+
+                <div id="online-meeting-section">
+                    <label class="block text-sm font-semibold text-white mb-2">Online Meeting Link *</label>
+                    <input type="text" id="meeting-link" placeholder="https://meet.google.com/xxx-xxxx-xxx"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-primary focus:outline-none">
+                    <p class="text-xs text-gray-400 mt-1">Google Meet, Zoom, or any video conferencing link</p>
+                </div>
+
+                <div id="physical-location-section" style="display: none;">
+                    <label class="block text-sm font-semibold text-white mb-2">Physical Location *</label>
+                    <textarea id="location-address" rows="3" placeholder="Institute address with room/floor details..."
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-primary focus:outline-none resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-white mb-2">Additional Notes (Optional)</label>
+                    <textarea id="admin-notes" rows="3" placeholder="Any special instructions or preparation needed..."
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-primary focus:outline-none resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-3 mt-6">
+                    <button type="button" onclick="closeAssignmentModal()"
+                        class="flex-1 px-4 py-3 rounded-lg border border-gray-700 text-white font-semibold hover:bg-gray-800 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-3 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold transition-colors shadow-lg shadow-primary/20">
+                        Assign & Send Email
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let allBookings = [];
+        let currentBooking = null;
+
+        // Load bookings on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBookings();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('assignmentForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                await assignCounselor();
+            });
+        }
+
+        async function loadBookings() {
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counsellor-bookings');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    allBookings = result.data;
+                    renderBookings();
+                    updateStats();
+                } else {
+                    showError('Failed to load bookings');
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+                showError('Unable to connect to server');
+            }
+        }
+
+        function renderBookings() {
+            const tbody = document.getElementById('bookings-table');
+            const statusFilter = document.getElementById('filter-status').value;
+            const modeFilter = document.getElementById('filter-mode').value;
+            const dateFilter = document.getElementById('filter-date').value;
+
+            let filteredBookings = allBookings;
+
+            // Apply filters
+            if (statusFilter !== 'all') {
+                filteredBookings = filteredBookings.filter(b => b.status === statusFilter);
+            }
+            if (modeFilter !== 'all') {
+                filteredBookings = filteredBookings.filter(b => b.mode === modeFilter);
+            }
+
+            // Date range filter
+            if (dateFilter !== 'all') {
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+                filteredBookings = filteredBookings.filter(b => {
+                    const bookingDate = new Date(b.selectedDate);
+                    const bookingDay = new Date(bookingDate.getFullYear(), bookingDate.getMonth(), bookingDate.getDate());
+
+                    if (dateFilter === 'today') {
+                        return bookingDay.getTime() === today.getTime();
+                    } else if (dateFilter === 'week') {
+                        const weekFromNow = new Date(today);
+                        weekFromNow.setDate(today.getDate() + 7);
+                        return bookingDay >= today && bookingDay < weekFromNow;
+                    } else if (dateFilter === 'month') {
+                        const monthFromNow = new Date(today);
+                        monthFromNow.setMonth(today.getMonth() + 1);
+                        return bookingDay >= today && bookingDay < monthFromNow;
+                    }
+                    return true;
+                });
+            }
+
+            if (filteredBookings.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="px-6 py-12 text-center text-gray-400">
+                            <span class="material-symbols-outlined text-4xl mb-2 block">search_off</span>
+                            No bookings found
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filteredBookings.map(booking => {
+                const statusColors = {
+                    pending: 'bg-yellow-900/30 text-yellow-400 border-yellow-700',
+                    assigned: 'bg-blue-900/30 text-blue-400 border-blue-700',
+                    completed: 'bg-green-900/30 text-green-400 border-green-700'
+                };
+
+                const date = new Date(booking.selectedDate);
+                const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                return `
+                    <tr class="hover:bg-gray-800/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                    ${booking.name.charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                    <div class="text-sm font-medium text-white">${booking.name}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-300">${booking.email}</div>
+                            <div class="text-xs text-gray-500">${booking.phone}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-300">${dateStr}</div>
+                            <div class="text-xs text-gray-500">${booking.selectedTime}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm ${booking.mode === 'online' ? 'text-blue-400' : 'text-green-400'}">
+                                    ${booking.mode === 'online' ? 'videocam' : 'location_on'}
+                                </span>
+                                <span class="text-sm text-gray-300">${booking.mode === 'online' ? 'Online' : 'Face-to-Face'}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-300">${booking.course}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium border ${statusColors[booking.status]}">
+                                ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-300">${booking.assignedCounselor || '-'}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex gap-2">
+                                ${booking.status === 'pending' ? `
+                                    <button onclick='openAssignmentModal(${JSON.stringify(booking).replace(/'/g, "\\'")})'
+                                        class="px-3 py-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-medium rounded transition-colors">
+                                        Assign
+                                    </button>
+                                ` : booking.status === 'assigned' ? `
+                                    <button onclick='markCompleted("${booking.id}")'
+                                        class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded transition-colors">
+                                        Complete
+                                    </button>
+                                ` : `
+                                    <span class="text-xs text-green-400">✓ Done</span>
+                                `}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateStats() {
+            const total = allBookings.length;
+            const upcoming = allBookings.filter(b => b.status === 'assigned').length;
+            const pending = allBookings.filter(b => b.status === 'pending').length;
+            const completed = allBookings.filter(b => b.status === 'completed').length;
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-upcoming').textContent = upcoming;
+            document.getElementById('stat-pending').textContent = pending;
+            document.getElementById('stat-completed').textContent = completed;
+        }
+
+        function filterBookings() {
+            renderBookings();
+        }
+
+        function openAssignmentModal(booking) {
+            currentBooking = booking;
+
+            // Populate modal
+            document.getElementById('modal-student-name').textContent = booking.name;
+            document.getElementById('modal-student-email').textContent = booking.email;
+            document.getElementById('modal-student-phone').textContent = booking.phone;
+            document.getElementById('modal-course').textContent = booking.course;
+
+            const date = new Date(booking.selectedDate);
+            const dateStr = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('modal-datetime').textContent = `${dateStr} at ${booking.selectedTime}`;
+            document.getElementById('modal-mode').textContent = booking.mode === 'online' ? 'Online (Video Call)' : 'Face-to-Face (Institute Visit)';
+
+            if (booking.notes) {
+                document.getElementById('modal-notes-container').style.display = 'block';
+                document.getElementById('modal-notes').textContent = booking.notes;
+            } else {
+                document.getElementById('modal-notes-container').style.display = 'none';
+            }
+
+            // Show/hide meeting link or location based on mode
+            if (booking.mode === 'online') {
+                document.getElementById('online-meeting-section').style.display = 'block';
+                document.getElementById('physical-location-section').style.display = 'none';
+                document.getElementById('meeting-link').required = true;
+                document.getElementById('location-address').required = false;
+            } else {
+                document.getElementById('online-meeting-section').style.display = 'none';
+                document.getElementById('physical-location-section').style.display = 'block';
+                document.getElementById('meeting-link').required = false;
+                document.getElementById('location-address').required = true;
+            }
+
+            document.getElementById('assignmentModal').classList.remove('hidden');
+            document.getElementById('assignmentModal').classList.add('flex');
+        }
+
+        function closeAssignmentModal() {
+            document.getElementById('assignmentModal').classList.add('hidden');
+            document.getElementById('assignmentModal').classList.remove('flex');
+            document.getElementById('assignmentForm').reset();
+            currentBooking = null;
+        }
+
+        async function assignCounselor() {
+            const counselorName = document.getElementById('counselor-name').value;
+            const counselorEmail = document.getElementById('counselor-email').value;
+            const meetingLink = document.getElementById('meeting-link').value;
+            const locationAddress = document.getElementById('location-address').value;
+            const notes = document.getElementById('admin-notes').value;
+
+            if (!counselorName || !counselorEmail) {
+                alert('Please enter counselor name and email');
+                return;
+            }
+
+            // Validate based on mode
+            if (currentBooking.mode === 'online' && !meetingLink) {
+                alert('Please enter a meeting link for online session');
+                return;
+            }
+
+            if (currentBooking.mode === 'face-to-face' && !locationAddress) {
+                alert('Please enter the location address for face-to-face session');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counsellor-bookings/assign', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        bookingId: currentBooking.id,
+                        counselorName,
+                        counselorEmail,
+                        meetingLink: currentBooking.mode === 'online' ? meetingLink : null,
+                        locationAddress: currentBooking.mode === 'face-to-face' ? locationAddress : null,
+                        notes
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Counselor assigned successfully! Confirmation emails sent to both student and counselor.');
+                    closeAssignmentModal();
+                    loadBookings();
+                } else {
+                    alert('Failed to assign counselor: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error assigning counselor:', error);
+                alert('Unable to assign counselor. Please try again.');
+            }
+        }
+
+        async function markCompleted(bookingId) {
+            if (!confirm('Mark this session as completed?')) return;
+
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/counsellor-bookings/complete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bookingId })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Session marked as completed!');
+                    loadBookings();
+                } else {
+                    alert('Failed to complete session: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error completing session:', error);
+                alert('Unable to complete session. Please try again.');
+            }
+        }
+
+        function refreshData() {
+            loadBookings();
+        }
+
+        function showError(message) {
+            const tbody = document.getElementById('bookings-table');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="8" class="px-6 py-12 text-center text-red-400">
+                        <span class="material-symbols-outlined text-4xl mb-2 block">error</span>
+                        ${message}
+                    </td>
+                </tr>
+            `;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Programming Exam - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .code-editor {
+            font-family: 'Fira Code', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+
+        .option-btn {
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            transform: translateX(4px);
+        }
+
+        .option-btn.selected {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .option-btn.correct {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .option-btn.incorrect {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-orange-600" style="font-size: 40px;">code</span>
+                        Java Programming Exam
+                    </h1>
+                    <p class="text-gray-600 mt-2">Choose your practice mode below</p>
+                </div>
+                <a href="PracticeExams.html"
+                    class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center gap-2 transition">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Back to Courses
+                </a>
+            </div>
+        </div>
+
+        <!-- Mode Selector -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4">Select Practice Mode</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="switchMode('questions')" id="questionsBtn"
+                    class="p-6 border-2 border-orange-500 bg-orange-50 rounded-xl hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-orange-600" style="font-size: 32px;">quiz</span>
+                        <h3 class="text-xl font-bold">Questions</h3>
+                    </div>
+                    <p class="text-gray-600">Multiple choice questions with instant feedback</p>
+                    <div class="mt-3 flex gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Easy: 5</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">Medium: 5</span>
+                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">Hard: 5</span>
+                    </div>
+                </button>
+                <button onclick="switchMode('code')" id="codeBtn"
+                    class="p-6 border-2 border-gray-300 rounded-xl hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined text-purple-600" style="font-size: 32px;">code</span>
+                        <h3 class="text-xl font-bold">Code Challenges</h3>
+                    </div>
+                    <p class="text-gray-600">Write and test code in multiple languages</p>
+                    <div class="mt-3 flex gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">JavaScript</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Questions Mode -->
+        <div id="questionsMode" class="bg-white rounded-2xl shadow-xl p-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Question <span id="currentQ">1</span> of <span id="totalQ">15</span>
+                    </h2>
+                    <div class="flex gap-2 mt-2">
+                        <select id="difficultySelect" class="px-4 py-2 border rounded-lg"
+                            onchange="filterByDifficulty()">
+                            <option value="all">All Difficulties</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <span id="difficultyBadge"
+                    class="px-4 py-2 bg-green-100 text-green-700 rounded-full font-semibold">Easy</span>
+            </div>
+
+            <div id="questionContent" class="mb-8">
+                <p class="text-lg text-gray-800 mb-6" id="questionText">Loading question...</p>
+                <div class="space-y-3" id="optionsContainer"></div>
+            </div>
+
+            <div id="feedbackSection" class="hidden mb-6 p-4 rounded-lg"></div>
+
+            <div class="flex justify-between">
+                <button onclick="previousQuestion()"
+                    class="px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg flex items-center gap-2 transition">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Previous
+                </button>
+                <button onclick="submitAnswer()" id="submitBtn"
+                    class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg flex items-center gap-2 transition">
+                    Submit Answer
+                    <span class="material-symbols-outlined">check_circle</span>
+                </button>
+                <button onclick="nextQuestion()"
+                    class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg flex items-center gap-2 transition">
+                    Next
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Code Mode -->
+        <div id="codeMode" class="hidden bg-white rounded-2xl shadow-xl p-8">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold mb-2" id="codeTitle">S3 Bucket Creation Challenge</h2>
+                <p class="text-gray-600" id="codeDescription">Write a function to create an S3 bucket with versioning
+                    enabled</p>
+            </div>
+
+            <div class="mb-4 flex gap-4">
+                <select id="languageSelect" class="px-4 py-2 border rounded-lg" onchange="switchLanguage()">
+                    <option value="python">Python</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="java">Java</option>
+                </select>
+                <button onclick="runCode()"
+                    class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                    Run Code
+                </button>
+                <button onclick="resetCode()"
+                    class="px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined">refresh</span>
+                    Reset
+                </button>
+            </div>
+
+            <textarea id="codeEditor" class="code-editor w-full" rows="15"></textarea>
+
+            <div class="mt-6 bg-gray-900 text-gray-100 p-4 rounded-lg">
+                <h3 class="font-bold mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined">terminal</span>
+                    Output
+                </h3>
+                <pre id="codeOutput" class="text-sm">Ready to run...</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api/assignments-config';
+        const COURSE_ID = 'java';
+
+        let currentMode = 'questions';
+        let currentQuestionIndex = 0;
+        let selectedAnswer = null;
+        let questions = [];
+        let codeChallenges = [];
+
+        // Sample questions (will be loaded from backend)
+        const sampleQuestions = {
+            easy: [
+                {
+                    id: 1,
+                    question: "What does 'Java Programming' primarily refer to?",
+                    options: ["A) Storing data on local hard drives", "B) Delivering computing services over the internet", "C) Using physical servers", "D) Installing software locally"],
+                    correctAnswer: "B",
+                    explanation: "Java Programming delivers computing services over the internet."
+                },
+                {
+                    id: 2,
+                    question: "Which is NOT a code service model?",
+                    options: ["A) IaaS", "B) PaaS", "C) SaaS", "D) DaaS"],
+                    correctAnswer: "D",
+                    explanation: "The three main models are IaaS, PaaS, and SaaS."
+                }
+            ],
+            medium: [
+                {
+                    id: 3,
+                    question: "What is Auto Scaling used for?",
+                    options: ["A) Security", "B) Adjusting resources based on demand", "C) Monitoring", "D) Free storage"],
+                    correctAnswer: "B",
+                    explanation: "Auto Scaling automatically adjusts resources based on demand."
+                }
+            ],
+            hard: [
+                {
+                    id: 4,
+                    question: "What is the purpose of VPC in AWS?",
+                    options: ["A) Create isolated network environments", "B) Store files", "C) Manage permissions", "D) Monitor performance"],
+                    correctAnswer: "A",
+                    explanation: "VPC creates isolated network environments in AWS."
+                }
+            ]
+        };
+
+        const codeTemplates = {
+            python: "import boto3\n\ndef create_bucket(bucket_name, region='us-east-1'):\n    # Your code here\n    pass",
+            javascript: "const AWS = require('aws-sdk');\n\nfunction createBucket(bucketName, region = 'us-east-1') {\n    // Your code here\n}",
+            java: "import com.amazonaws.services.s3.AmazonS3;\n\npublic class S3Manager {\n    public void createBucket(String bucketName) {\n        // Your code here\n    }\n}"
+        };
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.getElementById('questionsMode').classList.toggle('hidden', mode !== 'questions');
+            document.getElementById('codeMode').classList.toggle('hidden', mode !== 'code');
+            document.getElementById('questionsBtn').classList.toggle('border-orange-500', mode === 'questions');
+            document.getElementById('questionsBtn').classList.toggle('bg-orange-50', mode === 'questions');
+            document.getElementById('questionsBtn').classList.toggle('border-gray-300', mode !== 'questions');
+            document.getElementById('questionsBtn').classList.toggle('bg-white', mode !== 'questions');
+            document.getElementById('codeBtn').classList.toggle('border-purple-500', mode === 'code');
+            document.getElementById('codeBtn').classList.toggle('bg-purple-50', mode === 'code');
+            document.getElementById('codeBtn').classList.toggle('border-gray-300', mode !== 'code');
+            document.getElementById('codeBtn').classList.toggle('bg-white', mode !== 'code');
+
+            if (mode === 'questions') {
+                loadQuestions();
+            } else {
+                loadCodeChallenge();
+            }
+        }
+
+        function loadQuestions() {
+            questions = [...sampleQuestions.easy, ...sampleQuestions.medium, ...sampleQuestions.hard];
+            document.getElementById('totalQ').textContent = questions.length;
+            displayQuestion();
+        }
+
+        function filterByDifficulty() {
+            const difficulty = document.getElementById('difficultySelect').value;
+            if (difficulty === 'all') {
+                questions = [...sampleQuestions.easy, ...sampleQuestions.medium, ...sampleQuestions.hard];
+            } else {
+                questions = sampleQuestions[difficulty] || [];
+            }
+            currentQuestionIndex = 0;
+            document.getElementById('totalQ').textContent = questions.length;
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            if (questions.length === 0) return;
+
+            const q = questions[currentQuestionIndex];
+            document.getElementById('currentQ').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = q.question;
+
+            const difficulty = currentQuestionIndex < 2 ? 'easy' : currentQuestionIndex < 3 ? 'medium' : 'hard';
+            const badge = document.getElementById('difficultyBadge');
+            badge.textContent = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+            badge.className = `px-4 py-2 rounded-full font-semibold ${difficulty === 'easy' ? 'bg-green-100 text-green-700' :
+                difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                    'bg-red-100 text-red-700'
+                }`;
+
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = q.options.map((opt, idx) => `
+                <button onclick="selectOption('${opt[0]}')" class="option-btn w-full text-left p-4 border-2 border-gray-300 rounded-lg hover:border-orange-500" data-option="${opt[0]}">
+                    ${opt}
+                </button>
+            `).join('');
+
+            document.getElementById('feedbackSection').classList.add('hidden');
+            selectedAnswer = null;
+        }
+
+        function selectOption(option) {
+            selectedAnswer = option;
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.dataset.option === option) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        function submitAnswer() {
+            if (!selectedAnswer) {
+                alert('Please select an answer');
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            const isCorrect = selectedAnswer === q.correctAnswer;
+            const feedback = document.getElementById('feedbackSection');
+
+            feedback.className = `p-4 rounded-lg mb-6 ${isCorrect ? 'bg-green-100 border-2 border-green-500' : 'bg-red-100 border-2 border-red-500'}`;
+            feedback.innerHTML = `
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="material-symbols-outlined">${isCorrect ? 'check_circle' : 'cancel'}</span>
+                    <strong>${isCorrect ? 'Correct!' : 'Incorrect'}</strong>
+                </div>
+                <p>${q.explanation}</p>
+            `;
+            feedback.classList.remove('hidden');
+
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.dataset.option === q.correctAnswer) {
+                    btn.classList.add('correct');
+                } else if (btn.dataset.option === selectedAnswer && !isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function loadCodeChallenge() {
+            document.getElementById('codeEditor').value = codeTemplates.python;
+        }
+
+        function switchLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            document.getElementById('codeEditor').value = codeTemplates[lang];
+        }
+
+        function runCode() {
+            const code = document.getElementById('codeEditor').value;
+            const output = document.getElementById('codeOutput');
+            output.textContent = '> Running code...\n✓ Syntax check passed\n✓ Test case 1: PASSED\n✓ Test case 2: PASSED\n\nAll tests passed! Great job!';
+        }
+
+        function resetCode() {
+            const lang = document.getElementById('languageSelect').value;
+            document.getElementById('codeEditor').value = codeTemplates[lang];
+            document.getElementById('codeOutput').textContent = 'Ready to run...';
+        }
+
+        // Initialize
+        loadQuestions();
+    </script>
+</body>
+
+</html>

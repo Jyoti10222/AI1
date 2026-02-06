@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Course Materials - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "primary-hover": "#2563eb",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                        "dark-surface": "#334155",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'slide-down': 'slide-down 0.3s ease-out',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        },
+                        'slide-down': {
+                            '0%': { opacity: '0', maxHeight: '0' },
+                            '100%': { opacity: '1', maxHeight: '2000px' },
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .module-content.active {
+            max-height: 3000px;
+            opacity: 1;
+        }
+
+        .shimmer-bg {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -top-[10%] left-[20%] w-[600px] h-[600px] bg-purple-500/20 dark:bg-purple-600/10 rounded-full blur-[120px] animate-blob">
+        </div>
+        <div class="absolute top-[30%] right-[10%] w-[500px] h-[500px] bg-pink-500/20 dark:bg-pink-600/10 rounded-full blur-[120px] animate-blob"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[10%] left-[40%] w-[400px] h-[400px] bg-blue-500/20 dark:bg-blue-600/10 rounded-full blur-[100px] animate-blob"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-lg shadow-black/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-2 group" href="A5Dashboard.html">
+                        <div
+                            class="size-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all group-hover:scale-110">
+                            <span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+                        </div>
+                        <h2
+                            class="text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden md:block">
+                            TECH-PRO AI
+                        </h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                            href="CourseListing.html">← Back to Courses</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500 border-2 border-white dark:border-dark-bg animate-pulse"></span>
+                    </button>
+                    <div
+                        class="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 p-[2px] hover:scale-110 transition-transform cursor-pointer">
+                        <div
+                            class="h-full w-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">person</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 w-full max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+        <!-- Course Hero -->
+        <div
+            class="mb-8 relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 p-8 md:p-12 shadow-2xl">
+            <div class="absolute inset-0 shimmer-bg"></div>
+            <div class="relative z-10">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-4">
+                    <span class="material-symbols-outlined text-white text-sm">psychology</span>
+                    <span class="text-sm font-bold text-white">AI-Enhanced Learning</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-white mb-4">
+                    Artificial Intelligence
+                </h1>
+                <p class="text-white/90 text-lg mb-6 max-w-2xl">
+                    Master Machine Learning, Deep Learning, NLP, and Computer Vision with hands-on projects and
+                    real-world applications.
+                </p>
+                <div class="flex flex-wrap gap-4 text-white/90 text-sm">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined">folder</span>
+                        <span class="font-semibold">10 Modules</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined">description</span>
+                        <span class="font-semibold">56 Materials</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined">download</span>
+                        <span class="font-semibold">2.1k Downloads</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search & Filter -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4">
+            <div class="flex-1 relative">
+                <span
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined">search</span>
+                <input
+                    class="w-full pl-12 pr-4 py-3 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="Search materials..." type="text" id="searchMaterials" />
+            </div>
+            <select aria-label="Filter by Type"
+                class="px-4 py-3 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option>All Types</option>
+                <option>📄 PDF</option>
+                <option>📊 PPT</option>
+                <option>🎥 Video</option>
+            </select>
+            <select aria-label="Filter by Module"
+                class="px-4 py-3 bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <option>All Modules</option>
+                <option>Module 1</option>
+                <option>Module 2</option>
+                <option>Module 3</option>
+            </select>
+        </div>
+
+        <!-- Modules -->
+        <div class="space-y-4">
+
+            <!-- Module 1 -->
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg">
+                <button
+                    class="module-header w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    onclick="toggleModule(this)">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-black text-lg shadow-lg">
+                            01
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-black text-slate-900 dark:text-white mb-1">Introduction to AI & ML
+                            </h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">8 materials • 45 min</p>
+                        </div>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-slate-400 transition-transform module-icon">expand_more</span>
+                </button>
+                <div class="module-content px-6 pb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+
+                        <!-- Material Card - PDF -->
+                        <div
+                            class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 p-4 hover:shadow-xl transition-all hover:scale-105">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="size-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">AI Fundamentals
+                                        Guide</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">PDF • 2.4 MB</p>
+                                    <div
+                                        class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                        <span>Dr. Sarah Johnson</span>
+                                        <span>•</span>
+                                        <span>Jan 15, 2026</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 px-3 py-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                            View
+                                        </button>
+                                        <button
+                                            class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                            <span class="material-symbols-outlined text-sm">download</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Material Card - PPT -->
+                        <div
+                            class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border border-orange-500/20 p-4 hover:shadow-xl transition-all hover:scale-105">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="size-12 rounded-lg bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="material-symbols-outlined">slideshow</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">ML Algorithms
+                                        Overview</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">PPT • 5.1 MB</p>
+                                    <div
+                                        class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                        <span>Prof. Michael Chen</span>
+                                        <span>•</span>
+                                        <span>Jan 12, 2026</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 px-3 py-1.5 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                            View
+                                        </button>
+                                        <button
+                                            class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                            <span class="material-symbols-outlined text-sm">download</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Material Card - Video -->
+                        <div
+                            class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 p-4 hover:shadow-xl transition-all hover:scale-105">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="size-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="material-symbols-outlined">play_circle</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">Neural Networks
+                                        Explained</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Video • 42:15</p>
+                                    <div
+                                        class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                        <span>Dr. Emily Watson</span>
+                                        <span>•</span>
+                                        <span>Jan 10, 2026</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                            Watch
+                                        </button>
+                                        <button
+                                            class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                            <span class="material-symbols-outlined text-sm">bookmark</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Material Card - PDF -->
+                        <div
+                            class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 p-4 hover:shadow-xl transition-all hover:scale-105">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="size-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">Python for AI -
+                                        Basics</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">PDF • 1.8 MB</p>
+                                    <div
+                                        class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                        <span>Dr. Sarah Johnson</span>
+                                        <span>•</span>
+                                        <span>Jan 8, 2026</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                            View
+                                        </button>
+                                        <button
+                                            class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                            <span class="material-symbols-outlined text-sm">download</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg">
+                <button
+                    class="module-header w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    onclick="toggleModule(this)">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-black text-lg shadow-lg">
+                            02
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-black text-slate-900 dark:text-white mb-1">Deep Learning
+                                Fundamentals</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">12 materials • 1h 20min</p>
+                        </div>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-slate-400 transition-transform module-icon">expand_more</span>
+                </button>
+                <div class="module-content px-6 pb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                        <div
+                            class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 p-4 hover:shadow-xl transition-all hover:scale-105">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="size-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                                    <span class="material-symbols-outlined">play_circle</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">CNN Architecture
+                                        Deep Dive</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Video • 58:30</p>
+                                    <div
+                                        class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                        <span>Prof. Michael Chen</span>
+                                        <span>•</span>
+                                        <span>Jan 5, 2026</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 px-3 py-1.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                            Watch
+                                        </button>
+                                        <button
+                                            class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                            <span class="material-symbols-outlined text-sm">bookmark</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div
+                class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg">
+                <button
+                    class="module-header w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    onclick="toggleModule(this)">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-black text-lg shadow-lg">
+                            03
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-xl font-black text-slate-900 dark:text-white mb-1">Natural Language
+                                Processing</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">10 materials • 55 min</p>
+                        </div>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-slate-400 transition-transform module-icon">expand_more</span>
+                </button>
+                <div class="module-content px-6 pb-6">
+                    <div class="text-center py-8 text-slate-500 dark:text-slate-400">
+                        Click to expand and view materials
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let allMaterials = [];
+        let allModules = [];
+        let currentCourse = null;
+
+        // Get course ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course') || 'ai';
+
+        // Load course data on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadCourseData();
+            await loadModules();
+            await loadMaterials();
+            setupFilters();
+        });
+
+        // Load course information
+        async function loadCourseData() {
+            try {
+                const response = await fetch(`${API_BASE}/courses/${courseId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    currentCourse = data.course;
+                    updateCourseHeader(currentCourse);
+                }
+            } catch (error) {
+                console.error('Error loading course:', error);
+            }
+        }
+
+        // Load modules for the course
+        async function loadModules() {
+            try {
+                const response = await fetch(`${API_BASE}/modules?courseId=${courseId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    allModules = data.modules.sort((a, b) => a.order - b.order);
+                    populateModuleFilter();
+                }
+            } catch (error) {
+                console.error('Error loading modules:', error);
+            }
+        }
+
+        // Load materials for the course
+        async function loadMaterials() {
+            try {
+                const studentId = localStorage.getItem('studentId');
+                let url = `${API_BASE}/study-materials?courseId=${courseId}&status=approved`;
+
+                if (studentId) {
+                    url += `&studentId=${studentId}`;
+                }
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    allMaterials = data.materials;
+                    renderModulesWithMaterials();
+                }
+            } catch (error) {
+                console.error('Error loading materials:', error);
+                showError('Failed to load materials. Please try again.');
+            }
+        }
+
+        // Update course header with real data
+        function updateCourseHeader(course) {
+            const courseTitle = document.querySelector('h1');
+            const courseDesc = document.querySelector('p.text-white\\/90');
+            const modulesCount = document.querySelector('.flex.items-center.gap-2:nth-child(1) span.font-semibold');
+            const materialsCount = document.querySelector('.flex.items-center.gap-2:nth-child(2) span.font-semibold');
+            const downloadsCount = document.querySelector('.flex.items-center.gap-2:nth-child(3) span.font-semibold');
+
+            if (courseTitle) courseTitle.textContent = course.name;
+            if (courseDesc) courseDesc.textContent = course.description;
+            if (modulesCount) modulesCount.textContent = `${course.totalModules || allModules.length} Modules`;
+            if (materialsCount) materialsCount.textContent = `${course.totalMaterials || allMaterials.length} Materials`;
+            if (downloadsCount) downloadsCount.textContent = `${formatNumber(course.totalDownloads || 0)} Downloads`;
+        }
+
+        // Render modules with their materials
+        function renderModulesWithMaterials() {
+            const modulesContainer = document.querySelector('.space-y-4');
+            modulesContainer.innerHTML = '';
+
+            allModules.forEach((module, index) => {
+                const moduleMaterials = allMaterials.filter(m => m.moduleId === module.id);
+                const moduleHTML = createModuleHTML(module, moduleMaterials, index + 1);
+                modulesContainer.insertAdjacentHTML('beforeend', moduleHTML);
+            });
+        }
+
+        // Create module HTML
+        function createModuleHTML(module, materials, order) {
+            const gradients = [
+                'from-purple-500 to-pink-500',
+                'from-blue-500 to-cyan-500',
+                'from-orange-500 to-red-500',
+                'from-green-500 to-emerald-500',
+                'from-yellow-500 to-orange-500'
+            ];
+            const gradient = gradients[(order - 1) % gradients.length];
+
+            const materialsHTML = materials.map(material => createMaterialCard(material)).join('');
+            const emptyState = materials.length === 0 ?
+                `<div class="text-center py-8 text-slate-500 dark:text-slate-400">No materials available yet</div>` : '';
+
+            return `
+                <div class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-lg">
+                    <button class="module-header w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onclick="toggleModule(this)">
+                        <div class="flex items-center gap-4">
+                            <div class="size-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-black text-lg shadow-lg">
+                                ${String(order).padStart(2, '0')}
+                            </div>
+                            <div class="text-left">
+                                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-1">${module.name}</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">${materials.length} materials</p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-400 transition-transform module-icon">expand_more</span>
+                    </button>
+                    <div class="module-content px-6 pb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            ${materialsHTML || emptyState}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create material card HTML
+        function createMaterialCard(material) {
+            const typeConfig = {
+                pdf: {
+                    icon: 'picture_as_pdf',
+                    gradient: 'from-red-500 to-orange-500',
+                    bgGradient: 'from-red-500/10 to-orange-500/10',
+                    border: 'border-red-500/20',
+                    button: 'View'
+                },
+                ppt: {
+                    icon: 'slideshow',
+                    gradient: 'from-orange-500 to-yellow-500',
+                    bgGradient: 'from-orange-500/10 to-yellow-500/10',
+                    border: 'border-orange-500/20',
+                    button: 'View'
+                },
+                video: {
+                    icon: 'play_circle',
+                    gradient: 'from-purple-500 to-pink-500',
+                    bgGradient: 'from-purple-500/10 to-pink-500/10',
+                    border: 'border-purple-500/20',
+                    button: 'Watch'
+                }
+            };
+
+            const config = typeConfig[material.type] || typeConfig.pdf;
+            const uploadDate = new Date(material.uploadDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const fileInfo = material.type === 'video' ? material.duration : material.fileSize;
+
+            return `
+                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br ${config.bgGradient} border ${config.border} p-4 hover:shadow-xl transition-all hover:scale-105" data-material-id="${material.id}" data-type="${material.type}">
+                    <div class="flex items-start gap-4">
+                        <div class="size-12 rounded-lg bg-gradient-to-br ${config.gradient} flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                            <span class="material-symbols-outlined">${config.icon}</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-1 truncate">${material.title}</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">${material.type.toUpperCase()} • ${fileInfo}</p>
+                            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                <span>${material.uploadedBy.name}</span>
+                                <span>•</span>
+                                <span>${uploadDate}</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="viewMaterial('${material.id}')" class="flex-1 px-3 py-1.5 bg-gradient-to-r ${config.gradient} text-white text-xs font-bold rounded-lg hover:shadow-lg transition-all">
+                                    ${config.button}
+                                </button>
+                                <button onclick="downloadMaterial('${material.id}')" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle module expansion
+        function toggleModule(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.module-icon');
+
+            content.classList.toggle('active');
+
+            if (content.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // View material
+        async function viewMaterial(materialId) {
+            const material = allMaterials.find(m => m.id === materialId);
+            if (!material) return;
+
+            // Open material in new tab
+            window.open(material.filePath, '_blank');
+        }
+
+        // Download material
+        async function downloadMaterial(materialId) {
+            try {
+                const studentId = localStorage.getItem('studentId') || 'guest';
+                const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+                const studentName = studentInfo.name || 'Student';
+
+                const response = await fetch(`${API_BASE}/study-materials/${materialId}/download`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ studentId, studentName })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Create download link
+                    const link = document.createElement('a');
+                    link.href = data.downloadUrl;
+                    link.download = '';
+                    link.click();
+
+                    showSuccess('Download started!');
+                } else {
+                    showError('Failed to download material');
+                }
+            } catch (error) {
+                console.error('Error downloading material:', error);
+                showError('Failed to download material');
+            }
+        }
+
+        // Populate module filter dropdown
+        function populateModuleFilter() {
+            const moduleFilter = document.querySelector('select:nth-of-type(2)');
+            if (!moduleFilter) return;
+
+            moduleFilter.innerHTML = '<option value="">All Modules</option>';
+            allModules.forEach(module => {
+                moduleFilter.innerHTML += `<option value="${module.id}">${module.name}</option>`;
+            });
+        }
+
+        // Setup filters
+        function setupFilters() {
+            const searchInput = document.getElementById('searchMaterials');
+            const typeFilter = document.querySelector('select:nth-of-type(1)');
+            const moduleFilter = document.querySelector('select:nth-of-type(2)');
+
+            // Search filter
+            searchInput?.addEventListener('input', applyFilters);
+
+            // Type filter
+            typeFilter?.addEventListener('change', applyFilters);
+
+            // Module filter
+            moduleFilter?.addEventListener('change', applyFilters);
+        }
+
+        // Apply all filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchMaterials')?.value.toLowerCase() || '';
+            const typeFilter = document.querySelector('select:nth-of-type(1)')?.value || '';
+            const moduleFilter = document.querySelector('select:nth-of-type(2)')?.value || '';
+
+            const materialCards = document.querySelectorAll('[data-material-id]');
+
+            materialCards.forEach(card => {
+                const materialId = card.getAttribute('data-material-id');
+                const material = allMaterials.find(m => m.id === materialId);
+
+                if (!material) {
+                    card.style.display = 'none';
+                    return;
+                }
+
+                const matchesSearch = !searchTerm ||
+                    material.title.toLowerCase().includes(searchTerm) ||
+                    material.description?.toLowerCase().includes(searchTerm);
+
+                const matchesType = !typeFilter ||
+                    typeFilter === 'All Types' ||
+                    (typeFilter.includes('PDF') && material.type === 'pdf') ||
+                    (typeFilter.includes('PPT') && material.type === 'ppt') ||
+                    (typeFilter.includes('Video') && material.type === 'video');
+
+                const matchesModule = !moduleFilter || material.moduleId === moduleFilter;
+
+                card.style.display = (matchesSearch && matchesType && matchesModule) ? 'block' : 'none';
+            });
+        }
+
+        // Utility functions
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+        }
+
+        function showSuccess(message) {
+            // Simple alert for now - can be replaced with toast notification
+            alert(message);
+        }
+
+        function showError(message) {
+            alert(message);
+        }
+    </script>
+
+</body>
+
+</html>

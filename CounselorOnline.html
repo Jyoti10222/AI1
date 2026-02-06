@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Desktop Counselor Booking V2</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13b6ec",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Manrope', sans-serif;
+                @apply bg-slate-50 text-slate-900;
+            }
+        }
+        .glass-panel {
+            @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/30">
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button
+                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors">
+                    <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+                </button>
+                <h1 class="text-xl font-extrabold tracking-tight text-slate-800">Counselor Booking</h1>
+            </div>
+            <div class="flex bg-slate-100 p-1 rounded-xl w-64">
+                <button class="flex-1 py-2 text-sm font-bold rounded-lg bg-white shadow-sm text-primary">Online</button>
+                <button
+                    class="flex-1 py-2 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700">In-Person</button>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100">
+                    <span class="material-symbols-outlined text-slate-600">notifications</span>
+                </button>
+                <div
+                    class="w-10 h-10 rounded-full bg-primary/20 border-2 border-white shadow-sm flex items-center justify-center overflow-hidden">
+                    <span class="material-symbols-outlined text-primary">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto p-6 lg:p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-8">
+                <section>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-slate-800">Choose Counselor</h3>
+                        <!-- Navigation arrows can remain if needed for carousel, but for now simple list -->
+                    </div>
+                    <div id="counselor-list-container" class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+                        <!-- Dynamic Counselor List will be injected here -->
+                        <div class="w-full text-center py-4 text-slate-500 text-sm">Loading counselors...</div>
+                    </div>
+                </section>
+
+                <section id="counselor-profile-container"
+                    class="glass-panel p-8 rounded-2xl min-h-[300px] flex items-center justify-center">
+                    <!-- Dynamic Profile will be injected here -->
+                    <div class="text-slate-400">Select a counselor to view details</div>
+                </section>
+            </div>
+            <aside class="lg:col-span-5">
+                <div class="glass-panel p-6 rounded-2xl sticky top-28 border-primary/10">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">Book Your Session</h3>
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-4 px-2">
+                            <!-- Simple Header for Date -->
+                            <span class="font-bold text-slate-700">Select Date</span>
+                        </div>
+                        <!-- Keeping existing Calendar structure for visual consistency, but logic will need to adapt -->
+                        <div
+                            class="grid grid-cols-7 text-center text-[10px] font-black text-slate-400 uppercase tracking-tighter mb-2">
+                            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                        </div>
+                        <div id="calendar-grid" class="grid grid-cols-7 gap-1">
+                            <!-- Dynamic Dates Injected Here -->
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Preferred Time</p>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">schedule</span>
+                            <input type="time" id="time-picker"
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-slate-700 font-bold shadow-sm" />
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <input id="booking-name"
+                                class="col-span-2 w-full h-11 px-4 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm transition-all"
+                                placeholder="Full Name" type="text" />
+                            <input id="booking-email"
+                                class="w-full h-11 px-4 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm transition-all"
+                                placeholder="Email" type="email" />
+                            <input id="booking-phone"
+                                class="w-full h-11 px-4 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm transition-all"
+                                placeholder="Phone" type="tel" />
+                        </div>
+                        <select id="booking-course"
+                            class="w-full h-11 px-4 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm transition-all">
+                            <option value="">Select Course / Path</option>
+                            <optgroup label="Career Paths">
+                                <option>Software Developer</option>
+                                <option>Web Developer</option>
+                                <option>Data Analyst</option>
+                                <option>AI/ML Engineer</option>
+                                <option>Cloud Engineer</option>
+                                <option>Cybersecurity Analyst</option>
+                            </optgroup>
+                            <optgroup label="Upskilling Modules">
+                                <option>Full-Stack Development</option>
+                                <option>Cloud Technologies</option>
+                                <option>DevOps</option>
+                                <option>Data Analytics</option>
+                                <option>Generative AI</option>
+                                <option>Advanced Programming</option>
+                            </optgroup>
+                        </select>
+                        <textarea id="booking-notes"
+                            class="w-full p-4 rounded-xl border-slate-200 focus:ring-primary focus:border-primary text-sm resize-none"
+                            placeholder="Tell us what's on your mind..." rows="3"></textarea>
+                    </div>
+                    <button id="confirm-booking-btn"
+                        class="w-full mt-6 bg-primary hover:bg-primary/90 text-white font-extrabold py-4 rounded-xl shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                        Confirm Session
+                        <span class="material-symbols-outlined text-lg">calendar_add_on</span>
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="mt-20 border-t border-slate-200 py-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded bg-primary"></div>
+                <span class="font-black text-slate-800 tracking-tight">CARECONNECT</span>
+            </div>
+            <div class="flex gap-8 text-sm font-medium text-slate-500">
+                <a class="hover:text-primary" href="#">Help Center</a>
+                <a class="hover:text-primary" href="#">Privacy Policy</a>
+                <a class="hover:text-primary" href="#">Terms of Service</a>
+            </div>
+            <p class="text-xs text-slate-400">© 2024 Counselor Booking Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let counselors = [];
+            let selectedCounselor = null;
+            let selectedDate = null;
+
+            // Auto-fill User Data
+            try {
+                const userProfileStr = localStorage.getItem('userProfile');
+                if (userProfileStr) {
+                    const user = JSON.parse(userProfileStr);
+
+                    const nameInput = document.getElementById('booking-name');
+                    const emailInput = document.getElementById('booking-email');
+                    const phoneInput = document.getElementById('booking-phone');
+
+                    if (nameInput && user.firstName) {
+                        nameInput.value = user.lastName ? `${user.firstName} ${user.lastName}` : user.firstName;
+                    }
+
+                    if (emailInput && (user.identifierType === 'email' || !user.identifierType)) {
+                        emailInput.value = user.email || '';
+                    }
+
+                    if (phoneInput && user.identifierType === 'phone') {
+                        let phone = user.email; // Phone is stored in email field for phone-users
+                        if (phone.startsWith('+91')) phone = phone.substring(3);
+                        phoneInput.value = phone;
+                    }
+                }
+            } catch (e) {
+                console.error("Error auto-filling counselor form:", e);
+            }
+
+            // Navigation
+            const backBtn = document.querySelector('header button:first-child');
+            if (backBtn) backBtn.onclick = () => window.location.href = 'A4Onboarding.html';
+
+            const inPersonBtn = document.querySelector('header .bg-slate-100 button:nth-child(2)');
+            if (inPersonBtn) inPersonBtn.onclick = () => window.location.href = 'CounselorOffline.html';
+
+            // Fetch Counselors
+            fetchCounselors();
+
+            async function fetchCounselors() {
+                const listContainer = document.getElementById('counselor-list-container');
+                try {
+                    const response = await fetch('http://localhost:8080/api/counselors');
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // Filter for Online counselors (or 'both')
+                        counselors = data.data.filter(c => c.mode === 'online' || c.mode === 'both');
+                        renderCounselorList();
+
+                        if (counselors.length > 0) {
+                            selectCounselor(counselors[0]);
+                        } else {
+                            document.getElementById('counselor-profile-container').innerHTML =
+                                '<div class="text-center text-slate-500">No online counselors available at the moment.</div>';
+                        }
+                    } else {
+                        listContainer.innerHTML = '<div class="w-full text-center py-4 text-red-500">Failed to load counselors</div>';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    listContainer.innerHTML = '<div class="w-full text-center py-4 text-red-500">Error connecting to server</div>';
+                }
+            }
+
+            function renderCounselorList() {
+                const listContainer = document.getElementById('counselor-list-container');
+                if (counselors.length === 0) {
+                    listContainer.innerHTML = '<div class="w-full text-center py-4 text-slate-500">No counselors found</div>';
+                    return;
+                }
+
+                listContainer.innerHTML = counselors.map(c => `
+                    <div onclick="window.selectCounselor('${c.id}')" data-id="${c.id}"
+                        class="counselor-card min-w-[180px] p-4 rounded-2xl bg-white/50 border border-slate-200 flex flex-col items-center text-center cursor-pointer transition-all hover:opacity-100 hover:shadow-lg hover:-translate-y-1">
+                        <div class="w-20 h-20 rounded-full mb-3 bg-cover bg-center border-2 border-white shadow-sm"
+                            style='background-image: url("${c.image || 'https://via.placeholder.com/150'}");'>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm truncate w-full">${c.name}</h4>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2 truncate w-full">${c.specialization}</p>
+                        <div class="flex items-center gap-1 text-slate-400">
+                            <span class="material-symbols-outlined text-sm">schedule</span>
+                            <span class="text-[10px] font-bold">${c.timings}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Global function to be accessible from HTML onclick
+            window.selectCounselor = function (id) {
+                const counselor = counselors.find(c => c.id === id);
+                if (!counselor) return;
+                selectedCounselor = counselor;
+
+                // Update Cards UI
+                document.querySelectorAll('.counselor-card').forEach(card => {
+                    if (card.dataset.id === id) {
+                        card.classList.remove('bg-white/50', 'border-slate-200', 'opacity-70');
+                        card.classList.add('bg-white', 'border-2', 'border-primary', 'shadow-lg', 'shadow-primary/10', 'opacity-100');
+                        card.querySelector('.border-white').classList.replace('border-white', 'border-primary/10');
+                        card.querySelector('.border-2').classList.add('border-4');
+                    } else {
+                        card.classList.add('bg-white/50', 'border-slate-200', 'opacity-70');
+                        card.classList.remove('bg-white', 'border-2', 'border-primary', 'shadow-lg', 'shadow-primary/10', 'opacity-100');
+                        const img = card.querySelector('.bg-cover');
+                        if (img.classList.contains('border-primary/10')) img.classList.replace('border-primary/10', 'border-white');
+                        img.classList.remove('border-4');
+                    }
+                });
+
+                // Update Profile View
+                const container = document.getElementById('counselor-profile-container');
+                container.innerHTML = `
+                    <div class="flex flex-col md:flex-row gap-8 items-start w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div class="w-full md:w-48 aspect-square rounded-2xl bg-cover bg-center shadow-lg"
+                            style='background-image: url("${counselor.image || 'https://via.placeholder.com/150'}");'>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-extrabold uppercase rounded-full">Available</span>
+                            </div>
+                            <h2 class="text-3xl font-extrabold text-slate-800 mb-2">${counselor.name}</h2>
+                            <p class="text-primary font-bold text-lg mb-4">${counselor.specialization}</p>
+                            <p class="text-slate-600 leading-relaxed mb-6">${counselor.description || 'No description available.'}</p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                                        <span class="material-symbols-outlined text-primary">schedule</span>
+                                    </div>
+                                    <div class="text-xs">
+                                        <p class="text-slate-400 font-medium">Timings</p>
+                                        <p class="text-slate-800 font-bold">${counselor.timings}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                                        <span class="material-symbols-outlined text-primary">call</span>
+                                    </div>
+                                    <div class="text-xs">
+                                        <p class="text-slate-400 font-medium">Contact</p>
+                                        <p class="text-slate-800 font-bold">${counselor.phone}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Dynamic Calendar Rendering
+            function renderCalendar() {
+                const grid = document.getElementById('calendar-grid');
+                if (!grid) return;
+
+                grid.innerHTML = ''; // Clear static content
+
+                const today = new Date();
+                const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date(today);
+                    date.setDate(today.getDate() + i);
+
+                    const dayName = days[date.getDay()];
+                    const dayNum = date.getDate();
+                    const isoDate = date.toISOString();
+
+                    const slot = document.createElement('div');
+                    slot.className = `day-slot aspect-square flex flex-col items-center justify-center text-xs font-bold text-slate-600 hover:bg-slate-50 rounded-lg cursor-pointer transition-all border border-transparent`;
+
+                    // Highlight today
+                    if (i === 0) {
+                        slot.classList.add('border-primary/50', 'bg-blue-50');
+                    }
+
+                    slot.innerHTML = `
+                        <span class="text-[10px] font-normal text-slate-400">${dayName}</span>
+                        <span class="text-sm">${dayNum}</span>
+                    `;
+
+                    slot.onclick = () => {
+                        document.querySelectorAll('.day-slot').forEach(s => {
+                            s.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                            s.classList.add('text-slate-600');
+                            s.querySelector('span:first-child').classList.add('text-slate-400');
+                            s.querySelector('span:first-child').classList.remove('text-blue-100');
+                        });
+
+                        slot.classList.remove('text-slate-600', 'hover:bg-slate-50', 'bg-blue-50');
+                        slot.classList.add('bg-primary', 'text-white', 'shadow-md');
+
+                        // Fix inner text colors on active state
+                        slot.querySelector('span:first-child').classList.remove('text-slate-400');
+                        slot.querySelector('span:first-child').classList.add('text-blue-100');
+
+                        selectedDate = isoDate;
+                    };
+
+                    grid.appendChild(slot);
+                }
+            }
+
+            renderCalendar();
+
+            // Form Submission
+            const confirmBtn = document.querySelector('button.w-full.mt-6');
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', async function () {
+                    const fullNameInput = document.querySelector('input[placeholder="Full Name"]');
+                    const emailInput = document.querySelector('input[placeholder="Email"]');
+                    const phoneInput = document.querySelector('input[placeholder="Phone"]');
+                    const interestSelect = document.querySelector('select');
+                    const notesTextarea = document.querySelector('textarea');
+                    const timePicker = document.getElementById('time-picker');
+
+                    if (!fullNameInput.value || !emailInput.value || !phoneInput.value || !selectedDate || !timePicker.value) {
+                        alert('Please fill in all required fields, select a date, and set a time.');
+                        return;
+                    }
+
+                    if (!selectedCounselor) {
+                        alert('Please select a counselor.');
+                        return;
+                    }
+
+                    const bookingData = {
+                        name: fullNameInput.value,
+                        email: emailInput.value,
+                        phone: phoneInput.value,
+                        course: interestSelect.value,
+                        notes: notesTextarea.value,
+                        selectedDate: selectedDate,
+                        selectedTime: timePicker.value, // User set time
+                        mode: 'online',
+                        preferredCounselor: selectedCounselor.name, // Send preferred counselor
+                        submittedAt: new Date().toISOString()
+                    };
+
+                    try {
+                        confirmBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Processing...';
+                        confirmBtn.disabled = true;
+
+                        const response = await fetch('http://localhost:8080/api/counsellor-bookings', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(bookingData)
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            localStorage.setItem('lastBooking', JSON.stringify(result.data)); // Or bookingData if data is not returned fully
+                            window.location.href = 'CounselorSuccses.html';
+                        } else {
+                            alert('Booking failed: ' + result.message);
+                            confirmBtn.innerHTML = 'Confirm Session <span class="material-symbols-outlined text-lg">calendar_add_on</span>';
+                            confirmBtn.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                        confirmBtn.innerHTML = 'Confirm Session <span class="material-symbols-outlined text-lg">calendar_add_on</span>';
+                        confirmBtn.disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

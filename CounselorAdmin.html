@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Counselor Admin Dashboard - AI-TECH PRO</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col z-20">
+            <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-2 text-slate-900 dark:text-white">
+                    <div class="size-8 flex items-center justify-center rounded bg-primary text-white">
+                        <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+                    </div>
+                    <span class="font-bold text-lg">Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-primary bg-primary/10 rounded-lg font-medium">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    Counselor Bookings
+                </a>
+                <a href="A1Homepage.html"
+                    class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                    <span class="material-symbols-outlined">home</span>
+                    Back to Website
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+            <!-- Header -->
+            <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 z-10">
+                <div class="h-16 flex items-center justify-between px-8">
+                    <h1 class="text-xl font-bold text-slate-900 dark:text-white">Counselor Management</h1>
+                    <div class="flex items-center gap-4">
+                        <!-- Super Admin Button - Only visible for superadmin -->
+                        <a href="SuperAdmin.html" target="_blank" id="superAdminBtn" style="display: none;"
+                            class="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg transition-all shadow-lg shadow-red-500/20">
+                            <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+                            Super Admin
+                        </a>
+                        <button id="add-counselor-btn" onclick="openAddCounselorModal()"
+                            class="hidden flex items-center gap-2 px-3 py-1.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-lg">add</span>
+                            Add Counselor
+                        </button>
+                        <button id="refresh-btn"
+                            class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">refresh</span>
+                            Refresh
+                        </button>
+                        <div
+                            class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 font-bold text-xs">
+                            AD
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs -->
+                <div class="px-8 flex gap-6">
+                    <button id="tab-bookings" class="pb-3 text-sm font-bold border-b-2 border-primary text-primary">
+                        Session Requests
+                    </button>
+                    <button id="tab-counselors"
+                        class="pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+                        Manage Counselors
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="flex-1 overflow-y-auto p-8 bg-background-light dark:bg-background-dark relative">
+                <!-- Bookings View -->
+                <div id="bookings-view">
+
+                    <!-- Stats Overlay -->
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Bookings</h3>
+                                <span
+                                    class="p-2 bg-blue-100 text-blue-600 rounded-lg material-symbols-outlined text-xl">dataset</span>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-900 dark:text-white" id="stat-total">0</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Pending</h3>
+                                <span
+                                    class="p-2 bg-yellow-100 text-yellow-600 rounded-lg material-symbols-outlined text-xl">pending</span>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-900 dark:text-white" id="stat-pending">0</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Assigned</h3>
+                                <span
+                                    class="p-2 bg-green-100 text-green-600 rounded-lg material-symbols-outlined text-xl">assignment_turned_in</span>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-900 dark:text-white" id="stat-assigned">0</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">AI Counseling</h3>
+                                <span
+                                    class="p-2 bg-purple-100 text-purple-600 rounded-lg material-symbols-outlined text-xl">smart_toy</span>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-900 dark:text-white" id="stat-ai">0</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">In-Person</h3>
+                                <span
+                                    class="p-2 bg-blue-100 text-blue-600 rounded-lg material-symbols-outlined text-xl">location_on</span>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-900 dark:text-white" id="stat-offline">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Bookings Table -->
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                        <div
+                            class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white">Recent Requests</h2>
+                            <div class="flex gap-2">
+                                <div class="relative">
+                                    <span
+                                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                                    <input type="text" placeholder="Search students..."
+                                        class="pl-9 pr-4 py-2 text-sm border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-64">
+                                </div>
+                                <select id="status-filter"
+                                    class="px-4 py-2 text-sm border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="assigned">Assigned</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-xs uppercase text-slate-500 dark:text-slate-400 font-semibold">
+                                        <th class="px-6 py-4">Student</th>
+                                        <th class="px-6 py-4">Course</th>
+                                        <th class="px-6 py-4">Preferred Counselor</th>
+                                        <th class="px-6 py-4">Date & Time</th>
+                                        <th class="px-6 py-4">Mode</th>
+                                        <th class="px-6 py-4">Status</th>
+                                        <th class="px-6 py-4 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookings-table-body" class="text-sm">
+                                    <!-- Rows will be populated by JS -->
+                                    <tr>
+                                        <td colspan="6" class="px-6 py-8 text-center text-slate-500">Loading bookings...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div
+                            class="p-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-sm text-slate-500">
+                            <span id="showing-count">Showing 0 bookings</span>
+                            <div class="flex gap-2">
+                                <button
+                                    class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50"
+                                    disabled>Previous</button>
+                                <button
+                                    class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50"
+                                    disabled>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End bookings-view -->
+
+            <!-- Counselors View -->
+            <div id="counselors-view" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white">Active Counselors</h2>
+                    <div class="text-sm text-slate-500">Manage your counselor profiles here</div>
+                </div>
+                <div id="counselors-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Populated by JS -->
+                    <div class="col-span-full text-center py-12 text-slate-500">Loading counselors...</div>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+
+    <!-- Change Counselor Modal -->
+    <div id="change-counselor-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full max-w-sm rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200 p-6">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Assign Different Counselor</h3>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select
+                    Counselor</label>
+                <select id="change-counselor-select"
+                    class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white">
+                    <!-- Populated via JS -->
+                </select>
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeChangeCounselorModal()"
+                    class="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg">Cancel</button>
+                <button onclick="submitChangeCounselor()"
+                    class="px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-lg">Assign</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="assign-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Assign Counselor</h3>
+                <button onclick="closeModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <input type="hidden" id="booking-id">
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Student
+                        Details</label>
+                    <div
+                        class="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg text-sm text-slate-600 dark:text-slate-400">
+                        <p><span class="font-semibold text-slate-900 dark:text-white" id="modal-student-name"></span>
+                        </p>
+                        <p id="modal-course"></p>
+                        <p id="modal-datetime"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Counselor Name
+                            *</label>
+                        <input type="text" id="counselor-name"
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-900 dark:text-white"
+                            placeholder="Dr. John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Counselor Email
+                            *</label>
+                        <input type="email" id="counselor-email"
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-900 dark:text-white"
+                            placeholder="john@example.com">
+                    </div>
+                </div>
+
+                <div id="online-fields" class="hidden">
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Meeting Link
+                        *</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">link</span>
+                        <input type="text" id="meeting-link"
+                            class="w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-900 dark:text-white"
+                            placeholder="https://meet.google.com/...">
+                    </div>
+                </div>
+
+                <div id="offline-fields" class="hidden">
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Location Address
+                        *</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">location_on</span>
+                        <input type="text" id="location-address"
+                            class="w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-900 dark:text-white"
+                            placeholder="Room 101, Main Block">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Admin Notes</label>
+                    <textarea id="admin-notes" rows="3"
+                        class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-white dark:bg-slate-900 dark:text-white resize-none"
+                        placeholder="Internal notes..."></textarea>
+                </div>
+            </div>
+            <div
+                class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-3">
+                <button onclick="closeModal()"
+                    class="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded-lg transition-colors">Cancel</button>
+                <button onclick="submitAssignment()" id="assign-btn"
+                    class="px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">send</span>
+                    Assign & Notify
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Counselor Modal - FORM-LIKE STRUCTURE -->
+    <div id="change-counselor-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div
+                class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-gradient-to-r from-primary/10 to-purple-500/10">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-3xl">person_edit</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Change Counselor Assignment</h3>
+                </div>
+                <button onclick="closeChangeCounselorModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Two-Step Process: Selection then Details -->
+            <div id="counselor-selection-step" class="p-6">
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Select a Counselor</h4>
+                <div id="counselor-cards-grid"
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto">
+                    <!-- Populated via JS -->
+                </div>
+                <div id="no-counselors-msg" class="hidden text-center py-8 text-slate-500">
+                    No counselors available. Please add counselors first.
+                </div>
+            </div>
+
+            <!-- Counselor Details Form (Hidden Initially) -->
+            <div id="counselor-details-form" class="hidden">
+                <div class="p-6 space-y-6">
+                    <!-- Booking Information Section -->
+                    <div
+                        class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-2 border-blue-200 dark:border-blue-800">
+                        <h4
+                            class="text-sm font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">event_note</span>
+                            Booking Details
+                        </h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="text-blue-700 dark:text-blue-300 font-semibold">Student:</span>
+                                <span class="text-slate-900 dark:text-white ml-2" id="detail-student-name"></span>
+                            </div>
+                            <div>
+                                <span class="text-blue-700 dark:text-blue-300 font-semibold">Course:</span>
+                                <span class="text-slate-900 dark:text-white ml-2" id="detail-course"></span>
+                            </div>
+                            <div>
+                                <span class="text-blue-700 dark:text-blue-300 font-semibold">Date & Time:</span>
+                                <span class="text-slate-900 dark:text-white ml-2" id="detail-datetime"></span>
+                            </div>
+                            <div>
+                                <span class="text-blue-700 dark:text-blue-300 font-semibold">Mode:</span>
+                                <span class="text-slate-900 dark:text-white ml-2 capitalize" id="detail-mode"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Counselor Information Section -->
+                    <div
+                        class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-800">
+                        <h4
+                            class="text-sm font-bold text-purple-900 dark:text-purple-100 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">badge</span>
+                            Selected Counselor Details
+                        </h4>
+
+                        <div class="flex gap-6">
+                            <!-- Counselor Profile Image -->
+                            <div class="flex-shrink-0">
+                                <img id="detail-counselor-image" src="" alt="Counselor"
+                                    class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg">
+                            </div>
+
+                            <!-- Counselor Information -->
+                            <div class="flex-1 space-y-4">
+                                <div>
+                                    <h5 class="text-2xl font-bold text-slate-900 dark:text-white"
+                                        id="detail-counselor-name"></h5>
+                                    <p class="text-sm font-bold text-primary uppercase tracking-wider"
+                                        id="detail-counselor-specialization"></p>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="flex items-start gap-2">
+                                        <span class="material-symbols-outlined text-purple-600 text-xl">email</span>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Email
+                                            </p>
+                                            <p class="text-sm text-slate-900 dark:text-white"
+                                                id="detail-counselor-email"></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="material-symbols-outlined text-purple-600 text-xl">call</span>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">Phone
+                                            </p>
+                                            <p class="text-sm text-slate-900 dark:text-white"
+                                                id="detail-counselor-phone"></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="material-symbols-outlined text-purple-600 text-xl"
+                                            id="detail-counselor-mode-icon">videocam</span>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                                                Counseling Mode</p>
+                                            <p class="text-sm text-slate-900 dark:text-white capitalize"
+                                                id="detail-counselor-mode"></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="material-symbols-outlined text-purple-600 text-xl">schedule</span>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                                                Availability</p>
+                                            <p class="text-sm text-slate-900 dark:text-white"
+                                                id="detail-counselor-timings"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Notice -->
+                    <div
+                        class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-amber-600 text-xl">info</span>
+                            <div class="flex-1">
+                                <p class="text-sm text-amber-900 dark:text-amber-100 font-semibold">Email Notifications
+                                </p>
+                                <p class="text-xs text-amber-700 dark:text-amber-300 mt-1">
+                                    Upon confirmation, both the student and the counselor will receive email
+                                    notifications about this assignment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div
+                    class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex justify-between gap-3">
+                    <button onclick="backToSelection()"
+                        class="px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Back to Selection
+                    </button>
+                    <div class="flex gap-3">
+                        <button onclick="closeChangeCounselorModal()"
+                            class="px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                            Cancel
+                        </button>
+                        <button onclick="confirmChangeCounselor()" id="confirm-change-btn"
+                            class="px-6 py-2.5 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">check_circle</span>
+                            Confirm & Notify
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Counselor Modal -->
+    <div id="add-counselor-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl shadow-xl overflow-hidden animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Add New Counselor</h3>
+                <button onclick="closeAddCounselorModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="add-counselor-form" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Full Name
+                            *</label>
+                        <input type="text" name="name" required
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Specialization
+                            *</label>
+                        <input type="text" name="specialization" placeholder="e.g. Psychologist" required
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email *</label>
+                        <input type="email" name="email" required
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Phone *</label>
+                        <input type="text" name="phone" required
+                            class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Mode *</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="mode" value="online" class="peer sr-only" checked>
+                                <div
+                                    class="p-3 text-center rounded-lg border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all">
+                                    <span class="material-symbols-outlined block mb-1">videocam</span>
+                                    <span class="text-xs font-bold">Online</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="mode" value="offline" class="peer sr-only">
+                                <div
+                                    class="p-3 text-center rounded-lg border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all">
+                                    <span class="material-symbols-outlined block mb-1">location_on</span>
+                                    <span class="text-xs font-bold">In-Person</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="mode" value="both" class="peer sr-only">
+                                <div
+                                    class="p-3 text-center rounded-lg border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all">
+                                    <span class="material-symbols-outlined block mb-1">alt_route</span>
+                                    <span class="text-xs font-bold">Both</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Availability
+                            Timings</label>
+                        <div
+                            class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 space-y-4">
+                            <!-- Days Selection -->
+                            <div>
+                                <span
+                                    class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Select
+                                    Days</span>
+                                <div class="flex flex-wrap gap-2" id="day-selector">
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Mon" class="peer sr-only" checked>
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Mon</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Tue" class="peer sr-only" checked>
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Tue</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Wed" class="peer sr-only" checked>
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Wed</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Thu" class="peer sr-only" checked>
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Thu</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Fri" class="peer sr-only" checked>
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Fri</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Sat" class="peer sr-only">
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Sat</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="days" value="Sun" class="peer sr-only">
+                                        <span
+                                            class="px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-white dark:bg-slate-900 dark:text-white dark:border-slate-600 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">Sun</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Time Range -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <span
+                                        class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Start
+                                        Time</span>
+                                    <input type="time" name="startTime"
+                                        class="w-full px-3 py-2 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 dark:text-white text-sm"
+                                        value="09:00" required>
+                                </div>
+                                <div>
+                                    <span
+                                        class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">End
+                                        Time</span>
+                                    <input type="time" name="endTime"
+                                        class="w-full px-3 py-2 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 dark:text-white text-sm"
+                                        value="17:00" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Profile
+                        Image</label>
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-full">
+                            <input type="file" id="image-upload" accept="image/*"
+                                class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                        </div>
+                    </div>
+                    <input type="hidden" name="image" id="image-base64">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Short
+                        Description</label>
+                    <textarea name="description" rows="2"
+                        class="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-900 dark:text-white resize-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeAddCounselorModal()"
+                        class="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 rounded-lg transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors shadow-lg shadow-primary/20">Add
+                        Counselor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let bookings = [];
+        let counselors = [];
+
+        // Tab Switching
+        const bookingsView = document.getElementById('bookings-view');
+        const counselorsView = document.getElementById('counselors-view');
+        const tabBookings = document.getElementById('tab-bookings');
+        const tabCounselors = document.getElementById('tab-counselors');
+        const addCounselorBtn = document.getElementById('add-counselor-btn');
+
+        tabBookings.addEventListener('click', (e) => {
+            e.preventDefault();
+            bookingsView.classList.remove('hidden');
+            counselorsView.classList.add('hidden');
+            tabBookings.classList.add('border-primary', 'text-primary');
+            tabBookings.classList.remove('border-transparent', 'text-slate-500');
+            tabCounselors.classList.remove('border-primary', 'text-primary');
+            tabCounselors.classList.add('border-transparent', 'text-slate-500');
+            addCounselorBtn.classList.add('hidden');
+        });
+
+        tabCounselors.addEventListener('click', (e) => {
+            e.preventDefault();
+            bookingsView.classList.add('hidden');
+            counselorsView.classList.remove('hidden');
+            tabCounselors.classList.add('border-primary', 'text-primary');
+            tabCounselors.classList.remove('border-transparent', 'text-slate-500');
+            tabBookings.classList.remove('border-primary', 'text-primary');
+            tabBookings.classList.add('border-transparent', 'text-slate-500');
+            addCounselorBtn.classList.remove('hidden');
+            fetchCounselors();
+        });
+
+        // Booking Logic (Existing)
+        async function fetchBookings() {
+            const tableBody = document.getElementById('bookings-table-body');
+            try {
+                const response = await fetch('http://localhost:8080/api/counsellor-bookings');
+                const data = await response.json();
+
+                if (data.success) {
+                    bookings = data.data.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+                    updateStats();
+                    renderTable(bookings);
+                } else {
+                    tableBody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-red-500">Failed to load bookings</td></tr>';
+                }
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+                tableBody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-red-500">Error loading data. Is the server running?</td></tr>';
+            }
+        }
+
+        // Counselor Logic (New)
+        async function fetchCounselors() {
+            const listContainer = document.getElementById('counselors-list');
+            try {
+                const response = await fetch('http://localhost:8080/api/counselors');
+                const data = await response.json();
+
+                if (data.success) {
+                    counselors = data.data;
+                    renderCounselors(counselors);
+                } else {
+                    listContainer.innerHTML = '<div class="col-span-full text-center py-8 text-red-500">Failed to load counselors</div>';
+                }
+            } catch (error) {
+                console.error('Error fetching counselors:', error);
+                listContainer.innerHTML = '<div class="col-span-full text-center py-8 text-red-500">Error connecting to server</div>';
+            }
+        }
+
+        function renderCounselors(list) {
+            const listContainer = document.getElementById('counselors-list');
+            if (list.length === 0) {
+                listContainer.innerHTML = '<div class="col-span-full text-center py-8 text-slate-500">No counselors added yet.</div>';
+                return;
+            }
+
+            listContainer.innerHTML = list.map(c => `
+                <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
+                    <img src="${c.image}" alt="${c.name}" class="w-16 h-16 rounded-full object-cover border border-slate-100">
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-slate-900 dark:text-white">${c.name}</h3>
+                            <button onclick="deleteCounselor('${c.id}')" class="text-rose-500 hover:bg-rose-50 p-1.5 rounded-lg transition-colors" title="Delete">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                            </button>
+                        </div>
+                        <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">${c.specialization}</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400 mt-2">
+                             <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">badge</span>
+                                <span class="capitalize">${c.mode}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                <span>${c.timings}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                                <span>${c.phone}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddCounselorModal() {
+            document.getElementById('add-counselor-modal').classList.remove('hidden');
+        }
+
+        function closeAddCounselorModal() {
+            document.getElementById('add-counselor-modal').classList.add('hidden');
+        }
+
+        document.getElementById('add-counselor-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            // Build payload manually to handle checkboxes and derived fields
+            const days = Array.from(form.querySelectorAll('input[name="days"]:checked')).map(cb => cb.value);
+            const startTime = formData.get('startTime');
+            const endTime = formData.get('endTime');
+
+            // Format time to 12-hour format
+            const formatTime = (time) => {
+                const [h, m] = time.split(':');
+                const hour = parseInt(h);
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const formattedHour = hour % 12 || 12;
+                return `${formattedHour}:${m} ${ampm}`;
+            };
+
+            // Range reduction logic
+            const daysString = days.length === 7 ? 'Everyday' :
+                days.length === 5 && days.includes('Mon') && days.includes('Fri') ? 'Mon-Fri' :
+                    days.join(', ');
+
+            const timingsString = `${daysString} ${formatTime(startTime)} - ${formatTime(endTime)}`;
+
+            // Image Handling
+            const fileInput = document.getElementById('image-upload');
+            let imageBase64 = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(formData.get('name')) + '&background=random'; // Default if no image
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                // Wrap FileReader in Promise
+                try {
+                    imageBase64 = await new Promise((resolve, reject) => {
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = error => reject(error);
+                    });
+                } catch (err) {
+                    console.error('Error reading file:', err);
+                    alert('Failed to process image');
+                    return;
+                }
+            } else if (document.getElementById('image-base64').value) {
+                imageBase64 = document.getElementById('image-base64').value;
+            }
+
+            const payload = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                specialization: formData.get('specialization'),
+                mode: formData.get('mode'),
+                timings: timingsString,
+                image: imageBase64,
+                description: formData.get('description')
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/api/counselors', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Counselor added successfully!');
+                    closeAddCounselorModal();
+                    e.target.reset();
+                    fetchCounselors();
+                } else {
+                    alert('Failed to add: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error adding counselor:', error);
+                alert('An error occurred.');
+            }
+        });
+
+        async function deleteCounselor(id) {
+            if (!confirm('Are you sure you want to delete this counselor?')) return;
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/counselors/${id}`, { method: 'DELETE' });
+                const result = await response.json();
+
+                if (result.success) {
+                    fetchCounselors();
+                } else {
+                    alert('Failed to delete: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error deleting:', error);
+                alert('An error occurred.');
+            }
+        }
+
+        // Rest of existing Booking functions...
+        function updateStats() {
+            document.getElementById('stat-total').textContent = bookings.length;
+            document.getElementById('stat-pending').textContent = bookings.filter(b => b.status === 'pending').length;
+            document.getElementById('stat-assigned').textContent = bookings.filter(b => b.status === 'assigned').length;
+
+            // AI Counseling stat (assuming AI counseling is online mode)
+            const aiCount = bookings.filter(b => b.mode === 'online').length;
+            document.getElementById('stat-ai').textContent = aiCount;
+
+            // In-Person stat (offline mode)
+            const offlineCount = bookings.filter(b => b.mode === 'offline').length;
+            document.getElementById('stat-offline').textContent = offlineCount;
+        }
+
+        function renderTable(data) {
+            const tableBody = document.getElementById('bookings-table-body');
+            const filterValue = document.getElementById('status-filter').value;
+            const searchValue = document.querySelector('input[placeholder="Search students..."]').value.toLowerCase();
+
+            let filtered = data;
+
+            // Apply filter
+            if (filterValue !== 'all') {
+                filtered = filtered.filter(b => b.status === filterValue);
+            }
+
+            // Apply search
+            if (searchValue) {
+                filtered = filtered.filter(b =>
+                    b.name.toLowerCase().includes(searchValue) ||
+                    b.email.toLowerCase().includes(searchValue) ||
+                    b.course.toLowerCase().includes(searchValue)
+                );
+            }
+
+            document.getElementById('showing-count').textContent = `Showing ${filtered.length} bookings`;
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-slate-500">No bookings found</td></tr>';
+                return;
+            }
+
+            tableBody.innerHTML = filtered.map(booking => {
+                const date = new Date(booking.selectedDate).toLocaleDateString();
+                const statusColor = booking.status === 'Confirmed' ? 'text-green-700 bg-green-50 border-green-100' :
+                    booking.status === 'Pending' ? 'text-amber-700 bg-amber-50 border-amber-100' :
+                        'text-slate-700 bg-slate-50 border-slate-100';
+
+                const modeIcon = booking.mode === 'online' ? 'videocam' : 'location_on';
+
+                const assignedDisplay = booking.assignedCounselor
+                    ? `<span class="flex items-center gap-1 text-green-600 text-xs mt-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Assigned: ${booking.assignedCounselor}</span>`
+                    : `<span class="text-slate-400 italic text-xs mt-1">Pending Action</span>`;
+
+                return `
+                <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-slate-900 dark:text-white text-sm">${booking.name}</span>
+                                <span class="text-xs text-slate-500">${booking.email}</span>
+                                <span class="text-xs text-slate-500">${booking.phone}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400 font-medium text-sm">
+                            ${booking.course}
+                            <div class="text-[10px] text-slate-400 mt-0.5">${booking.notes || ''}</div>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+                             <div class="flex flex-col">
+                                <span class="font-medium text-slate-800 dark:text-slate-200 text-sm">${booking.preferredCounselor}</span>
+                                ${assignedDisplay}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex flex-col text-sm">
+                                <span>${date}</span>
+                                <span class="text-xs text-slate-500">${booking.selectedTime}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1 text-slate-600 dark:text-slate-400 text-xs font-bold uppercase">
+                                <span class="material-symbols-outlined text-base text-primary">${modeIcon}</span>
+                                <span class="capitalize">${booking.mode}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${statusColor}">${booking.status || 'Pending'}</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                           ${booking.status !== 'Confirmed' ? `
+                            <div class="flex items-center justify-end gap-2">
+                                <button onclick="openAssignModal('${booking.id}')" 
+                                    class="bg-green-50 hover:bg-green-100 text-green-700 border border-green-200 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">check</span> Accept
+                                </button>
+                                <button onclick="openChangeCounselorModal('${booking.id}', '${booking.preferredCounselor}')"
+                                    class="bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">edit</span> Change
+                                </button>
+                            </div>
+                        ` : `
+                             <span class="text-slate-400 text-xs text-center block"><span class="material-symbols-outlined text-base align-middle">lock</span> Completed</span>
+                        `}
+                        </td>
+                    </tr >
+                    `;
+            }).join('');
+        }
+
+        // New Assignment Logic
+        let currentBookingIdForAssign = null;
+        let pCounselor = null;
+
+        function openAssignModal(booking) {
+            // Need to pass booking object or ID. Using ID lookup for simplicity
+            // But 'booking' argument might be cleaner if passed correctly.
+            // Let's assume we pass the full object now, or find it.
+            // Update call params below first.
+            const b = bookings.find(b => b.id === booking);
+            if (!b) return;
+
+            currentBookingIdForAssign = b.id;
+
+            document.getElementById('modal-student-name').textContent = b.name;
+            document.getElementById('modal-course').textContent = b.course;
+            document.getElementById('modal-datetime').textContent = `${new Date(b.selectedDate).toLocaleDateString()} at ${b.selectedTime}`;
+
+            // Pre-fill Counselor
+            document.getElementById('counselor-name').value = b.preferredCounselor;
+            const c = counselors.find(c => c.name === b.preferredCounselor);
+            document.getElementById('counselor-email').value = c ? c.email : '';
+
+            // Show/Hide Fields based on Mode
+            const onlineFields = document.getElementById('online-fields');
+            const offlineFields = document.getElementById('offline-fields');
+
+            if (b.mode === 'online') {
+                onlineFields.classList.remove('hidden');
+                offlineFields.classList.add('hidden');
+            } else {
+                onlineFields.classList.add('hidden');
+                offlineFields.classList.remove('hidden');
+            }
+
+            document.getElementById('assign-modal').classList.remove('hidden');
+        }
+
+        async function submitAssignment() {
+            const counselorName = document.getElementById('counselor-name').value;
+            const meetingLink = document.getElementById('meeting-link').value;
+            const locationAddress = document.getElementById('location-address').value;
+            const notes = document.getElementById('admin-notes').value;
+
+            if (!counselorName) return alert('Counselor Name is required');
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/counsellor-bookings/${currentBookingIdForAssign}/assign`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        counselorName,
+                        status: 'Confirmed',
+                        meetingLink,
+                        locationAddress,
+                        notes
+                    })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    closeModal();
+                    fetchBookings();
+                    alert('Booking Confirmed & Notifications Sent!');
+                } else {
+                    alert('Failed: ' + result.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Error connecting to server');
+            }
+        }
+
+        // Legacy/Direct call replacement
+        // async function assignCounselor(bookingId, counselorName) { ... } // Removed
+
+        let currentBookingIdForChange = null;
+        let selectedCounselorForChange = null;
+
+        function openChangeCounselorModal(bookingId, currentCounselorName = '') {
+            currentBookingIdForChange = bookingId;
+            selectedCounselorForChange = null;
+
+            // Show selection step, hide details form
+            document.getElementById('counselor-selection-step').classList.remove('hidden');
+            document.getElementById('counselor-details-form').classList.add('hidden');
+
+            // Check if counselors loaded
+            if (counselors.length === 0) {
+                fetchCounselors().then(() => renderCounselorCards(currentCounselorName));
+            } else {
+                renderCounselorCards(currentCounselorName);
+            }
+
+            document.getElementById('change-counselor-modal').classList.remove('hidden');
+        }
+
+        function renderCounselorCards(currentCounselorName = '') {
+            const grid = document.getElementById('counselor-cards-grid');
+            const noMsg = document.getElementById('no-counselors-msg');
+            const confirmBtn = document.getElementById('confirm-change-btn');
+
+            if (counselors.length === 0) {
+                grid.classList.add('hidden');
+                noMsg.classList.remove('hidden');
+                confirmBtn.disabled = true;
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            noMsg.classList.add('hidden');
+
+            grid.innerHTML = counselors.map(c => `
+                <div onclick="selectCounselorCard('${c.name}')" 
+                    id="counselor-card-${c.name.replace(/\s+/g, '-')}"
+                    class="counselor-card cursor-pointer p-4 border-2 border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:shadow-lg transition-all duration-200 bg-white dark:bg-slate-800 ${c.name === currentCounselorName ? 'border-primary ring-2 ring-primary/20' : ''}">
+                    <div class="flex items-start gap-3">
+                        <img src="${c.image}" alt="${c.name}" class="w-16 h-16 rounded-full object-cover border-2 border-slate-100">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">${c.name}</h4>
+                                    <p class="text-xs text-primary font-bold uppercase tracking-wider">${c.specialization}</p>
+                                </div>
+                                <div class="counselor-check hidden">
+                                    <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+                                <p class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">email</span>
+                                    <span class="truncate">${c.email}</span>
+                                </p>
+                                <p class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">call</span>
+                                    <span>${c.phone}</span>
+                                </p>
+                                <p class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">schedule</span>
+                                    <span class="truncate">${c.timings}</span>
+                                </p>
+                                <p class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">${c.mode === 'online' ? 'videocam' : c.mode === 'offline' ? 'location_on' : 'alt_route'}</span>
+                                    <span class="capitalize">${c.mode}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Pre-select current counselor if provided
+            if (currentCounselorName) {
+                selectCounselorCard(currentCounselorName);
+            }
+        }
+
+        function selectCounselorCard(counselorName) {
+            selectedCounselorForChange = counselorName;
+
+            // Remove selection from all cards
+            document.querySelectorAll('.counselor-card').forEach(card => {
+                card.classList.remove('border-primary', 'ring-2', 'ring-primary/20', 'bg-primary/5');
+                const checkIcon = card.querySelector('.counselor-check');
+                if (checkIcon) checkIcon.classList.add('hidden');
+            });
+
+            // Add selection to clicked card
+            const selectedCard = document.getElementById(`counselor-card-${counselorName.replace(/\s+/g, '-')}`);
+            if (selectedCard) {
+                selectedCard.classList.add('border-primary', 'ring-2', 'ring-primary/20', 'bg-primary/5');
+                const checkIcon = selectedCard.querySelector('.counselor-check');
+                if (checkIcon) checkIcon.classList.remove('hidden');
+            }
+
+            // Show the details form after selection
+            showCounselorDetailsForm();
+        }
+
+        function closeChangeCounselorModal() {
+            document.getElementById('change-counselor-modal').classList.add('hidden');
+            selectedCounselorForChange = null;
+            // Reset to selection step
+            document.getElementById('counselor-selection-step').classList.remove('hidden');
+            document.getElementById('counselor-details-form').classList.add('hidden');
+        }
+
+        function backToSelection() {
+            document.getElementById('counselor-selection-step').classList.remove('hidden');
+            document.getElementById('counselor-details-form').classList.add('hidden');
+        }
+
+        function showCounselorDetailsForm() {
+            if (!selectedCounselorForChange) return;
+
+            // Find the selected counselor
+            const counselor = counselors.find(c => c.name === selectedCounselorForChange);
+            if (!counselor) return;
+
+            // Find the booking
+            const booking = bookings.find(b => b.id === currentBookingIdForChange);
+            if (!booking) return;
+
+            // Populate booking details
+            document.getElementById('detail-student-name').textContent = booking.name;
+            document.getElementById('detail-course').textContent = booking.course;
+            document.getElementById('detail-datetime').textContent = `${new Date(booking.selectedDate).toLocaleDateString()} at ${booking.selectedTime}`;
+            document.getElementById('detail-mode').textContent = booking.mode;
+
+            // Populate counselor details
+            document.getElementById('detail-counselor-image').src = counselor.image;
+            document.getElementById('detail-counselor-name').textContent = counselor.name;
+            document.getElementById('detail-counselor-specialization').textContent = counselor.specialization;
+            document.getElementById('detail-counselor-email').textContent = counselor.email;
+            document.getElementById('detail-counselor-phone').textContent = counselor.phone;
+            document.getElementById('detail-counselor-mode').textContent = counselor.mode;
+            document.getElementById('detail-counselor-timings').textContent = counselor.timings;
+
+            // Update mode icon
+            const modeIcon = document.getElementById('detail-counselor-mode-icon');
+            if (counselor.mode === 'online') {
+                modeIcon.textContent = 'videocam';
+            } else if (counselor.mode === 'offline') {
+                modeIcon.textContent = 'location_on';
+            } else {
+                modeIcon.textContent = 'alt_route';
+            }
+
+            // Hide selection, show details form
+            document.getElementById('counselor-selection-step').classList.add('hidden');
+            document.getElementById('counselor-details-form').classList.remove('hidden');
+        }
+
+        function confirmChangeCounselor() {
+            if (!selectedCounselorForChange) {
+                alert('Please select a counselor');
+                return;
+            }
+
+            // Call the existing submitChangeCounselor function
+            submitChangeCounselor();
+        }
+
+        async function submitChangeCounselor() {
+            if (!selectedCounselorForChange) {
+                alert('Please select a counselor');
+                return;
+            }
+
+            // Find the booking to get mode info
+            const booking = bookings.find(b => b.id === currentBookingIdForChange);
+            if (booking && booking.mode === 'online') {
+                // For online mode, open the assignment modal to get meeting link
+                closeChangeCounselorModal();
+                openAssignModal(currentBookingIdForChange);
+                // Pre-fill with selected counselor
+                setTimeout(() => {
+                    document.getElementById('counselor-name').value = selectedCounselorForChange;
+                    const c = counselors.find(c => c.name === selectedCounselorForChange);
+                    document.getElementById('counselor-email').value = c ? c.email : '';
+                }, 100);
+            } else {
+                // For offline mode, assign directly
+                try {
+                    const response = await fetch(`http://localhost:8080/api/counsellor-bookings/${currentBookingIdForChange}/assign`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            counselorName: selectedCounselorForChange,
+                            status: 'Confirmed'
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        closeChangeCounselorModal();
+                        fetchBookings();
+                        alert('Counselor changed successfully!');
+                    } else {
+                        alert('Failed: ' + result.message);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Error connecting to server');
+                }
+            }
+        }
+
+        // Removed old manual modal functions to avoid confusion
+        function closeModal() {
+            document.getElementById('assign-modal').classList.add('hidden');
+        }
+
+        // Event Listeners
+        document.getElementById('status-filter').addEventListener('change', () => renderTable(bookings));
+        document.querySelector('input[placeholder="Search students..."]').addEventListener('input', () => renderTable(bookings));
+        document.getElementById('refresh-btn').addEventListener('click', fetchBookings);
+
+        // Initial Load
+        fetchBookings();
+
+        // Real-time Poll (every 10 seconds)
+        setInterval(() => {
+            if (!document.getElementById('bookings-view').classList.contains('hidden')) {
+                fetchBookings();
+            } else {
+                fetchCounselors();
+            }
+        }, 10000);
+    </script>
+
+    <!-- Permission System -->
+    <script src="js/permissions.js"></script>
+</body>
+
+</html>

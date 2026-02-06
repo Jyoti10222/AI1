@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Builder Admin - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            color: #1a1a2e;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--card-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: var(--card-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-icon .material-symbols-outlined {
+            font-size: 36px;
+            color: white;
+        }
+
+        .course-card h3 {
+            color: #1a1a2e;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .course-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .exam-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--card-color);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <span class="material-symbols-outlined" style="font-size: 48px; color: #667eea;">quiz</span>
+                Exam Builder Admin
+            </h1>
+            <p>Manage exams for all courses - Create and edit questions and code challenges</p>
+        </header>
+
+        <div class="courses-grid">
+            <!-- Cloud Computing -->
+            <a href="ExamCCAdmin.html" class="course-card" style="--card-color: #3b82f6;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">cloud</span>
+                </div>
+                <h3>Cloud Computing</h3>
+                <p>Test your knowledge in AWS, Azure, and cloud architecture</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- AI & Machine Learning -->
+            <a href="ExamAIAdmin.html" class="course-card" style="--card-color: #8b5cf6;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">psychology</span>
+                </div>
+                <h3>AI & Machine Learning</h3>
+                <p>Practice neural networks, algorithms, and ML concepts</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Java Programming -->
+            <a href="ExamJavaAdmin.html" class="course-card" style="--card-color: #f59e0b;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">code</span>
+                </div>
+                <h3>Java Programming</h3>
+                <p>Master OOP, Spring Boot, and Java best practices</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- .NET Development -->
+            <a href="ExamNetAdmin.html" class="course-card" style="--card-color: #512bd4;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">web</span>
+                </div>
+                <h3>.NET Development</h3>
+                <p>Test C#, ASP.NET Core, and Entity Framework skills</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Cybersecurity -->
+            <a href="ExamCyberAdmin.html" class="course-card" style="--card-color: #dc2626;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">security</span>
+                </div>
+                <h3>Cybersecurity</h3>
+                <p>Practice encryption, security protocols, and ethical hacking</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Automation Testing -->
+            <a href="ExamAutomanAdmin.html" class="course-card" style="--card-color: #10b981;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">automation</span>
+                </div>
+                <h3>Automation Testing</h3>
+                <p>Master Selenium, test frameworks, and automation patterns</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- C Programming -->
+            <a href="ExamCAdmin.html" class="course-card" style="--card-color: #0284c7;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">memory</span>
+                </div>
+                <h3>C Programming</h3>
+                <p>Test pointers, memory management, and systems programming</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Python Full Stack -->
+            <a href="ExamPythonAdmin.html" class="course-card" style="--card-color: #3776ab;">
+                <div class="course-icon">
+                    <span class="material-symbols-outlined">code</span>
+                </div>
+                <h3>Python Full Stack</h3>
+                <p>Practice Django, Flask, decorators, and Python patterns</p>
+                <div class="exam-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Code Tasks</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
