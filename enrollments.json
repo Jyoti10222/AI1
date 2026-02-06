@@ -1,0 +1,65 @@
+{
+  "enrollments": [
+    {
+      "id": "ENR-1769758637565",
+      "type": "online",
+      "studentName": "Kashif Khan",
+      "email": "kashifk123@gmail.com",
+      "phone": "Bismillah@1",
+      "course": "Java Full",
+      "batchDetails": {
+        "time": "11:00 AM",
+        "instructor": "TBA"
+      },
+      "status": "Pending",
+      "enrolledAt": "2026-01-30T07:37:17.567Z"
+    },
+    {
+      "id": "ENR-1768995991855",
+      "type": "online",
+      "studentName": "Kashif Khan",
+      "email": "kashifk123@gmail.com",
+      "phone": "9880395339",
+      "course": "Java Full",
+      "batchDetails": {
+        "time": "11:00 AM",
+        "instructor": "TBA"
+      },
+      "status": "Pending",
+      "enrolledAt": "2026-01-21T11:46:31.856Z"
+    },
+    {
+      "id": "ENR-1768904151101",
+      "type": "online",
+      "studentName": "Jyoti",
+      "email": "jyotimulimani2104@gmail.com",
+      "phone": "8217501331",
+      "course": "Python Full",
+      "batchDetails": {
+        "time": "11:30 AM",
+        "instructor": "TBA"
+      },
+      "status": "Approved",
+      "enrolledAt": "2026-01-20T10:15:51.101Z",
+      "approvedAt": "2026-01-20T10:16:15.726Z"
+    },
+    {
+      "id": "ENR-1768904096822",
+      "type": "hybrid",
+      "studentName": "jyoti",
+      "email": "j@gmail.com",
+      "phone": "9876543210",
+      "course": "Java Full Stack",
+      "batchDetails": {
+        "faculty": "Prof. James Gosling",
+        "day": "Mon",
+        "time": "10:00 AM - 12:00 PM",
+        "mode": "Online"
+      },
+      "status": "Approved",
+      "enrolledAt": "2026-01-20T10:14:56.823Z",
+      "approvedAt": "2026-01-20T10:22:51.105Z"
+    }
+  ],
+  "lastUpdated": "2026-01-30T07:37:17.567Z"
+}

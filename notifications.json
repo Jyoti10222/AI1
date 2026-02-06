@@ -1,0 +1,14 @@
+{
+  "notifications": [
+    {
+      "id": "2d47c4191aec5397",
+      "title": "AI ",
+      "message": "Khan is taking class in room no 101",
+      "type": "info",
+      "audience": "all",
+      "date": "2026-01-21T11:00:25.850Z",
+      "expiry": null,
+      "readBy": []
+    }
+  ]
+}

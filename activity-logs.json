@@ -1,0 +1,18 @@
+{
+  "logs": [
+    {
+      "id": "log_1769759073967",
+      "timestamp": "2026-01-30T07:44:33.967Z",
+      "userId": "trainer_001",
+      "userName": "Trainer",
+      "userType": "trainer",
+      "action": "upload",
+      "resource": "material",
+      "resourceId": "mat_1769759073960",
+      "resourceName": "Basics",
+      "courseId": "java",
+      "courseName": "Java Full Stack",
+      "details": "Uploaded pdf material to Java Basics"
+    }
+  ]
+}

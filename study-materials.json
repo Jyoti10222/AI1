@@ -1,0 +1,231 @@
+{
+  "materials": [
+    {
+      "id": "mat_1769759073960",
+      "title": "Basics",
+      "description": "",
+      "courseId": "java",
+      "courseName": "Java Full Stack",
+      "moduleId": "mod_java_1",
+      "moduleName": "Java Basics",
+      "type": "pdf",
+      "fileName": "CN Mod2@AzDOCUMENTS.in.pdf",
+      "fileSize": 3538088,
+      "filePath": "/uploads/CN Mod2@AzDOCUMENTS.in.pdf",
+      "uploadedBy": {
+        "id": "trainer_001",
+        "name": "Trainer"
+      },
+      "uploadDate": "2026-01-30T07:44:33.960Z",
+      "status": "approved",
+      "downloads": 0,
+      "views": 0,
+      "tags": [],
+      "updatedAt": "2026-01-30T07:50:54.787Z"
+    },
+    {
+      "id": "mat_001",
+      "title": "Neural Networks Explained",
+      "description": "Comprehensive video tutorial covering neural network architecture, backpropagation, and practical implementations",
+      "courseId": "ai",
+      "courseName": "Artificial Intelligence",
+      "moduleId": "mod_ai_1",
+      "moduleName": "Module 1: Introduction to AI & ML",
+      "type": "video",
+      "fileName": "neural-networks.mp4",
+      "fileSize": "45.2 MB",
+      "filePath": "/uploads/materials/neural-networks.mp4",
+      "duration": "42:15",
+      "uploadedBy": {
+        "id": "trainer_001",
+        "name": "Dr. Sarah Johnson",
+        "email": "sarah@techpro.ai"
+      },
+      "uploadDate": "2026-01-10T10:30:00Z",
+      "status": "approved",
+      "approvedBy": "admin_001",
+      "approvalDate": "2026-01-11T09:00:00Z",
+      "downloads": 342,
+      "views": 856,
+      "rating": 4.8,
+      "tags": [
+        "AI",
+        "Neural Networks",
+        "Deep Learning"
+      ]
+    },
+    {
+      "id": "mat_002",
+      "title": "ML Algorithms Overview",
+      "description": "Complete presentation on Machine Learning algorithms including supervised and unsupervised learning",
+      "courseId": "ai",
+      "courseName": "Artificial Intelligence",
+      "moduleId": "mod_ai_1",
+      "moduleName": "Module 1: Introduction to AI & ML",
+      "type": "ppt",
+      "fileName": "ml-algorithms.pptx",
+      "fileSize": "5.1 MB",
+      "filePath": "/uploads/materials/ml-algorithms.pptx",
+      "uploadedBy": {
+        "id": "trainer_002",
+        "name": "Prof. Michael Chen",
+        "email": "michael@techpro.ai"
+      },
+      "uploadDate": "2026-01-12T14:20:00Z",
+      "status": "approved",
+      "approvedBy": "admin_001",
+      "approvalDate": "2026-01-13T10:00:00Z",
+      "downloads": 289,
+      "views": 645,
+      "rating": 4.6,
+      "tags": [
+        "AI",
+        "Machine Learning",
+        "Algorithms"
+      ]
+    },
+    {
+      "id": "mat_003",
+      "title": "AI Fundamentals Guide",
+      "description": "Comprehensive guide covering the basics of Artificial Intelligence, Machine Learning fundamentals, and practical applications",
+      "courseId": "ai",
+      "courseName": "Artificial Intelligence",
+      "moduleId": "mod_ai_1",
+      "moduleName": "Module 1: Introduction to AI & ML",
+      "type": "pdf",
+      "fileName": "ai-fundamentals.pdf",
+      "fileSize": "2.4 MB",
+      "filePath": "/uploads/materials/ai-fundamentals.pdf",
+      "uploadedBy": {
+        "id": "trainer_001",
+        "name": "Dr. Sarah Johnson",
+        "email": "sarah@techpro.ai"
+      },
+      "uploadDate": "2026-01-15T11:00:00Z",
+      "status": "pending",
+      "downloads": 0,
+      "views": 0,
+      "tags": [
+        "AI",
+        "Fundamentals",
+        "Introduction"
+      ]
+    },
+    {
+      "id": "mat_004",
+      "title": "Python for AI - Basics",
+      "description": "Introduction to Python programming for AI applications",
+      "courseId": "ai",
+      "courseName": "Artificial Intelligence",
+      "moduleId": "mod_ai_1",
+      "moduleName": "Module 1: Introduction to AI & ML",
+      "type": "pdf",
+      "fileName": "python-ai-basics.pdf",
+      "fileSize": "1.8 MB",
+      "filePath": "/uploads/materials/python-ai-basics.pdf",
+      "uploadedBy": {
+        "id": "trainer_001",
+        "name": "Dr. Sarah Johnson",
+        "email": "sarah@techpro.ai"
+      },
+      "uploadDate": "2026-01-08T09:15:00Z",
+      "status": "approved",
+      "approvedBy": "admin_001",
+      "approvalDate": "2026-01-09T08:30:00Z",
+      "downloads": 156,
+      "views": 423,
+      "rating": 4.5,
+      "tags": [
+        "Python",
+        "AI",
+        "Programming"
+      ]
+    },
+    {
+      "id": "mat_005",
+      "title": "Deep Learning Fundamentals",
+      "description": "Introduction to deep learning concepts and architectures",
+      "courseId": "ai",
+      "courseName": "Artificial Intelligence",
+      "moduleId": "mod_ai_2",
+      "moduleName": "Module 2: Deep Learning Fundamentals",
+      "type": "video",
+      "fileName": "deep-learning-intro.mp4",
+      "fileSize": "52.3 MB",
+      "filePath": "/uploads/materials/deep-learning-intro.mp4",
+      "duration": "48:30",
+      "uploadedBy": {
+        "id": "trainer_002",
+        "name": "Prof. Michael Chen",
+        "email": "michael@techpro.ai"
+      },
+      "uploadDate": "2026-01-14T16:45:00Z",
+      "status": "approved",
+      "approvedBy": "admin_001",
+      "approvalDate": "2026-01-15T11:20:00Z",
+      "downloads": 198,
+      "views": 512,
+      "rating": 4.9,
+      "tags": [
+        "Deep Learning",
+        "Neural Networks",
+        "AI"
+      ]
+    },
+    {
+      "id": "mat_006",
+      "title": "Spring Boot Microservices",
+      "description": "Complete presentation on building scalable microservices architecture using Spring Boot framework",
+      "courseId": "java",
+      "courseName": "Java Full Stack",
+      "moduleId": "mod_java_5",
+      "moduleName": "Module 5: Microservices Architecture",
+      "type": "ppt",
+      "fileName": "spring-boot-microservices.pptx",
+      "fileSize": "8.7 MB",
+      "filePath": "/uploads/materials/spring-boot-microservices.pptx",
+      "uploadedBy": {
+        "id": "trainer_002",
+        "name": "Prof. Michael Chen",
+        "email": "michael@techpro.ai"
+      },
+      "uploadDate": "2026-01-14T10:30:00Z",
+      "status": "pending",
+      "downloads": 0,
+      "views": 0,
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Microservices"
+      ]
+    },
+    {
+      "id": "mat_007",
+      "title": "Network Security Best Practices",
+      "description": "Video tutorial covering essential network security protocols, firewall configuration, and threat prevention strategies",
+      "courseId": "networking",
+      "courseName": "Networking",
+      "moduleId": "mod_net_4",
+      "moduleName": "Module 4: Network Security",
+      "type": "video",
+      "fileName": "network-security.mp4",
+      "fileSize": "38.5 MB",
+      "filePath": "/uploads/materials/network-security.mp4",
+      "duration": "35:42",
+      "uploadedBy": {
+        "id": "trainer_003",
+        "name": "Robert Kumar",
+        "email": "robert@techpro.ai"
+      },
+      "uploadDate": "2026-01-13T13:15:00Z",
+      "status": "pending",
+      "downloads": 0,
+      "views": 0,
+      "tags": [
+        "Networking",
+        "Security",
+        "Firewall"
+      ]
+    }
+  ]
+}

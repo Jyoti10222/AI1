@@ -1,0 +1,9 @@
+{
+  "originalPrice": 3000,
+  "discount": 1500,
+  "totalAmount": 1500,
+  "currency": "₹",
+  "discountLabel": "Limited Time Discount",
+  "courseName": "Upskilling Program",
+  "courseDuration": "6 Months"
+}

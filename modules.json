@@ -1,0 +1,76 @@
+{
+    "modules": [
+        {
+            "id": "mod_ai_1",
+            "courseId": "ai",
+            "name": "Introduction to AI & ML",
+            "description": "Fundamentals of Artificial Intelligence and Machine Learning",
+            "order": 1,
+            "materialCount": 4,
+            "active": true
+        },
+        {
+            "id": "mod_ai_2",
+            "courseId": "ai",
+            "name": "Deep Learning Fundamentals",
+            "description": "Neural networks, CNNs, RNNs, and advanced architectures",
+            "order": 2,
+            "materialCount": 1,
+            "active": true
+        },
+        {
+            "id": "mod_ai_3",
+            "courseId": "ai",
+            "name": "Natural Language Processing",
+            "description": "Text processing, sentiment analysis, and language models",
+            "order": 3,
+            "materialCount": 0,
+            "active": true
+        },
+        {
+            "id": "mod_java_1",
+            "courseId": "java",
+            "name": "Java Basics",
+            "description": "Core Java concepts and OOP principles",
+            "order": 1,
+            "materialCount": 0,
+            "active": true
+        },
+        {
+            "id": "mod_java_2",
+            "courseId": "java",
+            "name": "OOP Concepts",
+            "description": "Object-oriented programming in Java",
+            "order": 2,
+            "materialCount": 0,
+            "active": true
+        },
+        {
+            "id": "mod_java_5",
+            "courseId": "java",
+            "name": "Microservices Architecture",
+            "description": "Building scalable microservices with Spring Boot",
+            "order": 5,
+            "materialCount": 1,
+            "active": true
+        },
+        {
+            "id": "mod_python_1",
+            "courseId": "python",
+            "name": "Python Fundamentals",
+            "description": "Python basics, data structures, and functions",
+            "order": 1,
+            "materialCount": 0,
+            "active": true
+        },
+        {
+            "id": "mod_net_4",
+            "courseId": "networking",
+            "name": "Network Security",
+            "description": "Security protocols, firewalls, and threat prevention",
+            "order": 4,
+            "materialCount": 1,
+            "active": true
+        }
+    ]
+}

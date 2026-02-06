@@ -1,0 +1,52 @@
+{
+  "bookings": [
+    {
+      "id": "298b0ffd87f572917187240266bb817a",
+      "name": "jm",
+      "email": "jyotismulimani2001@gmail.com",
+      "phone": "8217501331",
+      "course": "be",
+      "location": "Bangalore Hub",
+      "selectedDate": "2026-01-24",
+      "selectedTime": "15:00",
+      "notes": "",
+      "mode": "offline",
+      "assignedCounselor": "Mark Thompson",
+      "autoAssigned": true,
+      "status": "Confirmed",
+      "submittedAt": "2026-01-24T06:17:57.197Z"
+    },
+    {
+      "id": "e16e55fefc7701d7ed1f884b0969b951",
+      "name": "Khan",
+      "email": "kashifk123@gmail.com",
+      "phone": "9880395339",
+      "course": "BE ",
+      "location": "Bangalore Hub",
+      "selectedDate": "2026-01-25",
+      "selectedTime": "11:00",
+      "notes": "",
+      "mode": "offline",
+      "assignedCounselor": "Jyoti Mulimani",
+      "autoAssigned": true,
+      "status": "Confirmed",
+      "submittedAt": "2026-01-24T10:37:03.594Z"
+    },
+    {
+      "id": "223fa5284d11ef000b7d540dcbde6ec1",
+      "name": "Jyoti S Mulimani",
+      "email": "jyotismulimani2001@gmail.com",
+      "phone": "8217501331",
+      "course": "Bsc",
+      "location": "Bangalore Hub",
+      "selectedDate": "2026-01-30",
+      "selectedTime": "17:00",
+      "notes": "ghqgshgsqh",
+      "mode": "offline",
+      "assignedCounselor": "Kashif ",
+      "autoAssigned": true,
+      "status": "Confirmed",
+      "submittedAt": "2026-01-30T07:40:32.565Z"
+    }
+  ]
+}

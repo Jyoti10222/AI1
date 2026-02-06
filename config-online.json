@@ -1,0 +1,403 @@
+{
+  "price": 2000,
+  "period": "month",
+  "description": "Access all online batches with expert instructors",
+  "title": "Online Batch Access Pass",
+  "accessFee": {
+    "price": 2003,
+    "currency": "₹",
+    "period": "month",
+    "description": "Access all online batches with expert instructors"
+  },
+  "courses": [
+    {
+      "id": "java",
+      "name": "Java Full Stack",
+      "icon": "code",
+      "color": "orange",
+      "price": 49,
+      "duration": "6 Months",
+      "batchCount": 12
+    },
+    {
+      "id": "python",
+      "name": "Python Full Stack",
+      "icon": "terminal",
+      "color": "yellow",
+      "price": 50,
+      "duration": "5 Months",
+      "batchCount": 8
+    },
+    {
+      "id": "aiml",
+      "name": "AI and Machine Learning",
+      "icon": "smart_toy",
+      "color": "teal",
+      "price": 49999,
+      "duration": "6 Months",
+      "batchCount": 5
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "icon": "hub",
+      "color": "purple",
+      "price": 39999,
+      "duration": "4 Months",
+      "batchCount": 6
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud Computing",
+      "icon": "cloud",
+      "color": "blue",
+      "price": 54999,
+      "duration": "6 Months",
+      "batchCount": 7
+    }
+  ],
+  "batches": [
+    {
+      "id": "batch-1",
+      "courseId": "java",
+      "faculty": "Khan sir",
+      "startTime": "11:00 AM",
+      "endTime": "12:00 PM",
+      "day": "Fri",
+      "duration": "1 Hours"
+    },
+    {
+      "id": "batch-2",
+      "courseId": "python",
+      "faculty": "Suma M",
+      "startTime": "11:30 AM",
+      "endTime": "02:30 PM",
+      "day": "Tue",
+      "duration": "3 Hours"
+    },
+    {
+      "id": "batch-3",
+      "courseId": "networking",
+      "faculty": "Shrusti Mulimani",
+      "startTime": "01:00 PM",
+      "endTime": "04:00 PM",
+      "day": "Wed",
+      "duration": "3 Hours"
+    },
+    {
+      "id": "batch-4",
+      "courseId": "aiml",
+      "faculty": "Jyoti Mulimani",
+      "startTime": "10:00 AM",
+      "endTime": "12:00 PM",
+      "day": "Sat",
+      "duration": "2 Hours"
+    },
+    {
+      "id": "batch-5",
+      "courseId": "cloud",
+      "faculty": "Bob Vance",
+      "startTime": "01:00 PM",
+      "endTime": "03:00 PM",
+      "day": "Fri",
+      "duration": "2 Hours"
+    },
+    {
+      "id": "batch-6",
+      "courseId": "networking",
+      "faculty": "khan",
+      "startTime": "03:30 PM",
+      "endTime": "05:30 PM",
+      "day": "Mon",
+      "duration": "2 Hours"
+    },
+    {
+      "id": "batch-networking-Fri-1768489570876",
+      "courseId": "networking",
+      "faculty": "vinod",
+      "day": "Fri",
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "duration": "2 Hours",
+      "enrolledStudents": 0,
+      "maxStudents": 30,
+      "status": "active"
+    },
+    {
+      "id": "batch-aiml-Fri-1768489878704",
+      "courseId": "aiml",
+      "faculty": "Suma",
+      "day": "Fri",
+      "startTime": "01:41",
+      "endTime": "02:41",
+      "duration": "2 Hours",
+      "enrolledStudents": 0,
+      "maxStudents": 30,
+      "status": "active"
+    },
+    {
+      "id": "batch-java-Thu-1768498012546",
+      "courseId": "java",
+      "faculty": "VinodRaj",
+      "day": "Thu",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "duration": "2 Hours",
+      "enrolledStudents": 0,
+      "maxStudents": 30,
+      "status": "active"
+    },
+    {
+      "id": "batch-1770379489518",
+      "courseId": "python",
+      "faculty": "P Sambha",
+      "day": "Sun",
+      "startTime": "12:00 PM",
+      "endTime": "01:00 PM",
+      "duration": "1 Hours"
+    },
+    {
+      "id": "batch-1770379499007",
+      "courseId": "aiml",
+      "faculty": "Jyoti Sambha",
+      "day": "Sat",
+      "startTime": "09:00 AM",
+      "endTime": "11:00 AM",
+      "duration": "2 Hours"
+    }
+  ],
+  "batchesDetailed": [
+    {
+      "id": "online-detailed-001",
+      "name": "AI & ML Fundamentals - Batch 12",
+      "status": "running",
+      "startDate": "2026-01-15",
+      "endDate": "2026-04-15",
+      "schedule": "Mon-Wed-Fri, 6:00 PM - 8:00 PM",
+      "instructor": "Dr. Rajesh Kumar",
+      "enrolled": 45,
+      "capacity": 50,
+      "courseId": "aiml",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Python Programming Basics",
+          "order": 1,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "Variables and Data Types",
+              "duration": "2 hours",
+              "completed": true,
+              "completedDate": "2026-01-16"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "Control Structures & Loops",
+              "duration": "3 hours",
+              "completed": true,
+              "completedDate": "2026-01-18"
+            },
+            {
+              "id": "topic-1-3",
+              "name": "Functions and Modules",
+              "duration": "3 hours",
+              "completed": true,
+              "completedDate": "2026-01-20"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Machine Learning Fundamentals",
+          "order": 2,
+          "status": "in-progress",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Supervised Learning Basics",
+              "duration": "4 hours",
+              "completed": true,
+              "completedDate": "2026-01-22"
+            },
+            {
+              "id": "topic-2-2",
+              "name": "Unsupervised Learning",
+              "duration": "4 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-05"
+            },
+            {
+              "id": "topic-2-3",
+              "name": "Neural Networks Introduction",
+              "duration": "5 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-08"
+            }
+          ]
+        },
+        {
+          "id": "module-3",
+          "name": "Deep Learning",
+          "order": 3,
+          "status": "not-started",
+          "topics": [
+            {
+              "id": "topic-3-1",
+              "name": "CNN Architectures",
+              "duration": "6 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-15"
+            },
+            {
+              "id": "topic-3-2",
+              "name": "RNN and LSTM",
+              "duration": "6 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "online-detailed-002",
+      "name": "Full Stack Development - Batch 8",
+      "status": "upcoming",
+      "startDate": "2026-02-10",
+      "endDate": "2026-05-10",
+      "schedule": "Tue-Thu-Sat, 7:00 PM - 9:00 PM",
+      "instructor": "Priya Sharma",
+      "enrolled": 12,
+      "capacity": 40,
+      "courseId": "java",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Frontend Development",
+          "order": 1,
+          "status": "not-started",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "HTML5 & CSS3",
+              "duration": "4 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-10"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "JavaScript ES6+",
+              "duration": "6 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-13"
+            },
+            {
+              "id": "topic-1-3",
+              "name": "React.js Fundamentals",
+              "duration": "8 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-17"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Backend Development",
+          "order": 2,
+          "status": "not-started",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Node.js & Express",
+              "duration": "6 hours",
+              "completed": false,
+              "scheduledDate": "2026-03-01"
+            },
+            {
+              "id": "topic-2-2",
+              "name": "Database Design (MongoDB)",
+              "duration": "5 hours",
+              "completed": false,
+              "scheduledDate": "2026-03-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "online-detailed-003",
+      "name": "Data Science - Batch 5",
+      "status": "past",
+      "startDate": "2025-10-01",
+      "endDate": "2025-12-31",
+      "schedule": "Mon-Wed-Fri, 5:00 PM - 7:00 PM",
+      "instructor": "Dr. Amit Verma",
+      "enrolled": 38,
+      "capacity": 40,
+      "courseId": "python",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Statistics & Probability",
+          "order": 1,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "Descriptive Statistics",
+              "duration": "3 hours",
+              "completed": true,
+              "completedDate": "2025-10-02"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "Probability Distributions",
+              "duration": "4 hours",
+              "completed": true,
+              "completedDate": "2025-10-05"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Data Visualization",
+          "order": 2,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Matplotlib & Seaborn",
+              "duration": "5 hours",
+              "completed": true,
+              "completedDate": "2025-11-10"
+            },
+            {
+              "id": "topic-2-2",
+              "name": "Interactive Dashboards",
+              "duration": "4 hours",
+              "completed": true,
+              "completedDate": "2025-11-15"
+            }
+          ]
+        },
+        {
+          "id": "module-3",
+          "name": "Machine Learning Projects",
+          "order": 3,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-3-1",
+              "name": "Capstone Project",
+              "duration": "20 hours",
+              "completed": true,
+              "completedDate": "2025-12-20"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

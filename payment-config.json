@@ -1,0 +1,9 @@
+{
+  "originalPrice": 3000,
+  "discount": 1499,
+  "totalAmount": 1501,
+  "currency": "₹",
+  "discountLabel": "Limited Time Discount",
+  "courseName": "Full Stack Development Path",
+  "courseDuration": "6 Months"
+}

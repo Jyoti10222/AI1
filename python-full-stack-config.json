@@ -1,0 +1,204 @@
+{
+    "career": {
+        "programs": [
+            {
+                "id": "python-career-1",
+                "title": "Python Full Stack Developer Bootcamp",
+                "description": "Complete Python Full Stack training from basics to Django/Flask and modern frontend",
+                "level": "Beginner to Advanced",
+                "duration": "6 months",
+                "price": 79999,
+                "topics": [
+                    "Python Programming",
+                    "Django Framework",
+                    "Flask REST APIs",
+                    "React/Angular Frontend",
+                    "PostgreSQL & MongoDB",
+                    "Data Science Basics",
+                    "AWS/Heroku Deployment"
+                ],
+                "requirements": [
+                    "Basic computer knowledge",
+                    "Willingness to learn"
+                ],
+                "highlights": [
+                    "300+ hours of training",
+                    "Real web applications",
+                    "Portfolio projects",
+                    "Job placement support",
+                    "Industry-recognized skills"
+                ]
+            },
+            {
+                "id": "python-career-2",
+                "title": "Data Science with Python Career Track",
+                "description": "Comprehensive program combining Python development with data science and ML",
+                "level": "Intermediate to Advanced",
+                "duration": "7 months",
+                "price": 99999,
+                "topics": [
+                    "Python for Data Science",
+                    "NumPy & Pandas",
+                    "Data Visualization",
+                    "Machine Learning",
+                    "Deep Learning Basics",
+                    "Web Development with Flask"
+                ],
+                "requirements": [
+                    "Python basics",
+                    "Mathematics fundamentals"
+                ],
+                "highlights": [
+                    "Dual skill development",
+                    "Real data projects",
+                    "ML model deployment",
+                    "Career opportunities",
+                    "Industry mentorship"
+                ]
+            }
+        ]
+    },
+    "upskilling": {
+        "programs": [
+            {
+                "id": "python-upskill-1",
+                "title": "Django Advanced Development",
+                "description": "Master advanced Django features for scalable web applications",
+                "level": "Intermediate",
+                "duration": "6 weeks",
+                "price": 37999,
+                "topics": [
+                    "Django ORM Advanced",
+                    "Class-Based Views",
+                    "Django REST Framework",
+                    "Celery Task Queue",
+                    "Caching Strategies",
+                    "Security Best Practices"
+                ],
+                "requirements": [
+                    "Django basics",
+                    "Python fundamentals"
+                ],
+                "highlights": [
+                    "Production-ready skills",
+                    "Real applications",
+                    "Best practices"
+                ]
+            },
+            {
+                "id": "python-upskill-2",
+                "title": "FastAPI Modern Web Development",
+                "description": "Build high-performance APIs with FastAPI and async Python",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 34999,
+                "topics": [
+                    "FastAPI Basics",
+                    "Async Programming",
+                    "Pydantic Models",
+                    "API Documentation",
+                    "Authentication & Security",
+                    "Database Integration"
+                ],
+                "requirements": [
+                    "Python basics",
+                    "REST API concepts"
+                ],
+                "highlights": [
+                    "Modern framework",
+                    "High performance",
+                    "Industry adoption"
+                ]
+            },
+            {
+                "id": "python-upskill-3",
+                "title": "Python Data Analysis & Visualization",
+                "description": "Master data analysis using Pandas, Matplotlib, and Seaborn",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 32999,
+                "topics": [
+                    "Pandas DataFrames",
+                    "Data Cleaning",
+                    "Statistical Analysis",
+                    "Matplotlib",
+                    "Seaborn",
+                    "Plotly Interactive Charts"
+                ],
+                "requirements": [
+                    "Python basics",
+                    "Basic statistics"
+                ],
+                "highlights": [
+                    "Hands-on analysis",
+                    "Real datasets",
+                    "Visualization skills"
+                ]
+            }
+        ]
+    },
+    "modular": {
+        "programs": [
+            {
+                "id": "python-mod-1",
+                "title": "Python Programming Fundamentals",
+                "description": "Learn Python from scratch with hands-on exercises",
+                "level": "Beginner",
+                "duration": "3 weeks",
+                "price": 12999,
+                "topics": [
+                    "Python Syntax",
+                    "Data Types",
+                    "Functions",
+                    "OOP in Python",
+                    "File Handling"
+                ]
+            },
+            {
+                "id": "python-mod-2",
+                "title": "Django Web Framework",
+                "description": "Build web applications using Django framework",
+                "level": "Intermediate",
+                "duration": "3 weeks",
+                "price": 15999,
+                "topics": [
+                    "Django Setup",
+                    "Models & Migrations",
+                    "Views & Templates",
+                    "Forms & Validation",
+                    "User Authentication"
+                ]
+            },
+            {
+                "id": "python-mod-3",
+                "title": "REST APIs with Flask",
+                "description": "Create RESTful APIs using Flask framework",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 11999,
+                "topics": [
+                    "Flask Basics",
+                    "RESTful Design",
+                    "SQLAlchemy",
+                    "JWT Authentication",
+                    "API Testing"
+                ]
+            },
+            {
+                "id": "python-mod-4",
+                "title": "Python for Automation",
+                "description": "Automate tasks using Python scripts",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 9999,
+                "topics": [
+                    "File Automation",
+                    "Web Scraping",
+                    "Email Automation",
+                    "Excel Processing",
+                    "Task Scheduling"
+                ]
+            }
+        ]
+    }
+}

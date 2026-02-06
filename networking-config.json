@@ -1,0 +1,227 @@
+{
+    "career": {
+        "programs": [
+            {
+                "id": "net-career-1",
+                "title": "CCNA Certification Track",
+                "description": "Complete CCNA preparation with hands-on labs and real-world networking scenarios",
+                "level": "Intermediate",
+                "duration": "4 months",
+                "price": 69999,
+                "topics": [
+                    "Routing & Switching",
+                    "Network Fundamentals",
+                    "IP Services",
+                    "Security Fundamentals",
+                    "Automation & Programmability"
+                ],
+                "requirements": [
+                    "Basic IT knowledge",
+                    "Understanding of computer networks"
+                ],
+                "highlights": [
+                    "200+ hours of training",
+                    "Cisco Packet Tracer labs",
+                    "CCNA exam voucher included",
+                    "Job placement support",
+                    "Industry-recognized certification"
+                ]
+            },
+            {
+                "id": "net-career-2",
+                "title": "Network Engineer Career Program",
+                "description": "Comprehensive program from beginner to job-ready network engineer with multiple certifications",
+                "level": "Beginner to Advanced",
+                "duration": "8 months",
+                "price": 99999,
+                "topics": [
+                    "Network Design",
+                    "Routing Protocols",
+                    "Switching Technologies",
+                    "Network Security",
+                    "Wireless Networks",
+                    "Troubleshooting"
+                ],
+                "requirements": [
+                    "Basic computer knowledge",
+                    "Willingness to learn"
+                ],
+                "highlights": [
+                    "Zero to hero program",
+                    "CCNA + CompTIA Network+",
+                    "Real network projects",
+                    "Internship opportunities",
+                    "100% job assistance"
+                ]
+            },
+            {
+                "id": "net-career-3",
+                "title": "CCNP Enterprise Certification",
+                "description": "Advanced Cisco certification for enterprise networking professionals",
+                "level": "Advanced",
+                "duration": "5 months",
+                "price": 89999,
+                "topics": [
+                    "Advanced Routing",
+                    "Enterprise Networks",
+                    "SD-WAN",
+                    "Network Automation",
+                    "Wireless Technologies"
+                ],
+                "requirements": [
+                    "CCNA certification",
+                    "2+ years networking experience"
+                ],
+                "highlights": [
+                    "CCNP exam prep",
+                    "Expert instructors",
+                    "Advanced labs",
+                    "Exam vouchers",
+                    "Career advancement"
+                ]
+            }
+        ]
+    },
+    "upskilling": {
+        "programs": [
+            {
+                "id": "net-upskill-1",
+                "title": "Cloud Networking with AWS & Azure",
+                "description": "Master cloud networking concepts across major cloud platforms",
+                "level": "Intermediate",
+                "duration": "6 weeks",
+                "price": 34999,
+                "topics": [
+                    "Virtual Networks",
+                    "VPC",
+                    "Load Balancing",
+                    "VPN",
+                    "Direct Connect",
+                    "Network Security Groups"
+                ],
+                "requirements": [
+                    "Basic networking knowledge",
+                    "Cloud fundamentals"
+                ],
+                "highlights": [
+                    "Multi-cloud coverage",
+                    "Hands-on labs",
+                    "Real-world scenarios"
+                ]
+            },
+            {
+                "id": "net-upskill-2",
+                "title": "Software-Defined Networking (SDN)",
+                "description": "Learn SDN concepts, controllers, and network programmability",
+                "level": "Advanced",
+                "duration": "6 weeks",
+                "price": 32999,
+                "topics": [
+                    "SDN Architecture",
+                    "OpenFlow",
+                    "Network Controllers",
+                    "Network Automation",
+                    "Intent-Based Networking"
+                ],
+                "requirements": [
+                    "Strong networking background",
+                    "Programming basics"
+                ],
+                "highlights": [
+                    "Hands-on SDN labs",
+                    "Industry tools",
+                    "Automation scripts"
+                ]
+            },
+            {
+                "id": "net-upskill-3",
+                "title": "Network Automation with Python",
+                "description": "Automate network tasks using Python and modern DevOps tools",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 29999,
+                "topics": [
+                    "Python for Networks",
+                    "Netmiko",
+                    "NAPALM",
+                    "Ansible",
+                    "REST APIs",
+                    "Git for Network Engineers"
+                ],
+                "requirements": [
+                    "Basic networking",
+                    "Programming interest"
+                ],
+                "highlights": [
+                    "Practical automation",
+                    "Real scripts",
+                    "DevOps integration"
+                ]
+            }
+        ]
+    },
+    "modular": {
+        "programs": [
+            {
+                "id": "net-mod-1",
+                "title": "TCP/IP Protocol Suite",
+                "description": "Deep dive into TCP/IP protocols and packet analysis",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 9999,
+                "topics": [
+                    "IP Addressing",
+                    "TCP/UDP",
+                    "ICMP",
+                    "ARP",
+                    "Packet Analysis"
+                ]
+            },
+            {
+                "id": "net-mod-2",
+                "title": "Routing Fundamentals",
+                "description": "Essential routing concepts and protocols",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 8999,
+                "topics": [
+                    "Static Routing",
+                    "Dynamic Routing",
+                    "OSPF",
+                    "EIGRP",
+                    "BGP Basics"
+                ]
+            },
+            {
+                "id": "net-mod-3",
+                "title": "Switching Technologies",
+                "description": "Understanding VLANs, trunking, and spanning tree",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 8999,
+                "topics": [
+                    "VLANs",
+                    "Trunking",
+                    "STP",
+                    "EtherChannel",
+                    "Switch Security"
+                ]
+            },
+            {
+                "id": "net-mod-4",
+                "title": "Wireless Networking",
+                "description": "Wireless standards, security, and troubleshooting",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 9999,
+                "topics": [
+                    "WiFi Standards",
+                    "WLAN Security",
+                    "Controller-based WiFi",
+                    "Site Surveys",
+                    "Troubleshooting"
+                ]
+            }
+        ]
+    }
+}

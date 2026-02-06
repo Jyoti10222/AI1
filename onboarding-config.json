@@ -1,0 +1,298 @@
+{
+  "pageTitle": "Learning Paths & Experience",
+  "pageSubtitle": "Explore AI-based learning paths designed for career building, upskilling, and modular learning tailored to your goals.",
+  "featuresTitle": "Learning Experience Includes",
+  "featuresSubtitle": "Everything you need to succeed in your career journey.",
+  "features": [
+    {
+      "title": "AI-Based Personalized Path",
+      "description": "Adaptive curriculum tailored to you",
+      "icon": "smart_toy",
+      "link": "AIlearning.html",
+      "image": "images/ai_personalized_learning.png"
+    },
+    {
+      "title": "Online Batch",
+      "description": "Expert Mentors & Trainers Guidance from industry leaders",
+      "icon": "school",
+      "link": "Online.html",
+      "image": "images/online_batch_learning.png"
+    },
+    {
+      "title": "Offline Batch",
+      "description": "Hands-on Projects Build real-world applications",
+      "icon": "code",
+      "link": "Offline.html",
+      "image": "images/offline_batch_learning.png"
+    },
+    {
+      "title": "Hybrid Batch",
+      "description": "Skill Progress Tracking Monitor growth with analytics",
+      "icon": "bar_chart",
+      "link": "Hybrid.html",
+      "image": "images/hybrid_learning_mode.png"
+    },
+    {
+      "title": "Career & Placement Officer Or Counselor",
+      "description": "Dedicated support for jobs",
+      "icon": "ads_click",
+      "link": "CounselingHub.html",
+      "image": "images/career_counseling_placement.png"
+    },
+    {
+      "title": "HybridOn",
+      "description": "Feature description",
+      "icon": "star",
+      "link": "#",
+      "image": "images/placeholder.png"
+    },
+    {
+      "title": "New Feature",
+      "description": "Feature description",
+      "icon": "star",
+      "link": "#",
+      "image": "images/placeholder.png"
+    },
+    {
+      "title": "New Feature",
+      "description": "Feature description",
+      "icon": "star",
+      "link": "#",
+      "image": "images/placeholder.png"
+    }
+  ],
+  "courseDetails": [
+    {
+      "id": "ai-nontech",
+      "title": "AI for Non-Tech Professionals",
+      "subtitle": "Career Transition & Skill Enhancement for Non-Technical Professionals",
+      "icon": "psychology",
+      "color": "purple",
+      "order": 1,
+      "enabled": true,
+      "whatYouLearn": [
+        "AI Fundamentals",
+        "Prompt Engineering",
+        "AI Tools & Applications",
+        "Business Use Cases",
+        "Data Analytics",
+        "Generative AI"
+      ],
+      "careerPaths": [
+        "AI Product Manager",
+        "AI Consultant",
+        "Business Analyst",
+        "Data Analyst",
+        "AI/ML Engineer"
+      ],
+      "learningModes": [
+        "AI-Based Personalized Learning",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode (Online + Offline)"
+      ],
+      "ctaText": "Explore Career Paths",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "ai-tech",
+      "title": "AI for Tech Professionals",
+      "subtitle": "Skill Enhancement for Professionals & Experienced Learners",
+      "icon": "terminal",
+      "color": "blue",
+      "order": 2,
+      "enabled": true,
+      "whatYouLearn": [
+        "Advanced Programming",
+        "Full-Stack Dev",
+        "Cloud Technologies",
+        "DevOps",
+        "Data Analytics",
+        "Generative AI"
+      ],
+      "careerPaths": [
+        "Full-Stack Developer",
+        "DevOps Engineer",
+        "Data Analyst",
+        "AI/ML Engineer",
+        "Cloud Engineer",
+        "Cybersecurity Analyst"
+      ],
+      "learningModes": [
+        "AI-Based Skill Assessment",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode (Flexible)"
+      ],
+      "ctaText": "Start Upskilling",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "cybersecurity",
+      "title": "Cybersecurity",
+      "subtitle": "Protect Digital Assets & Build Security Expertise",
+      "icon": "shield",
+      "color": "red",
+      "order": 3,
+      "enabled": true,
+      "whatYouLearn": [
+        "Network Security",
+        "Ethical Hacking",
+        "Threat Analysis",
+        "Security Operations",
+        "Incident Response",
+        "Compliance & Governance"
+      ],
+      "careerPaths": [
+        "Security Analyst",
+        "Penetration Tester",
+        "Security Engineer",
+        "SOC Analyst",
+        "Security Consultant"
+      ],
+      "learningModes": [
+        "Hands-on Labs",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode"
+      ],
+      "ctaText": "Start Learning",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "networking",
+      "title": "Networking",
+      "subtitle": "Master Network Infrastructure & Cloud Connectivity",
+      "icon": "lan",
+      "color": "green",
+      "order": 4,
+      "enabled": true,
+      "whatYouLearn": [
+        "Network Fundamentals",
+        "Routing & Switching",
+        "Cloud Networking",
+        "Network Security",
+        "Wireless Technologies",
+        "Network Automation"
+      ],
+      "careerPaths": [
+        "Network Engineer",
+        "Network Administrator",
+        "Cloud Network Specialist",
+        "Network Architect",
+        "NOC Engineer"
+      ],
+      "learningModes": [
+        "Practical Labs",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode"
+      ],
+      "ctaText": "Explore Networking",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "java-full-stack",
+      "title": "Java Full Stack",
+      "subtitle": "Master Enterprise App Development with Java",
+      "icon": "code",
+      "color": "orange",
+      "order": 5,
+      "enabled": true,
+      "whatYouLearn": [
+        "Core Java & OOPs",
+        "Spring Boot Framework",
+        "React.js Frontend",
+        "Microservices",
+        "SQL & NoSQL Databases",
+        "Cloud Deployment (AWS)"
+      ],
+      "careerPaths": [
+        "Full Stack Developer",
+        "Java Backend Engineer",
+        "Enterprise Architect",
+        "Software Engineer"
+      ],
+      "learningModes": [
+        "Project-Based Learning",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode"
+      ],
+      "ctaText": "Learn Java Stack",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "python-full-stack",
+      "title": "Python Full Stack",
+      "subtitle": "Build Modern Web Apps with Python & Django",
+      "icon": "terminal",
+      "color": "blue",
+      "order": 6,
+      "enabled": true,
+      "whatYouLearn": [
+        "Python Programming",
+        "Django & Flask",
+        "REST APIs",
+        "React/Angular Integration",
+        "Data Science Basics",
+        "Database Management"
+      ],
+      "careerPaths": [
+        "Python Developer",
+        "Full Stack Engineer",
+        "Backend Developer",
+        "Web Application Developer"
+      ],
+      "learningModes": [
+        "Interactive Coding",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode"
+      ],
+      "ctaText": "Learn Python Stack",
+      "ctaLink": "Pay.html"
+    },
+    {
+      "id": "cloud-computing",
+      "title": "Cloud Computing",
+      "subtitle": "Master Cloud Platforms & DevOps Engineering",
+      "icon": "cloud",
+      "color": "cyan",
+      "order": 7,
+      "enabled": true,
+      "whatYouLearn": [
+        "AWS, Azure, GCP Fundamentals",
+        "Cloud Architecture Design",
+        "Docker & Kubernetes",
+        "CI/CD Pipelines",
+        "Infrastructure as Code",
+        "Cloud Security & Monitoring"
+      ],
+      "careerPaths": [
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Cloud Architect",
+        "Site Reliability Engineer",
+        "Cloud Security Specialist"
+      ],
+      "learningModes": [
+        "Hands-on Labs",
+        "Online Batch",
+        "Offline Batch",
+        "Hybrid Mode"
+      ],
+      "ctaText": "Explore Cloud Computing",
+      "ctaLink": "Pay.html"
+    }
+  ],
+  "enabledCourseIds": [
+    "ai-nontech",
+    "ai-tech",
+    "cybersecurity",
+    "networking",
+    "java-full-stack",
+    "python-full-stack",
+    "cloud-computing"
+  ]
+}

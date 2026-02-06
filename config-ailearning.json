@@ -1,0 +1,63 @@
+{
+  "subscription": {
+    "price": 25000,
+    "period": "lifetime",
+    "currency": "₹"
+  },
+  "courses": [
+    {
+      "id": "cloud",
+      "name": "Cloud Computing",
+      "category": "Cloud • Ops",
+      "description": "Master AWS and Azure architecture with real-time AI assistance for scalable solutions.",
+      "price": 67000,
+      "duration": "12h 30m",
+      "link": "AiCC.html"
+    },
+    {
+      "id": "java",
+      "name": "Java Full Stack Development",
+      "category": "Dev • Backend",
+      "description": "From backend logic to frontend interfaces, build complete enterprise apps.",
+      "price": 68000,
+      "duration": "45h 00m",
+      "link": "AiJava.html"
+    },
+    {
+      "id": "python",
+      "name": "Python Full Stack Development",
+      "category": "Dev • Web",
+      "description": "Django, Flask, and modern web development practices for rapid deployment.",
+      "price": 7000,
+      "duration": "38h 15m",
+      "link": "AiPython.html"
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity",
+      "category": "Security • Defense",
+      "description": "Learn ethical hacking, defense strategies and threat analysis techniques.",
+      "price": 7000,
+      "duration": "22h 45m",
+      "link": "AiCybersecurity.html"
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "category": "Ops • Infrastructure",
+      "description": "Understand TCP/IP, routing, switching and modern network infrastructure.",
+      "price": 1999,
+      "duration": "18h 20m",
+      "link": "AiNet.html"
+    },
+    {
+      "id": "ai",
+      "name": "Artificial Intelligence",
+      "category": "AI • Data",
+      "description": "Deep learning, neural networks, and machine learning algorithms for the future.",
+      "price": 4499,
+      "duration": "52h 10m",
+      "link": "AiAI.html"
+    }
+  ]
+}

@@ -1,0 +1,955 @@
+{
+  "tech": {
+    "overview": {
+      "title": "AI for Tech Professionals",
+      "subtitle": "Master AI & Machine Learning for Technical Careers",
+      "description": "Comprehensive AI learning paths designed for developers, engineers, and IT professionals looking to integrate AI into their technical skillset.",
+      "heroImage": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200",
+      "targetRoles": [
+        "AI Engineer",
+        "Machine Learning Engineer",
+        "Data Scientist",
+        "AI Developer"
+      ],
+      "stats": {
+        "students": "5000+",
+        "rating": "4.8",
+        "projects": "50+"
+      }
+    },
+    "career": {
+      "title": "Career Learning - AI for Tech",
+      "description": "Complete programs to become job-ready in AI roles",
+      "programs": [
+        {
+          "id": "ai-engineer-full",
+          "title": "AI Engineer (Full Program)",
+          "description": "Comprehensive program covering Machine Learning, Deep Learning, and AI deployment",
+          "duration": "5 monthssssss",
+          "level": "Beginner to Advanced",
+          "price": 49999,
+          "originalPrice": 79999,
+          "currency": "INR",
+          "featured": true,
+          "modules": [
+            {
+              "name": "AI Foundations",
+              "duration": "2 weeks",
+              "topics": [
+                "Introduction to AI",
+                "AI Ethics",
+                "AI Applications"
+              ]
+            },
+            {
+              "name": "Python for AI",
+              "duration": "3 weeks",
+              "topics": [
+                "Python Basics",
+                "NumPy",
+                "Pandas",
+                "Data Visualization"
+              ]
+            },
+            {
+              "name": "Machine Learning",
+              "duration": "6 weeks",
+              "topics": [
+                "Supervised Learning",
+                "Unsupervised Learning",
+                "Model Evaluation",
+                "Scikit-learn"
+              ]
+            },
+            {
+              "name": "Deep Learning",
+              "duration": "6 weeks",
+              "topics": [
+                "Neural Networks",
+                "CNN",
+                "RNN",
+                "TensorFlow",
+                "PyTorch"
+              ]
+            },
+            {
+              "name": "NLP & Computer Vision",
+              "duration": "4 weeks",
+              "topics": [
+                "Text Processing",
+                "Image Processing",
+                "Object Detection",
+                "Transformers"
+              ]
+            },
+            {
+              "name": "GenAI & LLMs",
+              "duration": "4 weeks",
+              "topics": [
+                "GPT Models",
+                "Fine-tuning",
+                "Prompt Engineering",
+                "RAG"
+              ]
+            },
+            {
+              "name": "Capstone Project",
+              "duration": "3 weeks",
+              "topics": [
+                "Project Planning",
+                "Implementation",
+                "Deployment",
+                "Presentation"
+              ]
+            }
+          ],
+          "features": [
+            "Structured roadmap view",
+            "50+ Coding labs",
+            "Real-world capstone project",
+            "Weekly mentor review",
+            "Career certificate",
+            "Job placement support"
+          ],
+          "certification": true,
+          "enrollmentCount": 1250
+        },
+        {
+          "id": "ml-engineer",
+          "title": "Machine Learning Engineer",
+          "description": "Focus on ML algorithms, model deployment, and MLOps",
+          "duration": "4 months",
+          "level": "Intermediate",
+          "price": 39999,
+          "originalPrice": 59999,
+          "currency": "INR",
+          "featured": false,
+          "modules": [
+            {
+              "name": "ML Fundamentals",
+              "duration": "3 weeks",
+              "topics": [
+                "Statistics",
+                "Linear Algebra",
+                "Probability"
+              ]
+            },
+            {
+              "name": "Advanced ML",
+              "duration": "5 weeks",
+              "topics": [
+                "Ensemble Methods",
+                "Feature Engineering",
+                "Hyperparameter Tuning"
+              ]
+            },
+            {
+              "name": "MLOps",
+              "duration": "4 weeks",
+              "topics": [
+                "Model Deployment",
+                "CI/CD",
+                "Monitoring",
+                "Docker",
+                "Kubernetes"
+              ]
+            },
+            {
+              "name": "Capstone",
+              "duration": "4 weeks",
+              "topics": [
+                "End-to-end ML Pipeline"
+              ]
+            }
+          ],
+          "features": [
+            "Hands-on ML projects",
+            "MLOps best practices",
+            "Cloud deployment",
+            "Industry mentorship",
+            "Certificate of completion"
+          ],
+          "certification": true,
+          "enrollmentCount": 890
+        },
+        {
+          "id": "genai-engineer",
+          "title": "Generative AI Engineer",
+          "description": "Specialize in LLMs, GPT models, and generative AI applications",
+          "duration": "3 months",
+          "level": "Advanced",
+          "price": 34999,
+          "originalPrice": 49999,
+          "currency": "INR",
+          "featured": true,
+          "modules": [
+            {
+              "name": "GenAI Foundations",
+              "duration": "2 weeks",
+              "topics": [
+                "Transformer Architecture",
+                "Attention Mechanisms"
+              ]
+            },
+            {
+              "name": "LLM Development",
+              "duration": "5 weeks",
+              "topics": [
+                "GPT Models",
+                "Fine-tuning",
+                "RLHF",
+                "Prompt Engineering"
+              ]
+            },
+            {
+              "name": "GenAI Applications",
+              "duration": "4 weeks",
+              "topics": [
+                "Chatbots",
+                "Content Generation",
+                "Code Generation",
+                "RAG Systems"
+              ]
+            },
+            {
+              "name": "Project",
+              "duration": "3 weeks",
+              "topics": [
+                "Build Custom LLM Application"
+              ]
+            }
+          ],
+          "features": [
+            "Work with GPT-4, Claude",
+            "Build LLM applications",
+            "Vector databases",
+            "Production deployment",
+            "Certificate"
+          ],
+          "certification": true,
+          "enrollmentCount": 650
+        },
+        {
+          "id": "prog_1769774256584",
+          "title": "Machine Learning",
+          "description": "Program description",
+          "duration": "5-6 months",
+          "level": "Beginner",
+          "price": 33999,
+          "originalPrice": 0,
+          "featured": false,
+          "enrollmentCount": 0,
+          "modules": [],
+          "features": []
+        },
+        {
+          "id": "prog_1769774257887",
+          "title": "New Program",
+          "description": "Program description",
+          "duration": "3-6 months",
+          "level": "Beginner",
+          "price": 34999,
+          "originalPrice": 0,
+          "featured": false,
+          "enrollmentCount": 0,
+          "modules": [],
+          "features": []
+        },
+        {
+          "id": "prog_1769867393504",
+          "title": "Agentic AI ",
+          "description": "Advanced Agentic AI ",
+          "duration": "6 Weeks",
+          "level": "Beginner",
+          "price": 59999,
+          "originalPrice": 0,
+          "featured": false,
+          "enrollmentCount": 0,
+          "modules": [],
+          "features": []
+        }
+      ]
+    },
+    "upskilling": {
+      "title": "Upskilling - AI for Tech",
+      "description": "Upgrade your existing technical skills with focused AI courses",
+      "courses": [
+        {
+          "id": "advanced-ml",
+          "title": "Advanced Machine Learning",
+          "description": "Deep dive into advanced ML algorithms and techniques",
+          "duration": "6 weeks",
+          "level": "Advanced",
+          "price": 14999,
+          "currency": "INR",
+          "topics": [
+            "Ensemble Methods",
+            "Neural Architecture Search",
+            "AutoML",
+            "Transfer Learning"
+          ],
+          "features": [
+            "Self-paced",
+            "Hands-on labs",
+            "Mini project",
+            "Skill certificate"
+          ],
+          "enrollmentCount": 420
+        },
+        {
+          "id": "genai-python",
+          "title": "Generative AI with Python",
+          "description": "Build generative AI applications using Python",
+          "duration": "4 weeks",
+          "level": "Intermediate",
+          "price": 12999,
+          "currency": "INR",
+          "topics": [
+            "OpenAI API",
+            "LangChain",
+            "Vector Databases",
+            "Streamlit"
+          ],
+          "features": [
+            "Tool-focused",
+            "Real demos",
+            "Code templates",
+            "Certificate"
+          ],
+          "enrollmentCount": 580
+        },
+        {
+          "id": "llm-finetuning",
+          "title": "LLM Fine-Tuning",
+          "description": "Learn to fine-tune large language models for specific tasks",
+          "duration": "3 weeks",
+          "level": "Advanced",
+          "price": 9999,
+          "currency": "INR",
+          "topics": [
+            "LoRA",
+            "QLoRA",
+            "PEFT",
+            "Custom Datasets"
+          ],
+          "features": [
+            "Hands-on",
+            "GPU access",
+            "Project",
+            "Certificate"
+          ],
+          "enrollmentCount": 310
+        },
+        {
+          "id": "ai-deployment",
+          "title": "AI Model Deployment",
+          "description": "Deploy ML models to production with MLOps",
+          "duration": "4 weeks",
+          "level": "Intermediate",
+          "price": 11999,
+          "currency": "INR",
+          "topics": [
+            "Docker",
+            "Kubernetes",
+            "FastAPI",
+            "AWS/GCP"
+          ],
+          "features": [
+            "Cloud deployment",
+            "CI/CD",
+            "Monitoring",
+            "Certificate"
+          ],
+          "enrollmentCount": 390
+        },
+        {
+          "id": "prompt-eng-dev",
+          "title": "Prompt Engineering for Developers",
+          "description": "Master prompt engineering for AI applications",
+          "duration": "2 weeks",
+          "level": "Beginner",
+          "price": 4999,
+          "currency": "INR",
+          "topics": [
+            "Prompt Patterns",
+            "Chain-of-Thought",
+            "Few-shot Learning",
+            "API Integration"
+          ],
+          "features": [
+            "Quick start",
+            "Code examples",
+            "Best practices",
+            "Badge"
+          ],
+          "enrollmentCount": 720
+        }
+      ]
+    },
+    "modular": {
+      "title": "Modular Learning - AI for Tech",
+      "description": "Learn one AI concept at a time with focused modules",
+      "modules": [
+        {
+          "id": "linear-regression",
+          "title": "Linear Regression",
+          "description": "Master linear regression from scratch",
+          "duration": "1 week",
+          "level": "Beginner",
+          "price": 999,
+          "currency": "INR",
+          "topics": [
+            "Theory",
+            "Implementation",
+            "Evaluation"
+          ],
+          "features": [
+            "Video lessons",
+            "Code examples",
+            "Quiz",
+            "Certificate"
+          ],
+          "enrollmentCount": 890
+        },
+        {
+          "id": "neural-networks",
+          "title": "Neural Networks Basics",
+          "description": "Understanding neural networks fundamentals",
+          "duration": "1 week",
+          "level": "Beginner",
+          "price": 1499,
+          "currency": "INR",
+          "topics": [
+            "Perceptron",
+            "Backpropagation",
+            "Activation Functions"
+          ],
+          "features": [
+            "Interactive demos",
+            "Coding labs",
+            "Certificate"
+          ],
+          "enrollmentCount": 1120
+        },
+        {
+          "id": "transformers",
+          "title": "Transformers Explained",
+          "description": "Deep dive into transformer architecture",
+          "duration": "2 weeks",
+          "level": "Advanced",
+          "price": 2999,
+          "currency": "INR",
+          "topics": [
+            "Attention Mechanism",
+            "BERT",
+            "GPT",
+            "Implementation"
+          ],
+          "features": [
+            "Detailed walkthrough",
+            "Code",
+            "Certificate"
+          ],
+          "enrollmentCount": 450
+        },
+        {
+          "id": "ai-api-integration",
+          "title": "AI API Integration",
+          "description": "Integrate AI APIs into your applications",
+          "duration": "1 week",
+          "level": "Intermediate",
+          "price": 1999,
+          "currency": "INR",
+          "topics": [
+            "OpenAI API",
+            "Hugging Face",
+            "Google AI",
+            "Best Practices"
+          ],
+          "features": [
+            "Hands-on",
+            "Code samples",
+            "Certificate"
+          ],
+          "enrollmentCount": 670
+        },
+        {
+          "id": "cnn-basics",
+          "title": "Convolutional Neural Networks",
+          "description": "Learn CNNs for computer vision",
+          "duration": "2 weeks",
+          "level": "Intermediate",
+          "price": 2499,
+          "currency": "INR",
+          "topics": [
+            "Convolution",
+            "Pooling",
+            "Image Classification",
+            "Transfer Learning"
+          ],
+          "features": [
+            "Visual explanations",
+            "Projects",
+            "Certificate"
+          ],
+          "enrollmentCount": 530
+        }
+      ]
+    }
+  },
+  "nontech": {
+    "overview": {
+      "title": "AI for Non-Tech Professionals",
+      "subtitle": "Leverage AI Tools Without Coding",
+      "description": "Learn to use AI effectively in your business role without any programming knowledge. Perfect for managers, marketers, and business professionals.",
+      "heroImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200",
+      "targetRoles": [
+        "AI Product Manager",
+        "Business Analyst (AI)",
+        "Digital Marketing with AI",
+        "AI Consultant (Non-Tech)"
+      ],
+      "stats": {
+        "students": "3500+",
+        "rating": "4.9",
+        "tools": "30+"
+      }
+    },
+    "career": {
+      "title": "Career Learning - AI for Non-Tech",
+      "description": "Prepare for AI-enabled business roles without coding",
+      "programs": [
+        {
+          "id": "ai-business-pro",
+          "title": "AI for Business Professionals",
+          "description": "Complete program for business professionals to leverage AI",
+          "duration": "4 months",
+          "level": "Beginner",
+          "price": 29999,
+          "originalPrice": 49999,
+          "currency": "INR",
+          "featured": true,
+          "modules": [
+            {
+              "name": "AI Basics",
+              "duration": "2 weeks",
+              "topics": [
+                "What is AI",
+                "AI vs ML",
+                "AI Applications",
+                "No-code AI"
+              ]
+            },
+            {
+              "name": "Generative AI Tools",
+              "duration": "3 weeks",
+              "topics": [
+                "ChatGPT",
+                "Midjourney",
+                "Canva AI",
+                "Copy.ai"
+              ]
+            },
+            {
+              "name": "AI for Business",
+              "duration": "4 weeks",
+              "topics": [
+                "Process Automation",
+                "Decision Making",
+                "Customer Service",
+                "Analytics"
+              ]
+            },
+            {
+              "name": "AI Strategy",
+              "duration": "3 weeks",
+              "topics": [
+                "AI Adoption",
+                "ROI Analysis",
+                "Change Management"
+              ]
+            },
+            {
+              "name": "Ethics & Governance",
+              "duration": "2 weeks",
+              "topics": [
+                "Responsible AI",
+                "Bias",
+                "Privacy",
+                "Compliance"
+              ]
+            },
+            {
+              "name": "Use-Case Projects",
+              "duration": "2 weeks",
+              "topics": [
+                "Real business scenarios",
+                "Implementation"
+              ]
+            }
+          ],
+          "features": [
+            "No coding required",
+            "Real business case studies",
+            "Hands-on with AI tools",
+            "Business templates",
+            "Career certificate",
+            "Networking opportunities"
+          ],
+          "certification": true,
+          "enrollmentCount": 980
+        },
+        {
+          "id": "ai-product-strategy",
+          "title": "AI Product & Strategy",
+          "description": "Become an AI Product Manager",
+          "duration": "3 months",
+          "level": "Intermediate",
+          "price": 24999,
+          "originalPrice": 39999,
+          "currency": "INR",
+          "featured": false,
+          "modules": [
+            {
+              "name": "AI Product Fundamentals",
+              "duration": "2 weeks",
+              "topics": [
+                "AI Product Lifecycle",
+                "Requirements",
+                "Roadmapping"
+              ]
+            },
+            {
+              "name": "Working with AI Teams",
+              "duration": "3 weeks",
+              "topics": [
+                "Data Scientists",
+                "ML Engineers",
+                "Communication"
+              ]
+            },
+            {
+              "name": "AI Product Strategy",
+              "duration": "4 weeks",
+              "topics": [
+                "Market Analysis",
+                "Competitive Intelligence",
+                "Go-to-Market"
+              ]
+            },
+            {
+              "name": "Capstone",
+              "duration": "3 weeks",
+              "topics": [
+                "Build AI Product Strategy"
+              ]
+            }
+          ],
+          "features": [
+            "Product management focus",
+            "Case studies",
+            "Industry mentors",
+            "Certificate"
+          ],
+          "certification": true,
+          "enrollmentCount": 560
+        },
+        {
+          "id": "genai-workplace",
+          "title": "Generative AI for Workplace",
+          "description": "Use GenAI tools to boost productivity",
+          "duration": "2 months",
+          "level": "Beginner",
+          "price": 19999,
+          "originalPrice": 29999,
+          "currency": "INR",
+          "featured": true,
+          "modules": [
+            {
+              "name": "GenAI Essentials",
+              "duration": "2 weeks",
+              "topics": [
+                "ChatGPT",
+                "Bard",
+                "Claude",
+                "Prompt Writing"
+              ]
+            },
+            {
+              "name": "Productivity Tools",
+              "duration": "3 weeks",
+              "topics": [
+                "Email Writing",
+                "Document Creation",
+                "Presentations",
+                "Data Analysis"
+              ]
+            },
+            {
+              "name": "Creative Applications",
+              "duration": "2 weeks",
+              "topics": [
+                "Content Creation",
+                "Design",
+                "Video",
+                "Audio"
+              ]
+            },
+            {
+              "name": "Practical Projects",
+              "duration": "1 week",
+              "topics": [
+                "Real workplace scenarios"
+              ]
+            }
+          ],
+          "features": [
+            "Tool mastery",
+            "Templates library",
+            "Weekly workshops",
+            "Certificate"
+          ],
+          "certification": true,
+          "enrollmentCount": 1340
+        }
+      ]
+    },
+    "upskilling": {
+      "title": "Upskilling - AI for Non-Tech",
+      "description": "Use AI effectively in your current job",
+      "courses": [
+        {
+          "id": "chatgpt-professionals",
+          "title": "ChatGPT for Professionals",
+          "description": "Master ChatGPT for business tasks",
+          "duration": "3 weeks",
+          "level": "Beginner",
+          "price": 7999,
+          "currency": "INR",
+          "topics": [
+            "Prompt Engineering",
+            "Business Writing",
+            "Data Analysis",
+            "Automation"
+          ],
+          "features": [
+            "Tool demos",
+            "Templates",
+            "Use cases",
+            "Certificate"
+          ],
+          "enrollmentCount": 1890
+        },
+        {
+          "id": "ai-marketing",
+          "title": "AI for Marketing",
+          "description": "Leverage AI for digital marketing",
+          "duration": "4 weeks",
+          "level": "Beginner",
+          "price": 9999,
+          "currency": "INR",
+          "topics": [
+            "Content Creation",
+            "SEO",
+            "Ad Copy",
+            "Social Media",
+            "Analytics"
+          ],
+          "features": [
+            "Marketing tools",
+            "Campaign templates",
+            "Case studies",
+            "Certificate"
+          ],
+          "enrollmentCount": 1250
+        },
+        {
+          "id": "ai-hr",
+          "title": "AI for HR & Recruitment",
+          "description": "Transform HR processes with AI",
+          "duration": "3 weeks",
+          "level": "Beginner",
+          "price": 8999,
+          "currency": "INR",
+          "topics": [
+            "Resume Screening",
+            "Interview Prep",
+            "Employee Engagement",
+            "Training"
+          ],
+          "features": [
+            "HR workflows",
+            "Templates",
+            "Tools",
+            "Certificate"
+          ],
+          "enrollmentCount": 670
+        },
+        {
+          "id": "ai-productivity",
+          "title": "AI for Productivity",
+          "description": "10x your productivity with AI tools",
+          "duration": "2 weeks",
+          "level": "Beginner",
+          "price": 5999,
+          "currency": "INR",
+          "topics": [
+            "Task Automation",
+            "Email Management",
+            "Meeting Notes",
+            "Research"
+          ],
+          "features": [
+            "Quick wins",
+            "Tool stack",
+            "Workflows",
+            "Badge"
+          ],
+          "enrollmentCount": 2100
+        },
+        {
+          "id": "prompt-eng-nocode",
+          "title": "Prompt Engineering (No Code)",
+          "description": "Write effective prompts for AI tools",
+          "duration": "2 weeks",
+          "level": "Beginner",
+          "price": 4999,
+          "currency": "INR",
+          "topics": [
+            "Prompt Patterns",
+            "Best Practices",
+            "Advanced Techniques",
+            "Examples"
+          ],
+          "features": [
+            "Beginner-friendly",
+            "Prompt library",
+            "Practice",
+            "Certificate"
+          ],
+          "enrollmentCount": 1560
+        }
+      ]
+    },
+    "modular": {
+      "title": "Modular Learning - AI for Non-Tech",
+      "description": "Learn AI in small, simple steps",
+      "modules": [
+        {
+          "id": "chatgpt-prompts",
+          "title": "Writing Prompts for ChatGPT",
+          "description": "Master the art of prompt writing",
+          "duration": "3 days",
+          "level": "Beginner",
+          "price": 999,
+          "currency": "INR",
+          "topics": [
+            "Prompt Structure",
+            "Examples",
+            "Common Mistakes"
+          ],
+          "features": [
+            "Short videos",
+            "Practice tasks",
+            "Certificate"
+          ],
+          "enrollmentCount": 2340
+        },
+        {
+          "id": "ai-resume",
+          "title": "AI for Resume Building",
+          "description": "Create professional resumes with AI",
+          "duration": "2 days",
+          "level": "Beginner",
+          "price": 499,
+          "currency": "INR",
+          "topics": [
+            "Resume Templates",
+            "AI Tools",
+            "Optimization"
+          ],
+          "features": [
+            "Templates",
+            "Tools",
+            "Certificate"
+          ],
+          "enrollmentCount": 1890
+        },
+        {
+          "id": "ai-social-media",
+          "title": "AI for Social Media",
+          "description": "Create engaging social media content",
+          "duration": "1 week",
+          "level": "Beginner",
+          "price": 1499,
+          "currency": "INR",
+          "topics": [
+            "Content Ideas",
+            "Image Generation",
+            "Caption Writing",
+            "Scheduling"
+          ],
+          "features": [
+            "Tool demos",
+            "Templates",
+            "Certificate"
+          ],
+          "enrollmentCount": 1670
+        },
+        {
+          "id": "ai-image-gen",
+          "title": "AI Image Generation Basics",
+          "description": "Create images with AI tools",
+          "duration": "1 week",
+          "level": "Beginner",
+          "price": 1999,
+          "currency": "INR",
+          "topics": [
+            "Midjourney",
+            "DALL-E",
+            "Stable Diffusion",
+            "Prompts"
+          ],
+          "features": [
+            "Hands-on",
+            "Gallery",
+            "Certificate"
+          ],
+          "enrollmentCount": 1120
+        },
+        {
+          "id": "ai-ethics",
+          "title": "AI Ethics Explained",
+          "description": "Understand responsible AI use",
+          "duration": "3 days",
+          "level": "Beginner",
+          "price": 799,
+          "currency": "INR",
+          "topics": [
+            "Bias",
+            "Privacy",
+            "Transparency",
+            "Best Practices"
+          ],
+          "features": [
+            "Case studies",
+            "Guidelines",
+            "Certificate"
+          ],
+          "enrollmentCount": 890
+        }
+      ]
+    }
+  },
+  "analytics": {
+    "totalEnrollments": 28450,
+    "totalRevenue": 125670000,
+    "activeStudents": 12340,
+    "completionRate": 78,
+    "popularPrograms": [
+      "ai-engineer-full",
+      "genai-workplace",
+      "chatgpt-professionals"
+    ]
+  }
+}

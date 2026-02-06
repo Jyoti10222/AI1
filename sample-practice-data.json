@@ -1,0 +1,75 @@
+{
+    "practiceQuestions": {
+        "easy": [
+            {
+                "id": 1,
+                "question": "What does 'cloud computing' primarily refer to?",
+                "options": [
+                    "A) Storing data on local hard drives",
+                    "B) Delivering computing services over the internet",
+                    "C) Using physical servers in your office",
+                    "D) Installing software on individual computers"
+                ],
+                "correctAnswer": "B",
+                "explanation": "Cloud computing refers to delivering computing services—including servers, storage, databases, networking, software—over the internet ('the cloud')."
+            },
+            {
+                "id": 2,
+                "question": "Which of the following is NOT a cloud service model?",
+                "options": [
+                    "A) IaaS (Infrastructure as a Service)",
+                    "B) PaaS (Platform as a Service)",
+                    "C) SaaS (Software as a Service)",
+                    "D) DaaS (Desktop as a Service)"
+                ],
+                "correctAnswer": "D",
+                "explanation": "While DaaS exists, the three main cloud service models are IaaS, PaaS, and SaaS."
+            }
+        ],
+        "medium": [
+            {
+                "id": 1,
+                "question": "What is the main advantage of using Auto Scaling in cloud environments?",
+                "options": [
+                    "A) Reduces security risks",
+                    "B) Automatically adjusts resources based on demand",
+                    "C) Eliminates the need for monitoring",
+                    "D) Provides free storage"
+                ],
+                "correctAnswer": "B",
+                "explanation": "Auto Scaling automatically adjusts the number of compute resources based on the actual demand, ensuring optimal performance and cost efficiency."
+            }
+        ],
+        "hard": [
+            {
+                "id": 1,
+                "question": "In AWS, what is the purpose of using VPC (Virtual Private Cloud)?",
+                "options": [
+                    "A) To create isolated network environments",
+                    "B) To store large files",
+                    "C) To manage user permissions",
+                    "D) To monitor application performance"
+                ],
+                "correctAnswer": "A",
+                "explanation": "VPC allows you to create isolated network environments within AWS, giving you complete control over your virtual networking environment including IP address ranges, subnets, and routing tables."
+            }
+        ]
+    },
+    "codeChallenges": [
+        {
+            "id": 1,
+            "title": "Create S3 Bucket with Python",
+            "description": "Write a Python function to create an S3 bucket with versioning enabled",
+            "languages": {
+                "python": {
+                    "template": "import boto3\n\ndef create_bucket(bucket_name, region='us-east-1'):\n    # Your code here\n    pass",
+                    "solution": "import boto3\n\ndef create_bucket(bucket_name, region='us-east-1'):\n    s3 = boto3.client('s3', region_name=region)\n    if region == 'us-east-1':\n        s3.create_bucket(Bucket=bucket_name)\n    else:\n        s3.create_bucket(Bucket=bucket_name, CreateBucketConfiguration={'LocationConstraint': region})\n    s3.put_bucket_versioning(Bucket=bucket_name, VersioningConfiguration={'Status': 'Enabled'})\n    return True"
+                },
+                "javascript": {
+                    "template": "const AWS = require('aws-sdk');\n\nfunction createBucket(bucketName, region = 'us-east-1') {\n    // Your code here\n}",
+                    "solution": "const AWS = require('aws-sdk');\n\nfunction createBucket(bucketName, region = 'us-east-1') {\n    const s3 = new AWS.S3({region});\n    const params = {Bucket: bucketName};\n    if (region !== 'us-east-1') {\n        params.CreateBucketConfiguration = {LocationConstraint: region};\n    }\n    return s3.createBucket(params).promise()\n        .then(() => s3.putBucketVersioning({Bucket: bucketName, VersioningConfiguration: {Status: 'Enabled'}}).promise());\n}"
+                }
+            }
+        }
+    ]
+}

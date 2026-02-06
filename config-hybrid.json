@@ -1,0 +1,346 @@
+{
+  "pageInfo": {
+    "title": "Hybrid Batch Schedule",
+    "subtitle": "Experience the best of both worlds - flexible online sessions combined with hands-on offline labs"
+  },
+  "pricingTiers": {
+    "basic": 1999,
+    "standard": 4999,
+    "premium": 9999
+  },
+  "individualCoursePricing": {
+    "enabled": true,
+    "description": "Enroll in individual courses"
+  },
+  "courses": [
+    {
+      "id": "java",
+      "name": "Java Full Stack",
+      "icon": "code",
+      "color": "orange",
+      "price": 55987,
+      "duration": "6 Months",
+      "batchCount": 10,
+      "fee": 55987
+    },
+    {
+      "id": "python",
+      "name": "Python Full Stack",
+      "icon": "terminal",
+      "color": "yellow",
+      "price": 49999,
+      "duration": "5 Months",
+      "batchCount": 7
+    },
+    {
+      "id": "aiml",
+      "name": "AI and Machine Learning",
+      "icon": "smart_toy",
+      "color": "teal",
+      "price": 59999,
+      "duration": "6 Months",
+      "batchCount": 6
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "icon": "hub",
+      "color": "purple",
+      "price": 44999,
+      "duration": "4 Months",
+      "batchCount": 5
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud Computing",
+      "icon": "cloud",
+      "color": "blue",
+      "price": 64999,
+      "duration": "6 Months",
+      "batchCount": 4
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "instructor": "Jyoti",
+      "level": "Beginner",
+      "levelColor": "green",
+      "startDate": "Jan 2026",
+      "onlinePercent": 50,
+      "offlinePercent": 50,
+      "fee": 999,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLm39_AyR6rQo5vyxLxJv45wqd9ZwS9l5_Lb3wE4NI-S5Gipje6WYgyAG4fQXMHF3YjsnBk2gGWV_26wyJtwATnwcme11hNMVOQ-nQcx2nGfDGVwu9KNuecm09YEfczzZjIxf9AoAXGIkKCy9TJYE_lD2l8jw55EEdhQcQko_I2CJ7l4vcreo37RXUVdlVpBZGvEi9Fi0yIFxq6E41_My7B-JSbbh4OQJHln_GT-2bYbXMlF2K3jgWNCLlGjMz2OL5ajDIQuYyvCw",
+      "onlineSchedule": {
+        "days": "TBD",
+        "time": "TBD",
+        "description": "Online Sessions",
+        "platform": "Zoom",
+        "platformNote": "Recordings available"
+      },
+      "offlineSchedule": {
+        "days": "TBD",
+        "time": "TBD",
+        "description": "Lab Sessions",
+        "location": "TBD",
+        "locationNote": "Main Campus"
+      }
+    },
+    {
+      "id": "java-full-stack",
+      "name": "Java Full Stack",
+      "instructor": "Khan",
+      "level": "Beginner",
+      "levelColor": "green",
+      "startDate": "Jan 2026",
+      "onlinePercent": 50,
+      "offlinePercent": 50,
+      "fee": 999,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLm39_AyR6rQo5vyxLxJv45wqd9ZwS9l5_Lb3wE4NI-S5Gipje6WYgyAG4fQXMHF3YjsnBk2gGWV_26wyJtwATnwcme11hNMVOQ-nQcx2nGfDGVwu9KNuecm09YEfczzZjIxf9AoAXGIkKCy9TJYE_lD2l8jw55EEdhQcQko_I2CJ7l4vcreo37RXUVdlVpBZGvEi9Fi0yIFxq6E41_My7B-JSbbh4OQJHln_GT-2bYbXMlF2K3jgWNCLlGjMz2OL5ajDIQuYyvCw",
+      "onlineSchedule": {
+        "days": "TBD",
+        "time": "TBD",
+        "description": "Online Sessions",
+        "platform": "Zoom",
+        "platformNote": "Recordings available"
+      },
+      "offlineSchedule": {
+        "days": "TBD",
+        "time": "TBD",
+        "description": "Lab Sessions",
+        "location": "TBD",
+        "locationNote": "Main Campus"
+      }
+    }
+  ],
+  "batches": [
+    {
+      "id": "batch-1",
+      "courseId": "java",
+      "faculty": "ABC",
+      "startTime": "10:00 AM",
+      "endTime": "12:00 PM",
+      "day": "Mon",
+      "duration": "2 Hours",
+      "mode": "Online"
+    },
+    {
+      "id": "batch-2",
+      "courseId": "java",
+      "faculty": "Prof. James Gosling",
+      "startTime": "10:00 AM",
+      "endTime": "01:00 PM",
+      "day": "Sat",
+      "duration": "3 Hours",
+      "mode": "Offline",
+      "type": "offline"
+    },
+    {
+      "id": "batch-3",
+      "courseId": "python",
+      "faculty": "Dr. Guido van Rossum",
+      "startTime": "02:00 PM",
+      "endTime": "04:00 PM",
+      "day": "Tue",
+      "duration": "2 Hours",
+      "mode": "Online",
+      "type": "offline"
+    },
+    {
+      "id": "batch-4",
+      "courseId": "aiml",
+      "faculty": "Dr. Alan Turing",
+      "startTime": "11:00 AM",
+      "endTime": "01:00 PM",
+      "day": "Wed",
+      "duration": "2 Hours",
+      "mode": "Online"
+    },
+    {
+      "id": "batch-5",
+      "courseId": "networking",
+      "faculty": "Vint Cerf",
+      "startTime": "04:00 PM",
+      "endTime": "06:00 PM",
+      "day": "Thu",
+      "duration": "2 Hours",
+      "mode": "Online"
+    },
+    {
+      "id": "batch-6",
+      "courseId": "cloud",
+      "faculty": "Werner Vogels",
+      "startTime": "09:00 AM",
+      "endTime": "12:00 PM",
+      "day": "Sat",
+      "duration": "3 Hours",
+      "mode": "Offline"
+    }
+  ],
+  "batchesDetailed": [
+    {
+      "id": "hybrid-detailed-001",
+      "name": "Python Full Stack - Batch 9",
+      "status": "running",
+      "startDate": "2026-01-10",
+      "endDate": "2026-04-10",
+      "schedule": "Online: Tue-Thu 7PM-9PM | Offline: Sat 10AM-2PM",
+      "instructor": "Dr. Priya Mehta",
+      "enrolled": 22,
+      "capacity": 25,
+      "courseId": "python",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Python Fundamentals (Online)",
+          "order": 1,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "Data Structures",
+              "duration": "3 hours",
+              "completed": true,
+              "completedDate": "2026-01-14"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "OOP in Python",
+              "duration": "4 hours",
+              "completed": true,
+              "completedDate": "2026-01-16"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Django Framework (Hybrid)",
+          "order": 2,
+          "status": "in-progress",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Django Basics (Online)",
+              "duration": "3 hours",
+              "completed": true,
+              "completedDate": "2026-01-21"
+            },
+            {
+              "id": "topic-2-2",
+              "name": "Hands-on Project (Offline)",
+              "duration": "4 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-08"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hybrid-detailed-002",
+      "name": "AI & ML Advanced - Batch 4",
+      "status": "upcoming",
+      "startDate": "2026-02-20",
+      "endDate": "2026-05-20",
+      "schedule": "Online: Mon-Wed 6PM-8PM | Offline: Sat 9AM-1PM",
+      "instructor": "Dr. Ankit Sharma",
+      "enrolled": 8,
+      "capacity": 20,
+      "courseId": "aiml",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Deep Learning (Online)",
+          "order": 1,
+          "status": "not-started",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "Neural Networks",
+              "duration": "4 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-20"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "CNNs & RNNs",
+              "duration": "5 hours",
+              "completed": false,
+              "scheduledDate": "2026-02-24"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Practical Projects (Offline)",
+          "order": 2,
+          "status": "not-started",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Image Classification Lab",
+              "duration": "4 hours",
+              "completed": false,
+              "scheduledDate": "2026-03-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hybrid-detailed-003",
+      "name": "Java Enterprise - Batch 11",
+      "status": "past",
+      "startDate": "2025-08-01",
+      "endDate": "2025-11-30",
+      "schedule": "Online: Tue-Thu 8PM-10PM | Offline: Sun 10AM-2PM",
+      "instructor": "Mr. Vikram Singh",
+      "enrolled": 25,
+      "capacity": 25,
+      "courseId": "java",
+      "modules": [
+        {
+          "id": "module-1",
+          "name": "Spring Framework (Online)",
+          "order": 1,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-1-1",
+              "name": "Spring Core",
+              "duration": "5 hours",
+              "completed": true,
+              "completedDate": "2025-08-15"
+            },
+            {
+              "id": "topic-1-2",
+              "name": "Spring Boot",
+              "duration": "6 hours",
+              "completed": true,
+              "completedDate": "2025-08-22"
+            }
+          ]
+        },
+        {
+          "id": "module-2",
+          "name": "Microservices Lab (Offline)",
+          "order": 2,
+          "status": "completed",
+          "topics": [
+            {
+              "id": "topic-2-1",
+              "name": "Building Microservices",
+              "duration": "8 hours",
+              "completed": true,
+              "completedDate": "2025-10-15"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "accessFee": {
+    "price": 1900,
+    "period": "month",
+    "description": ""
+  }
+}

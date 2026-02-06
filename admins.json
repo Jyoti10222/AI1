@@ -1,0 +1,31 @@
+{
+    "admins": [
+        {
+            "id": "ADM-1",
+            "name": "Jyoti Admin",
+            "email": "jyotiprithvisambha2116@gmail.com",
+            "password": "2116",
+            "role": "Admin",
+            "status": "Active"
+        }
+    ],
+    "superAdmins": [
+        {
+            "id": "SAD-1",
+            "name": "Kashif",
+            "email": "kashif@cordinal.com",
+            "password": "1234",
+            "role": "SuperAdmin",
+            "status": "Active"
+        },
+        {
+            "id": "SAD-2",
+            "name": "Jyoti",
+            "email": "jyotimulimani2104@gmail.com",
+            "password": "2116",
+            "role": "SuperAdmin",
+            "status": "Active"
+        }
+    ],
+    "lastUpdated": null
+}

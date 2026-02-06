@@ -1,0 +1,62 @@
+{
+    "aiCounselor": {
+        "title": "AI Counseling",
+        "subtitle": "Instant support, anytime",
+        "badge": "24/7 Available",
+        "avatars": [
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_1_1769165259013.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_2_1769165274331.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/ai_counselor_talking_3_1769165290942.png"
+        ],
+        "features": [
+            {
+                "icon": "chat",
+                "title": "Live Chat",
+                "description": "Talk in real-time"
+            },
+            {
+                "icon": "edit_note",
+                "title": "Submit Query",
+                "description": "Get detailed responses"
+            },
+            {
+                "icon": "psychology",
+                "title": "Smart AI",
+                "description": "Personalized guidance"
+            }
+        ],
+        "buttonText": "Start AI Session",
+        "link": "AICounseling.html"
+    },
+    "offlineCounselor": {
+        "title": "In-Person Counseling",
+        "subtitle": "Face-to-face support",
+        "badge": "Certified",
+        "images": [
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_1_1769165308290.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_2_1769165327216.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_3_1769165345266.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_4_1769165363772.png",
+            "C:/Users/jyoti mulimani/.gemini/antigravity/brain/372b6227-7011-4bc9-b203-66a92ac97648/offline_counseling_5_1769165380384.png"
+        ],
+        "features": [
+            {
+                "icon": "location_on",
+                "title": "Multiple Locations",
+                "description": "Choose nearby center"
+            },
+            {
+                "icon": "event",
+                "title": "Flexible Timing",
+                "description": "Book your slot"
+            },
+            {
+                "icon": "person",
+                "title": "Expert Counselors",
+                "description": "Auto-assigned based on availability"
+            }
+        ],
+        "buttonText": "Book Appointment",
+        "link": "InPersonCounseling.html"
+    }
+}

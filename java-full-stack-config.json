@@ -1,0 +1,203 @@
+{
+    "career": {
+        "programs": [
+            {
+                "id": "java-career-1",
+                "title": "Java Full Stack Developer Bootcamp",
+                "description": "Complete Java Full Stack training from core Java to enterprise applications with Spring Boot and React",
+                "level": "Beginner to Advanced",
+                "duration": "6 months",
+                "price": 84999,
+                "topics": [
+                    "Core Java & OOP",
+                    "Spring Framework",
+                    "Spring Boot & Microservices",
+                    "React.js Frontend",
+                    "REST APIs",
+                    "SQL & NoSQL Databases",
+                    "AWS Deployment"
+                ],
+                "requirements": [
+                    "Basic programming knowledge",
+                    "Willingness to learn"
+                ],
+                "highlights": [
+                    "300+ hours of training",
+                    "Real enterprise projects",
+                    "Spring certification prep",
+                    "Job placement support",
+                    "Industry-recognized skills"
+                ]
+            },
+            {
+                "id": "java-career-2",
+                "title": "Enterprise Java Architect Program",
+                "description": "Advanced program for experienced developers to become enterprise architects",
+                "level": "Advanced",
+                "duration": "4 months",
+                "price": 94999,
+                "topics": [
+                    "Microservices Architecture",
+                    "Design Patterns",
+                    "System Design",
+                    "Performance Optimization",
+                    "Cloud-Native Applications",
+                    "Security Best Practices"
+                ],
+                "requirements": [
+                    "3+ years Java experience",
+                    "Spring Boot knowledge"
+                ],
+                "highlights": [
+                    "Architecture patterns",
+                    "Expert mentorship",
+                    "Real-world case studies",
+                    "Career advancement",
+                    "Leadership skills"
+                ]
+            }
+        ]
+    },
+    "upskilling": {
+        "programs": [
+            {
+                "id": "java-upskill-1",
+                "title": "Spring Boot Microservices",
+                "description": "Master microservices architecture using Spring Boot and Spring Cloud",
+                "level": "Intermediate",
+                "duration": "6 weeks",
+                "price": 39999,
+                "topics": [
+                    "Spring Boot Basics",
+                    "Microservices Design",
+                    "Service Discovery",
+                    "API Gateway",
+                    "Circuit Breaker",
+                    "Distributed Tracing"
+                ],
+                "requirements": [
+                    "Java fundamentals",
+                    "Spring basics"
+                ],
+                "highlights": [
+                    "Hands-on microservices",
+                    "Industry patterns",
+                    "Real projects"
+                ]
+            },
+            {
+                "id": "java-upskill-2",
+                "title": "React for Java Developers",
+                "description": "Learn modern frontend development with React.js for full stack capabilities",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 34999,
+                "topics": [
+                    "React Fundamentals",
+                    "Components & Props",
+                    "State Management",
+                    "React Hooks",
+                    "API Integration",
+                    "Redux"
+                ],
+                "requirements": [
+                    "JavaScript basics",
+                    "HTML/CSS knowledge"
+                ],
+                "highlights": [
+                    "Full stack skills",
+                    "Modern UI development",
+                    "Real applications"
+                ]
+            },
+            {
+                "id": "java-upskill-3",
+                "title": "Java Performance Tuning",
+                "description": "Optimize Java applications for production performance",
+                "level": "Advanced",
+                "duration": "4 weeks",
+                "price": 32999,
+                "topics": [
+                    "JVM Internals",
+                    "Memory Management",
+                    "Garbage Collection",
+                    "Profiling Tools",
+                    "Performance Metrics"
+                ],
+                "requirements": [
+                    "Strong Java knowledge",
+                    "Production experience"
+                ],
+                "highlights": [
+                    "Performance optimization",
+                    "Production debugging",
+                    "Expert techniques"
+                ]
+            }
+        ]
+    },
+    "modular": {
+        "programs": [
+            {
+                "id": "java-mod-1",
+                "title": "Core Java Fundamentals",
+                "description": "Master Java basics and object-oriented programming",
+                "level": "Beginner",
+                "duration": "3 weeks",
+                "price": 14999,
+                "topics": [
+                    "Java Syntax",
+                    "OOP Concepts",
+                    "Collections Framework",
+                    "Exception Handling",
+                    "File I/O"
+                ]
+            },
+            {
+                "id": "java-mod-2",
+                "title": "Spring Framework Essentials",
+                "description": "Learn Spring Core, Spring MVC, and dependency injection",
+                "level": "Intermediate",
+                "duration": "3 weeks",
+                "price": 16999,
+                "topics": [
+                    "Dependency Injection",
+                    "Spring MVC",
+                    "Spring Data JPA",
+                    "Spring Security",
+                    "RESTful Services"
+                ]
+            },
+            {
+                "id": "java-mod-3",
+                "title": "Database Integration with JPA",
+                "description": "Master database operations using JPA and Hibernate",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 12999,
+                "topics": [
+                    "JPA Basics",
+                    "Entity Relationships",
+                    "JPQL",
+                    "Hibernate",
+                    "Transaction Management"
+                ]
+            },
+            {
+                "id": "java-mod-4",
+                "title": "Java Testing with JUnit",
+                "description": "Write effective unit and integration tests",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 11999,
+                "topics": [
+                    "JUnit 5",
+                    "Mockito",
+                    "Test-Driven Development",
+                    "Integration Testing",
+                    "Code Coverage"
+                ]
+            }
+        ]
+    }
+}

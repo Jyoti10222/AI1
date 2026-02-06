@@ -1,0 +1,688 @@
+{
+  "assignments": {
+    "cc": {
+      "id": "cc",
+      "pageTitle": "Assignments & Practice - Cloud Computing",
+      "courseInfo": {
+        "title": "CLOUD COMPUTING",
+        "progress": 90
+      },
+      "assignmentsList": [],
+      "mainAssignment": {
+        "badge": "Cloud Challenge",
+        "difficulty": "Medium",
+        "title": "Clouddd",
+        "description": "What is Cloud Computing",
+        "dueDate": "",
+        "securityFeature": "",
+        "icon": ""
+      },
+      "codeEditor": {
+        "filename": "",
+        "code": ""
+      },
+      "practiceQuestions": {
+        "easy": [
+          {
+            "id": 1768816454271,
+            "question": "hiii",
+            "options": [
+              "A) bb",
+              "B) cc",
+              "C) dd",
+              "D) ee"
+            ],
+            "correctAnswer": "A",
+            "explanation": ""
+          }
+        ],
+        "medium": [
+          {
+            "id": 1768816472121,
+            "question": "zzzz",
+            "options": [
+              "A) xx",
+              "B) yy",
+              "C) hh",
+              "D) nj"
+            ],
+            "correctAnswer": "A",
+            "explanation": ""
+          }
+        ],
+        "hard": []
+      },
+      "codeChallenges": []
+    },
+    "ai": {
+      "id": "ai",
+      "pageTitle": "Assignments & Practice - AI & Machine Learning",
+      "courseInfo": {
+        "title": "AI & Machine Learning Fundamentals",
+        "progress": 65
+      },
+      "assignmentsList": [
+        {
+          "title": "ML Basics Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 92/100"
+        },
+        {
+          "title": "Neural Network Implementation",
+          "status": "in-progress",
+          "icon": "psychology",
+          "note": "In Progress"
+        },
+        {
+          "title": "Data Preprocessing",
+          "status": "pending",
+          "icon": "analytics",
+          "note": "Due in 3 days"
+        },
+        {
+          "title": "Model Evaluation",
+          "status": "needs-revision",
+          "icon": "assessment",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "ML Challenge",
+        "difficulty": "Hard",
+        "title": "Build a Neural Network Classifier",
+        "description": "Implement a multi-layer perceptron using NumPy to classify handwritten digits from the MNIST dataset. Your network should have at least one hidden layer and use backpropagation for training.",
+        "dueDate": "Oct 25, 11:59 PM",
+        "securityFeature": "AI Plagiarism Check Enabled",
+        "icon": "neurology"
+      },
+      "codeEditor": {
+        "filename": "neural_network.py",
+        "code": "import numpy as np\\n\\nclass NeuralNetwork:\\n    def __init__(self, input_size, hidden_size, output_size):\\n        self.W1 = np.random.randn(input_size, hidden_size)\\n        self.W2 = np.random.randn(hidden_size, output_size)\\n        \\n    def forward(self, X):\\n        # TODO: Implement forward propagation\\n        pass\\n        \\n    def backward(self, X, y, learning_rate):\\n        # TODO: Implement backpropagation\\n        pass"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Accuracy too low - 45%",
+          "time": "11:20 AM",
+          "icon": "trending_down"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "Dimension Mismatch Error",
+          "time": "10:45 AM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "AI Model Review",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Good initialization of weights using random normal distribution."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Consider using Xavier or He initialization for better convergence."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Missing activation functions. Add sigmoid or ReLU for hidden layers."
+          }
+        ],
+        "recommendation": {
+          "title": "Implementation Hint",
+          "message": "Use the sigmoid activation function and its derivative for backpropagation.",
+          "codeSnippet": "def sigmoid(x):\\n    return 1 / (1 + np.exp(-x))\\n\\ndef sigmoid_derivative(x):\\n    return x * (1 - x)"
+        },
+        "buttonText": "Ask AI for ML tips"
+      }
+    },
+    "java": {
+      "id": "java",
+      "pageTitle": "Assignments & Practice - Java Programming",
+      "courseInfo": {
+        "title": "Java Full Stack Development",
+        "progress": 70
+      },
+      "assignmentsList": [
+        {
+          "title": "OOP Concepts Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 98/100"
+        },
+        {
+          "title": "Spring Boot REST API",
+          "status": "in-progress",
+          "icon": "api",
+          "note": "In Progress"
+        },
+        {
+          "title": "JPA Integration",
+          "status": "pending",
+          "icon": "storage",
+          "note": "Due in 4 days"
+        },
+        {
+          "title": "Exception Handling",
+          "status": "needs-revision",
+          "icon": "error_outline",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "Backend Challenge",
+        "difficulty": "Medium",
+        "title": "Implement a Custom Thread Pool",
+        "description": "Create a custom thread pool executor in Java that manages a fixed number of worker threads. Implement proper task queuing, thread lifecycle management, and graceful shutdown mechanisms.",
+        "dueDate": "Oct 26, 11:59 PM",
+        "securityFeature": "Code Quality Check Enabled",
+        "icon": "settings_applications"
+      },
+      "codeEditor": {
+        "filename": "ThreadPool.java",
+        "code": "import java.util.concurrent.*;\\n\\npublic class CustomThreadPool {\\n    private final int poolSize;\\n    private final BlockingQueue<Runnable> taskQueue;\\n    \\n    public CustomThreadPool(int poolSize) {\\n        this.poolSize = poolSize;\\n        this.taskQueue = new LinkedBlockingQueue<>();\\n        // TODO: Initialize worker threads\\n    }\\n    \\n    public void execute(Runnable task) {\\n        // TODO: Add task to queue\\n    }\\n    \\n    public void shutdown() {\\n        // TODO: Implement graceful shutdown\\n    }\\n}"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Thread leak detected",
+          "time": "2:30 PM",
+          "icon": "bug_report"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "NullPointerException",
+          "time": "2:00 PM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "Code Review",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Good use of BlockingQueue for thread-safe task management."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Worker threads should be daemon threads to allow JVM shutdown."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Missing proper thread interruption handling in shutdown method."
+          }
+        ],
+        "recommendation": {
+          "title": "Thread Management Tip",
+          "message": "Create a Worker class that extends Thread and continuously polls the task queue.",
+          "codeSnippet": "class Worker extends Thread {\\n    public void run() {\\n        while (!Thread.interrupted()) {\\n            Runnable task = taskQueue.take();\\n            task.run();\\n        }\\n    }\\n}"
+        },
+        "buttonText": "Ask AI for concurrency tips"
+      }
+    },
+    "net": {
+      "id": "net",
+      "pageTitle": "Assignments & Practice - .NET Development",
+      "courseInfo": {
+        "title": ".NET Core Web Development",
+        "progress": 60
+      },
+      "assignmentsList": [
+        {
+          "title": "C# Fundamentals Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 90/100"
+        },
+        {
+          "title": "ASP.NET Core API",
+          "status": "in-progress",
+          "icon": "web",
+          "note": "In Progress"
+        },
+        {
+          "title": "Entity Framework",
+          "status": "pending",
+          "icon": "database",
+          "note": "Due in 5 days"
+        },
+        {
+          "title": "Middleware Implementation",
+          "status": "needs-revision",
+          "icon": "layers",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "API Challenge",
+        "difficulty": "Medium",
+        "title": "Build a RESTful API with Authentication",
+        "description": "Create an ASP.NET Core Web API with JWT authentication. Implement user registration, login endpoints, and protect routes using authorization middleware.",
+        "dueDate": "Oct 27, 11:59 PM",
+        "securityFeature": "Security Scan Enabled",
+        "icon": "security"
+      },
+      "codeEditor": {
+        "filename": "AuthController.cs",
+        "code": "using Microsoft.AspNetCore.Mvc;\\nusing Microsoft.IdentityModel.Tokens;\\n\\n[ApiController]\\n[Route(\\\"api/[controller]\\\")]\\npublic class AuthController : ControllerBase\\n{\\n    [HttpPost(\\\"register\\\")]\\n    public async Task<IActionResult> Register(UserDto user)\\n    {\\n        // TODO: Implement user registration\\n        return Ok();\\n    }\\n    \\n    [HttpPost(\\\"login\\\")]\\n    public async Task<IActionResult> Login(LoginDto login)\\n    {\\n        // TODO: Implement JWT token generation\\n        return Ok();\\n    }\\n}"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Token validation failed",
+          "time": "3:15 PM",
+          "icon": "key_off"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "Missing authentication scheme",
+          "time": "2:45 PM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "Security Review",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Correct use of ApiController attribute and route templates."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Password should be hashed using BCrypt or PBKDF2 before storing."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "JWT secret key should be stored in configuration, not hardcoded."
+          }
+        ],
+        "recommendation": {
+          "title": "JWT Implementation",
+          "message": "Use JwtSecurityTokenHandler to create tokens with proper claims.",
+          "codeSnippet": "var tokenHandler = new JwtSecurityTokenHandler();\\nvar key = Encoding.ASCII.GetBytes(_config[\\\"JwtKey\\\"]);\\nvar tokenDescriptor = new SecurityTokenDescriptor {\\n    Subject = new ClaimsIdentity(claims),\\n    Expires = DateTime.UtcNow.AddHours(1)\\n};"
+        },
+        "buttonText": "Ask AI for security tips"
+      }
+    },
+    "cyber": {
+      "id": "cyber",
+      "pageTitle": "Assignments & Practice - Cybersecurity",
+      "courseInfo": {
+        "title": "Cybersecurity Professional Certificate",
+        "progress": 65
+      },
+      "assignmentsList": [
+        {
+          "title": "Vulnerability Assessment",
+          "status": "completed",
+          "icon": "policy",
+          "note": "Graded: 98/100"
+        },
+        {
+          "title": "Cryptography Implementation",
+          "status": "in-progress",
+          "icon": "enhanced_encryption",
+          "note": "In Progress"
+        },
+        {
+          "title": "Intrusion Detection Analysis",
+          "status": "pending",
+          "icon": "track_changes",
+          "note": "Due in 2 days"
+        },
+        {
+          "title": "Penetration Testing Lab",
+          "status": "needs-revision",
+          "icon": "bug_report",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "Application Security",
+        "difficulty": "Hard",
+        "title": "Implement Secure Password Hashing",
+        "description": "Develop a secure password hashing mechanism for the user authentication module. You must use a cryptographically strong salt and a slow hashing algorithm (like PBKDF2 or Argon2) to prevent rainbow table attacks.",
+        "dueDate": "Oct 24, 11:59 PM",
+        "securityFeature": "Vulnerability Scanner Enabled",
+        "icon": "lock"
+      },
+      "codeEditor": {
+        "filename": "auth_security.py",
+        "code": "import hashlib\\nimport os\\n\\nclass SecureAuth:\\n    def __init__(self):\\n        self.user_db = {}  # Simulating database\\n        \\n    def register_user(self, username, password):\\n        if username in self.user_db:\\n            return False\\n        # TODO: Generate a cryptographically secure random salt\\n        # salt = ?\\n        # TODO: Hash the password combined with the salt\\n        # key = hashlib.pbkdf2_hmac(...)\\n        self.user_db[username] = {\\n            'salt': salt,\\n            'key': key\\n        }\\n        return True"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Salt Entropy Low - Failed",
+          "time": "10:45 AM",
+          "icon": "error"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "Weak Algorithm (MD5) Detected",
+          "time": "10:15 AM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "Security Audit Report",
+        "subtitle": "Based on your latest code analysis",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Correctly identified the need for hashlib library and os module for randomness."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Recommendation: Use at least 100,000 iterations for PBKDF2 to slow down brute-force attacks."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Critical: Passwords are currently being stored without proper salting in the previous attempt."
+          }
+        ],
+        "recommendation": {
+          "title": "Secure Implementation Hint",
+          "message": "Always generate a cryptographically strong random salt for every user before hashing. Do not reuse salts.",
+          "codeSnippet": "# Generate 32 bytes salt\\nsalt = os.urandom(32)\\n# Hash with PBKDF2\\nkey = hashlib.pbkdf2_hmac(\\n  'sha256',\\n  password.encode('utf-8'),\\n  salt,\\n  100000\\n)"
+        },
+        "buttonText": "Ask AI for security tips"
+      }
+    },
+    "automan": {
+      "id": "automan",
+      "pageTitle": "Assignments & Practice - Automation Testing",
+      "courseInfo": {
+        "title": "Automation Testing with Selenium",
+        "progress": 55
+      },
+      "assignmentsList": [
+        {
+          "title": "Selenium Basics Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 88/100"
+        },
+        {
+          "title": "Page Object Model",
+          "status": "in-progress",
+          "icon": "description",
+          "note": "In Progress"
+        },
+        {
+          "title": "Data-Driven Testing",
+          "status": "pending",
+          "icon": "table_chart",
+          "note": "Due in 3 days"
+        },
+        {
+          "title": "Test Framework Setup",
+          "status": "needs-revision",
+          "icon": "build",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "Test Automation",
+        "difficulty": "Medium",
+        "title": "Implement Page Object Model",
+        "description": "Create a robust Page Object Model framework for automating a login flow. Implement proper element locators, reusable methods, and handle synchronization issues using explicit waits.",
+        "dueDate": "Oct 28, 11:59 PM",
+        "securityFeature": "Code Quality Check Enabled",
+        "icon": "automation"
+      },
+      "codeEditor": {
+        "filename": "login_page.py",
+        "code": "from selenium import webdriver\\nfrom selenium.webdriver.common.by import By\\nfrom selenium.webdriver.support.ui import WebDriverWait\\n\\nclass LoginPage:\\n    def __init__(self, driver):\\n        self.driver = driver\\n        # TODO: Define locators\\n        self.username_field = (By.ID, \\\"username\\\")\\n        self.password_field = (By.ID, \\\"password\\\")\\n        \\n    def login(self, username, password):\\n        # TODO: Implement login method with explicit waits\\n        pass"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Element not found - Timing issue",
+          "time": "4:20 PM",
+          "icon": "schedule"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "NoSuchElementException",
+          "time": "3:50 PM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "Test Automation Review",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Good practice using tuple format for locators (By.ID, 'value')."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Use WebDriverWait with expected_conditions for reliable element interaction."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Missing error handling for stale element references."
+          }
+        ],
+        "recommendation": {
+          "title": "Wait Strategy",
+          "message": "Implement explicit waits for better synchronization.",
+          "codeSnippet": "from selenium.webdriver.support import expected_conditions as EC\\n\\nwait = WebDriverWait(self.driver, 10)\\nelement = wait.until(\\n    EC.element_to_be_clickable(self.username_field)\\n)"
+        },
+        "buttonText": "Ask AI for testing tips"
+      }
+    },
+    "c": {
+      "id": "c",
+      "pageTitle": "Assignments & Practice - C Programming",
+      "courseInfo": {
+        "title": "C Programming Fundamentals",
+        "progress": 50
+      },
+      "assignmentsList": [
+        {
+          "title": "Pointers Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 85/100"
+        },
+        {
+          "title": "Dynamic Memory Allocation",
+          "status": "in-progress",
+          "icon": "memory",
+          "note": "In Progress"
+        },
+        {
+          "title": "File I/O Operations",
+          "status": "pending",
+          "icon": "folder_open",
+          "note": "Due in 4 days"
+        },
+        {
+          "title": "Linked List Implementation",
+          "status": "needs-revision",
+          "icon": "link",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "Systems Programming",
+        "difficulty": "Hard",
+        "title": "Implement a Custom Memory Allocator",
+        "description": "Create a custom memory allocator in C that manages a fixed-size memory pool. Implement malloc-like and free-like functions with proper memory alignment and fragmentation handling.",
+        "dueDate": "Oct 29, 11:59 PM",
+        "securityFeature": "Memory Leak Detection Enabled",
+        "icon": "memory"
+      },
+      "codeEditor": {
+        "filename": "allocator.c",
+        "code": "#include <stdio.h>\\n#include <stddef.h>\\n\\n#define POOL_SIZE 1024\\nstatic char memory_pool[POOL_SIZE];\\n\\ntypedef struct block {\\n    size_t size;\\n    int is_free;\\n    struct block *next;\\n} Block;\\n\\nvoid* my_malloc(size_t size) {\\n    // TODO: Implement memory allocation\\n    return NULL;\\n}\\n\\nvoid my_free(void* ptr) {\\n    // TODO: Implement memory deallocation\\n}"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Memory corruption detected",
+          "time": "5:10 PM",
+          "icon": "dangerous"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "Segmentation fault",
+          "time": "4:40 PM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "Memory Management Review",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Good use of metadata structure to track block information."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "Consider implementing memory alignment to prevent unaligned access."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Missing boundary checks can lead to buffer overflow vulnerabilities."
+          }
+        ],
+        "recommendation": {
+          "title": "Implementation Hint",
+          "message": "Use pointer arithmetic carefully and always validate block boundaries.",
+          "codeSnippet": "Block *block = (Block*)memory_pool;\\nblock->size = size;\\nblock->is_free = 0;\\nblock->next = NULL;\\nreturn (void*)(block + 1);"
+        },
+        "buttonText": "Ask AI for C programming tips"
+      }
+    },
+    "python": {
+      "id": "python",
+      "pageTitle": "Assignments & Practice - Python Full Stack",
+      "courseInfo": {
+        "title": "Python Full Stack Masterclass",
+        "progress": 45
+      },
+      "assignmentsList": [
+        {
+          "title": "Basic Syntax Quiz",
+          "status": "completed",
+          "icon": "check_circle",
+          "note": "Graded: 95/100"
+        },
+        {
+          "title": "Decorator Function",
+          "status": "in-progress",
+          "icon": "edit_document",
+          "note": "In Progress"
+        },
+        {
+          "title": "Flask API Setup",
+          "status": "pending",
+          "icon": "code",
+          "note": "Due in 2 days"
+        },
+        {
+          "title": "Database Design",
+          "status": "needs-revision",
+          "icon": "warning",
+          "note": "Needs Revision"
+        }
+      ],
+      "mainAssignment": {
+        "badge": "Practice Task",
+        "difficulty": "Hard",
+        "title": "Implement a Retry Decorator",
+        "description": "Create a Python decorator named @retry that automatically retries a function call if it raises an exception. It should accept arguments for the number of retries and the delay between attempts.",
+        "dueDate": "Oct 24, 11:59 PM",
+        "securityFeature": "AI Plagiarism Check Enabled",
+        "icon": "assignment"
+      },
+      "codeEditor": {
+        "filename": "solution.py",
+        "code": "import time\\nimport functools\\n\\ndef retry(retries=3, delay=1):\\n    def decorator_retry(func):\\n        @functools.wraps(func)\\n        def wrapper_retry(*args, **kwargs):\\n            # TODO: Implement retry logic here\\n            pass\\n        return wrapper_retry\\n    return decorator_retry"
+      },
+      "submissionHistory": [
+        {
+          "attempt": 2,
+          "status": "failed",
+          "message": "Logic Error - 2/5 Tests Passed",
+          "time": "10:45 AM",
+          "icon": "error"
+        },
+        {
+          "attempt": 1,
+          "status": "error",
+          "message": "Syntax Error",
+          "time": "10:15 AM",
+          "icon": "history"
+        }
+      ],
+      "aiFeedback": {
+        "title": "AI Feedback Analysis",
+        "subtitle": "Based on your latest attempt",
+        "critiques": [
+          {
+            "type": "success",
+            "icon": "check_circle",
+            "message": "Great use of functools.wraps. This ensures the metadata of the original function is preserved."
+          },
+          {
+            "type": "warning",
+            "icon": "lightbulb",
+            "message": "You're catching exceptions, but are you re-raising the last one if all retries fail? The current implementation might return None silently."
+          },
+          {
+            "type": "error",
+            "icon": "warning",
+            "message": "Variable scope issue: Ensure the retries counter is correctly handled within the closure or loop."
+          }
+        ],
+        "recommendation": {
+          "title": "Retry Recommendation",
+          "message": "Try using a while loop inside your wrapper instead of recursion to manage the retry count more easily.",
+          "codeSnippet": "while attempts < retries:\\n  try:\\n    return func(*args, **kwargs)\\n  except Exception as e:\\n    ..."
+        },
+        "buttonText": "Ask AI for more hints"
+      }
+    }
+  }
+}

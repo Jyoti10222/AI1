@@ -1,0 +1,2123 @@
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
+const app = express();
+const PORT = 8080;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Config file paths for each payment page
+const configPaths = {
+    'pay': path.join(__dirname, 'config-pay.json'),
+    'pay1': path.join(__dirname, 'config-pay1.json'),
+    'pay2': path.join(__dirname, 'config-pay2.json'),
+    'online': path.join(__dirname, 'config-online.json')
+};
+
+// AI Learning config path
+const aiLearningConfigPath = path.join(__dirname, 'config-ailearning.json');
+
+// Helper function to read config
+const readConfig = (pageId) => {
+    try {
+        const configPath = configPaths[pageId];
+        if (!configPath) return null;
+        const data = fs.readFileSync(configPath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error(`Error reading config for ${pageId}:`, error);
+        return null;
+    }
+};
+
+// Helper function to write config
+const writeConfig = (pageId, config) => {
+    try {
+        const configPath = configPaths[pageId];
+        if (!configPath) return false;
+        fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+        return true;
+    } catch (error) {
+        console.error(`Error writing config for ${pageId}:`, error);
+        return false;
+    }
+};
+
+// =====================
+// PAYMENT CONFIG ROUTES
+// =====================
+
+// GET - Retrieve payment config for a specific page
+app.get('/api/payment-config/:pageId', (req, res) => {
+    const { pageId } = req.params;
+
+    if (!configPaths[pageId]) {
+        return res.status(400).json({
+            success: false,
+            message: `Invalid page ID. Use: pay, pay1, pay2, or online`
+        });
+    }
+
+    const config = readConfig(pageId);
+    if (config) {
+        res.json({
+            success: true,
+            pageId,
+            data: config
+        });
+    } else {
+        res.status(500).json({
+            success: false,
+            message: `Failed to read payment configuration for ${pageId}`
+        });
+    }
+});
+
+// GET - Retrieve all payment configs
+app.get('/api/payment-config', (req, res) => {
+    const allConfigs = {};
+    for (const pageId of Object.keys(configPaths)) {
+        allConfigs[pageId] = readConfig(pageId);
+    }
+    res.json({
+        success: true,
+        data: allConfigs
+    });
+});
+
+// PUT - Update payment config for a specific page
+app.put('/api/payment-config/:pageId', (req, res) => {
+    const { pageId } = req.params;
+
+    if (!configPaths[pageId]) {
+        return res.status(400).json({
+            success: false,
+            message: `Invalid page ID. Use: pay, pay1, pay2, or online`
+        });
+    }
+
+    // Handle both one-time payment and subscription models
+    const { originalPrice, discount, totalAmount, discountLabel, courseName, courseDuration, price, period, description, title } = req.body;
+
+    const currentConfig = readConfig(pageId);
+    if (!currentConfig) {
+        return res.status(500).json({
+            success: false,
+            message: `Failed to read current configuration for ${pageId}`
+        });
+    }
+
+    let updatedConfig;
+    if (pageId === 'online') {
+        // Subscription model for Online.html
+        updatedConfig = {
+            ...currentConfig,
+            ...(price !== undefined && { price }),
+            ...(period !== undefined && { period }),
+            ...(description !== undefined && { description }),
+            ...(title !== undefined && { title })
+        };
+    } else {
+        // One-time payment model for Pay, Pay1, Pay2
+        updatedConfig = {
+            ...currentConfig,
+            ...(originalPrice !== undefined && { originalPrice }),
+            ...(discount !== undefined && { discount }),
+            ...(totalAmount !== undefined && { totalAmount }),
+            ...(discountLabel !== undefined && { discountLabel }),
+            ...(courseName !== undefined && { courseName }),
+            ...(courseDuration !== undefined && { courseDuration })
+        };
+    }
+
+    if (writeConfig(pageId, updatedConfig)) {
+        res.json({
+            success: true,
+            message: `Payment configuration for ${pageId} updated successfully`,
+            data: updatedConfig
+        });
+    } else {
+        res.status(500).json({
+            success: false,
+            message: `Failed to update payment configuration for ${pageId}`
+        });
+    }
+});
+
+// ========================
+// AI LEARNING CONFIG ROUTES
+// ========================
+
+// GET - Retrieve AI Learning config
+app.get('/api/ailearning-config', (req, res) => {
+    try {
+        const data = fs.readFileSync(aiLearningConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        res.json({
+            success: true,
+            data: config
+        });
+    } catch (error) {
+        console.error('Error reading AI learning config:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to read AI learning configuration'
+        });
+    }
+});
+
+// PUT - Update subscription
+app.put('/api/ailearning-config/subscription', (req, res) => {
+    try {
+        const data = fs.readFileSync(aiLearningConfigPath, 'utf8');
+        const config = JSON.parse(data);
+
+        const { price, period } = req.body;
+        if (price !== undefined) config.subscription.price = price;
+        if (period !== undefined) config.subscription.period = period;
+
+        fs.writeFileSync(aiLearningConfigPath, JSON.stringify(config, null, 2));
+        res.json({
+            success: true,
+            message: 'Subscription updated successfully',
+            data: config.subscription
+        });
+    } catch (error) {
+        console.error('Error updating subscription:', error);
+        res.status(500).json({ success: false, message: 'Failed to update subscription' });
+    }
+});
+
+// PUT - Update a specific course
+app.put('/api/ailearning-config/course/:courseId', (req, res) => {
+    try {
+        const data = fs.readFileSync(aiLearningConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { courseId } = req.params;
+
+        const courseIndex = config.courses.findIndex(c => c.id === courseId);
+        if (courseIndex === -1) {
+            return res.status(404).json({ success: false, message: `Course '${courseId}' not found` });
+        }
+
+        const { name, category, description, price, duration, link } = req.body;
+        if (name !== undefined) config.courses[courseIndex].name = name;
+        if (category !== undefined) config.courses[courseIndex].category = category;
+        if (description !== undefined) config.courses[courseIndex].description = description;
+        if (price !== undefined) config.courses[courseIndex].price = price;
+        if (duration !== undefined) config.courses[courseIndex].duration = duration;
+        if (link !== undefined) config.courses[courseIndex].link = link;
+
+        fs.writeFileSync(aiLearningConfigPath, JSON.stringify(config, null, 2));
+        res.json({
+            success: true,
+            message: `Course '${courseId}' updated successfully`,
+            data: config.courses[courseIndex]
+        });
+    } catch (error) {
+        console.error('Error updating course:', error);
+        res.status(500).json({ success: false, message: 'Failed to update course' });
+    }
+});
+
+// ========================
+// ONLINE COURSES CONFIG ROUTES
+// ========================
+const onlineConfigPath = path.join(__dirname, 'config-online.json');
+
+// GET - Retrieve Online courses config
+app.get('/api/online-config', (req, res) => {
+    try {
+        const data = fs.readFileSync(onlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        res.json({
+            success: true,
+            data: config
+        });
+    } catch (error) {
+        console.error('Error reading online config:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to read online configuration'
+        });
+    }
+});
+
+// PUT - Update Batch List (for Faculty Grid)
+app.put('/api/online-config/batches', (req, res) => {
+    try {
+        const data = fs.readFileSync(onlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { batches } = req.body;
+
+        if (!Array.isArray(batches)) {
+            return res.status(400).json({ success: false, message: 'Batches must be an array' });
+        }
+
+        config.batches = batches;
+        fs.writeFileSync(onlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Batches updated successfully', data: config.batches });
+    } catch (error) {
+        console.error('Error updating batches:', error);
+        res.status(500).json({ success: false, message: 'Failed to update batches' });
+    }
+});
+
+// PUT - Update access fee
+app.put('/api/online-config/accessfee', (req, res) => {
+    try {
+        const data = fs.readFileSync(onlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+
+        const { price, period, description } = req.body;
+        if (price !== undefined) config.accessFee.price = price;
+        if (period !== undefined) config.accessFee.period = period;
+        if (description !== undefined) config.accessFee.description = description;
+
+        fs.writeFileSync(onlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({
+            success: true,
+            message: 'Access fee updated successfully',
+            data: config.accessFee
+        });
+    } catch (error) {
+        console.error('Error updating access fee:', error);
+        res.status(500).json({ success: false, message: 'Failed to update access fee' });
+    }
+});
+
+// PUT - Update a specific online course
+app.put('/api/online-config/course/:courseId', (req, res) => {
+    try {
+        const data = fs.readFileSync(onlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { courseId } = req.params;
+
+        const courseIndex = config.courses.findIndex(c => c.id === courseId);
+        if (courseIndex === -1) {
+            return res.status(404).json({ success: false, message: `Course '${courseId}' not found` });
+        }
+
+        const { name, price, duration, batchCount, icon, color } = req.body;
+        if (name !== undefined) config.courses[courseIndex].name = name;
+        if (price !== undefined) config.courses[courseIndex].price = price;
+        if (duration !== undefined) config.courses[courseIndex].duration = duration;
+        if (batchCount !== undefined) config.courses[courseIndex].batchCount = batchCount;
+        if (icon !== undefined) config.courses[courseIndex].icon = icon;
+        if (color !== undefined) config.courses[courseIndex].color = color;
+
+        fs.writeFileSync(onlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({
+            success: true,
+            message: `Course '${courseId}' updated successfully`,
+            data: config.courses[courseIndex]
+        });
+    } catch (error) {
+        console.error('Error updating course:', error);
+        res.status(500).json({ success: false, message: 'Failed to update course' });
+    }
+});
+
+// ========================
+// OFFLINE BATCH CONFIG ROUTES
+// ========================
+const offlineConfigPath = path.join(__dirname, 'config-offline.json');
+
+// GET - Retrieve Offline batch config
+app.get('/api/offline-config', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        res.json({ success: true, data: config });
+    } catch (error) {
+        console.error('Error reading offline config:', error);
+        res.status(500).json({ success: false, message: 'Failed to read offline configuration' });
+    }
+});
+
+// PUT - Update batch fee
+app.put('/api/offline-config/batchfee', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { price, currency } = req.body;
+        if (price !== undefined) config.batchFee.price = price;
+        if (currency !== undefined) config.batchFee.currency = currency;
+        fs.writeFileSync(offlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Batch fee updated', data: config.batchFee });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update batch fee' });
+    }
+});
+
+// PUT - Update stats
+app.put('/api/offline-config/stats', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { available, fastFilling } = req.body;
+        if (available !== undefined) config.stats.available = available;
+        if (fastFilling !== undefined) config.stats.fastFilling = fastFilling;
+        fs.writeFileSync(offlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Stats updated', data: config.stats });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update stats' });
+    }
+});
+
+// PUT - Update a specific offline course
+app.put('/api/offline-config/course/:courseId', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { courseId } = req.params;
+        const courseIndex = config.courses.findIndex(c => c.id === courseId);
+        if (courseIndex === -1) {
+            return res.status(404).json({ success: false, message: `Course '${courseId}' not found` });
+        }
+        const { name, category, room, price, totalSeats, enrolledSeats, duration, instructor } = req.body;
+        if (name !== undefined) config.courses[courseIndex].name = name;
+        if (category !== undefined) config.courses[courseIndex].category = category;
+        if (room !== undefined) config.courses[courseIndex].room = room;
+        if (price !== undefined) config.courses[courseIndex].price = price;
+        if (totalSeats !== undefined) config.courses[courseIndex].totalSeats = totalSeats;
+        if (enrolledSeats !== undefined) config.courses[courseIndex].enrolledSeats = enrolledSeats;
+        if (duration !== undefined) config.courses[courseIndex].duration = duration;
+        if (instructor !== undefined) config.courses[courseIndex].instructor = instructor;
+        fs.writeFileSync(offlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: `Course updated`, data: config.courses[courseIndex] });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update course' });
+    }
+});
+
+// ========================
+// HYBRID BATCH CONFIG ROUTES
+// ========================
+const hybridConfigPath = path.join(__dirname, 'config-hybrid.json');
+
+// GET - Retrieve Hybrid batch config
+app.get('/api/hybrid-config', (req, res) => {
+    try {
+        const data = fs.readFileSync(hybridConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        res.json({ success: true, data: config });
+    } catch (error) {
+        console.error('Error reading hybrid config:', error);
+        res.status(500).json({ success: false, message: 'Failed to read hybrid configuration' });
+    }
+});
+
+// PUT - Update page info
+app.put('/api/hybrid-config/pageinfo', (req, res) => {
+    try {
+        const data = fs.readFileSync(hybridConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { title, subtitle } = req.body;
+        if (title) config.pageInfo.title = title;
+        if (subtitle) config.pageInfo.subtitle = subtitle;
+        fs.writeFileSync(hybridConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Page info updated', data: config.pageInfo });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update page info' });
+    }
+});
+
+// PUT - Update a specific hybrid course
+app.put('/api/hybrid-config/course/:courseId', (req, res) => {
+    try {
+        const data = fs.readFileSync(hybridConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { courseId } = req.params;
+        const courseIndex = config.courses.findIndex(c => c.id === courseId);
+
+        if (courseIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Course not found' });
+        }
+
+        // Update course fields
+        const updates = req.body;
+        Object.keys(updates).forEach(key => {
+            if (key !== 'id') {
+                config.courses[courseIndex][key] = updates[key];
+            }
+        });
+
+        fs.writeFileSync(hybridConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: `Course updated`, data: config.courses[courseIndex] });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update course' });
+    }
+});
+
+// POST - Add new online course
+app.post('/api/online-config/course', (req, res) => {
+    try {
+        const data = fs.readFileSync(onlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { name, price, duration, batchCount, icon, color } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ success: false, message: 'Course name is required' });
+        }
+
+        const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+        const newCourse = {
+            id,
+            name,
+            icon: icon || 'school',
+            color: color || 'blue',
+            price: price || 0,
+            duration: duration || '3 Months',
+            batchCount: batchCount || 1
+        };
+
+        config.courses.push(newCourse);
+        fs.writeFileSync(onlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Course added', data: newCourse });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to add course' });
+    }
+});
+
+// POST - Add new offline course
+app.post('/api/offline-config/course', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { name, category, room, price, totalSeats, duration, instructor } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ success: false, message: 'Course name is required' });
+        }
+
+        const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+        const newCourse = {
+            id,
+            name,
+            category: category || 'General',
+            room: room || 'TBD',
+            price: price || 0,
+            totalSeats: totalSeats || 30,
+            enrolledSeats: 0,
+            duration: duration || '3 Months',
+            instructor: instructor || 'TBD'
+        };
+
+        config.courses.push(newCourse);
+        fs.writeFileSync(offlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Course added', data: newCourse });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to add course' });
+    }
+});
+
+// POST - Add new hybrid course
+app.post('/api/hybrid-config/course', (req, res) => {
+    try {
+        const data = fs.readFileSync(hybridConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { name, instructor, level, fee, onlinePercent, offlinePercent, startDate } = req.body;
+
+        if (!name) {
+            return res.status(400).json({ success: false, message: 'Course name is required' });
+        }
+
+        const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+        const newCourse = {
+            id,
+            name,
+            instructor: instructor || 'TBD',
+            level: level || 'Beginner',
+            levelColor: level === 'Advanced' ? 'purple' : 'green',
+            startDate: startDate || 'TBD',
+            onlinePercent: onlinePercent || 50,
+            offlinePercent: offlinePercent || 50,
+            fee: fee || 999,
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLm39_AyR6rQo5vyxLxJv45wqd9ZwS9l5_Lb3wE4NI-S5Gipje6WYgyAG4fQXMHF3YjsnBk2gGWV_26wyJtwATnwcme11hNMVOQ-nQcx2nGfDGVwu9KNuecm09YEfczzZjIxf9AoAXGIkKCy9TJYE_lD2l8jw55EEdhQcQko_I2CJ7l4vcreo37RXUVdlVpBZGvEi9Fi0yIFxq6E41_My7B-JSbbh4OQJHln_GT-2bYbXMlF2K3jgWNCLlGjMz2OL5ajDIQuYyvCw',
+            onlineSchedule: {
+                days: 'TBD',
+                time: 'TBD',
+                description: 'Online Sessions',
+                platform: 'Zoom',
+                platformNote: 'Recordings available'
+            },
+            offlineSchedule: {
+                days: 'TBD',
+                time: 'TBD',
+                description: 'Lab Sessions',
+                location: 'TBD',
+                locationNote: 'Main Campus'
+            }
+        };
+
+        config.courses.push(newCourse);
+        fs.writeFileSync(hybridConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Course added', data: newCourse });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to add course' });
+    }
+});
+
+// PUT - Update Offline Batch List (for Faculty Grid)
+app.put('/api/offline-config/batches', (req, res) => {
+    try {
+        const data = fs.readFileSync(offlineConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { batches } = req.body;
+
+        if (!Array.isArray(batches)) {
+            return res.status(400).json({ success: false, message: 'Batches must be an array' });
+        }
+
+        config.batches = batches;
+        fs.writeFileSync(offlineConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Batches updated successfully', data: config.batches });
+    } catch (error) {
+        console.error('Error updating offline batches:', error);
+        res.status(500).json({ success: false, message: 'Failed to update batches' });
+    }
+});
+
+// PUT - Update Hybrid Batch List
+app.put('/api/hybrid-config/batches', (req, res) => {
+    try {
+        const data = fs.readFileSync(hybridConfigPath, 'utf8');
+        const config = JSON.parse(data);
+        const { batches } = req.body;
+
+        if (!Array.isArray(batches)) {
+            return res.status(400).json({ success: false, message: 'Batches must be an array' });
+        }
+
+        config.batches = batches;
+        fs.writeFileSync(hybridConfigPath, JSON.stringify(config, null, 2));
+        res.json({ success: true, message: 'Batches updated successfully', data: config.batches });
+    } catch (error) {
+        console.error('Error updating hybrid batches:', error);
+        res.status(500).json({ success: false, message: 'Failed to update batches' });
+    }
+});
+
+// ========================
+// STUDENT MANAGEMENT API
+// ========================
+const studentsDbPath = path.join(__dirname, 'students.json');
+
+// Helper: Read students from JSON file
+function readStudents() {
+    try {
+        if (!fs.existsSync(studentsDbPath)) {
+            fs.writeFileSync(studentsDbPath, JSON.stringify({ students: [], lastUpdated: null }, null, 2));
+        }
+        const data = fs.readFileSync(studentsDbPath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading students:', error);
+        return { students: [], lastUpdated: null };
+    }
+}
+
+// Helper: Write students to JSON file
+function writeStudents(studentsData) {
+    try {
+        studentsData.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(studentsDbPath, JSON.stringify(studentsData, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error writing students:', error);
+        return false;
+    }
+}
+
+// GET - Retrieve all students
+app.get('/api/students', (req, res) => {
+    try {
+        const data = readStudents();
+        res.json({
+            success: true,
+            count: data.students.length,
+            data: data.students
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve students' });
+    }
+});
+
+// GET - Retrieve specific student by ID
+app.get('/api/students/:id', (req, res) => {
+    try {
+        const data = readStudents();
+        const student = data.students.find(s => s.id === req.params.id);
+        if (!student) {
+            return res.status(404).json({ success: false, message: 'Student not found' });
+        }
+        res.json({ success: true, data: student });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve student' });
+    }
+});
+
+// POST - Create new student
+app.post('/api/students', (req, res) => {
+    try {
+        const data = readStudents();
+
+        // Generate smart ID: YYMM#### format
+        const now = new Date();
+        const year = String(now.getFullYear()).slice(-2); // Last 2 digits of year
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Month with leading zero
+        const yearMonth = year + month; // e.g., "2601" for January 2026
+
+        // Find the highest sequence number for this year-month
+        const studentsThisMonth = data.students.filter(s => s.id && s.id.startsWith(yearMonth));
+        let maxSequence = 0;
+
+        studentsThisMonth.forEach(student => {
+            const sequencePart = student.id.slice(4); // Get last 4 digits
+            const sequence = parseInt(sequencePart, 10);
+            if (!isNaN(sequence) && sequence > maxSequence) {
+                maxSequence = sequence;
+            }
+        });
+
+        // Increment sequence for new student
+        const newSequence = maxSequence + 1;
+        const sequenceStr = String(newSequence).padStart(4, '0'); // 4 digits with leading zeros
+        const studentId = yearMonth + sequenceStr; // e.g., "26010001"
+
+        const newStudent = {
+            id: studentId,
+            ...req.body,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+
+        data.students.unshift(newStudent); // Add to beginning
+        if (writeStudents(data)) {
+            res.status(201).json({ success: true, message: 'Student created successfully', data: newStudent });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save student' });
+        }
+    } catch (error) {
+        console.error('Error creating student:', error);
+        res.status(500).json({ success: false, message: 'Failed to create student' });
+    }
+});
+
+// POST - Migrate students from localStorage to backend
+app.post('/api/students/migrate', (req, res) => {
+    try {
+        const data = readStudents();
+        const { students: incomingStudents } = req.body;
+
+        if (!Array.isArray(incomingStudents)) {
+            return res.status(400).json({ success: false, message: 'Students must be an array' });
+        }
+
+        let migratedCount = 0;
+
+        incomingStudents.forEach(student => {
+            // Check if student already exists (by email)
+            const exists = data.students.find(s => s.email === student.email);
+            if (!exists) {
+                // Generate ID based on student's timestamp or current date
+                const studentDate = student.timestamp ? new Date(student.timestamp) : new Date();
+                const year = String(studentDate.getFullYear()).slice(-2);
+                const month = String(studentDate.getMonth() + 1).padStart(2, '0');
+                const yearMonth = year + month;
+
+                // Find sequence for this student's month
+                const studentsThisMonth = data.students.filter(s => s.id && s.id.startsWith(yearMonth));
+                let maxSequence = 0;
+                studentsThisMonth.forEach(s => {
+                    const seq = parseInt(s.id.slice(4), 10);
+                    if (!isNaN(seq) && seq > maxSequence) maxSequence = seq;
+                });
+
+                const newSequence = maxSequence + 1;
+                const studentId = yearMonth + String(newSequence).padStart(4, '0');
+
+                data.students.push({
+                    id: studentId,
+                    ...student,
+                    createdAt: student.timestamp || new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                });
+                migratedCount++;
+            }
+        });
+
+        if (writeStudents(data)) {
+            res.json({
+                success: true,
+                message: `Migrated ${migratedCount} students successfully`,
+                migratedCount,
+                totalStudents: data.students.length
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save migrated students' });
+        }
+    } catch (error) {
+        console.error('Error migrating students:', error);
+        res.status(500).json({ success: false, message: 'Failed to migrate students' });
+    }
+});
+
+// PUT - Update student
+app.put('/api/students/:id', (req, res) => {
+    try {
+        const data = readStudents();
+        const index = data.students.findIndex(s => s.id === req.params.id);
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Student not found' });
+        }
+        data.students[index] = {
+            ...data.students[index],
+            ...req.body,
+            id: req.params.id, // Preserve ID
+            updatedAt: new Date().toISOString()
+        };
+        if (writeStudents(data)) {
+            res.json({ success: true, message: 'Student updated successfully', data: data.students[index] });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to update student' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to update student' });
+    }
+});
+
+// DELETE - Remove student
+app.delete('/api/students/:id', (req, res) => {
+    try {
+        const data = readStudents();
+        const index = data.students.findIndex(s => s.id === req.params.id);
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Student not found' });
+        }
+        const deleted = data.students.splice(index, 1)[0];
+        if (writeStudents(data)) {
+            res.json({ success: true, message: 'Student deleted successfully', data: deleted });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to delete student' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to delete student' });
+    }
+});
+
+// GET - Dashboard statistics
+app.get('/api/students/stats/dashboard', (req, res) => {
+    try {
+        const data = readStudents();
+        const students = data.students;
+
+        // Calculate statistics
+        const totalStudents = students.length;
+        const uniqueCourses = new Set(students.map(s => s.desiredCourse).filter(c => c));
+        const activeCourses = uniqueCourses.size;
+
+        // Calculate average completion (mock based on enrollment)
+        const baseCompletion = 68;
+        const variance = totalStudents > 0 ? Math.min(Math.floor(totalStudents / 20), 7) : 0;
+        const avgCompletion = Math.min(baseCompletion + variance, 85);
+
+        // Calculate course rating
+        const baseRating = 4.6;
+        const ratingBoost = totalStudents > 0 ? Math.min(totalStudents / 1000, 0.3) : 0;
+        const courseRating = Math.min(baseRating + ratingBoost, 5.0);
+
+        // Reviews count
+        const reviewCount = Math.floor(totalStudents * 0.27);
+
+        res.json({
+            success: true,
+            data: {
+                totalStudents,
+                activeCourses,
+                avgCompletion,
+                courseRating: parseFloat(courseRating.toFixed(1)),
+                reviewCount,
+                trendPercent: totalStudents > 0 ? Math.min(Math.round((totalStudents / 100) * 12), 25) : 0
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to calculate statistics' });
+    }
+});
+
+// ========================
+// USER AUTHENTICATION API WITH EMAIL VERIFICATION
+// ========================
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+
+// Load email configuration
+let emailConfig;
+try {
+    emailConfig = require('./email-config.js');
+} catch (error) {
+    console.warn('⚠️  Email configuration not found. Email features will be disabled.');
+    emailConfig = null;
+}
+
+const usersDbPath = path.join(__dirname, 'users.json');
+
+// Helper: Read users from JSON file
+function readUsers() {
+    try {
+        if (!fs.existsSync(usersDbPath)) {
+            fs.writeFileSync(usersDbPath, JSON.stringify({ users: [], lastUpdated: null }, null, 2));
+        }
+        const data = fs.readFileSync(usersDbPath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading users:', error);
+        return { users: [], lastUpdated: null };
+    }
+}
+
+// Helper: Write users to JSON file
+function writeUsers(usersData) {
+    try {
+        usersData.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(usersDbPath, JSON.stringify(usersData, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error writing users:', error);
+        return false;
+    }
+}
+
+// Create email transporter
+let transporter = null;
+if (emailConfig && emailConfig.email) {
+    try {
+        transporter = nodemailer.createTransport({
+            service: emailConfig.email.service,
+            auth: emailConfig.email.auth
+        });
+        console.log('✅ Email service configured successfully');
+    } catch (error) {
+        console.error('❌ Failed to configure email service:', error.message);
+    }
+}
+
+// Helper: Generate verification token
+function generateVerificationToken() {
+    return crypto.randomBytes(32).toString('hex');
+}
+
+// Helper: Send verification email
+async function sendVerificationEmail(email, firstName, verificationToken) {
+    if (!transporter) {
+        console.warn('⚠️  Email service not configured. Skipping email send.');
+        return false;
+    }
+
+    const verificationLink = `${emailConfig.appUrl}/A3Login.html?verified=true&email=${encodeURIComponent(email)}`;
+
+    const mailOptions = {
+        from: `"${emailConfig.email.from.name}" <${emailConfig.email.from.address}>`,
+        to: email,
+        subject: '🎓 Welcome to TECH-PRO AI - Verify Your Email',
+        html: `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f8fafc; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <!-- Header with gradient -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); padding: 40px 30px; text-align: center;">
+                            <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; display: inline-block;">
+                                <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 900; letter-spacing: -0.5px;">
+                                    🚀 TECH-PRO AI
+                                </h1>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 50px 40px;">
+                            <h2 style="margin: 0 0 20px; color: #1e293b; font-size: 28px; font-weight: 700;">
+                                Welcome, ${firstName}! 👋
+                            </h2>
+                            <p style="margin: 0 0 25px; color: #475569; font-size: 16px; line-height: 1.6;">
+                                Thank you for joining <strong>TECH-PRO AI</strong>, your gateway to cutting-edge technology education powered by artificial intelligence.
+                            </p>
+                            <p style="margin: 0 0 30px; color: #475569; font-size: 16px; line-height: 1.6;">
+                                Your account has been successfully created! You can now log in and start your learning journey.
+                            </p>
+                            
+                            <!-- CTA Button -->
+                            <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="${verificationLink}" style="display: inline-block; padding: 16px 36px; background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); transition: all 0.3s;">
+                                            ✨ Login to Your Account
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Info Box -->
+                            <div style="background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); border-left: 4px solid #3b82f6; padding: 20px; border-radius: 8px; margin: 30px 0;">
+                                <p style="margin: 0 0 10px; color: #1e40af; font-weight: 700; font-size: 14px;">
+                                    📧 Your Account Details
+                                </p>
+                                <p style="margin: 0; color: #1e40af; font-size: 14px; line-height: 1.6;">
+                                    <strong>Email:</strong> ${email}<br>
+                                    <strong>Registration Date:</strong> ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                </p>
+                            </div>
+                            
+                            <!-- What's Next -->
+                            <div style="margin: 30px 0;">
+                                <h3 style="margin: 0 0 15px; color: #1e293b; font-size: 20px; font-weight: 700;">
+                                    🎯 What's Next?
+                                </h3>
+                                <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 15px; line-height: 1.8;">
+                                    <li>Complete your profile to personalize your experience</li>
+                                    <li>Take our AI-powered skill assessment (5 minutes)</li>
+                                    <li>Get a customized learning path based on your goals</li>
+                                    <li>Start learning with our expert instructors</li>
+                                </ul>
+                            </div>
+                            
+                            <p style="margin: 30px 0 0; color: #64748b; font-size: 14px; line-height: 1.6;">
+                                If you didn't create this account, please ignore this email or contact our support team.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
+                            <p style="margin: 0 0 15px; color: #64748b; font-size: 13px; text-align: center;">
+                                Need help? Contact us at <a href="mailto:support@techproai.com" style="color: #3b82f6; text-decoration: none; font-weight: 600;">support@techproai.com</a>
+                            </p>
+                            <p style="margin: 0; color: #94a3b8; font-size: 12px; text-align: center;">
+                                © ${new Date().getFullYear()} TECH-PRO AI Inc. All rights reserved.<br>
+                                Empowering the next generation of tech professionals.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+        `
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`✅ Verification email sent to: ${email}`);
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send verification email:', error.message);
+        return false;
+    }
+}
+
+// Helper: Send login success email
+async function sendLoginSuccessEmail(email, firstName) {
+    if (!transporter) {
+        console.warn('⚠️  Email service not configured. Skipping email send.');
+        return false;
+    }
+
+    const loginTime = new Date().toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Kolkata'
+    });
+
+    const mailOptions = {
+        from: `"${emailConfig.email.from.name}" <${emailConfig.email.from.address}>`,
+        to: email,
+        subject: '✅ Successful Login to TECH-PRO AI',
+        html: `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Notification</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f8fafc; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <!-- Header with gradient -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 40px 30px; text-align: center;">
+                            <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 12px; padding: 20px; display: inline-block;">
+                                <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 900; letter-spacing: -0.5px;">
+                                    ✅ TECH-PRO AI
+                                </h1>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 50px 40px;">
+                            <h2 style="margin: 0 0 20px; color: #1e293b; font-size: 28px; font-weight: 700;">
+                                Welcome Back, ${firstName}! 👋
+                            </h2>
+                            <p style="margin: 0 0 25px; color: #475569; font-size: 16px; line-height: 1.6;">
+                                You have successfully logged in to your <strong>TECH-PRO AI</strong> account.
+                            </p>
+                            
+                            <!-- Login Details Box -->
+                            <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid #10b981; padding: 20px; border-radius: 8px; margin: 30px 0;">
+                                <p style="margin: 0 0 10px; color: #065f46; font-weight: 700; font-size: 14px;">
+                                    🔐 Login Details
+                                </p>
+                                <p style="margin: 0; color: #065f46; font-size: 14px; line-height: 1.6;">
+                                    <strong>Email:</strong> ${email}<br>
+                                    <strong>Login Time:</strong> ${loginTime}<br>
+                                    <strong>Status:</strong> <span style="color: #10b981; font-weight: 700;">✓ Successful</span>
+                                </p>
+                            </div>
+                            
+                            <!-- Security Notice -->
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px; margin: 30px 0;">
+                                <p style="margin: 0 0 10px; color: #92400e; font-weight: 700; font-size: 14px;">
+                                    🔒 Security Notice
+                                </p>
+                                <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
+                                    If you did not perform this login, please secure your account immediately by changing your password and contacting our support team.
+                                </p>
+                            </div>
+                            
+                            <!-- CTA Button -->
+                            <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="${emailConfig.appUrl}/A5Dashboard.html" style="display: inline-block; padding: 16px 36px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">
+                                            📚 Go to Dashboard
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="margin: 30px 0 0; color: #64748b; font-size: 14px; line-height: 1.6;">
+                                Thank you for choosing TECH-PRO AI for your learning journey. We're here to help you succeed!
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8fafc; padding: 30px 40px; border-top: 1px solid #e2e8f0;">
+                            <p style="margin: 0 0 15px; color: #64748b; font-size: 13px; text-align: center;">
+                                Need help? Contact us at <a href="mailto:support@techproai.com" style="color: #10b981; text-decoration: none; font-weight: 600;">support@techproai.com</a>
+                            </p>
+                            <p style="margin: 0; color: #94a3b8; font-size: 12px; text-align: center;">
+                                © ${new Date().getFullYear()} TECH-PRO AI Inc. All rights reserved.<br>
+                                This is an automated security notification. Please do not reply to this email.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+        `
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`✅ Login success email sent to: ${email}`);
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send login success email:', error.message);
+        return false;
+    }
+}
+
+// POST - User Signup with Email Verification
+app.post('/api/users/signup', async (req, res) => {
+    try {
+        const { firstName, lastName, email, password } = req.body;
+
+        // Validate required fields
+        if (!firstName || !lastName || !email || !password) {
+            return res.status(400).send('MISSING_FIELDS');
+        }
+
+        // Detect if input is email or phone number
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^(\+91|91)?[6-9]\d{9}$/;
+
+        let identifierType = '';
+        let normalizedIdentifier = email.trim();
+
+        if (emailRegex.test(normalizedIdentifier)) {
+            identifierType = 'email';
+        } else if (phoneRegex.test(normalizedIdentifier.replace(/\s+/g, ''))) {
+            identifierType = 'phone';
+            // Normalize phone number (remove spaces, ensure +91 prefix)
+            normalizedIdentifier = normalizedIdentifier.replace(/\s+/g, '');
+            if (!normalizedIdentifier.startsWith('+')) {
+                if (normalizedIdentifier.startsWith('91')) {
+                    normalizedIdentifier = '+' + normalizedIdentifier;
+                } else {
+                    normalizedIdentifier = '+91' + normalizedIdentifier;
+                }
+            }
+        } else {
+            return res.status(400).text('INVALID_EMAIL');
+        }
+
+        const data = readUsers();
+
+        // Check if user already exists
+        const existingUser = data.users.find(u => u.email === normalizedIdentifier);
+        if (existingUser) {
+            return res.status(400).send('ALREADY_REGISTERED');
+        }
+
+        // Generate verification token
+        const verificationToken = generateVerificationToken();
+
+        // Create new user
+        const newUser = {
+            id: Date.now().toString(),
+            firstName,
+            lastName,
+            email: normalizedIdentifier,
+            identifierType, // 'email' or 'phone'
+            password, // In production, this should be hashed!
+            verificationToken,
+            isVerified: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+
+        data.users.push(newUser);
+
+        if (writeUsers(data)) {
+            console.log(`✅ New user registered: ${normalizedIdentifier} (${identifierType})`);
+
+            // Send verification email ONLY if identifier is email
+            if (identifierType === 'email') {
+                const emailSent = await sendVerificationEmail(normalizedIdentifier, firstName, verificationToken);
+
+                if (emailSent) {
+                    res.status(201).send('SIGNUP_SUCCESS_EMAIL_SENT');
+                } else {
+                    res.status(201).send('SIGNUP_SUCCESS');
+                }
+            } else {
+                // Phone number registration - no email sent
+                console.log(`📱 Phone registration - no email sent`);
+                res.status(201).send('SIGNUP_SUCCESS');
+            }
+        } else {
+            res.status(500).send('SERVER_ERROR');
+        }
+    } catch (error) {
+        console.error('Error in signup:', error);
+        res.status(500).send('SERVER_ERROR');
+    }
+});
+
+// GET - Verify Email (optional endpoint if you want to verify via link click)
+app.get('/api/users/verify/:token', (req, res) => {
+    try {
+        const { token } = req.params;
+        const data = readUsers();
+
+        const user = data.users.find(u => u.verificationToken === token);
+
+        if (!user) {
+            return res.status(404).send('Invalid verification token');
+        }
+
+        if (user.isVerified) {
+            return res.send('Email already verified. You can now log in.');
+        }
+
+        // Mark user as verified
+        user.isVerified = true;
+        user.verificationToken = null;
+        user.verifiedAt = new Date().toISOString();
+
+        if (writeUsers(data)) {
+            console.log(`✅ User verified: ${user.email}`);
+            // Redirect to login page
+            res.redirect('/A3Login.html?verified=true');
+        } else {
+            res.status(500).send('Failed to verify email');
+        }
+    } catch (error) {
+        console.error('Error in email verification:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+// POST - User Login
+app.post('/api/users/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Validate required fields
+        if (!email || !password) {
+            return res.status(400).send('MISSING_FIELDS');
+        }
+
+        // Detect if input is email or phone number and normalize
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^(\+91|91)?[6-9]\d{9}$/;
+
+        let normalizedIdentifier = email.trim();
+        let isEmail = false;
+
+        if (emailRegex.test(normalizedIdentifier)) {
+            isEmail = true;
+        } else if (phoneRegex.test(normalizedIdentifier.replace(/\s+/g, ''))) {
+            // Normalize phone number
+            normalizedIdentifier = normalizedIdentifier.replace(/\s+/g, '');
+            if (!normalizedIdentifier.startsWith('+')) {
+                if (normalizedIdentifier.startsWith('91')) {
+                    normalizedIdentifier = '+' + normalizedIdentifier;
+                } else {
+                    normalizedIdentifier = '+91' + normalizedIdentifier;
+                }
+            }
+        } else {
+            return res.status(400).send('INVALID_EMAIL');
+        }
+
+        const data = readUsers();
+
+        // Find user by normalized identifier
+        const user = data.users.find(u => u.email === normalizedIdentifier);
+
+        if (!user) {
+            return res.status(401).send('INVALID_CREDENTIALS');
+        }
+
+        // Check password
+        if (user.password !== password) {
+            return res.status(401).send('INVALID_CREDENTIALS');
+        }
+
+        // Login successful
+        console.log(`✅ User logged in: ${normalizedIdentifier} (${user.identifierType || 'email'})`);
+
+        // Send login success email ONLY if user registered with email
+        if (user.identifierType === 'email' || !user.identifierType) {
+            // Send email (don't wait for it to complete)
+            sendLoginSuccessEmail(normalizedIdentifier, user.firstName).catch(err => {
+                console.error('Error sending login email:', err);
+            });
+        } else {
+            console.log(`📱 Phone login - no email sent`);
+        }
+
+        res.status(200).send('LOGIN_SUCCESS');
+    } catch (error) {
+        console.error('Error in login:', error);
+        res.status(500).send('SERVER_ERROR');
+    }
+});
+
+// GET - Retrieve all users (for admin purposes)
+app.get('/api/users', (req, res) => {
+    try {
+        const data = readUsers();
+        // Don't send passwords in response
+        const usersWithoutPasswords = data.users.map(({ password, ...user }) => user);
+        res.json({
+            success: true,
+            count: data.users.length,
+            data: usersWithoutPasswords
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve users' });
+    }
+});
+
+// ========================
+// BATCH REQUEST MANAGEMENT API
+// ========================
+const batchRequestsPath = path.join(__dirname, 'batch-requests.json');
+
+// Helper: Read batch requests
+function readBatchRequests() {
+    try {
+        if (!fs.existsSync(batchRequestsPath)) {
+            fs.writeFileSync(batchRequestsPath, JSON.stringify({ requests: [], lastUpdated: null }, null, 2));
+        }
+        const data = fs.readFileSync(batchRequestsPath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading batch requests:', error);
+        return { requests: [], lastUpdated: null };
+    }
+}
+
+// Helper: Write batch requests
+function writeBatchRequests(requestsData) {
+    try {
+        requestsData.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(batchRequestsPath, JSON.stringify(requestsData, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error writing batch requests:', error);
+        return false;
+    }
+}
+
+// POST - Create new batch request
+app.post('/api/batch-requests', (req, res) => {
+    try {
+        const data = readBatchRequests();
+        const { studentName, email, phone, courseTrack, preferredTime, batchSize, additionalNotes } = req.body;
+
+        if (!studentName || !email || !courseTrack) {
+            return res.status(400).json({ success: false, message: 'Missing required fields' });
+        }
+
+        const requestId = `req-${Date.now()}`;
+        const newRequest = {
+            id: requestId,
+            studentName,
+            email,
+            phone,
+            courseTrack,
+            preferredTime,
+            batchSize,
+            additionalNotes,
+            status: 'pending',
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+
+        data.requests.unshift(newRequest);
+
+        if (writeBatchRequests(data)) {
+            res.status(201).json({
+                success: true,
+                message: 'Batch request submitted successfully',
+                data: newRequest
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save request' });
+        }
+    } catch (error) {
+        console.error('Error creating batch request:', error);
+        res.status(500).json({ success: false, message: 'Failed to create batch request' });
+    }
+});
+
+// GET - Retrieve all batch requests
+app.get('/api/batch-requests', (req, res) => {
+    try {
+        const data = readBatchRequests();
+        res.json({
+            success: true,
+            count: data.requests.length,
+            data: data.requests
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve batch requests' });
+    }
+});
+
+// GET - Retrieve specific batch request
+app.get('/api/batch-requests/:id', (req, res) => {
+    try {
+        const data = readBatchRequests();
+        const request = data.requests.find(r => r.id === req.params.id);
+        if (!request) {
+            return res.status(404).json({ success: false, message: 'Request not found' });
+        }
+        res.json({ success: true, data: request });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve request' });
+    }
+});
+
+// PUT - Approve batch request
+app.put('/api/batch-requests/:id/approve', async (req, res) => {
+    try {
+        const data = readBatchRequests();
+        const index = data.requests.findIndex(r => r.id === req.params.id);
+
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Request not found' });
+        }
+
+        const request = data.requests[index];
+        request.status = 'approved';
+        request.updatedAt = new Date().toISOString();
+        request.approvedAt = new Date().toISOString();
+
+        if (writeBatchRequests(data)) {
+            // Send approval email
+            if (transporter && request.email) {
+                try {
+                    await transporter.sendMail({
+                        from: emailConfig.email,
+                        to: request.email,
+                        subject: '✅ Your Custom Batch Request Has Been Approved!',
+                        html: `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                                <h2 style="color: #137fec;">Batch Request Approved!</h2>
+                                <p>Dear ${request.studentName},</p>
+                                <p>Great news! Your custom batch request has been approved.</p>
+                                <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                    <h3 style="margin-top: 0;">Request Details:</h3>
+                                    <p><strong>Course:</strong> ${request.courseTrack}</p>
+                                    <p><strong>Preferred Time:</strong> ${request.preferredTime}</p>
+                                    <p><strong>Batch Size:</strong> ${request.batchSize}</p>
+                                    ${request.additionalNotes ? `<p><strong>Notes:</strong> ${request.additionalNotes}</p>` : ''}
+                                </div>
+                                <p>Our team will contact you shortly at <strong>${request.phone}</strong> to finalize the batch schedule and enrollment details.</p>
+                                <p>Thank you for choosing AI-TECH PRO!</p>
+                                <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+                                <p style="color: #6b7280; font-size: 12px;">This is an automated email from AI-TECH PRO. Please do not reply to this email.</p>
+                            </div>
+                        `
+                    });
+                    console.log(`✅ Approval email sent to ${request.email}`);
+                } catch (emailError) {
+                    console.error('Error sending approval email:', emailError);
+                }
+            }
+
+            res.json({
+                success: true,
+                message: 'Request approved and email sent',
+                data: request
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to update request' });
+        }
+    } catch (error) {
+        console.error('Error approving request:', error);
+        res.status(500).json({ success: false, message: 'Failed to approve request' });
+    }
+});
+
+// PUT - Reject batch request
+app.put('/api/batch-requests/:id/reject', async (req, res) => {
+    try {
+        const data = readBatchRequests();
+        const index = data.requests.findIndex(r => r.id === req.params.id);
+
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Request not found' });
+        }
+
+        const request = data.requests[index];
+        const { reason } = req.body;
+
+        request.status = 'rejected';
+        request.updatedAt = new Date().toISOString();
+        request.rejectedAt = new Date().toISOString();
+        request.rejectionReason = reason || 'Not specified';
+
+        if (writeBatchRequests(data)) {
+            // Send rejection email
+            if (transporter && request.email) {
+                try {
+                    await transporter.sendMail({
+                        from: emailConfig.email,
+                        to: request.email,
+                        subject: 'Update on Your Custom Batch Request',
+                        html: `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                                <h2 style="color: #ef4444;">Batch Request Update</h2>
+                                <p>Dear ${request.studentName},</p>
+                                <p>Thank you for your interest in AI-TECH PRO. Unfortunately, we are unable to accommodate your custom batch request at this time.</p>
+                                <div style="background: #fef2f2; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                    <h3 style="margin-top: 0;">Request Details:</h3>
+                                    <p><strong>Course:</strong> ${request.courseTrack}</p>
+                                    <p><strong>Preferred Time:</strong> ${request.preferredTime}</p>
+                                    ${reason ? `<p><strong>Reason:</strong> ${reason}</p>` : ''}
+                                </div>
+                                <p>However, we have many other batch options available! Please check our regular batch schedule or contact us to explore alternative options.</p>
+                                <p>We appreciate your understanding and hope to serve you in the future.</p>
+                                <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+                                <p style="color: #6b7280; font-size: 12px;">This is an automated email from AI-TECH PRO. Please do not reply to this email.</p>
+                            </div>
+                        `
+                    });
+                    console.log(`✅ Rejection email sent to ${request.email}`);
+                } catch (emailError) {
+                    console.error('Error sending rejection email:', emailError);
+                }
+            }
+
+            res.json({
+                success: true,
+                message: 'Request rejected and email sent',
+                data: request
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to update request' });
+        }
+    } catch (error) {
+        console.error('Error rejecting request:', error);
+        res.status(500).json({ success: false, message: 'Failed to reject request' });
+    }
+});
+
+// DELETE - Delete batch request
+app.delete('/api/batch-requests/:id', (req, res) => {
+    try {
+        const data = readBatchRequests();
+        const index = data.requests.findIndex(r => r.id === req.params.id);
+
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Request not found' });
+        }
+
+        const deleted = data.requests.splice(index, 1)[0];
+
+        if (writeBatchRequests(data)) {
+            res.json({ success: true, message: 'Request deleted successfully', data: deleted });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to delete request' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to delete request' });
+    }
+});
+
+// ========================
+// PRICING PLANS API
+// ========================
+const pricingPlansPath = path.join(__dirname, 'pricing-plans.json');
+
+// Helper: Read pricing plans
+function readPricingPlans() {
+    try {
+        if (!fs.existsSync(pricingPlansPath)) {
+            const defaultPlans = {
+                plans: [
+                    {
+                        planName: "Basic Plan",
+                        monthlyPrice: "0.00",
+                        durationCycle: "Lifetime",
+                        allowUpgrades: true,
+                        freeTrial: false,
+                        trialDays: 0,
+                        autoRenew: false,
+                        prioritySupport: false,
+                        contactSales: false
+                    },
+                    {
+                        planName: "Pro Plan",
+                        monthlyPrice: "29.00",
+                        durationCycle: "Monthly",
+                        allowUpgrades: false,
+                        freeTrial: true,
+                        trialDays: 14,
+                        autoRenew: true,
+                        prioritySupport: false,
+                        contactSales: false
+                    },
+                    {
+                        planName: "Enterprise",
+                        monthlyPrice: "99.00",
+                        durationCycle: "Annual",
+                        allowUpgrades: false,
+                        freeTrial: false,
+                        trialDays: 0,
+                        autoRenew: false,
+                        prioritySupport: true,
+                        contactSales: false
+                    }
+                ],
+                lastUpdated: null
+            };
+            fs.writeFileSync(pricingPlansPath, JSON.stringify(defaultPlans, null, 2));
+        }
+        const data = fs.readFileSync(pricingPlansPath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading pricing plans:', error);
+        return { plans: [], lastUpdated: null };
+    }
+}
+
+// Helper: Write pricing plans
+function writePricingPlans(plansData) {
+    try {
+        plansData.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(pricingPlansPath, JSON.stringify(plansData, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error writing pricing plans:', error);
+        return false;
+    }
+}
+
+// GET - Retrieve all pricing plans
+app.get('/api/pricing', (req, res) => {
+    try {
+        const data = readPricingPlans();
+        res.json(data.plans);
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to retrieve pricing plans' });
+    }
+});
+
+// POST - Save/Update pricing plan
+app.post('/api/pricing/save', (req, res) => {
+    try {
+        const data = readPricingPlans();
+        const { planName, monthlyPrice, durationCycle, allowUpgrades, freeTrial, trialDays, autoRenew, prioritySupport, contactSales } = req.body;
+
+        if (!planName) {
+            return res.status(400).json({ success: false, message: 'Plan name is required' });
+        }
+
+        // Find existing plan or create new one
+        const planIndex = data.plans.findIndex(p => p.planName === planName);
+
+        const updatedPlan = {
+            planName,
+            monthlyPrice: monthlyPrice || "0.00",
+            durationCycle: durationCycle || "Monthly",
+            allowUpgrades: allowUpgrades || false,
+            freeTrial: freeTrial || false,
+            trialDays: trialDays || 0,
+            autoRenew: autoRenew || false,
+            prioritySupport: prioritySupport || false,
+            contactSales: contactSales || false
+        };
+
+        if (planIndex !== -1) {
+            // Update existing plan
+            data.plans[planIndex] = updatedPlan;
+        } else {
+            // Add new plan
+            data.plans.push(updatedPlan);
+        }
+
+        if (writePricingPlans(data)) {
+            res.json({ success: true, message: 'Pricing plan saved successfully', data: updatedPlan });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save pricing plan' });
+        }
+    } catch (error) {
+        console.error('Error saving pricing plan:', error);
+        res.status(500).json({ success: false, message: 'Failed to save pricing plan' });
+    }
+});
+
+// ========================
+// AICC COURSE MANAGEMENT API
+// ========================
+const multer = require('multer');
+const aiccCoursePath = path.join(__dirname, 'aicc-course.json');
+const uploadsDir = path.join(__dirname, 'uploads');
+
+// Create uploads directory if it doesn't exist
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+// Configure multer for video uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadsDir);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, 'video-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 500 * 1024 * 1024 }, // 500MB limit
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = /mp4|webm|avi|mov|mkv/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+
+        if (extname && mimetype) {
+            return cb(null, true);
+        } else {
+            cb(new Error('Only video files are allowed!'));
+        }
+    }
+});
+
+// Helper: Read AiCC course data
+function readAiccCourse() {
+    try {
+        if (!fs.existsSync(aiccCoursePath)) {
+            const defaultData = {
+                courseInfo: {
+                    courseTitle: "Cloud Computing",
+                    currentTopic: "Virtualization",
+                    tutorName: "Sarah (AI Tutor)",
+                    tutorAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBm97sI5Wu9X-H9bNTD_7zKgD2N8D3OfhjP9F9sotk29A7R7gC4nu061bPzIv_-u10hRC8XTK0_eSfIRCVEzFXCqHfn7m7GajQzUHH3QAyt4NVTd6mT7OzD58bDwqnkiAp1-Xyhc39SJC025sbZTeziXBRXUPL2UmtqP6wobbcNj745Wg_Maan7CFvuoQOwpdo20Nxipjp7EAnUi9XqrBhvVBVIrdWYj4VVx2nr0i5d2kalhMMQsBo5FOmOW0gtSMdbwHdYXNmzrxKn",
+                    aiMessage: "Serverless computing allows you to build and run applications without managing infrastructure.",
+                    videoDuration: "12:45",
+                    timeRemaining: "14 mins remaining"
+                },
+                videoInfo: {
+                    youtubeId: "s_qQfOitQIs",
+                    backgroundImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfp4ylADa58d_Dh-XYy3TCjyhn0H23sLmDA39CvpCb2xc-aaKN85KmOKKvOcvhiUSCsDSZDFErOT8axsCcuCNe12FXQoIDajzNuhuFdEWcnw2qYT3vrlOFVpT04zlr6bE5mqV_jrZa0NB4es4wbYR9oZYgBwQW2R1mVEBzDhTTw4CD-_aO_7aIJb3Wi6b7aKBzkobJoUqvtiSvRJYE48jkULEOOx0bKy8pITq95RvFGxZVoJLoow0RrJcPs35aOM0-482thXbOqObE",
+                    uploadedVideo: null
+                },
+                modules: [
+                    { id: 1, name: "1. Introduction", status: "completed", locked: false },
+                    { id: 2, name: "2. Virtualization", status: "active", locked: false },
+                    { id: 3, name: "3. Containers & K8s", status: "locked", locked: true },
+                    { id: 4, name: "4. Serverless Arch", status: "locked", locked: true },
+                    { id: 5, name: "5. Cloud Security", status: "locked", locked: true }
+                ],
+                lastUpdated: null
+            };
+            fs.writeFileSync(aiccCoursePath, JSON.stringify(defaultData, null, 2));
+        }
+        const data = fs.readFileSync(aiccCoursePath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading AiCC course data:', error);
+        return null;
+    }
+}
+
+// Helper: Write AiCC course data
+function writeAiccCourse(data) {
+    try {
+        data.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(aiccCoursePath, JSON.stringify(data, null, 2));
+        return true;
+    } catch (error) {
+        console.error('Error writing AiCC course data:', error);
+        return false;
+    }
+}
+
+// GET - Retrieve course info
+app.get('/api/aicc-course/course-info', (req, res) => {
+    try {
+        const data = readAiccCourse();
+        if (data) {
+            res.json({ success: true, data: data.courseInfo });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to read course info' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// POST - Update course info
+app.post('/api/aicc-course/course-info', (req, res) => {
+    try {
+        const data = readAiccCourse();
+        if (!data) {
+            return res.status(500).json({ success: false, message: 'Failed to read course data' });
+        }
+
+        data.courseInfo = {
+            ...data.courseInfo,
+            ...req.body
+        };
+
+        if (writeAiccCourse(data)) {
+            res.json({ success: true, message: 'Course info updated successfully', data: data.courseInfo });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save course info' });
+        }
+    } catch (error) {
+        console.error('Error updating course info:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// POST - Upload video file
+app.post('/api/aicc-course/upload-video', upload.single('video'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, message: 'No video file uploaded' });
+        }
+
+        const data = readAiccCourse();
+        if (!data) {
+            return res.status(500).json({ success: false, message: 'Failed to read course data' });
+        }
+
+        data.videoInfo.uploadedVideo = {
+            filename: req.file.filename,
+            originalName: req.file.originalname,
+            path: req.file.path,
+            size: req.file.size,
+            uploadedAt: new Date().toISOString()
+        };
+
+        if (writeAiccCourse(data)) {
+            res.json({
+                success: true,
+                message: 'Video uploaded successfully',
+                data: data.videoInfo.uploadedVideo
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save video info' });
+        }
+    } catch (error) {
+        console.error('Error uploading video:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// POST - Update YouTube video
+app.post('/api/aicc-course/youtube-video', (req, res) => {
+    try {
+        const data = readAiccCourse();
+        if (!data) {
+            return res.status(500).json({ success: false, message: 'Failed to read course data' });
+        }
+
+        const { youtubeId, backgroundImage } = req.body;
+
+        if (youtubeId) data.videoInfo.youtubeId = youtubeId;
+        if (backgroundImage) data.videoInfo.backgroundImage = backgroundImage;
+
+        if (writeAiccCourse(data)) {
+            res.json({ success: true, message: 'YouTube video updated successfully', data: data.videoInfo });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save video info' });
+        }
+    } catch (error) {
+        console.error('Error updating YouTube video:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// GET - Retrieve modules
+app.get('/api/aicc-course/modules', (req, res) => {
+    try {
+        const data = readAiccCourse();
+        if (data) {
+            res.json({ success: true, data: data.modules });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to read modules' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+// POST - Update modules
+app.post('/api/aicc-course/modules', (req, res) => {
+    try {
+        const data = readAiccCourse();
+        if (!data) {
+            return res.status(500).json({ success: false, message: 'Failed to read course data' });
+        }
+
+        const { modules } = req.body;
+
+        if (!Array.isArray(modules)) {
+            return res.status(400).json({ success: false, message: 'Modules must be an array' });
+        }
+
+        data.modules = modules;
+
+        if (writeAiccCourse(data)) {
+            res.json({ success: true, message: 'Modules updated successfully', data: data.modules });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to save modules' });
+        }
+    } catch (error) {
+        // PUT - Update assignments list
+        app.put('/api/assignments-config/:assignmentId/assignments-list', (req, res) => {
+            try {
+                const { assignmentId } = req.params;
+                const config = readAssignmentsConfig();
+
+                if (!config.assignments[assignmentId]) {
+                    return res.status(404).json({ success: false, message: `Assignment '${assignmentId}' not found` });
+                }
+
+                const { assignmentsList } = req.body;
+                if (!Array.isArray(assignmentsList)) {
+                    return res.status(400).json({ success: false, message: 'Assignments list must be an array' });
+                }
+
+                config.assignments[assignmentId].assignmentsList = assignmentsList;
+
+                if (writeAssignmentsConfig(config)) {
+                    res.json({
+                        success: true,
+                        message: 'Assignments list updated successfully',
+                        data: config.assignments[assignmentId].assignmentsList
+                    });
+                } else {
+                    res.status(500).json({ success: false, message: 'Failed to save assignments list' });
+                }
+            } catch (error) {
+                console.error('Error updating assignments list:', error);
+                res.status(500).json({ success: false, message: 'Server error' });
+            }
+        });
+
+        // PUT - Update main assignment details
+        app.put('/api/assignments-config/:assignmentId/main-assignment', (req, res) => {
+            try {
+                const { assignmentId } = req.params;
+                const config = readAssignmentsConfig();
+
+                if (!config.assignments[assignmentId]) {
+                    return res.status(404).json({ success: false, message: `Assignment '${assignmentId}' not found` });
+                }
+
+                config.assignments[assignmentId].mainAssignment = {
+                    ...config.assignments[assignmentId].mainAssignment,
+                    ...req.body
+                };
+
+                if (writeAssignmentsConfig(config)) {
+                    res.json({
+                        success: true,
+                        message: 'Main assignment updated successfully',
+                        data: config.assignments[assignmentId].mainAssignment
+                    });
+                } else {
+                    res.status(500).json({ success: false, message: 'Failed to save main assignment' });
+                }
+            } catch (error) {
+                console.error('Error updating main assignment:', error);
+                res.status(500).json({ success: false, message: 'Server error' });
+            }
+        });
+
+        // PUT - Update code editor content
+        app.put('/api/assignments-config/:assignmentId/code-editor', (req, res) => {
+            try {
+                const { assignmentId } = req.params;
+                const config = readAssignmentsConfig();
+
+                if (!config.assignments[assignmentId]) {
+                    return res.status(404).json({ success: false, message: `Assignment '${assignmentId}' not found` });
+                }
+
+                const { filename, code } = req.body;
+                if (filename !== undefined) config.assignments[assignmentId].codeEditor.filename = filename;
+                if (code !== undefined) config.assignments[assignmentId].codeEditor.code = code;
+
+                if (writeAssignmentsConfig(config)) {
+                    res.json({
+                        success: true,
+                        message: 'Code editor updated successfully',
+                        data: config.assignments[assignmentId].codeEditor
+                    });
+                } else {
+                    res.status(500).json({ success: false, message: 'Failed to save code editor' });
+                }
+            } catch (error) {
+                console.error('Error updating code editor:', error);
+                res.status(500).json({ success: false, message: 'Server error' });
+            }
+        });
+
+        // PUT - Update submission history
+        app.put('/api/assignments-config/:assignmentId/submission-history', (req, res) => {
+            try {
+                const { assignmentId } = req.params;
+                const config = readAssignmentsConfig();
+
+                if (!config.assignments[assignmentId]) {
+                    return res.status(404).json({ success: false, message: `Assignment '${assignmentId}' not found` });
+                }
+
+                const { submissionHistory } = req.body;
+                if (!Array.isArray(submissionHistory)) {
+                    return res.status(400).json({ success: false, message: 'Submission history must be an array' });
+                }
+
+                config.assignments[assignmentId].submissionHistory = submissionHistory;
+
+                if (writeAssignmentsConfig(config)) {
+                    res.json({
+                        success: true,
+                        message: 'Submission history updated successfully',
+                        data: config.assignments[assignmentId].submissionHistory
+                    });
+                } else {
+                    res.status(500).json({ success: false, message: 'Failed to save submission history' });
+                }
+            } catch (error) {
+                console.error('Error updating submission history:', error);
+                res.status(500).json({ success: false, message: 'Server error' });
+            }
+        });
+
+        // PUT - Update AI feedback
+        app.put('/api/assignments-config/:assignmentId/ai-feedback', (req, res) => {
+            try {
+                const { assignmentId } = req.params;
+                const config = readAssignmentsConfig();
+
+                if (!config.assignments[assignmentId]) {
+                    return res.status(404).json({ success: false, message: `Assignment '${assignmentId}' not found` });
+                }
+
+                config.assignments[assignmentId].aiFeedback = {
+                    ...config.assignments[assignmentId].aiFeedback,
+                    ...req.body
+                };
+
+                if (writeAssignmentsConfig(config)) {
+                    res.json({
+                        success: true,
+                        message: 'AI feedback updated successfully',
+                        data: config.assignments[assignmentId].aiFeedback
+                    });
+                } else {
+                    res.status(500).json({ success: false, message: 'Failed to save AI feedback' });
+                }
+            } catch (error) {
+                console.error('Error updating AI feedback:', error);
+                res.status(500).json({ success: false, message: 'Server error' });
+            }
+        });
+
+
+        // Start server
+        app.listen(PORT, () => {
+            console.log(`╔════════════════════════════════════════════════════════╗`);
+            console.log(`║   Tech-Pro AI Backend Server                           ║`);
+            console.log(`║   Port: ${PORT}                                           ║`);
+            console.log(`╠════════════════════════════════════════════════════════╣`);
+            console.log(`║   APIs: users, payment, ailearning, online, offline   ║`);
+            console.log(`╚════════════════════════════════════════════════════════╝`);
+        });

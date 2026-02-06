@@ -1,0 +1,64 @@
+{
+    "courses": [
+        {
+            "id": "ai",
+            "name": "Artificial Intelligence",
+            "description": "Machine Learning, Deep Learning, NLP, Computer Vision",
+            "icon": "psychology",
+            "gradient": "from-purple-500 to-pink-500",
+            "totalMaterials": 56,
+            "totalModules": 10,
+            "totalDownloads": 8500,
+            "active": true,
+            "createdDate": "2025-01-01T00:00:00Z"
+        },
+        {
+            "id": "java",
+            "name": "Java Full Stack",
+            "description": "Spring Boot, Hibernate, Angular, Microservices",
+            "icon": "code",
+            "gradient": "from-orange-500 to-red-500",
+            "totalMaterials": 42,
+            "totalModules": 8,
+            "totalDownloads": 6200,
+            "active": true,
+            "createdDate": "2025-01-01T00:00:00Z"
+        },
+        {
+            "id": "python",
+            "name": "Python Full Stack",
+            "description": "Django, FastAPI, React, REST APIs",
+            "icon": "terminal",
+            "gradient": "from-yellow-500 to-green-500",
+            "totalMaterials": 38,
+            "totalModules": 7,
+            "totalDownloads": 5800,
+            "active": true,
+            "createdDate": "2025-01-01T00:00:00Z"
+        },
+        {
+            "id": "cyber",
+            "name": "Cybersecurity",
+            "description": "Ethical Hacking, Penetration Testing, Security Audits",
+            "icon": "shield",
+            "gradient": "from-red-500 to-pink-500",
+            "totalMaterials": 34,
+            "totalModules": 6,
+            "totalDownloads": 4500,
+            "active": true,
+            "createdDate": "2025-01-01T00:00:00Z"
+        },
+        {
+            "id": "networking",
+            "name": "Networking",
+            "description": "CCNA, Network Administration, Cloud Networking",
+            "icon": "hub",
+            "gradient": "from-blue-500 to-cyan-500",
+            "totalMaterials": 28,
+            "totalModules": 5,
+            "totalDownloads": 3800,
+            "active": true,
+            "createdDate": "2025-01-01T00:00:00Z"
+        }
+    ]
+}

@@ -1,0 +1,225 @@
+{
+  "career": {
+    "programs": [
+      {
+        "id": "cyber-career-1",
+        "title": "Certified Ethical Hacker (CEH) Preparation",
+        "description": "Comprehensive program to prepare for the Certified Ethical Hacker certification with hands-on labs and real-world scenarios",
+        "level": "Advanced",
+        "duration": "6 months",
+        "price": 89999,
+        "topics": [
+          "Penetration Testing",
+          "Network Security",
+          "Cryptography",
+          "Malware Analysis",
+          "Web Application Security",
+          "Social Engineering"
+        ],
+        "requirements": [
+          "Basic networking knowledge",
+          "Linux fundamentals",
+          "Understanding of TCP/IP"
+        ],
+        "highlights": [
+          "300+ hours of training",
+          "Hands-on penetration testing labs",
+          "CEH exam voucher included",
+          "Job placement support",
+          "Industry-recognized certification"
+        ]
+      },
+      {
+        "id": "cyber-career-2",
+        "title": "Cybersecurity Analyst Career Track",
+        "description": "Complete career program from beginner to job-ready cybersecurity analyst with industry certifications",
+        "level": "Beginner to Advanced",
+        "duration": "8 months",
+        "price": 99999,
+        "topics": [
+          "Security Operations",
+          "Threat Intelligence",
+          "Incident Response",
+          "SIEM Tools",
+          "Vulnerability Management",
+          "Compliance"
+        ],
+        "requirements": [
+          "Basic IT knowledge",
+          "Willingness to learn"
+        ],
+        "highlights": [
+          "Zero to hero program",
+          "Multiple certifications",
+          "Real SOC experience",
+          "Internship opportunities",
+          "100% job assistance"
+        ]
+      },
+      {
+        "id": "cyber-career-3",
+        "title": "CISSP Certification Bootcamp",
+        "description": "Intensive preparation for the Certified Information Systems Security Professional certification",
+        "level": "Expert",
+        "duration": "3 months",
+        "price": 79999,
+        "topics": [
+          "Security & Risk Management",
+          "Asset Security",
+          "Security Architecture",
+          "Communication & Network Security",
+          "Identity & Access Management"
+        ],
+        "requirements": [
+          "5+ years security experience",
+          "Strong technical background"
+        ],
+        "highlights": [
+          "CISSP exam prep",
+          "Expert instructors",
+          "Study materials included",
+          "Exam voucher",
+          "Career advancement"
+        ]
+      }
+    ]
+  },
+  "upskilling": {
+    "programs": [
+      {
+        "id": "cyber-upskill-1",
+        "title": "Advanced Penetration Testing",
+        "description": "Master advanced penetration testing techniques and tools used by professional ethical hackers",
+        "level": "Advanced",
+        "duration": "8 weeks",
+        "price": 34999,
+        "topics": [
+          "Advanced Exploitation",
+          "Post-Exploitation",
+          "Privilege Escalation",
+          "Lateral Movement",
+          "Red Team Operations"
+        ],
+        "requirements": [
+          "Basic penetration testing knowledge",
+          "Linux proficiency"
+        ],
+        "highlights": [
+          "Real-world scenarios",
+          "Advanced tools training",
+          "Capture the flag exercises"
+        ]
+      },
+      {
+        "id": "cyber-upskill-2",
+        "title": "Digital Forensics & Incident Response",
+        "description": "Learn to investigate cyber incidents and perform digital forensics analysis",
+        "level": "Intermediate",
+        "duration": "6 weeks",
+        "price": 29999,
+        "topics": [
+          "Evidence Collection",
+          "Memory Forensics",
+          "Disk Forensics",
+          "Network Forensics",
+          "Malware Analysis"
+        ],
+        "requirements": [
+          "Basic cybersecurity knowledge"
+        ],
+        "highlights": [
+          "Hands-on forensics labs",
+          "Industry tools",
+          "Case studies"
+        ]
+      },
+      {
+        "id": "cyber-upskill-3",
+        "title": "Cloud Security Essentials",
+        "description": "Secure cloud environments across AWS, Azure, and Google Cloud platforms",
+        "level": "Intermediate",
+        "duration": "6 weeks",
+        "price": 32999,
+        "topics": [
+          "Cloud Security Architecture",
+          "IAM",
+          "Data Protection",
+          "Compliance",
+          "Container Security"
+        ],
+        "requirements": [
+          "Basic cloud knowledge"
+        ],
+        "highlights": [
+          "Multi-cloud coverage",
+          "Hands-on labs",
+          "Best practices"
+        ]
+      }
+    ]
+  },
+  "modular": {
+    "programs": [
+      {
+        "id": "cyber-mod-1",
+        "title": "Web Application Security",
+        "description": "Quick module on securing web applications and identifying vulnerabilities",
+        "level": "Intermediate",
+        "duration": "2 weeks",
+        "price": 9999,
+        "topics": [
+          "OWASP Top 10",
+          "SQL Injection",
+          "XSS",
+          "CSRF",
+          "Security Headers"
+        ]
+      },
+      {
+        "id": "cyber-mod-2",
+        "title": "Network Security Fundamentals",
+        "description": "Essential network security concepts and tools",
+        "level": "Beginner",
+        "duration": "2 weeks",
+        "price": 8999,
+        "topics": [
+          "Firewalls",
+          "IDS/IPS",
+          "VPN",
+          "Network Segmentation",
+          "Access Control"
+        ]
+      },
+      {
+        "id": "cyber-mod-3",
+        "title": "Cryptography Basics",
+        "description": "Understanding encryption, hashing, and cryptographic protocols",
+        "level": "Beginner",
+        "duration": "1 week",
+        "price": 6999,
+        "topics": [
+          "Symmetric Encryption",
+          "Asymmetric Encryption",
+          "Hashing",
+          "Digital Signatures",
+          "SSL/TLS"
+        ]
+      },
+      {
+        "id": "cyber-mod-4",
+        "title": "Security Compliance & Governance",
+        "description": "Learn about security frameworks and compliance requirements",
+        "level": "Intermediate",
+        "duration": "2 weeks",
+        "price": 9999,
+        "topics": [
+          "ISO 27001",
+          "NIST Framework",
+          "GDPR",
+          "PCI DSS",
+          "Risk Management"
+        ]
+      }
+    ]
+  }
+}

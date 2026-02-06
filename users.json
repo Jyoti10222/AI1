@@ -1,0 +1,105 @@
+{
+  "users": [
+    {
+      "id": "1768632821428",
+      "firstName": "Jyoti",
+      "lastName": "Mulimani",
+      "email": "jyotimulimani2104@gmail.com",
+      "identifierType": "email",
+      "password": "Jyoti@2116",
+      "verificationToken": "fcc4ca2bd1c7d0b5ff0eb02e84eeb056506fef9fe7a1926f8db0cad8494dc8ee",
+      "isVerified": false,
+      "createdAt": "2026-01-17T06:53:41.428Z",
+      "updatedAt": "2026-01-17T06:53:41.428Z",
+      "resetPasswordToken": "a516c325780044647b03f34221df1eae727917f6dfb55a8ff0102918226c6e36",
+      "resetPasswordExpires": 1768978315683
+    },
+    {
+      "id": "1768799706611",
+      "firstName": "Jyoti",
+      "lastName": "Mulimani",
+      "email": "jyotismulimani2001@gmail.com",
+      "identifierType": "email",
+      "password": "Jyoti@2116",
+      "verificationToken": "0b47aac6dd7524b3b6179e40956c57bc12f5ffcbff0ad05e1af93e6906efa3c6",
+      "isVerified": false,
+      "createdAt": "2026-01-19T05:15:06.615Z",
+      "updatedAt": "2026-01-19T05:15:06.615Z"
+    },
+    {
+      "id": "1768817875939",
+      "firstName": "kashif",
+      "lastName": "Khan",
+      "email": "+9113278907",
+      "identifierType": "phone",
+      "password": "Bismillah@1",
+      "verificationToken": "a9ba1ab577d8d86821deac9a84f7a84c4c2ce81bb575d431891abd9b1385c200",
+      "isVerified": false,
+      "createdAt": "2026-01-19T10:17:55.940Z",
+      "updatedAt": "2026-01-19T10:17:55.940Z"
+    },
+    {
+      "id": "1768995790202",
+      "firstName": "Kashifk123",
+      "lastName": "User",
+      "email": "kashifk123@gmail.com",
+      "identifierType": "email",
+      "password": "GOOGLE_AUTH_1768995789465",
+      "verificationToken": "5c815d4344745638e4bf9bdd43683bd7af8b4a51a965e40d04ae8e80a77f5a93",
+      "isVerified": false,
+      "createdAt": "2026-01-21T11:43:10.205Z",
+      "updatedAt": "2026-01-21T11:43:10.206Z"
+    },
+    {
+      "id": "1769776906146",
+      "firstName": "Jyoti",
+      "lastName": "P Mulimani",
+      "email": "jyotiprithvisambha2116@gmail.com",
+      "identifierType": "email",
+      "password": "Jyoti@2116",
+      "verificationToken": "d6f7d43cf973f7765af30413db6246a891847381c97f9363fd15123e01b5c785",
+      "isVerified": false,
+      "createdAt": "2026-01-30T12:41:46.147Z",
+      "updatedAt": "2026-01-30T12:41:46.147Z"
+    },
+    {
+      "id": "1769856508390",
+      "firstName": "Manali",
+      "lastName": "Parekh",
+      "email": "manaliparekh116@gmail.com",
+      "identifierType": "email",
+      "password": "Manali@123456",
+      "verificationToken": "f65e7fc3d4f2ac5d17f1322d1617c920d7a093ce2ca4ac3854159cd45196c53c",
+      "isVerified": false,
+      "createdAt": "2026-01-31T10:48:28.390Z",
+      "updatedAt": "2026-01-31T10:48:28.390Z",
+      "resetPasswordToken": "d51fe45a74fe2f365d0e4e9bfb3cd71523a5264d32c224ef4549b515e2ec6435",
+      "resetPasswordExpires": 1769860194753
+    },
+    {
+      "id": "1769867030302",
+      "firstName": "kashif",
+      "lastName": "Khan",
+      "email": "+919880395339",
+      "identifierType": "phone",
+      "password": "Khankash@0207",
+      "verificationToken": "2668f263b7df1d42614befbe47f8370c5692e14a97de0bdfe163ffc333213b34",
+      "isVerified": false,
+      "createdAt": "2026-01-31T13:43:50.303Z",
+      "updatedAt": "2026-01-31T13:43:50.303Z"
+    },
+    {
+      "id": "1770030779050",
+      "firstName": "tanu",
+      "lastName": "preet",
+      "email": "jettanu123@gmail.com",
+      "identifierType": "email",
+      "password": "Jetking123@",
+      "verificationToken": "86ea9545132b9bfae1ae0c7648c8b9697c1581896f76311bd860ad888823fe37",
+      "isVerified": false,
+      "createdAt": "2026-02-02T11:12:59.051Z",
+      "updatedAt": "2026-02-02T11:12:59.051Z"
+    }
+  ],
+  "lastUpdated": "2026-02-02T11:12:59.051Z"
+}

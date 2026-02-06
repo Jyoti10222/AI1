@@ -1,0 +1,385 @@
+{
+  "hero": {
+    "badge": "New AI Tutor Engine v2.0 ",
+    "heading": "Elevate Your Skills with Adaptive AI Learning",
+    "subheading": "Stop wasting time on one-size-fits-all courses. Our AI Tutor adapts to your pace, style, and goals in real-time, creating a curriculum that evolves with you.",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "Try AI Tutor",
+    "learnerCount": "10,000+"
+  },
+  "trustedCompanies": [
+    {
+      "name": "Acme Corp",
+      "icon": "token"
+    },
+    {
+      "name": "GlobalTech",
+      "icon": "diamond"
+    },
+    {
+      "name": "FutureScale",
+      "icon": "rocket_launch"
+    },
+    {
+      "name": "Synergy",
+      "icon": "bolt"
+    },
+    {
+      "name": "DevCore",
+      "icon": "deployed_code"
+    }
+  ],
+  "learningModes": [
+    {
+      "id": "ai-based",
+      "title": "AI-Based Learning",
+      "description": "Adaptive & Personalized",
+      "icon": "psychology_alt",
+      "color": "blue",
+      "image": "images/ai_personalized_learning.png",
+      "link": "AIlearning.html"
+    },
+    {
+      "id": "online",
+      "title": "Online Learning",
+      "description": "Learn Anywhere",
+      "icon": "laptop_chromebook",
+      "color": "green",
+      "image": "images/online_batch_learning.png",
+      "link": "Online.html"
+    },
+    {
+      "id": "offline",
+      "title": "Offline Learning",
+      "description": "Classroom Experience",
+      "icon": "school",
+      "color": "orange",
+      "image": "images/offline_batch_learning.png",
+      "link": "Offline.html"
+    },
+    {
+      "id": "hybrid",
+      "title": "Hybrid Learning",
+      "description": "Best of Both Worlds",
+      "icon": "sync_alt",
+      "color": "purple",
+      "image": "images/hybrid_learning_mode.png",
+      "link": "Hybrid.html"
+    },
+    {
+      "id": "counseling",
+      "title": "Career Counseling",
+      "description": "Dedicated support for jobs",
+      "icon": "ads_click",
+      "color": "cyan",
+      "image": "images/career_counseling_placement.png",
+      "link": "CounselingHub.html"
+    }
+  ],
+  "features": [
+    {
+      "title": "Adaptive Learning Paths",
+      "description": "No two learners are alike. Our system constantly analyzes performance to adjust the curriculum difficulty and format in real-time, ensuring you're always challenged but never overwhelmed.",
+      "icon": "alt_route",
+      "benefits": [
+        "Dynamic content adjustments",
+        "Personalized pacing",
+        "Focus on weak areas automatically"
+      ]
+    },
+    {
+      "title": "Instant AI Feedback",
+      "description": "Don't wait for grades. Get immediate, detailed feedback on quizzes, code submissions, and written assignments from our advanced AI Tutor models.",
+      "icon": "psychology",
+      "benefits": [
+        "24/7 availability",
+        "Deep code analysis",
+        "Explanations in plain English"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Alex Johnson",
+      "role": "Software Engineer",
+      "rating": 5,
+      "quote": "The adaptive learning path is a game changer. I learned Python in half the time it took me on other platforms because it skipped what I already knew.",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4Lz2EQVd3owMz74s_2rl36SAymszlWMo7fsZie1-b8H8V2zgrkmeSNK9XqT09S44kxQRKTgY2NMxnBDPsd3GKUeEaUnnzWqChbqHZKnQ8uYoI2bYdu9uW8QklqT5AVVVPpGawK8JlU0_6vECSiJV2uwQzh1k2vEbjR8KsKOixroM8En1isPcyYQOUGC48-goXkSYKPAbC3_bs22qU_RODXnDXE9M7LUa_nnr4DYJQdaAh0Cp_kz5Ye4EtxUuOfx9mV7vK3XHL8Cw"
+    },
+    {
+      "name": "Maria Garcia",
+      "role": "CTO at TechFlow",
+      "rating": 4.5,
+      "quote": "Our entire team uses AI-TECH PRO. The analytics dashboard helps me identify skill gaps in my department instantly. Highly recommended for enterprises.",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJoebKcdfdmYH20pix9JwY2ooPuelej64hbw-lKoTjzF819nI6rmsxamJRL-ZPQXBnl1HF4UVNV_-nXTrANKSXDbdR8ZjfBdcu_MoRAPLWiaLaP7VSOSBurnQogL2TSMze62vpZmWwW1iOuRFQatNwfkUJTDh1hNszKY7w2RtYsTQd9kz_-7vpjBMMm2iahBGOtMsK_hPORUKcsMC8p5_jDyPjdZnfSrANfIRCeioNy0tyzUkcoHykxHUsZmMD4TyNFB_ffUdIPfE"
+    },
+    {
+      "name": "David Chen",
+      "role": "Data Analyst Student",
+      "rating": 5,
+      "quote": "I was skeptical about AI tutors, but the explanations are surprisingly human-like and accurate. It's like having a professor on call 24/7.",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBTf2Zytvz0DrNlgiuaph9kem7Wc0KzeaBeEGt4xIyLqxUuFOBy_keQYjbCF13qhxhViv2Ep6Ca3Ke7vlybR-nloTUF4gtxjzrY3G5inOHvoMoCkN1cmWbe-Esg_coIeimWeFb4Vz7JYVRKgoEM-Bf9y0VwWnEsrgQaE_Klwr3J5-QP-IRctlIGnFEMQn6vK-aUmcTb8ArqBXO2niCpcRxCcDFMUUTHse4sZzXIubgvuvzpg8mpGnCRugWCH-5EGfxspp32MyUtXQ4"
+    }
+  ],
+  "pricing": {
+    "sectionTitle": "Simple, Transparent Pricing",
+    "sectionSubtitle": "Start for free, upgrade as you grow.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$0",
+        "yearlyPrice": "$0",
+        "description": "Perfect for exploring our platform.",
+        "features": [
+          "Access to 5 basic courses",
+          "Basic AI assistance",
+          "Community support"
+        ],
+        "cta": "Get Started",
+        "highlighted": false
+      },
+      {
+        "name": "Pro Learner",
+        "price": "$29",
+        "yearlyPrice": "$23",
+        "description": "For serious learners needing full access.",
+        "features": [
+          "Unlimited course access",
+          "Advanced AI Tutor (GPT-4)",
+          "Certificates of completion",
+          "Offline downloads"
+        ],
+        "cta": "Get Started",
+        "highlighted": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "yearlyPrice": "Custom",
+        "description": "For teams and organizations.",
+        "features": [
+          "Team management dashboard",
+          "Custom learning paths",
+          "SSO & Advanced Security",
+          "Dedicated account manager"
+        ],
+        "cta": "Contact Sales",
+        "highlighted": false
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to accelerate your learning?",
+    "subtitle": "Join thousands of professionals mastering new skills with the power of AI.",
+    "primaryButton": "Get Started",
+    "secondaryButton": "View Enterprise Plans"
+  },
+  "footer": {
+    "description": "Empowering the workforce of tomorrow with AI-driven personalized education. Learn smarter, not harder.",
+    "copyright": "© 2024 AI-TECH PRO Inc. All rights reserved."
+  },
+  "onboardingCourses": [
+    {
+      "id": "ai-tech",
+      "name": "AI for Tech Professionals",
+      "description": "For Developers, Data Scientists, and Engineers looking to master AI engineering.",
+      "icon": "terminal",
+      "color": "blue",
+      "link": "AITech.html",
+      "image": "images/ai_tech_card_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-nontech",
+      "name": "AI for Non-Tech Professionals",
+      "description": "For Managers, Leaders, and Creatives wanting to leverage AI in their business.",
+      "icon": "psychology",
+      "color": "purple",
+      "link": "AINonTech.html",
+      "image": "images/ai_non_tech_card_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity",
+      "description": "Master ethical hacking, penetration testing, and security operations to protect digital assets.",
+      "icon": "shield",
+      "color": "red",
+      "link": "Cybersecurity.html",
+      "image": "images/cybersecurity_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "description": "Build expertise in routing, switching, cloud networking, and network automation with CCNA/CCNP prep.",
+      "icon": "hub",
+      "color": "green",
+      "link": "Networking.html",
+      "image": "images/networking_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "java-full-stack",
+      "name": "Java Full Stack",
+      "description": "Master Java, Spring Boot, React, and Cloud deployment for enterprise app development.",
+      "icon": "code",
+      "color": "orange",
+      "link": "JavaFullStack.html",
+      "image": "images/java_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "python-full-stack",
+      "name": "Python Full Stack",
+      "description": "Learn Python, Django, Rest APIs, and Data Science basics for modern web development.",
+      "icon": "terminal",
+      "color": "blue",
+      "link": "PythonFullStack.html",
+      "image": "images/python_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "cloud-computing",
+      "name": "Cloud Computing",
+      "description": "Master AWS, Azure, Google Cloud, and DevOps practices for scalable cloud solutions.",
+      "icon": "cloud",
+      "color": "cyan",
+      "link": "CloudComputing.html",
+      "image": "images/cloud_computing_bg.png",
+      "enabled": true
+    }
+  ],
+  "courses": [
+    {
+      "id": "ai-tech",
+      "name": "AI for Tech Professionals",
+      "description": "For Developers, Data Scientists, and Engineers looking to master AI engineering.",
+      "icon": "terminal",
+      "color": "blue",
+      "link": "AITech.html",
+      "image": "images/ai_tech_card_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "ai-nontech",
+      "name": "AI for Non-Tech Professionals",
+      "description": "For Managers, Leaders, and Creatives wanting to leverage AI in their business.",
+      "icon": "psychology",
+      "color": "purple",
+      "link": "AINonTech.html",
+      "image": "images/ai_non_tech_card_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity",
+      "description": "Master ethical hacking, penetration testing, and security operations to protect digital assets.",
+      "icon": "shield",
+      "color": "red",
+      "link": "Cybersecurity.html",
+      "image": "images/cybersecurity_hero_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "description": "Build expertise in routing, switching, cloud networking, and network automation with CCNA/CCNP prep.",
+      "icon": "hub",
+      "color": "green",
+      "link": "Networking.html",
+      "image": "images/networking_hero_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "java-full-stack",
+      "name": "Java Full Stack",
+      "description": "Master Java, Spring Boot, React, and Cloud deployment for enterprise app development.",
+      "icon": "code",
+      "color": "orange",
+      "link": "JavaFullStack.html",
+      "image": "images/java_hero_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "python-full-stack",
+      "name": "Python Full Stack",
+      "description": "Learn Python, Django, Rest APIs, and Data Science basics for modern web development.",
+      "icon": "terminal",
+      "color": "blue",
+      "link": "PythonFullStack.html",
+      "image": "images/python_hero_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "cloud-computing",
+      "name": "Cloud Computing",
+      "description": "Master AWS, Azure, Google Cloud, and DevOps practices for scalable cloud solutions.",
+      "icon": "cloud",
+      "color": "cyan",
+      "link": "CloudComputing.html",
+      "image": "images/cloud_computing_bg.png",
+      "enabled": false
+    },
+    {
+      "id": "ai-ai-assistant",
+      "name": "Artificial Intelligence (AI Assistant)",
+      "description": "Interactive AI Assistant for AI Learning Path.",
+      "icon": "psychology",
+      "color": "blue",
+      "link": "AiAI.html",
+      "image": "images/ai_tech_card_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-cc-assistant",
+      "name": "Cloud Computing (AI Assistant)",
+      "description": "Interactive AI Assistant for Cloud Computing.",
+      "icon": "cloud",
+      "color": "cyan",
+      "link": "AiCC.html",
+      "image": "images/cloud_computing_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-cyber-assistant",
+      "name": "Cybersecurity (AI Assistant)",
+      "description": "Interactive AI Assistant for Cybersecurity.",
+      "icon": "shield",
+      "color": "red",
+      "link": "AiCybersecurity.html",
+      "image": "images/cybersecurity_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-net-assistant",
+      "name": "Networking (AI Assistant)",
+      "description": "Interactive AI Assistant for Networking.",
+      "icon": "hub",
+      "color": "green",
+      "link": "AiNet.html",
+      "image": "images/networking_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-java-assistant",
+      "name": "Java Full Stack (AI Assistant)",
+      "description": "Interactive AI Assistant for Java.",
+      "icon": "code",
+      "color": "orange",
+      "link": "AiJava.html",
+      "image": "images/java_hero_bg.png",
+      "enabled": true
+    },
+    {
+      "id": "ai-python-assistant",
+      "name": "Python Full Stack (AI Assistant)",
+      "description": "Interactive AI Assistant for Python.",
+      "icon": "terminal",
+      "color": "blue",
+      "link": "AiPython.html",
+      "image": "images/python_hero_bg.png",
+      "enabled": true
+    }
+  ]
+}

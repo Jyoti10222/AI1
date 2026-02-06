@@ -1,0 +1,228 @@
+{
+    "career": {
+        "programs": [
+            {
+                "id": "cloud-career-1",
+                "title": "AWS Solutions Architect Track",
+                "description": "Complete AWS certification preparation with hands-on cloud architecture and deployment",
+                "level": "Intermediate",
+                "duration": "4 months",
+                "price": 74999,
+                "topics": [
+                    "AWS Core Services",
+                    "EC2 & Auto Scaling",
+                    "S3 & Storage Solutions",
+                    "VPC & Networking",
+                    "IAM & Security",
+                    "CloudFormation"
+                ],
+                "requirements": [
+                    "Basic IT knowledge",
+                    "Understanding of networking"
+                ],
+                "highlights": [
+                    "200+ hours of training",
+                    "AWS hands-on labs",
+                    "AWS SAA exam voucher included",
+                    "Job placement support",
+                    "Industry-recognized certification"
+                ]
+            },
+            {
+                "id": "cloud-career-2",
+                "title": "DevOps Engineer Career Program",
+                "description": "Comprehensive program from beginner to job-ready DevOps engineer with multi-cloud expertise",
+                "level": "Beginner to Advanced",
+                "duration": "8 months",
+                "price": 109999,
+                "topics": [
+                    "Linux Administration",
+                    "Docker & Kubernetes",
+                    "CI/CD Pipelines",
+                    "Infrastructure as Code",
+                    "Cloud Platforms (AWS/Azure/GCP)",
+                    "Monitoring & Logging"
+                ],
+                "requirements": [
+                    "Basic computer knowledge",
+                    "Willingness to learn"
+                ],
+                "highlights": [
+                    "Zero to hero program",
+                    "AWS + Azure + GCP coverage",
+                    "Real DevOps projects",
+                    "Internship opportunities",
+                    "100% job assistance"
+                ]
+            },
+            {
+                "id": "cloud-career-3",
+                "title": "Multi-Cloud Architect Certification",
+                "description": "Advanced certification for cloud architects working across AWS, Azure, and GCP",
+                "level": "Advanced",
+                "duration": "5 months",
+                "price": 94999,
+                "topics": [
+                    "Cloud Architecture Design",
+                    "Multi-Cloud Strategy",
+                    "Hybrid Cloud Solutions",
+                    "Cloud Security",
+                    "Cost Optimization",
+                    "Migration Strategies"
+                ],
+                "requirements": [
+                    "Cloud fundamentals",
+                    "2+ years cloud experience"
+                ],
+                "highlights": [
+                    "Multi-cloud certification prep",
+                    "Expert instructors",
+                    "Advanced architecture labs",
+                    "Exam vouchers",
+                    "Career advancement"
+                ]
+            }
+        ]
+    },
+    "upskilling": {
+        "programs": [
+            {
+                "id": "cloud-upskill-1",
+                "title": "Kubernetes Administration",
+                "description": "Master container orchestration with Kubernetes for production environments",
+                "level": "Intermediate",
+                "duration": "6 weeks",
+                "price": 39999,
+                "topics": [
+                    "K8s Architecture",
+                    "Pods & Deployments",
+                    "Services & Networking",
+                    "ConfigMaps & Secrets",
+                    "Helm Charts",
+                    "Monitoring & Logging"
+                ],
+                "requirements": [
+                    "Docker basics",
+                    "Linux fundamentals"
+                ],
+                "highlights": [
+                    "CKA exam prep",
+                    "Hands-on labs",
+                    "Real-world scenarios"
+                ]
+            },
+            {
+                "id": "cloud-upskill-2",
+                "title": "Terraform Infrastructure as Code",
+                "description": "Learn infrastructure automation using Terraform across multiple cloud providers",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 34999,
+                "topics": [
+                    "Terraform Basics",
+                    "State Management",
+                    "Modules & Workspaces",
+                    "Multi-Cloud Provisioning",
+                    "Best Practices"
+                ],
+                "requirements": [
+                    "Cloud fundamentals",
+                    "Basic scripting"
+                ],
+                "highlights": [
+                    "Multi-cloud coverage",
+                    "Real IaC projects",
+                    "Industry best practices"
+                ]
+            },
+            {
+                "id": "cloud-upskill-3",
+                "title": "CI/CD with Jenkins & GitLab",
+                "description": "Build automated deployment pipelines using modern CI/CD tools",
+                "level": "Intermediate",
+                "duration": "5 weeks",
+                "price": 32999,
+                "topics": [
+                    "Jenkins Pipelines",
+                    "GitLab CI/CD",
+                    "Docker Integration",
+                    "Automated Testing",
+                    "Deployment Strategies"
+                ],
+                "requirements": [
+                    "Git basics",
+                    "Programming fundamentals"
+                ],
+                "highlights": [
+                    "Hands-on pipeline building",
+                    "Industry tools",
+                    "Automation best practices"
+                ]
+            }
+        ]
+    },
+    "modular": {
+        "programs": [
+            {
+                "id": "cloud-mod-1",
+                "title": "AWS Fundamentals",
+                "description": "Introduction to AWS core services and cloud concepts",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 12999,
+                "topics": [
+                    "AWS Global Infrastructure",
+                    "EC2 Basics",
+                    "S3 Storage",
+                    "RDS Databases",
+                    "IAM Security"
+                ]
+            },
+            {
+                "id": "cloud-mod-2",
+                "title": "Docker Containerization",
+                "description": "Learn container technology and Docker fundamentals",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 9999,
+                "topics": [
+                    "Container Concepts",
+                    "Docker Images",
+                    "Dockerfile",
+                    "Docker Compose",
+                    "Container Networking"
+                ]
+            },
+            {
+                "id": "cloud-mod-3",
+                "title": "Azure Cloud Services",
+                "description": "Introduction to Microsoft Azure platform and services",
+                "level": "Beginner",
+                "duration": "2 weeks",
+                "price": 12999,
+                "topics": [
+                    "Azure Portal",
+                    "Virtual Machines",
+                    "Azure Storage",
+                    "App Services",
+                    "Azure Active Directory"
+                ]
+            },
+            {
+                "id": "cloud-mod-4",
+                "title": "Cloud Security Essentials",
+                "description": "Security best practices for cloud environments",
+                "level": "Intermediate",
+                "duration": "2 weeks",
+                "price": 14999,
+                "topics": [
+                    "Cloud Security Principles",
+                    "Identity & Access Management",
+                    "Encryption",
+                    "Network Security",
+                    "Compliance & Governance"
+                ]
+            }
+        ]
+    }
+}
