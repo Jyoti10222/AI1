@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack | Tech-Pro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+            border-radius: 16px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="A4Onboarding.html" class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#3b82f6] text-[28px]">terminal</span>
+                    <h1 class="text-xl font-black text-[#0d141b]">Tech-Pro AI</h1>
+                </a>
+                <nav class="hidden md:flex items-center gap-1 bg-gray-100 rounded-lg p-1 overflow-x-auto">
+                    <a href="A4Onboarding.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">All
+                        Paths</a>
+                    <a href="AITech.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">AI
+                        Tech</a>
+                    <a href="AINonTech.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">AI
+                        Non-Tech</a>
+                    <a href="CloudComputing.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">Cloud</a>
+                    <a href="Cybersecurity.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">Cybersecurity</a>
+                    <a href="Networking.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">Networking</a>
+                    <a href="JavaFullStack.html"
+                        class="px-3 py-1.5 rounded-md text-sm text-[#4c739a] hover:bg-white transition-colors whitespace-nowrap">Java</a>
+                    <a href="PythonFullStack.html"
+                        class="px-3 py-1.5 rounded-md bg-white text-sm text-[#3b82f6] font-semibold shadow-sm whitespace-nowrap">Python</a>
+                </nav>
+                <button class="bg-[#3b82f6] text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-[#1d4ed8]">My
+                    Dashboard</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center gap-2 text-sm">
+                <a href="A4Onboarding.html" class="text-[#4c739a] hover:text-[#3b82f6]">Home</a>
+                <span class="material-symbols-outlined text-[#4c739a] text-[16px]">chevron_right</span>
+                <span class="text-[#0d141b] font-semibold">Python Full Stack</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Carousel -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+                <div>
+                    <span
+                        class="bg-blue-100 text-[#3b82f6] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-flex items-center gap-1 mb-4">
+                        <span class="material-symbols-outlined text-[16px]">data_object</span> Data & Web Development
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-black text-[#0d141b] mb-4 leading-tight">
+                        Master <span class="gradient-text">Python Full Stack</span>
+                    </h1>
+                    <p class="text-lg text-[#4c739a] mb-6">
+                        Build powerful web apps with Python, Django, Flask, and React. Integrate AI/ML models.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow-sm border border-gray-200 text-[#0d141b]">Django</span>
+                        <span
+                            class="bg-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow-sm border border-gray-200 text-[#0d141b]">FastAPI</span>
+                        <span
+                            class="bg-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow-sm border border-gray-200 text-[#0d141b]">React</span>
+                    </div>
+                </div>
+
+                <!-- Auto-Rotating Carousel -->
+                <div class="carousel-container shadow-xl">
+                    <div class="carousel-slide active"
+                        style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center;">
+                        <div class="text-center text-white p-8">
+                            <span class="material-symbols-outlined text-[64px] mb-4">code</span>
+                            <h3 class="text-2xl font-bold">Python Mastery</h3>
+                            <p class="opacity-90">Advanced Data Structures & OOP</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide"
+                        style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center;">
+                        <div class="text-center text-white p-8">
+                            <span class="material-symbols-outlined text-[64px] mb-4">api</span>
+                            <h3 class="text-2xl font-bold">RESTful APIs</h3>
+                            <p class="opacity-90">Scalable Backend Services</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide"
+                        style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center;">
+                        <div class="text-center text-white p-8">
+                            <span class="material-symbols-outlined text-[64px] mb-4">smart_toy</span>
+                            <h3 class="text-2xl font-bold">AI Integration</h3>
+                            <p class="opacity-90">Deploy ML Models to Web</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Choose Your Path -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-black text-[#0d141b] mb-8 text-center">Choose Your Path</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Career Card -->
+                    <div class="group relative h-[240px] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer bg-white"
+                        onclick="window.location.href='PythonFullStackCareer.html'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-900"></div>
+
+                        <div class="relative z-10 h-full flex flex-col p-6 text-white">
+                            <div class="mb-auto">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div
+                                        class="bg-blue-500/20 backdrop-blur-md p-2 rounded-lg border border-blue-400/30">
+                                        <span class="material-symbols-outlined text-[28px] text-blue-300">school</span>
+                                    </div>
+                                    <h3 class="text-2xl font-black">Career Learning</h3>
+                                </div>
+                                <p class="text-blue-100 text-sm font-medium leading-relaxed opacity-90 line-clamp-2">
+                                    End-to-end Python full stack developer program.</p>
+                            </div>
+
+                            <div class="mt-4 border-t border-white/20 pt-4">
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">6 Months Program</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">Project Portfolio</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-[10px] text-blue-200 uppercase tracking-widest font-bold">Starts
+                                            at</p>
+                                        <span class="text-xl font-black text-white">₹39,000</span>
+                                    </div>
+                                    <span
+                                        class="bg-white text-blue-600 p-2 rounded-full hover:bg-blue-50 transition-colors shadow-lg">
+                                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upskilling Card -->
+                    <div class="group relative h-[240px] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer bg-white"
+                        onclick="window.location.href='PythonFullStackUpskilling.html'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-700 to-orange-900"></div>
+
+                        <div class="relative z-10 h-full flex flex-col p-6 text-white">
+                            <div class="mb-auto">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div
+                                        class="bg-yellow-500/20 backdrop-blur-md p-2 rounded-lg border border-yellow-400/30">
+                                        <span
+                                            class="material-symbols-outlined text-[28px] text-yellow-300">trending_up</span>
+                                    </div>
+                                    <h3 class="text-2xl font-black">Upskilling</h3>
+                                </div>
+                                <p class="text-yellow-100 text-sm font-medium leading-relaxed opacity-90 line-clamp-2">
+                                    Advanced topics like Django REST Framework or AI integration.</p>
+                            </div>
+
+                            <div class="mt-4 border-t border-white/20 pt-4">
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">4 Weeks Specialized</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">Live Coding</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-[10px] text-yellow-200 uppercase tracking-widest font-bold">
+                                            Starts at</p>
+                                        <span class="text-xl font-black text-white">₹12,000</span>
+                                    </div>
+                                    <span
+                                        class="bg-white text-yellow-600 p-2 rounded-full hover:bg-yellow-50 transition-colors shadow-lg">
+                                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modular Card -->
+                    <div class="group relative h-[240px] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer bg-white"
+                        onclick="window.location.href='PythonFullStackModular.html'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-900 to-teal-900"></div>
+
+                        <div class="relative z-10 h-full flex flex-col p-6 text-white">
+                            <div class="mb-auto">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div
+                                        class="bg-green-500/20 backdrop-blur-md p-2 rounded-lg border border-green-400/30">
+                                        <span
+                                            class="material-symbols-outlined text-[28px] text-green-300">widgets</span>
+                                    </div>
+                                    <h3 class="text-2xl font-black">Modular</h3>
+                                </div>
+                                <p class="text-green-100 text-sm font-medium leading-relaxed opacity-90 line-clamp-2">
+                                    Learn specific libraries: NumPy, Pandas, or Flask.</p>
+                            </div>
+
+                            <div class="mt-4 border-t border-white/20 pt-4">
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">Short Courses</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-green-400 text-[16px]">check_circle</span>
+                                        <span class="font-semibold text-xs tracking-wide">Immediate Skills</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-[10px] text-green-200 uppercase tracking-widest font-bold">Starts
+                                            at</p>
+                                        <span class="text-xl font-black text-white">₹2,000</span>
+                                    </div>
+                                    <span
+                                        class="bg-white text-green-600 p-2 rounded-full hover:bg-green-50 transition-colors shadow-lg">
+                                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
+                    <span class="material-symbols-outlined text-blue-600 text-[32px] mb-2">code</span>
+                    <h3 class="font-bold text-sm text-[#0d141b]">Clean Code</h3>
+                    <p class="text-xs text-[#4c739a]">PEP8 Standards</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
+                    <span class="material-symbols-outlined text-blue-600 text-[32px] mb-2">science</span>
+                    <h3 class="font-bold text-sm text-[#0d141b]">Data Science</h3>
+                    <p class="text-xs text-[#4c739a]">Ready for AI/ML</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
+                    <span class="material-symbols-outlined text-blue-600 text-[32px] mb-2">group</span>
+                    <h3 class="font-bold text-sm text-[#0d141b]">Community</h3>
+                    <p class="text-xs text-[#4c739a]">Active Support</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
+                    <span class="material-symbols-outlined text-blue-600 text-[32px] mb-2">work</span>
+                    <h3 class="font-bold text-sm text-[#0d141b]">Jobs</h3>
+                    <p class="text-xs text-[#4c739a]">High Demand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0d141b] text-white py-8 px-4 sm:px-6 lg:px-8 mt-12">
+        <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
+            <p>&copy; 2026 Tech-Pro AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-container .carousel-slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        if (slides.length > 0) setInterval(nextSlide, 5000);
+    </script>
+</body>
+
+</html>

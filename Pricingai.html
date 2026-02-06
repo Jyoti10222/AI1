@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Pricing Plans - Comparison View</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal table scrolling on small devices */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] dark:border-slate-800 px-6 lg:px-10 py-3 bg-surface-light dark:bg-surface-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#0d141b] dark:text-white">
+    <a href="PricingDashboard.html" style="
+  text-decoration:none;
+  font-size:22px;
+  font-weight:bold;
+  color:#135bec;
+">
+←
+</a>
+
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+
+<h2 class="text-[#0d141b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI-TECH PRO</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+
+</div>
+<div class="flex gap-2 items-center">
+    <a href="Pricinghuman.html" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold hover:shadow-sm">Trainer Plan</a>
+    <a href="Pricinghybrid.html" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold hover:shadow-sm">Hybrid Plan</a>
+    
+</div>
+</div>
+<!-- Mobile Menu Icon -->
+<div class="md:hidden flex items-center">
+<span class="material-symbols-outlined cursor-pointer">menu</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center w-full px-4 py-10 lg:px-20">
+<!-- Page Header -->
+<div class="max-w-4xl w-full text-center mb-10 flex flex-col items-center gap-4">
+<h1 class="text-3xl md:text-5xl font-black text-[#0d141b] dark:text-white tracking-tight">
+                Compare Plans &amp; Features
+            </h1>
+<p class="text-[#4c739a] dark:text-slate-400 text-lg md:text-xl max-w-2xl">
+                Whether you need automated guidance or a dedicated human mentor, we have a plan for you.
+            </p>
+</div>
+<!-- Billing Toggle -->
+<div class="flex justify-center mb-12 w-full">
+<div class="inline-flex bg-[#e7edf3] dark:bg-slate-800 p-1.5 rounded-xl shadow-sm">
+<label class="cursor-pointer">
+<input checked="" value="monthly" id="billingMonthly" class="peer sr-only" name="billing" type="radio"/>
+<span class="block px-6 py-2.5 rounded-lg text-sm font-bold text-[#4c739a] dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all duration-200">
+                        Monthly
+                    </span>
+</label>
+<label class="cursor-pointer relative">
+<input value="quarterly" id="billingQuarterly" class="peer sr-only" name="billing" type="radio"/>
+<span class="block px-6 py-2.5 rounded-lg text-sm font-bold text-[#4c739a] dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all duration-200">
+                        Quarterly
+                    </span>
+</label>
+<label class="cursor-pointer relative">
+<input value="yearly" id="billingYearly" class="peer sr-only" name="billing" type="radio"/>
+<div class="absolute -top-3 right-0 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">
+                        -20%
+                    </div>
+<span class="block px-6 py-2.5 rounded-lg text-sm font-bold text-[#4c739a] dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-primary dark:peer-checked:text-white peer-checked:shadow-md transition-all duration-200">
+                        Yearly
+                    </span>
+</label>
+</div>
+</div>
+<!-- Comparison Table Container -->
+<div class="w-full max-w-[1200px] overflow-hidden rounded-2xl border border-[#cfdbe7] dark:border-slate-700 bg-surface-light dark:bg-surface-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[900px]">
+<thead>
+<tr class="border-b border-[#cfdbe7] dark:border-slate-700">
+<!-- Feature Header -->
+<th class="p-6 md:p-8 w-1/4 bg-slate-50 dark:bg-slate-800/50 align-bottom">
+<span class="text-sm font-bold uppercase tracking-wider text-[#4c739a] dark:text-slate-400">Features</span>
+<div class="h-8"></div> <!-- Spacer for alignment -->
+</th>
+<!-- Plan 1 Header -->
+<th class="p-6 md:p-8 w-1/4 align-bottom">
+<h3 class="text-lg font-bold text-[#0d141b] dark:text-white mb-2">AI Standard</h3>
+<div class="flex items-baseline gap-1 mb-4">
+<span id="price1" class="text-3xl font-black text-[#0d141b] dark:text-white" data-monthly="999">₹999</span>
+<span id="unit1" class="text-sm text-[#4c739a] dark:text-slate-400">/mo</span>
+</div>
+<button class="w-full py-2.5 rounded-lg border border-[#cfdbe7] dark:border-slate-600 font-bold text-sm text-[#0d141b] dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                    Choose Plan
+                                </button>
+</th>
+<!-- Plan 2 Header (Hybrid - Highlighted) -->
+<th class="p-6 md:p-8 w-1/4 align-bottom bg-primary/5 dark:bg-primary/10 relative border-x border-[#cfdbe7] dark:border-slate-700">
+<div class="absolute top-0 left-0 w-full bg-primary h-1.5"></div>
+<div class="absolute top-4 right-4 bg-primary text-white text-xs px-2 py-1 rounded font-bold uppercase tracking-wide">
+                                    Popular
+                                </div>
+<h3 class="text-lg font-bold text-primary mb-2">Hybrid Pro</h3>
+<div class="flex items-baseline gap-1 mb-4">
+<span id="price2" class="text-3xl font-black text-[#0d141b] dark:text-white" data-monthly="2499">₹2,499</span>
+<span id="unit2" class="text-sm text-[#4c739a] dark:text-slate-400">/mo</span>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-blue-600 shadow-md shadow-primary/20 transition-all">
+                                    Get Started
+                                </button>
+</th>
+<!-- Plan 3 Header -->
+<th class="p-6 md:p-8 w-1/4 align-bottom">
+<h3 class="text-lg font-bold text-[#0d141b] dark:text-white mb-2">Human Trainer</h3>
+<div class="flex items-baseline gap-1 mb-4">
+<span id="price3" class="text-3xl font-black text-[#0d141b] dark:text-white" data-monthly="4999">₹4,999</span>
+<span id="unit3" class="text-sm text-[#4c739a] dark:text-slate-400">/mo</span>
+</div>
+<button class="w-full py-2.5 rounded-lg border border-[#cfdbe7] dark:border-slate-600 font-bold text-sm text-[#0d141b] dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                    Contact Sales
+                                </button>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#cfdbe7] dark:divide-slate-700">
+<!-- Section: Core Learning -->
+<tr>
+<td class="px-6 py-3 bg-slate-50 dark:bg-slate-800/30 text-xs font-bold uppercase tracking-wider text-[#4c739a] dark:text-slate-400" colspan="4">
+                                Core Learning
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                AI Course Access
+                                <span class="block text-xs text-[#4c739a] dark:text-slate-500 font-normal mt-1">Unlimited access to all libraries</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+<td class="px-6 py-4 text-center bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                Code Grading
+                            </td>
+<td class="px-6 py-4 text-center text-sm text-[#4c739a] dark:text-slate-400">
+                                Instant AI
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+                                AI + Weekly Review
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white">
+                                Detailed Human Review
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                Mobile App
+                            </td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+<td class="px-6 py-4 text-center bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+</tr>
+<!-- Section: Mentorship & Support -->
+<tr>
+<td class="px-6 py-3 bg-slate-50 dark:bg-slate-800/30 text-xs font-bold uppercase tracking-wider text-[#4c739a] dark:text-slate-400" colspan="4">
+                                Mentorship &amp; Support
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                1-on-1 Strategy Session
+                            </td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600">remove</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+                                1 per Month
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white">
+                                Weekly
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                Chat Support
+                            </td>
+<td class="px-6 py-4 text-center text-sm text-[#4c739a] dark:text-slate-400">
+                                AI Bot Only
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+                                Priority Email
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white">
+                                Dedicated Slack Channel
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                Career Coaching
+                            </td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600">remove</span>
+</td>
+<td class="px-6 py-4 text-center bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-600">remove</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-green-500 font-bold">check</span>
+</td>
+</tr>
+<!-- Section: Analytics -->
+<tr>
+<td class="px-6 py-3 bg-slate-50 dark:bg-slate-800/30 text-xs font-bold uppercase tracking-wider text-[#4c739a] dark:text-slate-400" colspan="4">
+                                Analytics &amp; Reports
+                            </td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium text-[#0d141b] dark:text-slate-200">
+                                Progress Dashboard
+                            </td>
+<td class="px-6 py-4 text-center text-sm text-[#4c739a] dark:text-slate-400">
+                                Basic
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white bg-primary/5 dark:bg-primary/10 border-x border-[#cfdbe7] dark:border-slate-700">
+                                Advanced
+                            </td>
+<td class="px-6 py-4 text-center text-sm font-semibold text-[#0d141b] dark:text-white">
+                                Advanced + PDF Reports
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Mobile Sticky Footer for Table (Optional, for better UX on small screens where columns might be cut off) -->
+<div class="md:hidden border-t border-[#cfdbe7] dark:border-slate-700 p-4 bg-slate-50 dark:bg-slate-800 text-center text-xs text-[#4c739a]">
+                Swipe left to see all plans
+            </div>
+</div>
+<!-- Modals: View Plans / Add Plan / Edit Price / Toggle Features -->
+<div id="modalOverlay" class="hidden fixed inset-0 bg-black/40 z-40"></div>
+
+<div id="viewPlansModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Plans</h3>
+    <ul id="plansList" class="space-y-2 text-sm text-slate-700 dark:text-slate-200"></ul>
+    <div class="mt-4 text-right"><button id="closeView" class="px-4 py-2 rounded bg-slate-100 dark:bg-slate-800">Close</button></div>
+</div>
+
+<div id="addPlanModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Add New Plan</h3>
+    <label class="block text-sm mb-2">Plan Name</label>
+    <input id="newPlanName" class="w-full mb-3 p-2 rounded border" />
+    <label class="block text-sm mb-2">Monthly Price (number)</label>
+    <input id="newPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+    <div class="flex gap-2 justify-end"><button id="cancelAdd" class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitAdd" class="px-4 py-2 rounded bg-primary text-white">Add Plan</button></div>
+</div>
+
+<div id="editPriceModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Edit Price</h3>
+    <label class="block text-sm mb-2">Select Plan</label>
+    <select id="editPlanSelect" class="w-full mb-3 p-2 rounded border"></select>
+    <label class="block text-sm mb-2">Monthly Price</label>
+    <input id="editPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+    <div class="flex gap-2 justify-end"><button id="cancelEdit" class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitEdit" class="px-4 py-2 rounded bg-primary text-white">Save</button></div>
+</div>
+
+<div id="toggleFeatureModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Activate / Deactivate Features</h3>
+    <div id="featureList" class="space-y-2 text-sm text-slate-700 dark:text-slate-200 max-h-64 overflow-auto"></div>
+    <div class="mt-4 text-right"><button id="closeToggle" class="px-4 py-2 rounded bg-slate-100">Close</button></div>
+</div>
+<!-- FAQ / Additional Info -->
+<div class="w-full max-w-[800px] mt-20">
+<h3 class="text-2xl font-bold text-[#0d141b] dark:text-white mb-6 text-center">Frequently Asked Questions</h3>
+<div class="space-y-4">
+<details class="group bg-surface-light dark:bg-surface-dark border border-[#cfdbe7] dark:border-slate-700 rounded-lg open:shadow-md transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-[#0d141b] dark:text-slate-200">
+<span>Can I switch plans later?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 text-[#4c739a] dark:text-slate-400 leading-relaxed">
+                        Absolutely. You can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.
+                    </div>
+</details>
+<details class="group bg-surface-light dark:bg-surface-dark border border-[#cfdbe7] dark:border-slate-700 rounded-lg open:shadow-md transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-[#0d141b] dark:text-slate-200">
+<span>What payment methods do you accept?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 text-[#4c739a] dark:text-slate-400 leading-relaxed">
+                        We accept all major credit cards (Visa, Mastercard, Amex), UPI, and Net Banking for Indian customers.
+                    </div>
+</details>
+<details class="group bg-surface-light dark:bg-surface-dark border border-[#cfdbe7] dark:border-slate-700 rounded-lg open:shadow-md transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-[#0d141b] dark:text-slate-200">
+<span>Is the Human Trainer available 24/7?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 text-[#4c739a] dark:text-slate-400 leading-relaxed">
+                        While our AI is available 24/7, human trainers are available during scheduled sessions and business hours (9 AM - 6 PM IST).
+                    </div>
+</details>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-[#e7edf3] dark:border-slate-800 py-10 px-6 lg:px-20 mt-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-[#0d141b] dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="font-bold text-lg">AI Trainer</span>
+</div>
+<div class="text-[#4c739a] dark:text-slate-500 text-sm">
+                © 2024 AI Trainer Inc. All rights reserved.
+            </div>
+<div class="flex gap-4">
+<a class="text-[#4c739a] dark:text-slate-500 hover:text-primary dark:hover:text-primary" href="#">
+<span class="sr-only">Twitter</span>
+<!-- Simple SVG placeholder for social icons to avoid external image dependencies -->
+<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+</a>
+<a class="text-[#4c739a] dark:text-slate-500 hover:text-primary dark:hover:text-primary" href="#">
+<span class="sr-only">GitHub</span>
+<svg class="h-5 w-5 fill-current" viewbox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+<script>
+// Pricing toggle logic: Monthly / Quarterly / Yearly (-20% on yearly)
+function formatCurrencyINR(n) {
+    // simple formatter for Indian style with comma separators
+    return '₹' + Number(n).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+}
+
+function updateDisplayedPrices(period) {
+    const yearDiscount = 0.8; // 20% off
+    <script>
+    // Pricing toggle logic: Monthly / Quarterly / Yearly (-20% on yearly)
+    function formatCurrencyINR(n) {
+        return '₹' + Number(n).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    }
+
+    function updateDisplayedPrices(period) {
+        const yearDiscount = 0.8; // 20% off
+        const mappings = [
+            {priceEl: document.getElementById('price1'), unitEl: document.getElementById('unit1')},
+            {priceEl: document.getElementById('price2'), unitEl: document.getElementById('unit2')},
+            {priceEl: document.getElementById('price3'), unitEl: document.getElementById('unit3')}
+        ];
+
+        mappings.forEach(map => {
+            const el = map.priceEl;
+            const unit = map.unitEl;
+            if (!el || !unit) return;
+            const monthly = parseFloat(el.dataset.monthly || '0');
+            let displayVal = monthly;
+            let unitText = '/mo';
+            if (period === 'monthly') {
+                displayVal = monthly;
+                unitText = '/mo';
+            } else if (period === 'quarterly') {
+                displayVal = monthly * 3; // price for 3 months
+                unitText = '/quarter';
+            } else if (period === 'yearly') {
+                displayVal = Math.round(monthly * 12 * yearDiscount);
+                unitText = '/yr';
+            }
+            el.textContent = formatCurrencyINR(displayVal);
+            unit.textContent = unitText;
+        });
+    }
+
+    // Modal and plan controls for AI pricing page
+    function ai_openModal(id) {
+        const overlay = document.getElementById('modalOverlay');
+        if (overlay) overlay.classList.remove('hidden');
+        const el = document.getElementById(id); if (el) el.classList.remove('hidden');
+    }
+    function ai_closeModal(id) {
+        const overlay = document.getElementById('modalOverlay');
+        if (overlay) overlay.classList.add('hidden');
+        const el = document.getElementById(id); if (el) el.classList.add('hidden');
+    }
+
+    function ai_refreshModals(period) {
+        const list = document.getElementById('plansList');
+        if (list) {
+            list.innerHTML = '';
+            const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+            headers.forEach(h => {
+                const name = h.querySelector('h3') ? h.querySelector('h3').textContent.trim() : 'Plan';
+                const priceEl = h.querySelector('[id^="price"]');
+                const price = priceEl ? priceEl.textContent : '';
+                const li = document.createElement('li'); li.textContent = `${name} — ${price}`; list.appendChild(li);
+            });
+        }
+
+        const sel = document.getElementById('editPlanSelect');
+        if (sel) {
+            const prev = sel.value;
+            sel.innerHTML = '';
+            const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+            headers.forEach((h, idx) => {
+                const name = h.querySelector('h3') ? h.querySelector('h3').textContent.trim() : 'Plan';
+                const priceEl = h.querySelector('[id^="price"]');
+                const display = priceEl ? priceEl.textContent : '';
+                const opt = document.createElement('option'); opt.value = idx; opt.textContent = `${name} — ${display}`; sel.appendChild(opt);
+            });
+            if (prev && sel.options[prev]) sel.value = prev;
+            const idx = Number(sel.value || 0);
+            const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+            const priceEl = (headers[idx] && headers[idx].querySelector('[id^="price"]')) || null;
+            const editInput = document.getElementById('editPlanPrice'); if (editInput) editInput.value = priceEl ? Number(priceEl.dataset.monthly || 0) : 0;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[name="billing"]');
+        radios.forEach(r => r.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                updateDisplayedPrices(e.target.value);
+                ai_refreshModals(e.target.value);
+            }
+        }));
+        const checked = document.querySelector('input[name="billing"]:checked');
+        updateDisplayedPrices(checked ? checked.value : 'monthly');
+        ai_refreshModals(checked ? checked.value : 'monthly');
+
+        // show plan controls on larger screens
+        const controls = document.getElementById('planControls'); if (controls) controls.classList.remove('hidden');
+
+        // View Plans
+        const btnView = document.getElementById('btnViewPlans'); if (btnView) {
+            btnView.addEventListener('click', () => { ai_refreshModals(document.querySelector('input[name="billing"]:checked')?.value); ai_openModal('viewPlansModal'); });
+        }
+        const closeView = document.getElementById('closeView'); if (closeView) closeView.addEventListener('click', () => ai_closeModal('viewPlansModal'));
+
+        // Add Plan
+        const btnAdd = document.getElementById('btnAddPlan');
+        if (btnAdd) {
+            btnAdd.addEventListener('click', () => ai_openModal('addPlanModal'));
+            const cancelAdd = document.getElementById('cancelAdd'); if (cancelAdd) cancelAdd.addEventListener('click', () => ai_closeModal('addPlanModal'));
+            const submitAdd = document.getElementById('submitAdd'); if (submitAdd) submitAdd.addEventListener('click', () => {
+                const name = document.getElementById('newPlanName').value.trim() || 'New Plan';
+                const monthly = Number(document.getElementById('newPlanPrice').value) || 0;
+                const theadRow = document.querySelector('thead tr');
+                const th = document.createElement('th'); th.className = 'p-6 md:p-8 w-1/4 align-bottom';
+                const idStamp = Date.now();
+                th.innerHTML = `<h3 class="text-lg font-bold">${name}</h3><div class="flex items-baseline gap-1 mb-4"><span id="price${idStamp}" data-monthly="${monthly}" class="text-3xl font-black">${formatCurrencyINR(monthly)}</span><span class="text-sm">/mo</span></div><button class="w-full py-2.5 rounded-lg border text-sm">Choose Plan</button>`;
+                theadRow.appendChild(th);
+                document.querySelectorAll('tbody tr').forEach(tr => {
+                    if (tr.querySelector('td') && tr.querySelector('td').getAttribute('colspan')) {
+                        const td = document.createElement('td'); td.className = 'p-6'; td.textContent = ''; tr.appendChild(td); return;
+                    }
+                    const td = document.createElement('td'); td.className = 'p-6 text-center'; td.textContent = '-'; tr.appendChild(td);
+                });
+                ai_closeModal('addPlanModal');
+                updateDisplayedPrices(document.querySelector('input[name="billing"]:checked')?.value || 'monthly');
+                ai_refreshModals(document.querySelector('input[name="billing"]:checked')?.value || 'monthly');
+            });
+        }
+
+        // Edit Price
+        function populateEditSelectAI() {
+            const sel = document.getElementById('editPlanSelect'); if (!sel) return; sel.innerHTML = '';
+            const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+            headers.forEach((h, idx) => {
+                const name = h.querySelector('h3') ? h.querySelector('h3').textContent.trim() : 'Plan';
+                const priceEl = h.querySelector('[id^="price"]');
+                const monthly = priceEl ? Number(priceEl.dataset.monthly || 0) : 0;
+                const opt = document.createElement('option'); opt.value = idx; opt.textContent = `${name} (${formatCurrencyINR(monthly)})`; sel.appendChild(opt);
+            });
+        }
+        const btnEdit = document.getElementById('btnEditPrice'); if (btnEdit) {
+            btnEdit.addEventListener('click', () => { populateEditSelectAI(); ai_openModal('editPriceModal'); });
+            const cancelEdit = document.getElementById('cancelEdit'); if (cancelEdit) cancelEdit.addEventListener('click', () => ai_closeModal('editPriceModal'));
+            const submitEdit = document.getElementById('submitEdit'); if (submitEdit) submitEdit.addEventListener('click', () => {
+                const sel = document.getElementById('editPlanSelect'); const idx = Number(sel.value);
+                const newVal = Number(document.getElementById('editPlanPrice').value) || 0;
+                const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+                const target = headers[idx];
+                if (target) {
+                    const priceEl = target.querySelector('[id^="price"]');
+                    if (priceEl) priceEl.dataset.monthly = newVal;
+                }
+                ai_closeModal('editPriceModal');
+                updateDisplayedPrices(document.querySelector('input[name="billing"]:checked')?.value || 'monthly');
+                ai_refreshModals(document.querySelector('input[name="billing"]:checked')?.value || 'monthly');
+            });
+            const selEl = document.getElementById('editPlanSelect'); if (selEl) selEl.addEventListener('change', (e) => {
+                const idx = Number(e.target.value); const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+                const priceEl = (headers[idx] && headers[idx].querySelector('[id^="price"]')) || null;
+                const input = document.getElementById('editPlanPrice'); if (input) input.value = priceEl ? Number(priceEl.dataset.monthly || 0) : 0;
+            });
+        }
+
+        // Toggle Features
+        const btnToggle = document.getElementById('btnToggleFeature'); if (btnToggle) {
+            btnToggle.addEventListener('click', () => {
+                const list = document.getElementById('featureList'); list.innerHTML = '';
+                const rows = Array.from(document.querySelectorAll('tbody tr')).filter(r => r.querySelector('td') && !r.querySelector('td').hasAttribute('colspan'));
+                rows.forEach((r, idx) => {
+                    const name = r.querySelector('td').textContent.trim();
+                    const div = document.createElement('div'); div.className = 'flex items-center justify-between gap-3';
+                    const label = document.createElement('div'); label.textContent = name;
+                    const chk = document.createElement('input'); chk.type = 'checkbox'; chk.checked = !r.classList.contains('feature-disabled');
+                    chk.addEventListener('change', () => {
+                        if (!chk.checked) { Array.from(r.querySelectorAll('td')).slice(1).forEach(cell => cell.classList.add('opacity-30')); r.classList.add('feature-disabled'); }
+                        else { Array.from(r.querySelectorAll('td')).slice(1).forEach(cell => cell.classList.remove('opacity-30')); r.classList.remove('feature-disabled'); }
+                    });
+                    div.appendChild(label); div.appendChild(chk); list.appendChild(div);
+                });
+                ai_openModal('toggleFeatureModal');
+            });
+            const closeToggle = document.getElementById('closeToggle'); if (closeToggle) closeToggle.addEventListener('click', () => ai_closeModal('toggleFeatureModal'));
+        }
+
+    });
+    </script>
+    </body></html>

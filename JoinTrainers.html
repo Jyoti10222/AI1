@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team - TECH-PRO AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#137fec',
+                        'primary-dark': '#0f65bd',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-white">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="size-10 rounded-xl bg-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white">school</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">TECH-PRO AI</h1>
+                        <p class="text-xs text-slate-400">Join Our Team</p>
+                    </div>
+                </div>
+                <a href="A1Homepage.html"
+                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">home</span>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary/20 via-slate-900 to-slate-950 py-20">
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2
+                    class="text-5xl font-extrabold mb-6 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+                    Become a TECH-PRO AI Trainer
+                </h2>
+                <p class="text-xl text-slate-300 mb-8">
+                    Share your expertise, inspire the next generation of tech professionals, and be part of India's
+                    leading AI-powered learning platform
+                </p>
+                <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg">
+                        <span class="material-symbols-outlined text-green-400">check_circle</span>
+                        <span class="text-sm">Flexible Schedule</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg">
+                        <span class="material-symbols-outlined text-green-400">check_circle</span>
+                        <span class="text-sm">Competitive Pay</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-lg">
+                        <span class="material-symbols-outlined text-green-400">check_circle</span>
+                        <span class="text-sm">Remote Options</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 rounded-2xl border border-slate-800 p-8 shadow-2xl">
+                <div class="mb-8">
+                    <h3 class="text-3xl font-bold mb-2">Trainer Application Form</h3>
+                    <p class="text-slate-400">Fill in your details below. We'll review your application and get back to
+                        you within 48 hours.</p>
+                </div>
+
+                <form id="trainerApplicationForm" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">person</span>
+                            Personal Information
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
+                                <input type="text" id="name" required
+                                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                    placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
+                                <input type="email" id="email" required
+                                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                    placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" required
+                                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                    placeholder="+91-9876543210">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Years of Experience
+                                    *</label>
+                                <input type="number" id="experience" required min="0"
+                                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                    placeholder="5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Details -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">work</span>
+                            Professional Details
+                        </h4>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Qualifications *</label>
+                            <input type="text" id="qualifications" required
+                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                placeholder="M.Tech in CS, Oracle Certified Professional">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Bio / About You *</label>
+                            <textarea id="bio" required rows="4"
+                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                placeholder="Tell us about your teaching experience, expertise, and why you want to join TECH-PRO AI..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Specializations -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">school</span>
+                            Areas of Expertise
+                        </h4>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Courses You Can Teach *</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Java Full Stack">
+                                    <span class="text-sm">Java Full Stack</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Python Programming">
+                                    <span class="text-sm">Python Programming</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="AI & Machine Learning">
+                                    <span class="text-sm">AI & ML</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Data Science">
+                                    <span class="text-sm">Data Science</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Cybersecurity">
+                                    <span class="text-sm">Cybersecurity</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Cloud Computing">
+                                    <span class="text-sm">Cloud Computing</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="DevOps">
+                                    <span class="text-sm">DevOps</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Web Development">
+                                    <span class="text-sm">Web Development</span>
+                                </label>
+                                <label
+                                    class="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors">
+                                    <input type="checkbox" class="course-checkbox" value="Mobile Development">
+                                    <span class="text-sm">Mobile Dev</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Specific Topics
+                                (comma-separated)</label>
+                            <input type="text" id="topics"
+                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-primary"
+                                placeholder="Spring Boot, REST APIs, Microservices, Docker, Kubernetes">
+                            <p class="text-xs text-slate-500 mt-1">Enter specific topics you specialize in, separated by
+                                commas</p>
+                        </div>
+                    </div>
+
+                    <!-- Profile Picture -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">photo_camera</span>
+                            Profile Picture
+                        </h4>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Upload Profile Picture</label>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-1">
+                                    <input type="file" id="profilePicture"
+                                        accept="image/jpeg,image/jpg,image/png,application/pdf"
+                                        class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white hover:file:bg-primary-dark cursor-pointer">
+                                    <p class="text-xs text-slate-500 mt-2">
+                                        Accepted formats: JPEG, PNG, PDF | Max size: 10MB
+                                    </p>
+                                    <p id="file-error" class="text-xs text-red-400 mt-1 hidden"></p>
+                                </div>
+                                <div id="image-preview" class="hidden">
+                                    <img id="preview-img"
+                                        class="size-24 rounded-lg object-cover border-2 border-slate-700" alt="Preview">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-6 border-t border-slate-800">
+                        <button type="submit"
+                            class="w-full px-6 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg">
+                            <span class="material-symbols-outlined">send</span>
+                            Submit Application
+                        </button>
+                        <p class="text-xs text-slate-500 text-center mt-3">
+                            By submitting, you agree to our terms and conditions
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="py-16 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center mb-12">Why Join TECH-PRO AI?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="size-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Flexible Schedule</h4>
+                    <p class="text-slate-400">Choose your own hours and teach at your convenience</p>
+                </div>
+                <div class="text-center">
+                    <div class="size-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Competitive Compensation</h4>
+                    <p class="text-slate-400">Earn well while sharing your knowledge</p>
+                </div>
+                <div class="text-center">
+                    <div class="size-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Impact Thousands</h4>
+                    <p class="text-slate-400">Help shape the future of tech professionals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+        let profilePictureBase64 = null;
+
+        // Auto-fill User Data
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const userProfileStr = localStorage.getItem('userProfile');
+                if (userProfileStr) {
+                    const user = JSON.parse(userProfileStr);
+
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const phoneInput = document.getElementById('phone');
+
+                    if (nameInput && user.firstName) {
+                        nameInput.value = user.lastName ? `${user.firstName} ${user.lastName}` : user.firstName;
+                    }
+
+                    if (emailInput && (user.identifierType === 'email' || !user.identifierType)) {
+                        emailInput.value = user.email || '';
+                    }
+
+                    if (phoneInput && user.identifierType === 'phone') {
+                        let phone = user.email;
+                        if (phone.startsWith('+91')) phone = phone.substring(3);
+                        phoneInput.value = phone;
+                    }
+                }
+            } catch (e) {
+                console.error("Error auto-filling trainer form:", e);
+            }
+        });
+
+        // File upload validation and preview
+        document.getElementById('profilePicture').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            const fileError = document.getElementById('file-error');
+            const imagePreview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+
+            // Reset
+            fileError.classList.add('hidden');
+            imagePreview.classList.add('hidden');
+            profilePictureBase64 = null;
+
+            if (!file) return;
+
+            // Validate file size (10MB = 10 * 1024 * 1024 bytes)
+            const maxSize = 10 * 1024 * 1024;
+            if (file.size > maxSize) {
+                fileError.textContent = 'File size must be less than 10MB';
+                fileError.classList.remove('hidden');
+                e.target.value = '';
+                return;
+            }
+
+            // Validate file type
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+            if (!allowedTypes.includes(file.type)) {
+                fileError.textContent = 'Only JPEG, PNG, and PDF files are allowed';
+                fileError.classList.remove('hidden');
+                e.target.value = '';
+                return;
+            }
+
+            // Show preview for images (not PDF)
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    previewImg.src = event.target.result;
+                    imagePreview.classList.remove('hidden');
+                    profilePictureBase64 = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // For PDF, just convert to base64 without preview
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    profilePictureBase64 = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('trainerApplicationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Collect form data
+            const selectedCourses = Array.from(document.querySelectorAll('.course-checkbox:checked'))
+                .map(cb => cb.value);
+
+            if (selectedCourses.length === 0) {
+                showToast('Please select at least one course you can teach', 'error');
+                return;
+            }
+
+            const topics = document.getElementById('topics').value
+                .split(',')
+                .map(t => t.trim())
+                .filter(t => t);
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                experience: document.getElementById('experience').value,
+                qualifications: document.getElementById('qualifications').value,
+                bio: document.getElementById('bio').value,
+                profilePicture: profilePictureBase64,
+                specializations: {
+                    courses: selectedCourses,
+                    topics: topics
+                }
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/trainers/apply`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showToast('Application submitted successfully! We\'ll contact you soon.', 'success');
+                    document.getElementById('trainerApplicationForm').reset();
+                    document.getElementById('image-preview').classList.add('hidden');
+                    profilePictureBase64 = null;
+
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'A1Homepage.html';
+                    }, 2000);
+                } else {
+                    showToast(result.message || 'Failed to submit application', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Server error. Please try again later.', 'error');
+            }
+        });
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-2`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined">${type === 'success' ? 'check_circle' : 'error'}</span>
+                <span>${message}</span>
+            `;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+    </script>
+</body>
+
+</html>

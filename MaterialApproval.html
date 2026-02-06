@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Material Approval - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "primary-hover": "#2563eb",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                        "dark-surface": "#334155",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 overflow-hidden">
+
+    <div class="flex h-screen w-full overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-64 bg-white dark:bg-dark-card border-r border-slate-200 dark:border-slate-800 hidden lg:flex flex-col z-20 shrink-0 h-full shadow-lg">
+            <div class="p-6 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800/50">
+                <div
+                    class="size-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                </div>
+                <h2
+                    class="text-lg font-black tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    TECH-PRO AI</h2>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-2 custom-scrollbar">
+                <a href="AdminDashboard.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span class="material-symbols-outlined group-hover:text-blue-500 transition-colors">dashboard</span>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium transition-all shadow-lg"
+                    href="MaterialApproval.html">
+                    <span class="material-symbols-outlined">pending_actions</span>
+                    Material Approval
+                    <span class="ml-auto px-2 py-0.5 bg-white/30 text-white text-xs font-bold rounded-full">3</span>
+                </a>
+                <a href="CourseManagement.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span class="material-symbols-outlined group-hover:text-green-500 transition-colors">school</span>
+                    Course Management
+                </a>
+                <a href="ActivityLogs.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span class="material-symbols-outlined group-hover:text-blue-500 transition-colors">history</span>
+                    Activity Logs
+                </a>
+                <a href="A9Admin.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span
+                        class="material-symbols-outlined group-hover:text-red-500 transition-colors">admin_panel_settings</span>
+                    Main Admin
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col h-full overflow-hidden">
+            <!-- Header -->
+            <header
+                class="h-16 shrink-0 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-10">
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-bold text-slate-900 dark:text-white">Material Approval Queue</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Review and approve pending materials</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span
+                        class="px-3 py-1.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-sm font-bold rounded-lg">
+                        3 Pending
+                    </span>
+                </div>
+            </header>
+
+            <!-- Main -->
+            <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 custom-scrollbar">
+                <div class="max-w-7xl mx-auto space-y-6">
+
+                    <!-- Pending Materials -->
+                    <div id="pendingMaterialsContainer" class="space-y-4">
+                        <!-- Materials will be loaded dynamically -->
+                        <div class="text-center py-12">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 animate-pulse">hourglass_empty</span>
+                            <p class="text-slate-500 dark:text-slate-400 mt-4">Loading pending materials...</p>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let pendingMaterials = [];
+
+        // Load pending materials on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadPendingMaterials();
+        });
+
+        async function loadPendingMaterials() {
+            try {
+                const response = await fetch(`${API_BASE}/study-materials?status=pending`);
+                const data = await response.json();
+
+                if (data.success && data.materials) {
+                    pendingMaterials = data.materials;
+                    renderMaterials();
+                    updatePendingCount();
+                } else {
+                    showEmptyState();
+                }
+            } catch (error) {
+                console.error('Error loading materials:', error);
+                showErrorState();
+            }
+        }
+
+        function renderMaterials() {
+            const container = document.getElementById('pendingMaterialsContainer');
+
+            if (pendingMaterials.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            container.innerHTML = pendingMaterials.map(material => createMaterialCard(material)).join('');
+        }
+
+        function createMaterialCard(material) {
+            const typeColors = {
+                pdf: { bg: 'from-red-500/20 to-orange-500/20', border: 'border-red-500/20', icon: 'picture_as_pdf', iconColor: 'text-red-500', badge: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400' },
+                ppt: { bg: 'from-orange-500/20 to-yellow-500/20', border: 'border-orange-500/20', icon: 'slideshow', iconColor: 'text-orange-500', badge: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400' },
+                video: { bg: 'from-purple-500/20 to-pink-500/20', border: 'border-purple-500/20', icon: 'play_circle', iconColor: 'text-purple-500', badge: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400' }
+            };
+
+            const colors = typeColors[material.type] || typeColors.pdf;
+            const uploadDate = new Date(material.uploadDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const initials = material.uploadedBy.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+            const fileSize = formatFileSize(material.fileSize);
+
+            return `
+                <div class="bg-white dark:bg-dark-card rounded-2xl border-2 border-orange-500/30 shadow-xl overflow-hidden" data-material-id="${material.id}">
+                    <div class="p-6">
+                        <div class="flex items-start gap-6">
+                            <!-- Preview -->
+                            <div class="w-48 h-32 rounded-xl bg-gradient-to-br ${colors.bg} flex items-center justify-center flex-shrink-0 border ${colors.border}">
+                                <span class="material-symbols-outlined text-6xl ${colors.iconColor}">${colors.icon}</span>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="flex-1 space-y-4">
+                                <div>
+                                    <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-2">${material.title}</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">${material.description || 'No description provided'}</p>
+                                </div>
+
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Course</p>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">${material.courseName}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Module</p>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">${material.moduleName}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Type</p>
+                                        <span class="inline-block px-2 py-1 ${colors.badge} text-xs font-bold rounded">${material.type.toUpperCase()}</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">${material.type === 'video' ? 'Duration' : 'Size'}</p>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">${material.duration || fileSize}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3 pt-2 border-t border-slate-200 dark:border-slate-700">
+                                    <div class="size-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold">
+                                        ${initials}
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">${material.uploadedBy.name}</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Uploaded on ${uploadDate}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex gap-3 mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                            <button
+                                class="flex-1 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                onclick="approveMaterial('${material.id}', this)">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Approve
+                            </button>
+                            <button
+                                class="flex-1 px-6 py-3 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                onclick="rejectMaterial('${material.id}', this)">
+                                <span class="material-symbols-outlined">cancel</span>
+                                Reject
+                            </button>
+                            <button
+                                class="px-6 py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">visibility</span>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatFileSize(bytes) {
+            if (typeof bytes === 'string') return bytes;
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function updatePendingCount() {
+            const count = pendingMaterials.length;
+            document.querySelectorAll('.text-orange-600, .text-orange-400').forEach(el => {
+                if (el.textContent.includes('Pending')) {
+                    el.textContent = `${count} Pending`;
+                }
+            });
+
+            // Update sidebar badge
+            const badge = document.querySelector('a[href="MaterialApproval.html"] span.ml-auto');
+            if (badge) {
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'inline-block' : 'none';
+            }
+        }
+
+        function showEmptyState() {
+            const container = document.getElementById('pendingMaterialsContainer');
+            container.innerHTML = `
+                <div class="text-center py-16">
+                    <span class="material-symbols-outlined text-8xl text-green-500">check_circle</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-4">All Caught Up!</h3>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2">No pending materials to review</p>
+                </div>
+            `;
+            updatePendingCount();
+        }
+
+        function showErrorState() {
+            const container = document.getElementById('pendingMaterialsContainer');
+            container.innerHTML = `
+                <div class="text-center py-16">
+                    <span class="material-symbols-outlined text-8xl text-red-500">error</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-4">Error Loading Materials</h3>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2">Please check your connection and try again</p>
+                    <button onclick="loadPendingMaterials()" class="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg">
+                        Retry
+                    </button>
+                </div>
+            `;
+        }
+
+        async function approveMaterial(materialId, button) {
+            if (!confirm('Are you sure you want to approve this material?')) return;
+
+            try {
+                button.disabled = true;
+                button.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Approving...';
+
+                const response = await fetch(`${API_BASE}/study-materials/${materialId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: 'approved' })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const card = button.closest('[data-material-id]');
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(20px)';
+                    card.style.transition = 'all 0.3s ease';
+
+                    setTimeout(() => {
+                        card.remove();
+                        pendingMaterials = pendingMaterials.filter(m => m.id !== materialId);
+                        if (pendingMaterials.length === 0) showEmptyState();
+                        else updatePendingCount();
+                        alert('✅ Material approved successfully!');
+                    }, 300);
+                } else {
+                    throw new Error(data.error || 'Approval failed');
+                }
+            } catch (error) {
+                console.error('Error approving material:', error);
+                alert('❌ Failed to approve material. Please try again.');
+                button.disabled = false;
+                button.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Approve';
+            }
+        }
+
+        async function rejectMaterial(materialId, button) {
+            const reason = prompt('Please provide a reason for rejection:');
+            if (!reason) return;
+
+            try {
+                button.disabled = true;
+                button.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Rejecting...';
+
+                const response = await fetch(`${API_BASE}/study-materials/${materialId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: 'rejected', rejectionReason: reason })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const card = button.closest('[data-material-id]');
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(-20px)';
+                    card.style.transition = 'all 0.3s ease';
+
+                    setTimeout(() => {
+                        card.remove();
+                        pendingMaterials = pendingMaterials.filter(m => m.id !== materialId);
+                        if (pendingMaterials.length === 0) showEmptyState();
+                        else updatePendingCount();
+                        alert('✅ Material rejected. Trainer will be notified.');
+                    }, 300);
+                } else {
+                    throw new Error(data.error || 'Rejection failed');
+                }
+            } catch (error) {
+                console.error('Error rejecting material:', error);
+                alert('❌ Failed to reject material. Please try again.');
+                button.disabled = false;
+                button.innerHTML = '<span class="material-symbols-outlined">cancel</span> Reject';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

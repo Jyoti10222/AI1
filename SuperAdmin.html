@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Super Admin - Access Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bc",
+                        "background-dark": "#111a22",
+                        "card-dark": "#1a2632",
+                        "border-dark": "#233648",
+                        "text-secondary": "#92adc9",
+                        "danger": "#ef4444",
+                        "success": "#10b981"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .permission-checkbox:checked {
+            background-color: #137fec;
+            border-color: #137fec;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col">
+        <!-- Header -->
+        <header
+            class="flex items-center justify-between border-b border-border-dark bg-background-dark px-6 py-3 sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="size-8 text-primary">
+                        <span class="material-symbols-outlined text-4xl">admin_panel_settings</span>
+                    </div>
+                    <h2 class="text-white text-xl font-bold leading-tight tracking-tight">AI-TECH PRO</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="A9Admin.html"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium">Dashboard</a>
+                    <a href="SuperAdmin.html"
+                        class="text-white text-sm font-medium border-b-2 border-primary pb-0.5">Access Control</a>
+                    <a href="A18Report.html"
+                        class="text-text-secondary hover:text-white transition-colors text-sm font-medium">Reports</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <span
+                    class="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold border border-primary/30">SUPER
+                    ADMIN</span>
+                <a href="A1Homepage.html" class="text-text-secondary hover:text-white">
+                    <span class="material-symbols-outlined">logout</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="layout-container flex h-full grow flex-col max-w-[1400px] mx-auto w-full">
+            <div class="px-6 py-6 border-b border-border-dark">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-white text-3xl font-black leading-tight tracking-[-0.033em]">Access Control
+                            Management</h1>
+                        <p class="text-text-secondary text-base font-normal">Configure role-based permissions for your
+                            platform</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="A4Onboarding.html" target="_blank"
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 transition-all text-white text-sm font-medium shadow-lg shadow-green-500/20">
+                            <span class="material-symbols-outlined text-[20px]">school</span>
+                            Go to Onboarding
+                        </a>
+                        <a href="A9Admin.html" target="_blank"
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all text-white text-sm font-medium shadow-lg shadow-blue-500/20">
+                            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                            Go to Admin Dashboard
+                        </a>
+                        <button id="resetBtn"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#233648] hover:bg-[#2f455a] transition-colors text-white text-sm font-medium border border-border-dark">
+                            <span class="material-symbols-outlined text-[20px]">refresh</span>
+                            Reset to Default
+                        </button>
+                        <button id="saveBtn"
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-medium">
+                            <span class="material-symbols-outlined text-[20px]">save</span>
+                            Save Permissions
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Statistics Dashboard -->
+            <div class="px-6 pb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Total Users -->
+                    <div
+                        class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden group hover:border-primary/50 transition-all">
+                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-6xl text-primary">group</span>
+                        </div>
+                        <p class="text-text-secondary text-xs font-medium uppercase tracking-wider">Total Users</p>
+                        <div class="flex items-end gap-3 mt-2">
+                            <p id="totalUsers" class="text-white text-3xl font-bold">--</p>
+                            <span
+                                class="flex items-center text-green-500 text-xs font-medium bg-green-500/10 px-2 py-0.5 rounded mb-1">
+                                <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                            </span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-border-dark/50">
+                            <p class="text-xs text-text-secondary">Active sessions: <span id="activeSessions"
+                                    class="text-white font-medium">--</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Total Students -->
+                    <div
+                        class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden group hover:border-green-500/50 transition-all">
+                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-6xl text-green-500">school</span>
+                        </div>
+                        <p class="text-text-secondary text-xs font-medium uppercase tracking-wider">Total Students</p>
+                        <div class="flex items-end gap-3 mt-2">
+                            <p id="totalStudents" class="text-white text-3xl font-bold">--</p>
+                            <span
+                                class="flex items-center text-green-500 text-xs font-medium bg-green-500/10 px-2 py-0.5 rounded mb-1">
+                                <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                            </span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-border-dark/50">
+                            <p class="text-xs text-text-secondary">Enrolled this month: <span id="monthlyEnrollments"
+                                    class="text-white font-medium">--</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Permission Changes -->
+                    <div
+                        class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden group hover:border-orange-500/50 transition-all">
+                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-6xl text-orange-500">admin_panel_settings</span>
+                        </div>
+                        <p class="text-text-secondary text-xs font-medium uppercase tracking-wider">Permission Updates
+                        </p>
+                        <div class="flex items-end gap-3 mt-2">
+                            <p id="permissionChanges" class="text-white text-3xl font-bold">0</p>
+                            <span
+                                class="flex items-center text-blue-500 text-xs font-medium bg-blue-500/10 px-2 py-0.5 rounded mb-1">
+                                Today
+                            </span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-border-dark/50">
+                            <p class="text-xs text-text-secondary">Last updated: <span id="lastPermissionUpdate"
+                                    class="text-white font-medium">Never</span></p>
+                        </div>
+                    </div>
+
+                    <!-- System Health -->
+                    <div
+                        class="rounded-xl border border-border-dark bg-card-dark p-5 relative overflow-hidden group hover:border-cyan-500/50 transition-all">
+                        <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-6xl text-cyan-500">monitor_heart</span>
+                        </div>
+                        <p class="text-text-secondary text-xs font-medium uppercase tracking-wider">System Health</p>
+                        <div class="flex items-end gap-3 mt-2">
+                            <p id="systemHealth" class="text-green-500 text-2xl font-bold">Operational</p>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-border-dark/50">
+                            <div class="flex items-center gap-2">
+                                <span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                                <p class="text-xs text-text-secondary">Backend: <span
+                                        class="text-green-500 font-medium">Online</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Dashboard -->
+            <div class="px-6 pb-6">
+                <div class="rounded-xl border border-border-dark bg-card-dark overflow-hidden">
+                    <div class="p-5 bg-gradient-to-r from-primary/20 to-transparent border-b border-border-dark">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-3xl">dashboard</span>
+                            <div>
+                                <h2 class="text-white text-xl font-bold">Super Admin Dashboard</h2>
+                                <p class="text-text-secondary text-sm">Quick access to all platform pages and features
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Admin Pages -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-orange-500">shield_person</span>
+                                Admin Pages
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="A9Admin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">dashboard</span>
+                                    <span class="text-white text-sm">Admin Dashboard</span>
+                                </a>
+                                <a href="A14Student.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-green-500 group-hover:scale-110 transition-transform">school</span>
+                                    <span class="text-white text-sm">Student Management</span>
+                                </a>
+                                <a href="A16Users.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-purple-500 group-hover:scale-110 transition-transform">group</span>
+                                    <span class="text-white text-sm">User Management</span>
+                                </a>
+                                <a href="TrainerManagement.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-cyan-500 group-hover:scale-110 transition-transform">person_raised_hand</span>
+                                    <span class="text-white text-sm">Trainer Management</span>
+                                </a>
+                                <a href="CounselorAdmin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-pink-500 group-hover:scale-110 transition-transform">psychology</span>
+                                    <span class="text-white text-sm">Counselor Management</span>
+                                </a>
+                                <a href="LeadDash.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-orange-400 group-hover:scale-110 transition-transform">trending_up</span>
+                                    <span class="text-white text-sm">Lead Management</span>
+                                </a>
+                                <a href="PricingDashboard.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-emerald-500 group-hover:scale-110 transition-transform">payments</span>
+                                    <span class="text-white text-sm">Pricing Management</span>
+                                </a>
+                                <a href="ExamBuilder.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-red-400 group-hover:scale-110 transition-transform">quiz</span>
+                                    <span class="text-white text-sm">Exam Builder</span>
+                                </a>
+                                <a href="AssessmentBuilder.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-indigo-400 group-hover:scale-110 transition-transform">assignment</span>
+                                    <span class="text-white text-sm">Assessment Builder</span>
+                                </a>
+                                <a href="NotificationAdmin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-yellow-500 group-hover:scale-110 transition-transform">notifications</span>
+                                    <span class="text-white text-sm">Notifications</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Faculty Pages -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">school</span>
+                                Faculty Pages
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="FacultyOnline.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-blue-400 group-hover:scale-110 transition-transform">wifi</span>
+                                    <span class="text-white text-sm">Faculty Online</span>
+                                </a>
+                                <a href="FacultyOffline.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-orange-400 group-hover:scale-110 transition-transform">wifi_off</span>
+                                    <span class="text-white text-sm">Faculty Offline</span>
+                                </a>
+                                <a href="FacultyHybrid.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-purple-400 group-hover:scale-110 transition-transform">sync</span>
+                                    <span class="text-white text-sm">Faculty Hybrid</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Analytics & Reports -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-cyan-500">analytics</span>
+                                Analytics & Reports
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="A17Analytics.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-cyan-400 group-hover:scale-110 transition-transform">bar_chart</span>
+                                    <span class="text-white text-sm">Analytics Dashboard</span>
+                                </a>
+                                <a href="A18Report.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-pink-400 group-hover:scale-110 transition-transform">assessment</span>
+                                    <span class="text-white text-sm">Global Reports</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Course Management -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-green-500">menu_book</span>
+                                Course Management
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="A6Catlog.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-green-400 group-hover:scale-110 transition-transform">library_books</span>
+                                    <span class="text-white text-sm">Course Catalog</span>
+                                </a>
+                                <a href="A11Builder.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-yellow-400 group-hover:scale-110 transition-transform">construction</span>
+                                    <span class="text-white text-sm">Course Builder</span>
+                                </a>
+                                <a href="AIlearning.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-purple-400 group-hover:scale-110 transition-transform">psychology</span>
+                                    <span class="text-white text-sm">AI Learning</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Batch Management -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-indigo-500">groups</span>
+                                Batch Management
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="Online.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-blue-400 group-hover:scale-110 transition-transform">wifi</span>
+                                    <span class="text-white text-sm">Online Batches</span>
+                                </a>
+                                <a href="OnlineAdmin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-blue-300 group-hover:scale-110 transition-transform">admin_panel_settings</span>
+                                    <span class="text-white text-sm">Online Admin</span>
+                                </a>
+                                <a href="Offline.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-orange-400 group-hover:scale-110 transition-transform">wifi_off</span>
+                                    <span class="text-white text-sm">Offline Batches</span>
+                                </a>
+                                <a href="OfflineAdmin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-orange-300 group-hover:scale-110 transition-transform">admin_panel_settings</span>
+                                    <span class="text-white text-sm">Offline Admin</span>
+                                </a>
+                                <a href="Hybrid.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-purple-400 group-hover:scale-110 transition-transform">sync</span>
+                                    <span class="text-white text-sm">Hybrid Batches</span>
+                                </a>
+                                <a href="HybridAdmin.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-purple-300 group-hover:scale-110 transition-transform">admin_panel_settings</span>
+                                    <span class="text-white text-sm">Hybrid Admin</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Student Pages -->
+                        <div class="space-y-3">
+                            <h3 class="text-white font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-pink-500">person</span>
+                                Student Pages
+                            </h3>
+                            <div class="space-y-2">
+                                <a href="A5Dashboard.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-pink-400 group-hover:scale-110 transition-transform">dashboard</span>
+                                    <span class="text-white text-sm">Student Dashboard</span>
+                                </a>
+                                <a href="Studentform.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-green-400 group-hover:scale-110 transition-transform">edit_note</span>
+                                    <span class="text-white text-sm">Student Form</span>
+                                </a>
+                                <a href="Certificate.html" target="_blank"
+                                    class="flex items-center gap-3 p-3 rounded-lg bg-background-dark hover:bg-[#1f2d3b] transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-yellow-400 group-hover:scale-110 transition-transform">workspace_premium</span>
+                                    <span class="text-white text-sm">Certificates</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Permission Matrix -->
+            <div class="p-6">
+                <div class="rounded-xl border border-border-dark bg-card-dark overflow-hidden">
+                    <!-- Info Banner -->
+                    <div class="p-5 bg-primary/10 border-b border-primary/30">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary">info</span>
+                            <div>
+                                <p class="text-white text-sm font-medium">Permission Matrix</p>
+                                <p class="text-text-secondary text-xs mt-1">Check the boxes to grant permissions to each
+                                    role. Changes take effect immediately after saving.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-border-dark bg-[#111a22]/50">
+                                    <th
+                                        class="p-4 font-medium text-text-secondary uppercase tracking-wider text-xs sticky left-0 bg-[#111a22]/50 z-10">
+                                        Permission</th>
+                                    <th class="p-4 font-medium text-center text-xs">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="material-symbols-outlined text-orange-500">shield_person</span>
+                                            <span class="text-white">Admin</span>
+                                        </div>
+                                    </th>
+                                    <th class="p-4 font-medium text-center text-xs">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="material-symbols-outlined text-blue-500">school</span>
+                                            <span class="text-white">Faculty</span>
+                                        </div>
+                                    </th>
+                                    <th class="p-4 font-medium text-center text-xs">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="material-symbols-outlined text-green-500">person</span>
+                                            <span class="text-white">Student</span>
+                                        </div>
+                                    </th>
+                                    <th class="p-4 font-medium text-center text-xs">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span
+                                                class="material-symbols-outlined text-purple-500">account_circle</span>
+                                            <span class="text-white">User</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="permissionTableBody" class="text-sm divide-y divide-border-dark">
+                                <!-- Permissions will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="mt-6 p-4 rounded-lg bg-card-dark border border-border-dark">
+                    <h3 class="text-white font-bold text-sm mb-3">Role Descriptions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-orange-500 text-sm">shield_person</span>
+                            <div>
+                                <p class="text-white text-xs font-medium">Admin</p>
+                                <p class="text-text-secondary text-xs">Platform administrators</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-blue-500 text-sm">school</span>
+                            <div>
+                                <p class="text-white text-xs font-medium">Faculty</p>
+                                <p class="text-text-secondary text-xs">Instructors and teachers</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-green-500 text-sm">person</span>
+                            <div>
+                                <p class="text-white text-xs font-medium">Student</p>
+                                <p class="text-text-secondary text-xs">Enrolled learners</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-purple-500 text-sm">account_circle</span>
+                            <div>
+                                <p class="text-white text-xs font-medium">User</p>
+                                <p class="text-text-secondary text-xs">General platform users</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = "http://localhost:8080/api";
+
+        // Permission definitions
+        const permissionCategories = {
+            "Student Management": [
+                { id: "viewStudents", label: "View Students" },
+                { id: "addStudents", label: "Add Students" },
+                { id: "editStudents", label: "Edit Students" },
+                { id: "deleteStudents", label: "Delete Students" },
+                { id: "exportStudents", label: "Export Student Data" }
+            ],
+            "Faculty Management": [
+                { id: "viewFaculty", label: "View Faculty" },
+                { id: "addFaculty", label: "Add Faculty" },
+                { id: "editFaculty", label: "Edit Faculty" },
+                { id: "deleteFaculty", label: "Delete Faculty" }
+            ],
+            "Course Management": [
+                { id: "viewCourses", label: "View Courses" },
+                { id: "createCourses", label: "Create Courses" },
+                { id: "editCourses", label: "Edit Courses" },
+                { id: "deleteCourses", label: "Delete Courses" }
+            ],
+            "Analytics & Reports": [
+                { id: "viewAnalytics", label: "View Analytics" },
+                { id: "exportReports", label: "Export Reports" },
+                { id: "viewGlobalReports", label: "View Global Reports" }
+            ],
+            "System Settings": [
+                { id: "manageNotifications", label: "Manage Notifications" },
+                { id: "manageBatches", label: "Manage Batches" },
+                { id: "systemConfiguration", label: "System Configuration" }
+            ]
+        };
+
+        const roles = ["admin", "faculty", "student", "user"];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user has superadmin role
+            checkSuperAdminAccess();
+            loadSystemStatistics(); // Load dashboard statistics
+            renderPermissionTable();
+            loadPermissions();
+            setupEventListeners();
+            setupRealTimeUpdates(); // Enable real-time permission updates
+        });
+
+        // Load system statistics
+        async function loadSystemStatistics() {
+            try {
+                // Fetch users
+                const usersResponse = await fetch(`${API_BASE_URL}/users`);
+                if (usersResponse.ok) {
+                    const usersData = await usersResponse.json();
+                    const users = usersData.data || usersData || [];
+                    document.getElementById('totalUsers').textContent = users.length;
+                    document.getElementById('activeSessions').textContent = users.filter(u => u.status === 'active').length || users.length;
+                }
+
+                // Fetch students
+                const studentsResponse = await fetch(`${API_BASE_URL}/students`);
+                if (studentsResponse.ok) {
+                    const studentsData = await studentsResponse.json();
+                    const students = studentsData.data || studentsData || [];
+                    document.getElementById('totalStudents').textContent = students.length;
+
+                    // Calculate monthly enrollments
+                    const thisMonth = new Date().getMonth();
+                    const thisYear = new Date().getFullYear();
+                    const monthlyCount = students.filter(s => {
+                        if (s.createdAt) {
+                            const date = new Date(s.createdAt);
+                            return date.getMonth() === thisMonth && date.getFullYear() === thisYear;
+                        }
+                        return false;
+                    }).length;
+                    document.getElementById('monthlyEnrollments').textContent = monthlyCount;
+                }
+
+                // Check last permission update
+                const lastUpdate = localStorage.getItem('lastPermissionUpdate');
+                if (lastUpdate) {
+                    const date = new Date(lastUpdate);
+                    document.getElementById('lastPermissionUpdate').textContent = date.toLocaleString();
+                }
+            } catch (error) {
+                console.error('Error loading statistics:', error);
+                document.getElementById('systemHealth').textContent = 'Degraded';
+                document.getElementById('systemHealth').classList.remove('text-green-500');
+                document.getElementById('systemHealth').classList.add('text-yellow-500');
+            }
+        }
+
+        // Setup real-time permission updates across tabs
+        function setupRealTimeUpdates() {
+            // Listen for permission changes from other tabs
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'permissionsUpdated') {
+                    console.log('Permissions updated in another tab, reloading...');
+                    loadPermissions();
+                    showToast('Permissions updated by another admin', 'info');
+                }
+            });
+        }
+
+        // Broadcast permission change to other tabs
+        function broadcastPermissionChange() {
+            localStorage.setItem('permissionsUpdated', Date.now().toString());
+            localStorage.setItem('lastPermissionUpdate', new Date().toISOString());
+
+            // Update the permission changes counter
+            const currentCount = parseInt(document.getElementById('permissionChanges').textContent) || 0;
+            document.getElementById('permissionChanges').textContent = currentCount + 1;
+            document.getElementById('lastPermissionUpdate').textContent = 'Just now';
+        }
+
+        function checkSuperAdminAccess() {
+            const userRole = localStorage.getItem('userRole');
+
+            // Only allow access if user is superadmin
+            if (userRole !== 'superadmin') {
+                // Show access denied message
+                alert('Access Denied: Only Super Admins can access this page.\n\nYour role: ' + (userRole || 'Not set') + '\n\nYou will be redirected to the homepage.');
+
+                // Redirect to homepage
+                window.location.href = 'A1Homepage.html';
+                return false;
+            }
+
+            return true;
+        }
+
+        function renderPermissionTable() {
+            const tbody = document.getElementById('permissionTableBody');
+            tbody.innerHTML = '';
+
+            Object.entries(permissionCategories).forEach(([category, permissions]) => {
+                // Category header
+                const categoryRow = document.createElement('tr');
+                categoryRow.className = 'bg-[#111a22]/30';
+                categoryRow.innerHTML = `
+                    <td colspan="5" class="p-3 font-bold text-white text-xs uppercase tracking-wider sticky left-0 bg-[#111a22]/30 z-10">
+                        ${category}
+                    </td>
+                `;
+                tbody.appendChild(categoryRow);
+
+                // Permission rows
+                permissions.forEach(permission => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-[#1f2d3b] transition-colors';
+
+                    let html = `<td class="p-4 text-white sticky left-0 bg-card-dark z-10">${permission.label}</td>`;
+
+                    roles.forEach(role => {
+                        html += `
+                            <td class="p-4 text-center">
+                                <input type="checkbox" 
+                                       class="permission-checkbox w-5 h-5 rounded border-border-dark bg-[#233648] cursor-pointer focus:ring-2 focus:ring-primary"
+                                       data-permission="${permission.id}"
+                                       data-role="${role}">
+                            </td>
+                        `;
+                    });
+
+                    row.innerHTML = html;
+                    tbody.appendChild(row);
+                });
+            });
+        }
+
+        async function loadPermissions() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/permissions`);
+                if (!response.ok) throw new Error('Failed to load permissions');
+
+                const permissions = await response.json();
+
+                // Update checkboxes based on loaded permissions
+                document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                    const role = checkbox.dataset.role;
+                    const permission = checkbox.dataset.permission;
+
+                    if (permissions[role] && permissions[role][permission]) {
+                        checkbox.checked = true;
+                    }
+                });
+
+                showToast('Permissions loaded successfully', 'success');
+            } catch (error) {
+                console.error('Error loading permissions:', error);
+                showToast('Failed to load permissions. Using defaults.', 'error');
+                setDefaultPermissions();
+            }
+        }
+
+        function setDefaultPermissions() {
+            // Set reasonable defaults
+            const defaults = {
+                admin: ['viewStudents', 'addStudents', 'editStudents', 'viewFaculty', 'viewCourses', 'editCourses', 'viewAnalytics', 'exportReports', 'manageNotifications', 'manageBatches'],
+                faculty: ['viewStudents', 'viewCourses', 'editCourses', 'viewAnalytics'],
+                student: ['viewCourses'],
+                user: ['viewCourses']
+            };
+
+            document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                const role = checkbox.dataset.role;
+                const permission = checkbox.dataset.permission;
+
+                if (defaults[role] && defaults[role].includes(permission)) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        async function savePermissions() {
+            const permissions = {};
+
+            roles.forEach(role => {
+                permissions[role] = {};
+            });
+
+            document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                const role = checkbox.dataset.role;
+                const permission = checkbox.dataset.permission;
+                permissions[role][permission] = checkbox.checked;
+            });
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/permissions`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(permissions)
+                });
+
+                if (!response.ok) throw new Error('Failed to save permissions');
+
+                // Broadcast permission change to other tabs/pages
+                broadcastPermissionChange();
+
+                showToast('Permissions saved successfully!', 'success');
+            } catch (error) {
+                console.error('Error saving permissions:', error);
+                showToast('Failed to save permissions. Please try again.', 'error');
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('saveBtn').addEventListener('click', savePermissions);
+
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to reset all permissions to default values?')) {
+                    setDefaultPermissions();
+                    showToast('Permissions reset to defaults', 'info');
+                }
+            });
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container') || createToastContainer();
+            const toast = document.createElement('div');
+
+            const colors = {
+                success: 'bg-green-600',
+                error: 'bg-red-600',
+                warning: 'bg-orange-500',
+                info: 'bg-blue-600'
+            };
+
+            toast.className = `${colors[type] || colors.info} text-white px-4 py-3 rounded-lg shadow-lg mb-3 flex items-center gap-2 transform transition-all duration-300 translate-x-10 opacity-0`;
+            toast.style.minWidth = '250px';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-[20px]">${type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info'}</span>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-x-10', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-x-full');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function createToastContainer() {
+            const div = document.createElement('div');
+            div.id = 'toast-container';
+            div.className = 'fixed bottom-5 right-5 z-50 flex flex-col items-end';
+            document.body.appendChild(div);
+            return div;
+        }
+    </script>
+</body>
+
+</html>

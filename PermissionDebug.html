@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permission System Debug Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">🔍 Permission System Debug Tool</h1>
+
+        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4">1. Set Your Role</h2>
+            <div class="flex gap-2">
+                <button onclick="setRole('superadmin')" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded">Super
+                    Admin</button>
+                <button onclick="setRole('admin')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Admin</button>
+                <button onclick="setRole('faculty')"
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded">Faculty</button>
+                <button onclick="setRole('student')"
+                    class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded">Student</button>
+                <button onclick="setRole('user')"
+                    class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded">User</button>
+            </div>
+            <p class="mt-4">Current Role: <span id="currentRole" class="font-bold text-green-400">Not Set</span></p>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4">2. Test Permission Check</h2>
+            <div class="flex gap-2 mb-4">
+                <input id="permissionInput" type="text" placeholder="Enter permission (e.g., viewStudents)"
+                    class="flex-1 px-4 py-2 bg-gray-700 rounded border border-gray-600">
+                <button onclick="checkPermission()"
+                    class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded">Check</button>
+            </div>
+            <div id="permissionResult" class="mt-4"></div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4">3. View All Permissions</h2>
+            <button onclick="loadAllPermissions()" class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded mb-4">Load
+                All Permissions</button>
+            <pre id="allPermissions" class="bg-gray-900 p-4 rounded overflow-auto max-h-96 text-sm"></pre>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-4">4. Quick Permission Tests</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="quickTest('viewStudents')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test: viewStudents</button>
+                <button onclick="quickTest('addStudents')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test:
+                    addStudents</button>
+                <button onclick="quickTest('editStudents')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test: editStudents</button>
+                <button onclick="quickTest('deleteStudents')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test: deleteStudents</button>
+                <button onclick="quickTest('exportStudents')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test: exportStudents</button>
+                <button onclick="quickTest('viewAnalytics')"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Test: viewAnalytics</button>
+            </div>
+            <div id="quickTestResults" class="mt-4 space-y-2"></div>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-6 mt-6">
+            <h2 class="text-xl font-bold mb-4">📋 Console Log</h2>
+            <pre id="consoleLog" class="bg-gray-900 p-4 rounded overflow-auto max-h-64 text-sm text-green-400"></pre>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+
+        function log(message) {
+            const consoleLog = document.getElementById('consoleLog');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleLog.textContent += `[${timestamp}] ${message}\n`;
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+            console.log(message);
+        }
+
+        function setRole(role) {
+            localStorage.setItem('userRole', role);
+            document.getElementById('currentRole').textContent = role;
+            log(`✅ Role set to: ${role}`);
+        }
+
+        function getCurrentRole() {
+            const role = localStorage.getItem('userRole') || 'Not Set';
+            document.getElementById('currentRole').textContent = role;
+            return role;
+        }
+
+        async function checkPermission() {
+            const permission = document.getElementById('permissionInput').value.trim();
+            if (!permission) {
+                alert('Please enter a permission name');
+                return;
+            }
+
+            const role = getCurrentRole();
+            if (role === 'Not Set') {
+                alert('Please set a role first');
+                return;
+            }
+
+            log(`🔍 Checking permission: ${permission} for role: ${role}`);
+
+            try {
+                const url = `${API_BASE_URL}/permissions/check?role=${role}&action=${permission}`;
+                log(`📡 API Call: ${url}`);
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                log(`📥 API Response: ${JSON.stringify(data)}`);
+
+                const resultDiv = document.getElementById('permissionResult');
+                if (data.hasPermission) {
+                    resultDiv.innerHTML = `<div class="bg-green-600 p-4 rounded">✅ GRANTED: ${role} has permission "${permission}"</div>`;
+                    log(`✅ Permission GRANTED`);
+                } else {
+                    resultDiv.innerHTML = `<div class="bg-red-600 p-4 rounded">❌ DENIED: ${role} does NOT have permission "${permission}"</div>`;
+                    log(`❌ Permission DENIED`);
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+                document.getElementById('permissionResult').innerHTML =
+                    `<div class="bg-red-600 p-4 rounded">❌ Error: ${error.message}<br>Make sure backend server is running on port 8080</div>`;
+            }
+        }
+
+        async function loadAllPermissions() {
+            log(`📡 Loading all permissions from backend...`);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/permissions`);
+                const data = await response.json();
+
+                document.getElementById('allPermissions').textContent = JSON.stringify(data, null, 2);
+                log(`✅ Permissions loaded successfully`);
+            } catch (error) {
+                log(`❌ Error loading permissions: ${error.message}`);
+                document.getElementById('allPermissions').textContent = `Error: ${error.message}\n\nMake sure backend server is running on port 8080`;
+            }
+        }
+
+        async function quickTest(permission) {
+            const role = getCurrentRole();
+            if (role === 'Not Set') {
+                alert('Please set a role first');
+                return;
+            }
+
+            log(`🔍 Quick test: ${permission} for ${role}`);
+
+            try {
+                const url = `${API_BASE_URL}/permissions/check?role=${role}&action=${permission}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const resultsDiv = document.getElementById('quickTestResults');
+                const resultHTML = data.hasPermission
+                    ? `<div class="bg-green-600 p-2 rounded text-sm">✅ ${permission}: GRANTED</div>`
+                    : `<div class="bg-red-600 p-2 rounded text-sm">❌ ${permission}: DENIED</div>`;
+
+                resultsDiv.innerHTML = resultHTML + resultsDiv.innerHTML;
+
+                // Keep only last 10 results
+                const results = resultsDiv.children;
+                while (results.length > 10) {
+                    resultsDiv.removeChild(results[results.length - 1]);
+                }
+
+                log(`${data.hasPermission ? '✅' : '❌'} ${permission}: ${data.hasPermission ? 'GRANTED' : 'DENIED'}`);
+            } catch (error) {
+                log(`❌ Error testing ${permission}: ${error.message}`);
+            }
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            getCurrentRole();
+            log('🚀 Permission Debug Tool initialized');
+            log('📌 Set a role and test permissions');
+        });
+
+        // Allow Enter key to check permission
+        document.getElementById('permissionInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkPermission();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Upload Material - TECH-PRO AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        "primary-hover": "#2563eb",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                        "dark-surface": "#334155",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .drop-zone {
+            border: 3px dashed #475569;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            transform: scale(1.02);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 overflow-hidden">
+
+    <div class="flex h-screen w-full overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-64 bg-white dark:bg-dark-card border-r border-slate-200 dark:border-slate-800 hidden lg:flex flex-col z-20 shrink-0 h-full shadow-lg">
+            <div class="p-6 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800/50">
+                <div
+                    class="size-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                </div>
+                <h2
+                    class="text-lg font-black tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    TECH-PRO AI</h2>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-2 custom-scrollbar">
+                <a href="TrainerDashboard.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span class="material-symbols-outlined group-hover:text-blue-500 transition-colors">dashboard</span>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium transition-all shadow-lg"
+                    href="UploadMaterial.html">
+                    <span class="material-symbols-outlined">upload_file</span>
+                    Upload Material
+                </a>
+                <a href="ManageMaterials.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span
+                        class="material-symbols-outlined group-hover:text-orange-500 transition-colors">folder_open</span>
+                    Manage Materials
+                </a>
+                <a href="A5Dashboard.html"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white transition-colors group">
+                    <span class="material-symbols-outlined group-hover:text-blue-500 transition-colors">home</span>
+                    Student View
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col h-full overflow-hidden">
+            <!-- Header -->
+            <header
+                class="h-16 shrink-0 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-10">
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-bold text-slate-900 dark:text-white">Upload Study Material</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Share knowledge with your students</p>
+                </div>
+                <a href="TrainerDashboard.html"
+                    class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Back to Dashboard
+                </a>
+            </header>
+
+            <!-- Main -->
+            <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 custom-scrollbar">
+                <div class="max-w-4xl mx-auto">
+
+                    <!-- Upload Form -->
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+                        <div class="p-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-black">Upload New Material</h2>
+                                    <p class="text-white/80 text-sm">Fill in the details and upload your file</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="p-6 space-y-6" id="uploadForm">
+                            <!-- Course Selection -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">
+                                    Select Course <span class="text-red-500">*</span>
+                                </label>
+                                <select
+                                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    required id="courseSelect">
+                                    <option value="">Choose a course...</option>
+                                    <option value="java">Java Full Stack</option>
+                                    <option value="python">Python Full Stack</option>
+                                    <option value="ai">Artificial Intelligence</option>
+                                    <option value="cyber">Cybersecurity</option>
+                                    <option value="networking">Networking</option>
+                                </select>
+                            </div>
+
+                            <!-- Module Selection -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">
+                                    Select Module <span class="text-red-500">*</span>
+                                </label>
+                                <select
+                                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    required id="moduleSelect">
+                                    <option value="">Choose a module...</option>
+                                </select>
+                            </div>
+
+                            <!-- Material Title -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">
+                                    Material Title <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    placeholder="e.g., Introduction to Neural Networks" required />
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">
+                                    Description
+                                </label>
+                                <textarea rows="4"
+                                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                                    placeholder="Brief description of the material..."></textarea>
+                            </div>
+
+                            <!-- File Upload -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-900 dark:text-white mb-2">
+                                    Upload File <span class="text-red-500">*</span>
+                                </label>
+                                <div class="drop-zone relative rounded-xl p-8 text-center cursor-pointer bg-slate-50 dark:bg-slate-800/50"
+                                    id="dropZone">
+                                    <input type="file" class="hidden" id="fileInput"
+                                        accept=".pdf,.ppt,.pptx,.mp4,.avi,.mov" />
+                                    <div class="space-y-4" id="uploadPrompt">
+                                        <div
+                                            class="size-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white">
+                                            <span class="material-symbols-outlined text-4xl">cloud_upload</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-bold text-slate-900 dark:text-white mb-1">Drag & Drop
+                                                your file here</p>
+                                            <p class="text-sm text-slate-500 dark:text-slate-400">or click to browse</p>
+                                        </div>
+                                        <div class="flex flex-wrap justify-center gap-2 text-xs">
+                                            <span
+                                                class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold rounded-full">PDF</span>
+                                            <span
+                                                class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 font-bold rounded-full">PPT</span>
+                                            <span
+                                                class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold rounded-full">Video</span>
+                                        </div>
+                                    </div>
+                                    <div class="hidden" id="filePreview">
+                                        <div class="flex items-center justify-center gap-4">
+                                            <div
+                                                class="size-16 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white">
+                                                <span class="material-symbols-outlined text-3xl"
+                                                    id="fileIcon">description</span>
+                                            </div>
+                                            <div class="text-left flex-1">
+                                                <p class="font-bold text-slate-900 dark:text-white" id="fileName">File
+                                                    name</p>
+                                                <p class="text-sm text-slate-500 dark:text-slate-400" id="fileSize">File
+                                                    size</p>
+                                            </div>
+                                            <button type="button"
+                                                class="size-10 rounded-lg bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-colors"
+                                                id="removeFile">
+                                                <span class="material-symbols-outlined">close</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Buttons -->
+                            <div class="flex gap-4 pt-4">
+                                <button type="submit"
+                                    class="flex-1 px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined">upload</span>
+                                    Upload Material
+                                </button>
+                                <button type="button"
+                                    class="px-6 py-4 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-colors">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-blue-500 text-2xl">info</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">File Size</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Maximum 100MB per file</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-purple-500 text-2xl">verified</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Approval</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Admin review within 24 hours
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-green-500 text-2xl">school</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1">Quality</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400">Ensure content is accurate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let selectedFile = null;
+        let allModules = [];
+
+        // Get trainer info from localStorage
+        const trainerInfo = JSON.parse(localStorage.getItem('trainerInfo') || '{}');
+        const trainerId = localStorage.getItem('trainerId') || 'trainer_001';
+        const trainerName = trainerInfo.name || 'Trainer';
+
+        const courseSelect = document.getElementById('courseSelect');
+        const moduleSelect = document.getElementById('moduleSelect');
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadPrompt = document.getElementById('uploadPrompt');
+        const filePreview = document.getElementById('filePreview');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileIcon = document.getElementById('fileIcon');
+        const removeFile = document.getElementById('removeFile');
+
+        // Fallback module data in case API fails
+        const fallbackModules = [
+            { id: 'java_m1', courseId: 'java', name: 'Module 1: Java Basics' },
+            { id: 'java_m2', courseId: 'java', name: 'Module 2: OOP Concepts' },
+            { id: 'java_m3', courseId: 'java', name: 'Module 3: Spring Framework' },
+            { id: 'java_m4', courseId: 'java', name: 'Module 4: Hibernate' },
+            { id: 'java_m5', courseId: 'java', name: 'Module 5: Microservices' },
+
+            { id: 'python_m1', courseId: 'python', name: 'Module 1: Python Fundamentals' },
+            { id: 'python_m2', courseId: 'python', name: 'Module 2: Django' },
+            { id: 'python_m3', courseId: 'python', name: 'Module 3: FastAPI' },
+            { id: 'python_m4', courseId: 'python', name: 'Module 4: Data Science' },
+            { id: 'python_m5', courseId: 'python', name: 'Module 5: Web Scraping' },
+
+            { id: 'ai_m1', courseId: 'ai', name: 'Module 1: AI & ML Intro' },
+            { id: 'ai_m2', courseId: 'ai', name: 'Module 2: Deep Learning' },
+            { id: 'ai_m3', courseId: 'ai', name: 'Module 3: NLP' },
+            { id: 'ai_m4', courseId: 'ai', name: 'Module 4: Computer Vision' },
+            { id: 'ai_m5', courseId: 'ai', name: 'Module 5: Reinforcement Learning' },
+
+            { id: 'cyber_m1', courseId: 'cyber', name: 'Module 1: Security Basics' },
+            { id: 'cyber_m2', courseId: 'cyber', name: 'Module 2: Ethical Hacking' },
+            { id: 'cyber_m3', courseId: 'cyber', name: 'Module 3: Penetration Testing' },
+            { id: 'cyber_m4', courseId: 'cyber', name: 'Module 4: Network Security' },
+
+            { id: 'networking_m1', courseId: 'networking', name: 'Module 1: TCP/IP' },
+            { id: 'networking_m2', courseId: 'networking', name: 'Module 2: Routing' },
+            { id: 'networking_m3', courseId: 'networking', name: 'Module 3: Switching' },
+            { id: 'networking_m4', courseId: 'networking', name: 'Module 4: Network Security' },
+            { id: 'networking_m5', courseId: 'networking', name: 'Module 5: Cloud Networking' }
+        ];
+
+        // Load all modules on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadModules();
+        });
+
+        // Load modules from API
+        async function loadModules() {
+            try {
+                const response = await fetch(`${API_BASE}/modules`);
+                const data = await response.json();
+
+                if (data.success && data.modules && data.modules.length > 0) {
+                    allModules = data.modules;
+                    console.log('✅ Modules loaded from API:', allModules.length);
+                } else {
+                    throw new Error('No modules returned from API');
+                }
+            } catch (error) {
+                console.warn('⚠️ API failed, using fallback modules:', error);
+                allModules = fallbackModules;
+            }
+        }
+
+        // Course change handler - load modules dynamically
+        courseSelect.addEventListener('change', (e) => {
+            const courseId = e.target.value;
+            moduleSelect.innerHTML = '<option value="">Choose a module...</option>';
+
+            if (courseId) {
+                const courseModules = allModules.filter(m => m.courseId === courseId);
+                console.log(`📚 Found ${courseModules.length} modules for course: ${courseId}`);
+
+                if (courseModules.length === 0) {
+                    moduleSelect.innerHTML = '<option value="">No modules available</option>';
+                } else {
+                    courseModules.forEach(module => {
+                        const option = document.createElement('option');
+                        option.value = module.id;
+                        option.textContent = module.name;
+                        moduleSelect.appendChild(option);
+                    });
+                }
+            }
+        });
+
+        // Drag and drop
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        removeFile.addEventListener('click', () => {
+            fileInput.value = '';
+            selectedFile = null;
+            uploadPrompt.classList.remove('hidden');
+            filePreview.classList.add('hidden');
+        });
+
+        function handleFile(file) {
+            // Validate file size (100MB max)
+            const maxSize = 100 * 1024 * 1024; // 100MB in bytes
+            if (file.size > maxSize) {
+                alert('File size exceeds 100MB limit!');
+                return;
+            }
+
+            // Validate file type
+            const allowedTypes = ['application/pdf', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'video/mp4', 'video/avi', 'video/quicktime'];
+            if (!allowedTypes.includes(file.type)) {
+                alert('Invalid file type! Please upload PDF, PPT, or Video files only.');
+                return;
+            }
+
+            selectedFile = file;
+            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            fileName.textContent = file.name;
+            fileSize.textContent = `${sizeInMB} MB`;
+
+            // Set icon based on file type
+            const ext = file.name.split('.').pop().toLowerCase();
+            if (ext === 'pdf') {
+                fileIcon.textContent = 'picture_as_pdf';
+            } else if (ext === 'ppt' || ext === 'pptx') {
+                fileIcon.textContent = 'slideshow';
+            } else if (ext === 'mp4' || ext === 'avi' || ext === 'mov') {
+                fileIcon.textContent = 'play_circle';
+            } else {
+                fileIcon.textContent = 'description';
+            }
+
+            uploadPrompt.classList.add('hidden');
+            filePreview.classList.remove('hidden');
+        }
+
+        // Form submission with API integration
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const courseId = courseSelect.value;
+            const moduleId = moduleSelect.value;
+            const title = e.target.querySelector('input[type="text"]').value;
+            const description = e.target.querySelector('textarea').value;
+
+            // Validation
+            if (!courseId || !moduleId || !title || !selectedFile) {
+                alert('Please fill in all required fields and select a file!');
+                return;
+            }
+
+            // Determine material type from file extension
+            const ext = selectedFile.name.split('.').pop().toLowerCase();
+            let type = 'pdf';
+            if (ext === 'ppt' || ext === 'pptx') type = 'ppt';
+            else if (ext === 'mp4' || ext === 'avi' || ext === 'mov') type = 'video';
+
+            // Get course and module names
+            const courseName = courseSelect.options[courseSelect.selectedIndex].text;
+            const moduleName = moduleSelect.options[moduleSelect.selectedIndex].text;
+
+            // Create material object matching backend expectations
+            const materialData = {
+                title,
+                description,
+                courseId,
+                courseName,
+                moduleId,
+                moduleName,
+                type,
+                fileName: selectedFile.name,
+                fileSize: selectedFile.size,
+                filePath: `/uploads/${selectedFile.name}`, // Simulated file path
+                uploadedBy: {
+                    id: trainerId,
+                    name: trainerName
+                }
+            };
+
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Uploading...';
+
+                // Upload material
+                const response = await fetch(`${API_BASE}/study-materials`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(materialData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('✅ Material uploaded successfully! Pending admin approval.');
+                    window.location.href = 'ManageMaterials.html';
+                } else {
+                    throw new Error(data.error || 'Upload failed');
+                }
+            } catch (error) {
+                console.error('Error uploading material:', error);
+                alert('❌ Failed to upload material. Please try again.');
+
+                // Restore button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+
+        // Cancel button
+        document.querySelector('button[type="button"]').addEventListener('click', () => {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                window.location.href = 'TrainerDashboard.html';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

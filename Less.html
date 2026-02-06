@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Short Duration Courses - AI-TECH PRO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "primary-dark": "#0f65bd",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+            "surface-light": "#ffffff",
+            "surface-dark": "#1a2632",
+            "text-main-light": "#0d141b",
+            "text-main-dark": "#ffffff",
+            "text-sec-light": "#4c739a",
+            "text-sec-dark": "#94a3b8",
+            "border-light": "#e7edf3",
+            "border-dark": "#2d3b4a",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "body": ["Noto Sans", "sans-serif"],
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }#course-modal {
+        display: none;
+    }
+    #course-modal:target {
+        display: flex;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }#dur-short:checked ~ .course-list-container .course-card:not(.dur-short),
+    #dur-medium:checked ~ .course-list-container .course-card:not(.dur-medium),
+    #dur-long:checked ~ .course-list-container .course-card:not(.dur-long) {
+        display: none;
+    }#lvl-easy:checked ~ .course-list-container .course-card:not(.lvl-easy),
+    #lvl-medium:checked ~ .course-list-container .course-card:not(.lvl-medium),
+    #lvl-hard:checked ~ .course-list-container .course-card:not(.lvl-hard) {
+        display: none;
+    }#dur-all:checked ~ .filter-section label[for="dur-all"],
+    #dur-short:checked ~ .filter-section label[for="dur-short"],
+    #dur-medium:checked ~ .filter-section label[for="dur-medium"],
+    #dur-long:checked ~ .filter-section label[for="dur-long"] {
+        background-color: #137fec;
+        color: white;
+        border-color: #137fec;
+        box-shadow: 0 4px 6px -1px rgba(19, 127, 236, 0.3);
+    }html.light #lvl-all:checked ~ .filter-section label[for="lvl-all"],
+    html.light #lvl-easy:checked ~ .filter-section label[for="lvl-easy"],
+    html.light #lvl-medium:checked ~ .filter-section label[for="lvl-medium"],
+    html.light #lvl-hard:checked ~ .filter-section label[for="lvl-hard"] {
+        background-color: #0d141b;
+        color: white;
+        border-color: #0d141b;
+    }html:not(.light) #lvl-all:checked ~ .filter-section label[for="lvl-all"],
+    html:not(.light) #lvl-easy:checked ~ .filter-section label[for="lvl-easy"],
+    html:not(.light) #lvl-medium:checked ~ .filter-section label[for="lvl-medium"],
+    html:not(.light) #lvl-hard:checked ~ .filter-section label[for="lvl-hard"] {
+        background-color: #ffffff;
+        color: #0d141b;
+        border-color: #ffffff;
+    }.course-card {
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-40 w-full border-b border-border-light dark:border-border-dark bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur supports-[backdrop-filter]:bg-surface-light/60">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="flex size-8 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-text-main-light dark:text-white">AI-TECH PRO</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-text-main-light hover:text-primary dark:text-gray-200 dark:hover:text-primary transition-colors" href="#">Courses</a>
+<a class="text-sm font-medium text-text-sec-light hover:text-text-main-light dark:text-text-sec-dark dark:hover:text-white transition-colors" href="#">My Learning</a>
+<a class="text-sm font-medium text-text-sec-light hover:text-text-main-light dark:text-text-sec-dark dark:hover:text-white transition-colors" href="#">Community</a>
+</nav>
+</div>
+<div class="flex flex-1 items-center justify-end gap-4">
+<div class="hidden md:flex relative max-w-md w-full">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-text-sec-light">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-2 pl-10 pr-3 text-text-main-light bg-background-light dark:bg-background-dark dark:text-white ring-1 ring-inset ring-border-light dark:ring-border-dark placeholder:text-text-sec-light focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" placeholder="Search courses..." type="text"/>
+</div>
+<button class="relative rounded-full p-1 text-text-sec-light hover:text-text-main-light dark:text-text-sec-dark dark:hover:text-white focus:outline-none">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark"></span>
+</button>
+<div class="h-9 w-9 overflow-hidden rounded-full border border-border-light dark:border-border-dark bg-background-light" data-alt="User profile avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2hQg6ou-A23Gf2FNU7QZxtdmqgiU5CaiVgiWBym_VodungE59DdpsmkwbB3D3aQ3QT3HeQjg4k4I5GaxUYB1Os5z2zcD5bVlZxmxCt_h4Cw5-gmtd_NKovCARQvLlQfpwlTYTeF1vG3hqLqWspcgk0fOOy4yTu3Df8lR98hyNhCBCMp-p-m-aPU3F3-ggr2qvmK-z48sjdfONkordZPU9tCAGDNU19oxU0rFr5c4cIPmh4jgJG70j5VU3Lc_cjm2aH1FcDWoNM48"); background-size: cover;'></div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<input class="peer hidden" id="dur-all" name="duration" type="radio"/>
+<input checked="" class="peer hidden" id="dur-short" name="duration" type="radio"/>
+<input class="peer hidden" id="dur-medium" name="duration" type="radio"/>
+<input class="peer hidden" id="dur-long" name="duration" type="radio"/>
+<input checked="" class="peer hidden" id="lvl-all" name="level" type="radio"/>
+<input class="peer hidden" id="lvl-easy" name="level" type="radio"/>
+<input class="peer hidden" id="lvl-medium" name="level" type="radio"/>
+<input class="peer hidden" id="lvl-hard" name="level" type="radio"/>
+<div class="filter-section relative isolate overflow-hidden bg-background-light dark:bg-background-dark py-12 sm:py-16">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="mx-auto max-w-3xl text-center mb-12">
+<h1 class="text-3xl font-black tracking-tight text-text-main-light dark:text-white sm:text-5xl">
+              Short Duration Courses (&lt;12 Weeks)
+            </h1>
+<p class="mt-4 text-lg leading-8 text-text-sec-light dark:text-text-sec-dark">
+              Upskill quickly with our intensive short courses. Master new technologies in weeks, not months. Use the filters below to refine your learning path.
+            </p>
+</div>
+<div class="mx-auto max-w-4xl rounded-2xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark p-6 sm:p-8">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+<span class="text-sm font-semibold text-text-sec-light dark:text-text-sec-dark min-w-[4rem]">Duration</span>
+<div class="flex flex-wrap gap-2">
+<label class="cursor-pointer inline-flex items-center gap-x-1.5 rounded-full bg-background-light dark:bg-background-dark px-4 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" for="dur-all">
+                  All
+                </label>
+<label class="cursor-pointer inline-flex items-center gap-x-1.5 rounded-full bg-background-light dark:bg-background-dark px-4 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" for="dur-short">
+                  Short (&lt;12 weeks)
+                </label>
+<label class="cursor-pointer inline-flex items-center gap-x-1.5 rounded-full bg-background-light dark:bg-background-dark px-4 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" for="dur-medium">
+                  Medium (12-24 weeks)
+                </label>
+<label class="cursor-pointer inline-flex items-center gap-x-1.5 rounded-full bg-background-light dark:bg-background-dark px-4 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" for="dur-long">
+                  Long (&gt;24 weeks)
+                </label>
+</div>
+</div>
+<div class="h-px w-full bg-border-light dark:bg-border-dark"></div>
+<div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+<span class="text-sm font-semibold text-text-sec-light dark:text-text-sec-dark min-w-[4rem]">Level</span>
+<div class="flex flex-wrap gap-2">
+<label class="cursor-pointer inline-flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-transparent px-4 py-2 text-sm font-medium text-text-main-light dark:text-white hover:border-primary dark:hover:border-primary transition-all" for="lvl-all">
+                  Any Level
+                </label>
+<label class="cursor-pointer inline-flex items-center justify-center gap-2 rounded-lg border border-border-light dark:border-border-dark bg-transparent px-4 py-2 text-sm font-medium text-text-main-light dark:text-white hover:border-primary dark:hover:border-primary transition-all" for="lvl-easy">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_1_bar</span>
+                  Easy
+                </label>
+<label class="cursor-pointer inline-flex items-center justify-center gap-2 rounded-lg border border-border-light dark:border-border-dark bg-transparent px-4 py-2 text-sm font-medium text-text-main-light dark:text-white hover:border-primary dark:hover:border-primary transition-all" for="lvl-medium">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_3_bar</span>
+                  Medium
+                </label>
+<label class="cursor-pointer inline-flex items-center justify-center gap-2 rounded-lg border border-border-light dark:border-border-dark bg-transparent px-4 py-2 text-sm font-medium text-text-main-light dark:text-white hover:border-primary dark:hover:border-primary transition-all" for="lvl-hard">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+                  Difficult
+                </label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="course-list-container mx-auto max-w-7xl px-6 lg:px-8 pb-24">
+<div class="course-list grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+<a class="course-card dur-short lvl-medium group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract code visualization for Java programming" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDX9z5Nh2aCvZY1h7AyGM3SGXUc-L__J_EJBE2ZsPiOZyUq5aVqan8Yp06APSNWc9unJl14eS4EE8MGXWHo7uPQTahqUYoEFgkeeKtd-bv_pYb9llbYBiUtBWp6qZrLeK1UJWj5Yvv5F7FSQHEQ2JdCrZJhtErHpoFZZcW_qz_kIe5C-GoBPYdHMYWtvnRL6FXWLENSrkaiASzGjZqugtRW1aLyzuksAOKo4oexlxpGsJ0Rj6YZy7F5Ej1KyxnwBjkzeSauF3-L1yk");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_3_bar</span>
+               Intermediate
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              Java Fundamentals
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              Accelerated introduction to Java syntax, OOP concepts, and basic data structures.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>8 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(10 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>16 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+<a class="course-card dur-short lvl-easy group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Python code on screen with data visualization" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAT-N0fzET6EKH1xcHvqib3BwZPs0X15BLB6T2tpApWGwurkMzl90tLuU5e6bOPV4pqEEtSEcnKPmyVCSZIS02fHhMSCTu427kX25-jo7QYpGCn_L3Pi8xNvZJSDPfBHQXO_jWWrneoBfN7MK5OFT9qndmoh9ugqDf4LuiTM-Tzj-zOH84QFBZRhxVU7IoBwNSYYKdQ3UV9fEZ07_Qc7hRg4FXpiUkI3OzYz6xuVhjNbKIy2fkDQA2KNlSX1_l6z8EUQh9xFDcNNKw");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_1_bar</span>
+               Beginner
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              Python Data Intro
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              Quick start guide to Python for Data Analysis using Pandas and NumPy.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>6 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(12 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>12 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+<a class="course-card dur-short lvl-hard group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Cybersecurity digital lock concept background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQf8S7h4PsUYVx3UjADjSIXkbdD2uOHudj-oMfBlJWIky-G-3B3KISwfuROGqAJAJdcumWyiwEPtlxlWuZSmVOv2UmrWiWyQR_f7oIUJ3whrGCIBAW6MhSk8MwZD9LHyEkTMytuWyL1wXRGBvU0vxv27mefMxdKVi_M_DcD38bAZ1gBVmXH_wgpOIP4uPfU4ctqmMqR52U5n6hfZUKPl7g7XEDPFRnUljU2tIz-KRaLNKqKf2SG_Kzt2yiL7c8VZlEkGZ9aQGbg_8");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+               Advanced
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              Cybersecurity Crash Course
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              Intensive bootcamp covering network security and basic ethical hacking.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>4 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(20 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>10 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+<a class="course-card dur-short lvl-hard group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract artificial intelligence neural network" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBE0Am6a2DHRMJ7_-EvQf2n_zjD_myJA2G0QjDlCYJUYc2c4FhlLRddOEDnrXD8Qwa7VUxNKdxaGjink1nQ8Aw2Br1VsCHsbne1W6H0AYo5WCIMMqNjNqbEMZQSjHRe-LfURwRg46Me6UC_D25HD1rS0_GGxJVA4rwnV0qsCZcWHBY9tzaFPIrTAZw5okVzPc5f8vtbmkw0RTK3OBACuA8v9ML-cLfU64uYKGV_Y7N8GboxDaSJGLcxB3pjL-O1fldPJZyieOMU5Wc");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+               Advanced
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              Intro to Neural Networks
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              Fast-paced overview of Deep Learning concepts and neural network architecture.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>11 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(15 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>22 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+<a class="course-card dur-short lvl-medium group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Server room with network cables" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcDTomDx_O3hi1hX1vUaGgauhkMwNqhUG2z1smgpnrSGnU2H1RxGPQy4Y3ARTMf65xr9z1j9VlN-Rri7JjrEdeV-wtDp_aLCF1sQ4GBaCtf3oCYeked0n_5fiww8ft3hqYPVl6gNtkgf2kt3iIs3fTDMgzh9a2wmAKMJXWAh4f_xsp1RIpVxNDS15aHMl3Av8Utn0jEpgcBKGWv2WZAlqIT4KtmrbGHuRus0VoEattEO0eQ6x4CU7dpPs3QX81nMt4CJgwMgiQVGY");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_3_bar</span>
+               Intermediate
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              Networking Essentials
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              CCNA preparation and advanced network infrastructure planning basics.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>10 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(6 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>24 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+<a class="course-card dur-short lvl-easy group relative flex flex-col overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-border-light dark:ring-border-dark transition-all duration-300 hover:-translate-y-1 hover:shadow-md" href="#course-modal">
+<div class="aspect-[16/9] w-full overflow-hidden bg-gray-200 relative">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract cloud computing blue tech background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPBxCC7S4XOx3RFYl-3JX67O6lWoh4XdsODwK7qejkn6myq-kJU69RVsERfqikIfMU-2Qe7ppFT6meEtc4HPK6nAUejNPU5Oss5W_F4WOKOYQxRV8c-S8N_nuI5UMCHK-GmIySR1mClu8vTu8c_1HE_pJM5kIo_0y0BcIaMu5jVPpfhDVTXpH6GY-10hNbMHSKzhTHe2JfwZfRpFGd6MN4BN0FJvEtka5izdNeJWhCprYn2TbI5wLs9aWj4ti-1SfO7zIx9WFq6hM");'></div>
+<div class="absolute top-3 left-3 rounded bg-white/90 dark:bg-black/70 px-2 py-1 text-xs font-bold text-text-main-light dark:text-white backdrop-blur flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_1_bar</span>
+               Beginner
+             </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white">
+              AWS Cloud Practitioner
+            </h3>
+<p class="mt-2 text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-2">
+              Foundational understanding of AWS Cloud concepts, security, and billing.
+            </p>
+<div class="mt-4 flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<div class="flex items-center gap-2 text-sm font-medium text-text-main-light dark:text-white">
+<span class="material-symbols-outlined text-primary text-[20px]">schedule</span>
+<span>5 Weeks</span>
+<span class="text-xs font-normal text-text-sec-light dark:text-text-sec-dark">(10 hrs/week)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined text-[16px]">play_lesson</span>
+<span>10 Modules</span>
+</div>
+</div>
+<button class="mt-5 w-full rounded-lg bg-primary/10 dark:bg-primary/20 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors">
+              View Details
+            </button>
+</div>
+</a>
+</div>
+</div>
+</main>
+<div class="fixed inset-0 z-50 items-center justify-center p-4 backdrop-blur-sm bg-black/40 supports-[backdrop-filter]:bg-black/20 overflow-y-auto" id="course-modal">
+<div class="relative w-full max-w-4xl rounded-2xl bg-surface-light dark:bg-surface-dark shadow-2xl ring-1 ring-border-light dark:ring-border-dark flex flex-col md:flex-row overflow-hidden max-h-[90vh]">
+<a class="absolute top-4 right-4 z-20 rounded-full bg-surface-light/50 p-2 text-text-main-light hover:bg-white dark:bg-black/20 dark:text-white dark:hover:bg-black/40 backdrop-blur transition-colors" href="#">
+<span class="material-symbols-outlined">close</span>
+</a>
+<div class="w-full md:w-1/3 bg-background-light dark:bg-[#15202b] flex flex-col border-r border-border-light dark:border-border-dark">
+<div class="h-48 md:h-56 w-full bg-cover bg-center" data-alt="Detailed view of Java programming environment" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpw44sGMROdwwH5IEMBR0B7zAwpJAaHeddS1VX4pGsOV-25WVegnRux3kmNu-K6zSBZWfMb06bhQIo9Aw5SxYVBUGyC0-H6AIO3NWyDPrb2AFHu1eRoOa0n0fPp5CHxiGDBOlpUe8yai0fXPo31StAwJGb-Ji6VvPy2DGfXm97H1RIRAduQKYQvW5JP1fw9YVbnMeeDbi5qeJ6Jt6lauyGsEiNeOxw9ZHiv1RVq-nlVgFAtBY7Pedz6E4Hr4a7YQV_vZVzioZGwzM");'></div>
+<div class="p-6 flex flex-col gap-4 flex-1">
+<div>
+<h2 class="text-2xl font-bold text-text-main-light dark:text-white">Java Fundamentals</h2>
+<span class="inline-block mt-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">Intermediate Level</span>
+</div>
+<div class="space-y-3 py-4 border-t border-b border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-sec-light dark:text-text-sec-dark">Duration</span>
+<span class="font-semibold text-text-main-light dark:text-white">8 Weeks</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-sec-light dark:text-text-sec-dark">Effort</span>
+<span class="font-semibold text-text-main-light dark:text-white">10 hrs/week</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-sec-light dark:text-text-sec-dark">Modules</span>
+<span class="font-semibold text-text-main-light dark:text-white">16 Lessons</span>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white shadow hover:bg-primary-dark transition-colors">
+                 Enroll Now
+               </button>
+</div>
+</div>
+</div>
+<div class="w-full md:w-2/3 flex flex-col h-full overflow-hidden">
+<div class="flex border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-6">
+<button class="border-b-2 border-primary py-4 px-4 text-sm font-bold text-primary">Overview</button>
+<button class="border-b-2 border-transparent py-4 px-4 text-sm font-medium text-text-sec-light hover:text-text-main-light dark:text-text-sec-dark dark:hover:text-white">Syllabus</button>
+<button class="border-b-2 border-transparent py-4 px-4 text-sm font-medium text-text-sec-light hover:text-text-main-light dark:text-text-sec-dark dark:hover:text-white">Instructors</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+<div class="prose dark:prose-invert max-w-none">
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-3">About this Course</h3>
+<p class="text-sm leading-relaxed text-text-sec-light dark:text-text-sec-dark mb-6">
+              This intensive short course provides a solid foundation in Java. You will learn core syntax, object-oriented programming principles, and how to work with the Java Class Library. Perfect for those looking to quickly add Java to their skillset.
+            </p>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-4">What you'll learn</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+<div class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-green-500 text-lg mt-0.5">check_circle</span>
+<span class="text-sm text-text-main-light dark:text-gray-300">Understand Java syntax and structure</span>
+</div>
+<div class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-green-500 text-lg mt-0.5">check_circle</span>
+<span class="text-sm text-text-main-light dark:text-gray-300">Apply OOP principles effectively</span>
+</div>
+<div class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-green-500 text-lg mt-0.5">check_circle</span>
+<span class="text-sm text-text-main-light dark:text-gray-300">Handle exceptions and file I/O</span>
+</div>
+<div class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-green-500 text-lg mt-0.5">check_circle</span>
+<span class="text-sm text-text-main-light dark:text-gray-300">Basic algorithms and data structures</span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-4">Learning Path</h3>
+<div class="relative pl-4 border-l-2 border-border-light dark:border-border-dark space-y-8">
+<div class="relative">
+<span class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-surface-light dark:ring-surface-dark"></span>
+<h4 class="text-sm font-bold text-text-main-light dark:text-white">Week 1-2: Java Basics</h4>
+<p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Variables, loops, and control flow</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-border-light dark:bg-border-dark ring-4 ring-surface-light dark:ring-surface-dark"></span>
+<h4 class="text-sm font-bold text-text-main-light dark:text-white">Week 3-5: OOP Concepts</h4>
+<p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Classes, inheritance, and polymorphism</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-border-light dark:bg-border-dark ring-4 ring-surface-light dark:ring-surface-dark"></span>
+<h4 class="text-sm font-bold text-text-main-light dark:text-white">Week 6-8: Advanced Topics &amp; Project</h4>
+<p class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">Collections, exceptions, and final assignment</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></body></html>

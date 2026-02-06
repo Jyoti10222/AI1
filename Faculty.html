@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Faculty Portal | AI-TECH PRO</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2563eb",
+                        "primary-dark": "#1e40af",
+                        "secondary": "#10b981",
+                        "accent": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .portal-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-card {
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gradient-online {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        .gradient-offline {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        .gradient-hybrid {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-900 shadow-sm border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="size-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined text-white text-[24px]">school</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white">AI-TECH PRO</h1>
+                        <p class="text-xs text-slate-400 font-medium">Faculty Portal</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="FacultyDashboard.html"
+                        class="text-sm font-bold text-blue-600 border-b-2 border-blue-600 pb-1">Master Dashboard</a>
+                    <a href="TrainerDashboard.html"
+                        class="text-sm font-medium text-slate-400 hover:text-blue-600 transition-colors">Study
+                        Material</a>
+                    <a href="#"
+                        class="text-sm font-medium text-slate-400 hover:text-blue-600 transition-colors">Settings</a>
+                </nav>
+
+                <!-- User Actions -->
+                <div class="flex items-center gap-3">
+                    <button class="p-2 rounded-lg hover:bg-slate-900 transition-colors">
+                        <span class="material-symbols-outlined text-slate-400 text-[20px]">notifications</span>
+                    </button>
+                    <button class="p-2 rounded-lg hover:bg-slate-900 transition-colors">
+                        <span class="material-symbols-outlined text-slate-400 text-[20px]">person</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Page Title -->
+        <div class="mb-12">
+            <h2 class="text-4xl font-bold text-white mb-3">Learning Mode Management</h2>
+            <p class="text-lg text-slate-400">Select a portal to manage faculty, batches, and student enrollments</p>
+        </div>
+
+        <!-- Portal Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Online Portal -->
+            <div class="portal-card bg-slate-900 rounded-2xl shadow-lg overflow-hidden border border-slate-700">
+                <!-- Card Header -->
+                <div class="gradient-online p-8 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-3 bg-slate-900/20 rounded-xl backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[32px]">laptop_chromebook</span>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-slate-900/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider">E-Learning</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Online Portal</h3>
+                    <p class="text-blue-100 text-sm">Remote learning management</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-blue-600">24</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-blue-600">12</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-blue-600">1.5K</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="space-y-2 pt-4 border-t border-slate-700">
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px]">check_circle</span>
+                            <span>Live video sessions</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px]">check_circle</span>
+                            <span>Recorded lectures</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px]">check_circle</span>
+                            <span>Digital assessments</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <a href="FacultyOnline.html" target="_blank">
+                        <button
+                            class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+                            Manage Portal
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offline Portal -->
+            <div class="portal-card bg-slate-900 rounded-2xl shadow-lg overflow-hidden border border-slate-700">
+                <!-- Card Header -->
+                <div class="gradient-offline p-8 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-3 bg-slate-900/20 rounded-xl backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[32px]">school</span>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-slate-900/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider">Campus</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Offline Portal</h3>
+                    <p class="text-emerald-100 text-sm">Classroom-based learning</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-emerald-600">8</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-emerald-600">15</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-emerald-600">320</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="space-y-2 pt-4 border-t border-slate-700">
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+                            <span>In-person classes</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+                            <span>Lab sessions</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+                            <span>Hands-on training</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <a href="FacultyOffline.html" target="_blank">
+                        <button
+                            class="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30">
+                            Manage Portal
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hybrid Portal -->
+            <div class="portal-card bg-slate-900 rounded-2xl shadow-lg overflow-hidden border border-slate-700">
+                <!-- Card Header -->
+                <div class="gradient-hybrid p-8 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-3 bg-slate-900/20 rounded-xl backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[32px]">sync_alt</span>
+                        </div>
+                        <span
+                            class="px-3 py-1 bg-slate-900/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider">Flexible</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Hybrid Portal</h3>
+                    <p class="text-amber-100 text-sm">Best of both worlds</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-amber-600">14</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-amber-600">10</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                        </div>
+                        <div class="stat-card bg-slate-950 rounded-xl p-4 text-center border border-slate-700">
+                            <p class="text-2xl font-bold text-amber-600">645</p>
+                            <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="space-y-2 pt-4 border-t border-slate-700">
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-amber-600 text-[18px]">check_circle</span>
+                            <span>Blended learning</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-amber-600 text-[18px]">check_circle</span>
+                            <span>Flexible scheduling</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-slate-400">
+                            <span class="material-symbols-outlined text-amber-600 text-[18px]">check_circle</span>
+                            <span>Multi-mode access</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <a href="HybridAdmin.html" target="_blank">
+                        <button
+                            class="w-full mt-6 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-600/30">
+                            Manage Portal
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div onclick="window.location.href='FacultyDashboard.html'"
+            class="bg-slate-900 rounded-2xl shadow-lg p-8 border border-slate-700 cursor-pointer hover:border-blue-300 transition-all group">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-white">System Overview</h3>
+                <span
+                    class="text-blue-600 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    View Detailed Analytics <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-blue-50 rounded-xl">
+                        <span class="material-symbols-outlined text-blue-600 text-[28px]">groups</span>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white">2,447</p>
+                        <p class="text-sm text-slate-400">Total Students</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-emerald-50 rounded-xl">
+                        <span class="material-symbols-outlined text-emerald-600 text-[28px]">person</span>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white">37</p>
+                        <p class="text-sm text-slate-400">Total Faculty</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-amber-50 rounded-xl">
+                        <span class="material-symbols-outlined text-amber-600 text-[28px]">calendar_month</span>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white">46</p>
+                        <p class="text-sm text-slate-400">Active Batches</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-purple-50 rounded-xl">
+                        <span class="material-symbols-outlined text-purple-600 text-[28px]">trending_up</span>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-white">94%</p>
+                        <p class="text-sm text-slate-400">Completion Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-slate-900 border-t border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="size-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <p class="text-sm text-slate-400">All systems operational</p>
+                </div>
+                <p class="text-sm text-slate-400">© 2026 AI-TECH PRO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Enrollment Form - Tech-Pro AI</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen py-8">
+
+  <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-white">
+      <h1 class="text-3xl font-bold mb-2">Student Enrollment Form</h1>
+      <p class="text-blue-100">Complete all fields to register for your desired course</p>
+    </div>
+
+    <!-- Form -->
+    <form id="enrollmentForm" class="p-8 space-y-8">
+
+      <!-- Personal Information -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Personal Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">First Name <span
+                class="text-red-500">*</span></label>
+            <input id="firstName" type="text" required placeholder="Enter first name" title="First Name"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Last Name <span
+                class="text-red-500">*</span></label>
+            <input id="lastName" type="text" required placeholder="Enter last name" title="Last Name"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Parent/Guardian Name <span
+                class="text-red-500">*</span></label>
+            <input id="parentName" type="text" required placeholder="Enter parent/guardian name"
+              title="Parent/Guardian Name"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Date of Birth <span
+                class="text-red-500">*</span></label>
+            <input id="dob" type="date" required title="Date of Birth"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Gender <span
+                class="text-red-500">*</span></label>
+            <select id="gender" required title="Gender"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Languages Known</label>
+            <input id="languages" type="text" placeholder="e.g., English, Hindi, Marathi"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Contact Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number <span
+                class="text-red-500">*</span></label>
+            <input id="contactNumber" type="tel" required pattern="[0-9]{10}" placeholder="10-digit mobile number"
+              title="Phone Number"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Alternate Number</label>
+            <input id="alternateNumber" type="tel" pattern="[0-9]{10}" placeholder="Optional"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-slate-700 mb-1">Email ID <span
+                class="text-red-500">*</span></label>
+            <input id="email" type="email" required placeholder="Enter email address" title="Email ID"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">City <span
+                class="text-red-500">*</span></label>
+            <input id="city" type="text" required
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Landmark</label>
+            <input id="landmark" type="text" placeholder="Nearby landmark"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+        </div>
+      </div>
+
+      <!-- Family Information -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Family Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Family Household Income (Annual)</label>
+            <select id="householdIncome" title="Family Household Income"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <option value="">Select Range</option>
+              <option value="Below 2 Lakhs">Below ₹2 Lakhs</option>
+              <option value="2-5 Lakhs">₹2 - ₹5 Lakhs</option>
+              <option value="5-10 Lakhs">₹5 - ₹10 Lakhs</option>
+              <option value="10-15 Lakhs">₹10 - ₹15 Lakhs</option>
+              <option value="15-25 Lakhs">₹15 - ₹25 Lakhs</option>
+              <option value="Above 25 Lakhs">Above ₹25 Lakhs</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Educational Background -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Educational Background</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-slate-700 mb-1">Name of School/College <span
+                class="text-red-500">*</span></label>
+            <input id="collegeName" type="text" required placeholder="Enter school/college name"
+              title="Name of School/College"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Highest Qualification <span
+                class="text-red-500">*</span></label>
+            <select id="qualification" required title="Highest Qualification"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <option value="">Select Qualification</option>
+              <optgroup label="School">
+                <option value="10th">10th / SSLC</option>
+                <option value="12th_science">12th – Science</option>
+                <option value="12th_commerce">12th – Commerce</option>
+                <option value="12th_arts">12th – Arts</option>
+              </optgroup>
+              <optgroup label="Diploma / ITI">
+                <option value="diploma_engineering">Diploma in Engineering</option>
+                <option value="diploma_cs">Diploma in Computer Science</option>
+                <option value="iti">ITI</option>
+              </optgroup>
+              <optgroup label="Undergraduate">
+                <option value="bsc">B.Sc</option>
+                <option value="bcom">B.Com</option>
+                <option value="bca">BCA</option>
+                <option value="bba">BBA</option>
+                <option value="be">BE</option>
+                <option value="btech">B.Tech</option>
+              </optgroup>
+              <optgroup label="Postgraduate">
+                <option value="msc">M.Sc</option>
+                <option value="mcom">M.Com</option>
+                <option value="mca">MCA</option>
+                <option value="mba">MBA</option>
+                <option value="mtech">M.Tech</option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Branch/Specialization</label>
+            <input id="branch" type="text" placeholder="e.g., Computer Science"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">University/Board</label>
+            <input id="university" type="text"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Passout Year <span
+                class="text-red-500">*</span></label>
+            <input id="passoutYear" type="number" required min="1980" max="2030" placeholder="YYYY"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">HSC/10+2 Percentage</label>
+            <input id="hscPercentage" type="number" step="0.01" min="0" max="100" placeholder="e.g., 85.5"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Graduate Percentage / CGPA</label>
+            <input id="graduatePercentage" type="number" step="0.01" min="0" max="100" placeholder="e.g., 7.5 or 75"
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Work Experience</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="md:col-span-2 flex gap-4">
+            <label class="flex items-center">
+              <input type="radio" name="experience_type" value="Fresher" checked class="mr-2">
+              <span class="text-sm font-medium">Fresher</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="experience_type" value="Experienced" class="mr-2">
+              <span class="text-sm font-medium">Experienced</span>
+            </label>
+          </div>
+          <div id="experienceFields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Years of Experience</label>
+              <input id="yearsOfExperience" type="number" step="0.5" min="0" placeholder="e.g., 2.5"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
+              <input id="companyName" type="text" placeholder="Current/Last company"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-1">Job Role/Designation</label>
+              <input id="jobRole" type="text" placeholder="e.g., Software Developer"
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course Selection -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2">Course Selection</h2>
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Desired Course <span
+                class="text-red-500">*</span></label>
+            <select id="desiredCourse" required
+              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <option value="">Select Course</option>
+              <option value="Python Full Stack">Python Full Stack</option>
+              <option value="Java Programming">Java Programming</option>
+              <option value="Cyber Security">Cyber Security</option>
+              <option value="Cloud Computing">Cloud Computing</option>
+              <option value="Networking">Networking</option>
+              <option value="Automation Testing">Automation Testing</option>
+              <option value="Selenium">Selenium</option>
+              <option value="C Programming">C Programming</option>
+              <option value="C++ Programming">C++ Programming</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Manual Testing">Manual Testing</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Machine Learning">Machine Learning</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex gap-4">
+        <button type="submit"
+          class="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">send</span>
+          Submit Enrollment
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const API_BASE_URL = 'http://localhost:8080/api';
+    const USE_BACKEND = true;
+
+    // Show/hide experience fields based on selection
+    document.querySelectorAll('input[name="experience_type"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+        const experienceFields = document.getElementById('experienceFields');
+        if (this.value === 'Experienced') {
+          experienceFields.classList.remove('hidden');
+        } else {
+          experienceFields.classList.add('hidden');
+        }
+      });
+    });
+
+    // Populate course from URL parameters and auto-fill user data
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Auto-fill from User Profile (Login Data)
+      try {
+        const userProfileStr = localStorage.getItem('userProfile');
+        if (userProfileStr) {
+          const user = JSON.parse(userProfileStr);
+
+          if (user.firstName) document.getElementById('firstName').value = user.firstName;
+          if (user.lastName) document.getElementById('lastName').value = user.lastName;
+
+          if (user.identifierType === 'email' || !user.identifierType) {
+            if (user.email) document.getElementById('email').value = user.email;
+          } else if (user.identifierType === 'phone') {
+            // email field in user object holds the identifier (phone in this case)
+            // Clean it up if needed (e.g. remove +91 for display if preferred, or keep it)
+            let phone = user.email;
+            if (phone.startsWith('+91')) phone = phone.substring(3); // Optional: remove country code
+            document.getElementById('contactNumber').value = phone;
+          }
+        } else {
+          // Fallback to individual keys if profile obj missing
+          const fname = localStorage.getItem('userFirstName');
+          const lname = localStorage.getItem('userLastName');
+          const email = localStorage.getItem('userEmail');
+
+          if (fname) document.getElementById('firstName').value = fname;
+          if (lname) document.getElementById('lastName').value = lname;
+          if (email && email.includes('@')) document.getElementById('email').value = email;
+        }
+      } catch (e) {
+        console.error("Error auto-filling form:", e);
+      }
+
+      // 2. Handle URL Parameters for Course
+      const urlParams = new URLSearchParams(window.location.search);
+      const courseParam = urlParams.get('course');
+
+      if (courseParam) {
+        const courseSelect = document.getElementById('desiredCourse');
+        let found = false;
+
+        // Try exact match
+        for (let i = 0; i < courseSelect.options.length; i++) {
+          if (courseSelect.options[i].value === courseParam) {
+            courseSelect.selectedIndex = i;
+            found = true;
+            break;
+          }
+        }
+
+        // If not found, add it as a new option (or map to AI)
+        if (!found) {
+          // Check if it's an AI course, map to AI
+          if (courseParam.includes('AI') || courseParam.includes('Artificial')) {
+            // Try to find the existing AI option
+            for (let i = 0; i < courseSelect.options.length; i++) {
+              if (courseSelect.options[i].value === 'Artificial Intelligence') {
+                courseSelect.selectedIndex = i;
+                found = true;
+                break;
+              }
+            }
+          }
+
+          // If still not found (or specific title wanted), add it dynamically
+          if (!found) {
+            const newOption = document.createElement('option');
+            newOption.value = courseParam;
+            newOption.text = courseParam;
+            newOption.selected = true;
+            courseSelect.appendChild(newOption);
+          }
+        }
+      }
+    });
+
+    // Form submission
+    document.getElementById('enrollmentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        // Personal Information
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        parentName: document.getElementById('parentName').value.trim(),
+        dob: document.getElementById('dob').value,
+        gender: document.getElementById('gender').value,
+        languages: document.getElementById('languages').value.trim(),
+
+        // Contact Information
+        contactNumber: document.getElementById('contactNumber').value.trim(),
+        alternateNumber: document.getElementById('alternateNumber').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        landmark: document.getElementById('landmark').value.trim(),
+
+        // Family Information
+        householdIncome: document.getElementById('householdIncome').value,
+
+        // Educational Background
+        collegeName: document.getElementById('collegeName').value.trim(),
+        qualification: document.getElementById('qualification').value,
+        branch: document.getElementById('branch').value.trim(),
+        university: document.getElementById('university').value.trim(),
+        passoutYear: document.getElementById('passoutYear').value,
+        hscPercentage: document.getElementById('hscPercentage').value || null,
+        graduatePercentage: document.getElementById('graduatePercentage').value || null,
+
+        // Work Experience
+        experienceType: document.querySelector('input[name="experience_type"]:checked').value,
+        yearsOfExperience: document.getElementById('yearsOfExperience').value || null,
+        companyName: document.getElementById('companyName').value.trim(),
+        jobRole: document.getElementById('jobRole').value.trim(),
+
+        // Course Selection
+        desiredCourse: document.getElementById('desiredCourse').value,
+
+        // Metadata
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        if (USE_BACKEND) {
+          // Submit to backend
+          const response = await fetch(`${API_BASE_URL}/students`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            // Save student profile with ID for dashboard pages
+            localStorage.setItem('studentProfile', JSON.stringify({
+              id: result.data.id,  // Smart ID from backend (YYMM####)
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              fullName: `${formData.firstName} ${formData.lastName}`,
+              email: formData.email,
+              photo: null,
+              course: formData.desiredCourse
+            }));
+
+            alert(`✅ Enrollment submitted successfully!\nYour Student ID: ${result.data.id}`);
+            // Also save to localStorage as backup
+            saveToLocalStorage(formData);
+            document.getElementById('enrollmentForm').reset();
+            // Redirect to onboarding page
+            window.location.href = 'A4Onboarding.html';
+          } else {
+            throw new Error(result.message || 'Submission failed');
+          }
+        } else {
+          // Fallback to localStorage
+          saveToLocalStorage(formData);
+          alert('✅ Enrollment saved locally!');
+          document.getElementById('enrollmentForm').reset();
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        // Fallback to localStorage
+        saveToLocalStorage(formData);
+        alert('⚠️ Backend unavailable. Data saved locally.');
+      }
+    });
+
+    function saveToLocalStorage(data) {
+      try {
+        const students = JSON.parse(localStorage.getItem('student_enquiries') || '[]');
+        students.unshift(data);
+        localStorage.setItem('student_enquiries', JSON.stringify(students));
+      } catch (e) {
+        console.error('LocalStorage error:', e);
+      }
+    }
+  </script>
+
+</body>
+
+</html>

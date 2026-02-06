@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pricing & Faculty Management | AI-TECH PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5ec2",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2632",
+                        "border-light": "#e7edf3",
+                        "border-dark": "#2a3b4d",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .portal-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-slate-100 overflow-x-hidden">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-card-dark/95 backdrop-blur-sm">
+        <div class="flex w-full items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='A9Admin.html'">
+                <div class="flex items-center justify-center size-10 rounded-xl bg-primary text-white shadow-lg">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold tracking-tight text-white">AI-TECH PRO</h2>
+                    <p class="text-xs text-slate-400 font-medium">Admin Control Center</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-slate-800">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <div
+                    class="h-9 w-9 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">
+                    AD
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full">
+        <div class="w-full max-w-7xl mx-auto px-6 py-10 flex flex-col gap-12">
+
+            <!-- Page Title -->
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+                    Pricing & Faculty Management
+                </h1>
+                <p class="text-lg text-slate-400">
+                    Unified control center for pricing structures and faculty assignments across all learning modes
+                </p>
+            </div>
+
+            <!-- Section 1: Pricing Management -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-1.5 bg-primary rounded-full"></div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Pricing Management</h2>
+                        <p class="text-sm text-slate-400">Configure pricing for courses, batches, and plans</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Learning Paths -->
+                    <a href="PaymentAdmin.html"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-blue-500/50">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] text-blue-500">school</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">school</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Learning Paths</h3>
+                            <p class="text-sm text-slate-400">Comprehensive learning tracks and bundles</p>
+                        </div>
+                    </a>
+
+                    <!-- AI Pricing -->
+                    <a href="AILearningAdmin.html"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-indigo-500/50">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] text-indigo-500">smart_toy</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">smart_toy</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">AI Pricing</h3>
+                            <p class="text-sm text-slate-400">AI-driven self-paced courses</p>
+                        </div>
+                    </a>
+
+                    <!-- Online Pricing -->
+                    <a href="OnlineAdmin.html"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-sky-500/50">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] text-sky-500">language</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">language</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Online Pricing</h3>
+                            <p class="text-sm text-slate-400">Live online batches and webinars</p>
+                        </div>
+                    </a>
+
+                    <!-- Offline Pricing -->
+                    <a href="OfflineAdmin.html"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-emerald-500/50">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] text-emerald-500">apartment</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">apartment</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Offline Pricing</h3>
+                            <p class="text-sm text-slate-400">Physical classroom settings</p>
+                        </div>
+                    </a>
+
+                    <!-- Hybrid Pricing -->
+                    <a href="HybridPricing.html"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-orange-500/50">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] text-orange-500">offline_bolt</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">offline_bolt</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Hybrid Pricing</h3>
+                            <p class="text-sm text-slate-400">Mixed online/offline modules</p>
+                        </div>
+                    </a>
+
+                    <!-- Subscriptions -->
+                    <a href="Pricingsub.html" target="_blank"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-purple-500/50">
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">card_membership</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Subscriptions</h3>
+                            <p class="text-sm text-slate-400">Recurring billing tiers</p>
+                        </div>
+                    </a>
+
+                    <!-- Add-ons -->
+                    <a href="AddsOn.html" target="_blank"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-pink-500/50">
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">extension</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Add-ons</h3>
+                            <p class="text-sm text-slate-400">Extra content & services</p>
+                        </div>
+                    </a>
+
+                    <!-- Discounts -->
+                    <a href="Discounts.html" target="_blank"
+                        class="portal-card group relative bg-card-dark rounded-2xl p-6 border border-border-dark shadow-lg hover:shadow-2xl hover:border-green-500/50">
+                        <div class="relative z-10">
+                            <div
+                                class="size-14 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[32px]">percent</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Discounts</h3>
+                            <p class="text-sm text-slate-400">Coupons & promo codes</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section 2: Faculty Management -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-1.5 bg-emerald-500 rounded-full"></div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Faculty Management</h2>
+                        <p class="text-sm text-slate-400">Manage faculty assignments across learning modes</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Online Faculty -->
+                    <div
+                        class="portal-card bg-card-dark rounded-2xl shadow-lg overflow-hidden border border-border-dark">
+                        <div class="bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                                    <span class="material-symbols-outlined text-[32px]">laptop_chromebook</span>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-bold uppercase">E-Learning</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Online Faculty</h3>
+                            <p class="text-blue-100 text-sm">Remote learning management</p>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-blue-400">24</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-blue-400">12</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-blue-400">1.5K</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                                </div>
+                            </div>
+
+                            <a href="FacultyOnline.html" target="_blank">
+                                <button
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg">
+                                    Manage Faculty
+                                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Offline Faculty -->
+                    <div
+                        class="portal-card bg-card-dark rounded-2xl shadow-lg overflow-hidden border border-border-dark">
+                        <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                                    <span class="material-symbols-outlined text-[32px]">school</span>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-bold uppercase">Campus</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Offline Faculty</h3>
+                            <p class="text-emerald-100 text-sm">Classroom-based learning</p>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-emerald-400">8</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-emerald-400">15</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-emerald-400">320</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                                </div>
+                            </div>
+
+                            <a href="FacultyOffline.html" target="_blank">
+                                <button
+                                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg">
+                                    Manage Faculty
+                                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hybrid Faculty -->
+                    <div
+                        class="portal-card bg-card-dark rounded-2xl shadow-lg overflow-hidden border border-border-dark">
+                        <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                                    <span class="material-symbols-outlined text-[32px]">sync_alt</span>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-bold uppercase">Flexible</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Hybrid Faculty</h3>
+                            <p class="text-amber-100 text-sm">Best of both worlds</p>
+                        </div>
+
+                        <div class="p-6 space-y-4">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-amber-400">14</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Batches</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-amber-400">10</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Faculty</p>
+                                </div>
+                                <div class="bg-slate-900 rounded-xl p-4 text-center border border-slate-700">
+                                    <p class="text-2xl font-bold text-amber-400">645</p>
+                                    <p class="text-xs text-slate-400 font-medium mt-1">Students</p>
+                                </div>
+                            </div>
+
+                            <a href="HybridAdmin.html" target="_blank">
+                                <button
+                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg">
+                                    Manage Faculty
+                                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Overview -->
+            <div class="bg-card-dark rounded-2xl shadow-lg p-8 border border-border-dark">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-white">System Overview</h3>
+                    <a href="FacultyDashboard.html"
+                        class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        View Detailed Analytics <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-blue-500/10 rounded-xl">
+                            <span class="material-symbols-outlined text-blue-400 text-[28px]">groups</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">2,447</p>
+                            <p class="text-sm text-slate-400">Total Students</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-emerald-500/10 rounded-xl">
+                            <span class="material-symbols-outlined text-emerald-400 text-[28px]">person</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">37</p>
+                            <p class="text-sm text-slate-400">Total Faculty</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-amber-500/10 rounded-xl">
+                            <span class="material-symbols-outlined text-amber-400 text-[28px]">calendar_month</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">46</p>
+                            <p class="text-sm text-slate-400">Active Batches</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-purple-500/10 rounded-xl">
+                            <span class="material-symbols-outlined text-purple-400 text-[28px]">trending_up</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">94%</p>
+                            <p class="text-sm text-slate-400">Completion Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-card-dark border-t border-border-dark">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="size-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <p class="text-sm text-slate-400">All systems operational</p>
+                </div>
+                <p class="text-sm text-slate-400">© 2026 AI-TECH PRO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

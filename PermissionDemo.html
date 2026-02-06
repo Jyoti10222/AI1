@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permission System Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/permissions.js"></script>
+</head>
+
+<body class="bg-gray-900 text-white p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl font-bold mb-8">🎯 Permission System Demo</h1>
+
+        <!-- Role Selector -->
+        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4">1️⃣ Select Your Role</h2>
+            <div class="grid grid-cols-5 gap-4">
+                <button onclick="switchRole('superadmin')"
+                    class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold">
+                    🔴 Super Admin
+                </button>
+                <button onclick="switchRole('admin')"
+                    class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold">
+                    🔵 Admin
+                </button>
+                <button onclick="switchRole('faculty')"
+                    class="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-bold">
+                    🟢 Faculty
+                </button>
+                <button onclick="switchRole('student')"
+                    class="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-bold">
+                    🟡 Student
+                </button>
+                <button onclick="switchRole('user')"
+                    class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold">
+                    🟣 User
+                </button>
+            </div>
+            <p class="mt-4 text-xl">Current Role: <span id="currentRole" class="font-bold text-green-400">Not Set</span>
+            </p>
+        </div>
+
+        <!-- Feature Buttons -->
+        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4">2️⃣ Try These Features</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Student Management -->
+                <button onclick="testFeature('viewStudents', 'View Students')"
+                    class="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg">
+                    👀 View Students
+                </button>
+                <button onclick="testFeature('addStudents', 'Add Students')"
+                    class="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg">
+                    ➕ Add Students
+                </button>
+                <button onclick="testFeature('editStudents', 'Edit Students')"
+                    class="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg">
+                    ✏️ Edit Students
+                </button>
+                <button onclick="testFeature('deleteStudents', 'Delete Students')"
+                    class="px-6 py-4 bg-red-600 hover:bg-red-700 rounded-lg">
+                    🗑️ Delete Students
+                </button>
+                <button onclick="testFeature('exportStudents', 'Export Students')"
+                    class="px-6 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg">
+                    📥 Export Students
+                </button>
+
+                <!-- Course Management -->
+                <button onclick="testFeature('viewCourses', 'View Courses')"
+                    class="px-6 py-4 bg-green-600 hover:bg-green-700 rounded-lg">
+                    📚 View Courses
+                </button>
+                <button onclick="testFeature('createCourses', 'Create Courses')"
+                    class="px-6 py-4 bg-green-600 hover:bg-green-700 rounded-lg">
+                    ➕ Create Courses
+                </button>
+                <button onclick="testFeature('editCourses', 'Edit Courses')"
+                    class="px-6 py-4 bg-green-600 hover:bg-green-700 rounded-lg">
+                    ✏️ Edit Courses
+                </button>
+
+                <!-- Analytics -->
+                <button onclick="testFeature('viewAnalytics', 'View Analytics')"
+                    class="px-6 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg">
+                    📊 View Analytics
+                </button>
+                <button onclick="testFeature('exportReports', 'Export Reports')"
+                    class="px-6 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg">
+                    📄 Export Reports
+                </button>
+
+                <!-- System -->
+                <button onclick="testFeature('manageNotifications', 'Manage Notifications')"
+                    class="px-6 py-4 bg-orange-600 hover:bg-orange-700 rounded-lg">
+                    🔔 Notifications
+                </button>
+                <button onclick="testFeature('manageBatches', 'Manage Batches')"
+                    class="px-6 py-4 bg-orange-600 hover:bg-orange-700 rounded-lg">
+                    📅 Manage Batches
+                </button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="bg-gray-800 rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">3️⃣ Results</h2>
+            <div id="results" class="space-y-2"></div>
+        </div>
+
+        <!-- Current Permissions -->
+        <div class="bg-gray-800 rounded-lg p-6 mt-6">
+            <h2 class="text-2xl font-bold mb-4">📋 Current Permissions for This Role</h2>
+            <button onclick="showCurrentPermissions()" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded mb-4">
+                Show Permissions
+            </button>
+            <pre id="currentPermissions" class="bg-gray-900 p-4 rounded overflow-auto text-sm"></pre>
+        </div>
+    </div>
+
+    <script>
+        function switchRole(role) {
+            localStorage.setItem('userRole', role);
+            document.getElementById('currentRole').textContent = role;
+            document.getElementById('results').innerHTML = '';
+            addResult(`✅ Switched to role: ${role}`, 'info');
+        }
+
+        function getCurrentRole() {
+            const role = localStorage.getItem('userRole') || 'Not Set';
+            document.getElementById('currentRole').textContent = role;
+            return role;
+        }
+
+        async function testFeature(permission, featureName) {
+            const role = getCurrentRole();
+            if (role === 'Not Set') {
+                alert('Please select a role first!');
+                return;
+            }
+
+            addResult(`🔍 Testing: ${featureName} (${permission})...`, 'info');
+
+            const hasPermission = await PermissionManager.hasPermission(permission);
+
+            if (hasPermission) {
+                addResult(`✅ GRANTED: ${role} can ${featureName}`, 'success');
+            } else {
+                addResult(`❌ DENIED: ${role} cannot ${featureName}`, 'error');
+            }
+        }
+
+        function addResult(message, type) {
+            const results = document.getElementById('results');
+            const colors = {
+                success: 'bg-green-600',
+                error: 'bg-red-600',
+                info: 'bg-blue-600'
+            };
+
+            const div = document.createElement('div');
+            div.className = `${colors[type]} p-3 rounded`;
+            div.textContent = message;
+            results.insertBefore(div, results.firstChild);
+
+            // Keep only last 15 results
+            while (results.children.length > 15) {
+                results.removeChild(results.lastChild);
+            }
+        }
+
+        async function showCurrentPermissions() {
+            const role = getCurrentRole();
+            if (role === 'Not Set') {
+                alert('Please select a role first!');
+                return;
+            }
+
+            if (role === 'superadmin') {
+                document.getElementById('currentPermissions').textContent =
+                    'Super Admin has ALL permissions automatically!\n\nNo restrictions apply.';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8080/api/permissions');
+                const data = await response.json();
+
+                if (data[role]) {
+                    document.getElementById('currentPermissions').textContent =
+                        JSON.stringify(data[role], null, 2);
+                } else {
+                    document.getElementById('currentPermissions').textContent =
+                        `No permissions found for role: ${role}`;
+                }
+            } catch (error) {
+                document.getElementById('currentPermissions').textContent =
+                    `Error loading permissions: ${error.message}`;
+            }
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            getCurrentRole();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Full Stack Upskilling Programs Admin | Tech-Pro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d141b;
+            color: #e8eaed;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <header class="bg-[#1a2332] border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="A9Admin.html" class="text-gray-400 hover:text-white">
+                        <span class="material-symbols-outlined text-[32px]">arrow_back</span>
+                    </a>
+                    <h1 class="text-2xl font-black text-white">Python Full Stack Upskilling Programs</h1>
+                </div>
+                <button onclick="saveAllPrograms()"
+                    class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Save All
+                    Changes</button>
+            </div>
+        </div>
+    </header>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-6">
+            <button onclick="addNewProgram()"
+                class="bg-[#10b981] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#059669] flex items-center gap-2">
+                <span class="material-symbols-outlined">add</span>
+                Add New Program
+            </button>
+        </div>
+        <div id="programsContainer" class="space-y-6"></div>
+    </div>
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let programs = [];
+        async function loadPrograms() {
+            try {
+                const response = await fetch(`${API_BASE}/python-full-stack-config`);
+                const data = await response.json();
+                if (data.success) { programs = data.config.upskilling.programs || []; renderPrograms(); }
+            } catch (error) { console.error('Error:', error); }
+        }
+        function renderPrograms() {
+            const container = document.getElementById('programsContainer');
+            container.innerHTML = programs.map((program, index) => `
+                <div class="bg-[#1a2332] border border-gray-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-white">Program ${index + 1}</h3>
+                        <button onclick="deleteProgram(${index})" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined">delete</span></button>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div><label class="block text-sm font-semibold text-gray-400 mb-2">Program Title</label><input type="text" value="${program.title}" onchange="updateProgram(${index}, 'title', this.value)" class="w-full px-4 py-2 rounded-lg bg-[#0d141b] border border-gray-700 text-white focus:border-green-500 outline-none"></div>
+                        <div><label class="block text-sm font-semibold text-gray-400 mb-2">Duration</label><input type="text" value="${program.duration}" onchange="updateProgram(${index}, 'duration', this.value)" class="w-full px-4 py-2 rounded-lg bg-[#0d141b] border border-gray-700 text-white focus:border-green-500 outline-none"></div>
+                        <div><label class="block text-sm font-semibold text-gray-400 mb-2">Level</label><select onchange="updateProgram(${index}, 'level', this.value)" class="w-full px-4 py-2 rounded-lg bg-[#0d141b] border border-gray-700 text-white focus:border-green-500 outline-none"><option value="Beginner" ${program.level === 'Beginner' ? 'selected' : ''}>Beginner</option><option value="Intermediate" ${program.level === 'Intermediate' ? 'selected' : ''}>Intermediate</option><option value="Advanced" ${program.level === 'Advanced' ? 'selected' : ''}>Advanced</option></select></div>
+                        <div><label class="block text-sm font-semibold text-gray-400 mb-2">Price (₹)</label><input type="number" value="${program.price}" onchange="updateProgram(${index}, 'price', parseInt(this.value))" class="w-full px-4 py-2 rounded-lg bg-[#0d141b] border border-gray-700 text-white focus:border-green-500 outline-none"></div>
+                        <div class="md:col-span-2"><label class="block text-sm font-semibold text-gray-400 mb-2">Description</label><textarea onchange="updateProgram(${index}, 'description', this.value)" rows="3" class="w-full px-4 py-2 rounded-lg bg-[#0d141b] border border-gray-700 text-white focus:border-green-500 outline-none">${program.description}</textarea></div>
+                        <div><label class="flex items-center gap-2 text-gray-400"><input type="checkbox" ${program.featured ? 'checked' : ''} onchange="updateProgram(${index}, 'featured', this.checked)" class="w-4 h-4"><span class="text-sm font-semibold">Featured Program</span></label></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        function updateProgram(index, field, value) { programs[index][field] = value; }
+        function deleteProgram(index) { if (confirm('Delete this program?')) { programs.splice(index, 1); renderPrograms(); } }
+        function addNewProgram() {
+            if (!programs) programs = [];
+            programs.push({ id: 'prog_' + Date.now(), title: 'New Program', description: 'Program description', duration: '3-6 months', level: 'Beginner', price: 34999, originalPrice: 0, featured: false, enrollmentCount: 0, modules: [], features: [] });
+            renderPrograms();
+            setTimeout(() => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }, 100);
+        }
+        async function saveAllPrograms() {
+            try {
+                const getResponse = await fetch(`${API_BASE}/python-full-stack-config`);
+                const currentData = await getResponse.json();
+                const updatedConfig = currentData.config;
+                updatedConfig.upskilling.programs = programs;
+                const response = await fetch(`${API_BASE}/python-full-stack-config`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ config: updatedConfig }) });
+                const data = await response.json();
+                if (data.success) { alert('✅ Programs saved successfully!'); } else { alert('❌ Failed to save programs'); }
+            } catch (error) { console.error('Error:', error); alert('❌ Error saving programs'); }
+        }
+        loadPrograms();
+    </script>
+</body>
+
+</html>
+

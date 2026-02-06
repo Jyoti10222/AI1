@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lead Management Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+
+  <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+    <h1 class="text-2xl font-bold text-gray-800">Lead Management Dashboard</h1>
+    <div class="flex flex-wrap items-center gap-3">
+      <button onclick="toggleStudentForm()" title="Add Student"
+        class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white size-10 rounded-lg shadow-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">add</span>
+      </button>
+
+      <button onclick="exportCSV()" title="Export CSV"
+        class="flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white size-10 rounded-lg shadow-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">download</span>
+      </button>
+
+      <button onclick="document.getElementById('csvInput').click()" title="Import CSV"
+        class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white size-10 rounded-lg shadow-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">upload</span>
+      </button>
+      <input type="file" id="csvInput" accept=".csv" class="hidden">
+
+      <a href="Lead-analytics.html" target="_blank" title="View Report">
+        <button
+          class="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white size-10 rounded-lg shadow-sm transition-all">
+          <span class="material-symbols-outlined text-[20px]">analytics</span>
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- FILTERS -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <select id="statusFilter" class="p-2 border rounded" onchange="applyFilters()">
+      <option value="All">All Status</option>
+      <option>New</option>
+      <option>Contacted</option>
+      <option>Qualified</option>
+      <option>Converted</option>
+      <option>Lost</option>
+      <option>Follow-Up</option>
+    </select>
+
+    <select id="sourceFilter" class="p-2 border rounded" onchange="applyFilters()">
+      <option value="All">All Sources</option>
+      <option>Facebook</option>
+      <option>LinkedIn</option>
+      <option>Instagram</option>
+      <option>Web</option>
+      <option>Referral</option>
+      <option>Email</option>
+      <option>Cold Call</option>
+      <option value="Pamphlet">Pamphlet</option>
+    </select>
+
+    <input type="date" id="dateFilter" class="p-2 border rounded" onchange="applyFilters()">
+
+    <button onclick="resetFilters()" title="Reset Filters"
+      class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white size-10 rounded-lg transition-all">
+      <span class="material-symbols-outlined text-[20px]">refresh</span>
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="bg-white shadow rounded overflow-x-auto mb-6">
+    <table class="min-w-[1600px] w-full border-collapse text-sm">
+      <thead class="bg-gray-200">
+
+        <th class="p-3">Lead ID</th>
+        <th class="p-3">Name</th>
+        <th class="p-3">Email</th>
+        <th class="p-3">Phone</th>
+        <th class="p-3">Experience Type</th>
+        <th class="p-3">Source</th>
+        <th class="p-3">Status</th>
+        <th class="p-3">Priority</th>
+        <th class="p-3">Budget</th>
+        <th class="p-3">City</th>
+        <th class="p-3">Country</th>
+        <th class="p-3">Follow-Up</th>
+        <th class="p-3">Created Date</th>
+        <th class="p-3">Remarks</th>
+
+      </thead>
+
+      <tbody id="leadTable"></tbody>
+    </table>
+  </div>
+
+  <!-- FORM -->
+  <!-- MODAL FORM CONTAINER (Hidden by default) -->
+  <div id="studentFormModal"
+    class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-fade-in-up">
+      <div class="flex justify-between items-center p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-800">Add New Student Lead</h2>
+        <button onclick="toggleStudentForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="leadForm" class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input id="name" required placeholder="Ex: John Doe"
+              class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input id="email" type="email" required placeholder="john@example.com"
+              class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input id="phone" type="tel" placeholder="+91 98765 43210"
+              class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Experience Level</label>
+            <input id="company" placeholder="Fresher / 2 Years Exp"
+              class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Lead Source</label>
+              <select id="source"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white">
+                <option>Facebook</option>
+                <option>LinkedIn</option>
+                <option>Instagram</option>
+                <option>Web</option>
+                <option>Referral</option>
+                <option>Email</option>
+                <option>Cold Call</option>
+                <option>Pamphlet</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <select id="status"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white">
+                <option>New</option>
+                <option>Contacted</option>
+                <option>Qualified</option>
+                <option>Converted</option>
+                <option>Lost</option>
+                <option>Follow-Up</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Priority</label>
+              <select id="priority"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Budget</label>
+              <input id="budget" type="number" placeholder="50000"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+              <input id="city" placeholder="Bangalore"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Follow Up Date</label>
+              <input type="date" id="followUpDate"
+                class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Remarks / Notes</label>
+          <textarea id="remarks" rows="2" placeholder="Student is interested in Data Science..."
+            class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"></textarea>
+        </div>
+
+        <div class="md:col-span-2 flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+          <button type="button" onclick="toggleStudentForm()"
+            class="px-5 py-2.5 text-sm font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+            Cancel
+          </button>
+          <button type="submit"
+            class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md shadow-blue-500/20 transition-all hover:scale-105 active:scale-95">
+            Save Lead
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <script>
+    // Backend API endpoint (Fallback)
+    const API = "http://localhost:8080/api/leads";
+    const STORAGE_KEY = "jetking_leads_data";
+
+    // DOM references
+    const leadTable = document.getElementById("leadTable");
+    const leadForm = document.getElementById("leadForm");
+    const statusFilter = document.getElementById("statusFilter");
+    const sourceFilter = document.getElementById("sourceFilter");
+    const dateFilter = document.getElementById("dateFilter");
+    const studentFormModal = document.getElementById("studentFormModal");
+
+    // -------------------
+    // Toggle Modal
+    // -------------------
+    function toggleStudentForm() {
+      studentFormModal.classList.toggle("hidden");
+    }
+
+    // -------------------
+    // Load all leads (Local Storage + Backend Fallback)
+    // -------------------
+    async function loadLeads() {
+      // 1. Try Local Storage first for instant render
+      const localData = localStorage.getItem(STORAGE_KEY);
+      let leads = localData ? JSON.parse(localData) : [];
+
+      if (leads.length > 0) {
+        renderLeads(leads);
+      }
+
+      // 2. Mock Backend Fetch (In a real app, you might merge these)
+      // We will rely primarily on local storage for this demo to ensure persistence without a running server.
+      if (leads.length === 0) {
+        try {
+          const res = await fetch(API);
+          if (res.ok) {
+            const backendLeads = await res.json();
+            if (backendLeads.length > 0) {
+              leads = backendLeads;
+              renderLeads(leads);
+              saveToLocal(leads); // Cache it
+            }
+          }
+        } catch (err) {
+          console.log("Backend offline, using local data only.");
+        }
+      }
+    }
+
+    function saveToLocal(leads) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+    }
+
+    // -------------------
+    // Render leads in table
+    // -------------------
+    function renderLeads(leads) {
+      leadTable.innerHTML = ""; // Clear existing rows
+
+      if (leads.length === 0) {
+        leadTable.innerHTML = `<tr><td colspan="14" class="p-8 text-center text-gray-500">No leads found. Click "Add Student" to create one.</td></tr>`;
+        return;
+      }
+
+      // Sort by newest first
+      const sortedLeads = [...leads].sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+
+      sortedLeads.forEach(lead => {
+        const row = document.createElement("tr");
+        row.className = "hover:bg-gray-50 border-b border-gray-100 transition-colors";
+
+        row.setAttribute("data-status", lead.status);
+        row.setAttribute("data-source", lead.source);
+        row.setAttribute("data-date", lead.createdDate);
+
+        // Status Badge Logic
+        let statusColor = "bg-gray-100 text-gray-600";
+        if (lead.status === "New") statusColor = "bg-blue-100 text-blue-700";
+        if (lead.status === "Converted") statusColor = "bg-green-100 text-green-700";
+        if (lead.status === "Lost") statusColor = "bg-red-100 text-red-700";
+        if (lead.status === "Qualified") statusColor = "bg-purple-100 text-purple-700";
+
+        row.innerHTML = `
+            <td class="p-3 text-gray-600">#${lead.leadId || 'N/A'}</td>
+            <td class="p-3 font-semibold text-gray-800">${lead.name}</td>
+            <td class="p-3 text-gray-600">${lead.email}</td>
+            <td class="p-3 text-gray-600">${lead.phone || "-"}</td>
+            <td class="p-3 text-gray-600">${lead.experienceType || "-"}</td>
+            <td class="p-3">
+                <span class="px-2 py-1 rounded text-xs font-medium border border-gray-200 bg-white">
+                    ${lead.source || "-"}
+                </span>
+            </td>
+            <td class="p-3">
+                <span class="px-2 py-1 rounded-full text-xs font-bold ${statusColor}">
+                    ${lead.status || "-"}
+                </span>
+            </td>
+            <td class="p-3 text-gray-600">${lead.priority || "-"}</td>
+            <td class="p-3 text-gray-600">${lead.budget ? '₹' + lead.budget : "-"}</td>
+            <td class="p-3 text-gray-600">${lead.city || "-"}</td>
+            <td class="p-3 text-gray-600">${lead.country || "-"}</td>
+            <td class="p-3 text-gray-500 text-xs">${lead.followUpDate || "-"}</td>
+            <td class="p-3 text-gray-500 text-xs">${new Date(lead.createdDate).toLocaleDateString()}</td>
+            <td class="p-3 text-gray-500 italic max-w-xs truncate">${lead.remarks || "-"}</td>
+        `;
+
+        leadTable.appendChild(row);
+      });
+    }
+
+    // -------------------
+    // Add new lead
+    // -------------------
+    leadForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Collect form data
+      const leadId = Math.floor(Math.random() * 9000) + 1000; // Temp ID if backend fails
+      const newLead = {
+        leadId: leadId, // This might be overwritten by backend response
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        experienceType: document.getElementById("company").value,
+        source: document.getElementById("source").value,
+        status: document.getElementById("status").value,
+        priority: document.getElementById("priority").value,
+        budget: parseFloat(document.getElementById("budget").value) || null,
+        city: document.getElementById("city").value,
+        country: "India",
+        followUpDate: document.getElementById("followUpDate").value || null,
+        remarks: document.getElementById("remarks").value,
+        createdDate: new Date().toISOString()
+      };
+
+      let savedLead = newLead;
+
+      // 1. Try Backend First (Enforce Backend Sync)
+      try {
+        const res = await fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newLead)
+        });
+
+        if (res.ok) {
+          // Backend is source of truth (e.g. real ID)
+          const backendData = await res.json();
+          savedLead = backendData;
+          console.log("Lead successfully saved to backend:", savedLead);
+        } else {
+          throw new Error("Backend responded with error: " + res.status);
+        }
+      } catch (err) {
+        console.warn("Backend sync failed. Using offline mode.", err);
+        alert("Warning: Backend unreachable. Saving locally only.");
+      }
+
+      // 2. Update Local Storage with the (potentially backend-enhanced) lead
+      const localData = localStorage.getItem(STORAGE_KEY);
+      const leads = localData ? JSON.parse(localData) : [];
+
+      // Check if we need to replace a temp local lead or just push
+      leads.push(savedLead);
+      saveToLocal(leads);
+
+      // 3. Update UI
+      renderLeads(leads);
+      if (savedLead.leadId !== newLead.leadId) {
+        alert(`Lead saved! Backend ID: ${savedLead.leadId}`);
+      } else {
+        alert("Lead saved successfully!");
+      }
+
+      leadForm.reset();
+      toggleStudentForm();
+    });
+
+    // -------------------
+    // Filter leads by status, source, date
+    // -------------------
+    function applyFilters() {
+      const status = statusFilter.value;
+      const source = sourceFilter.value;
+      const date = dateFilter.value;
+
+      document.querySelectorAll("#leadTable tr").forEach(row => {
+        let show = true;
+
+        // Skip the "No leads found" row
+        if (row.cells.length === 1) return;
+
+        if (status !== "All" && row.dataset.status !== status) show = false;
+        if (source !== "All" && row.dataset.source !== source) show = false;
+        // Simple date string match (YYYY-MM-DD starts with)
+        if (date && !row.dataset.date.startsWith(date)) show = false;
+
+        row.style.display = show ? "" : "none";
+      });
+    }
+
+    // Reset filters
+    function resetFilters() {
+      statusFilter.value = "All";
+      sourceFilter.value = "All";
+      dateFilter.value = "";
+      applyFilters();
+    }
+
+    // -------------------
+    // Initial load
+    // -------------------
+    loadLeads();
+
+    // -------------------
+    // Export CSV Logic
+    // -------------------
+    function exportCSV() {
+      const localData = localStorage.getItem(STORAGE_KEY);
+      const leads = localData ? JSON.parse(localData) : [];
+
+      if (leads.length === 0) {
+        alert("No data to export!");
+        return;
+      }
+
+      // Headers (Order matches the import expectation)
+      const headers = ["Lead ID", "Name", "Email", "Phone", "Experience", "Source", "Status", "Priority", "Budget", "City", "Follow Up", "Created Date", "Remarks"];
+
+      // Rows
+      const rows = leads.map(l => [
+        l.leadId,
+        `"${l.name}"`,
+        `"${l.email}"`,
+        `"${l.phone || ''}"`,
+        `"${l.experienceType || ''}"`,
+        `"${l.source || ''}"`,
+        `"${l.status || ''}"`,
+        `"${l.priority || ''}"`,
+        l.budget || 0,
+        `"${l.city || ''}"`,
+        l.followUpDate || '',
+        l.createdDate || '',
+        `"${l.remarks || ''}"`
+      ].join(","));
+
+      const csvContent = [headers.join(","), ...rows].join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "jetking_leads_export.csv";
+      link.click();
+    }
+
+    // -------------------
+    // Import CSV Logic
+    // -------------------
+    const csvInput = document.getElementById('csvInput');
+    if (csvInput) {
+      csvInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async function (evt) {
+          const text = evt.target.result;
+          const lines = text.split("\n");
+
+          let newLeadsCount = 0;
+          const localData = localStorage.getItem(STORAGE_KEY);
+          let leads = localData ? JSON.parse(localData) : [];
+
+          // Start from index 1 to skip header
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            // Simple regex to match CSV fields (handling rough quoted structure)
+            const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+
+            // Robustness Check: Ensure enough columns
+            if (parts.length < 3) continue;
+
+            const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : "";
+
+            const newLead = {
+              leadId: Math.floor(Math.random() * 90000) + 10000, // Generate new distinct ID
+              name: clean(parts[1]),
+              email: clean(parts[2]),
+              phone: clean(parts[3]),
+              experienceType: clean(parts[4]),
+              source: clean(parts[5]),
+              status: clean(parts[6]),
+              priority: clean(parts[7]),
+              budget: parseFloat(clean(parts[8])) || null,
+              city: clean(parts[9]),
+              followUpDate: clean(parts[10]),
+              createdDate: new Date().toISOString(),
+              country: "India",
+              remarks: clean(parts[12])
+            };
+
+            leads.push(newLead);
+            newLeadsCount++;
+
+            // Sync to Backend silently
+            fetch(API, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(newLead)
+            }).catch(err => console.warn("Import sync failed for row", i));
+          }
+
+          saveToLocal(leads);
+          renderLeads(leads);
+          alert(`Import Successful! Added ${newLeadsCount} leads.`);
+          e.target.value = ''; // reset input
+        };
+        reader.readAsText(file);
+      });
+    }
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Batch Admin - AI-TECH PRO</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2632",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3b4a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-slate-100 font-display min-h-screen">
+    <!-- Header -->
+    <nav class="sticky top-0 z-50 w-full bg-card-dark border-b border-border-dark shadow-lg">
+        <div class="px-6 lg:px-10 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-4">
+                    <div class="size-10 text-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold tracking-tight text-white">Offline Batch Admin</h1>
+                        <p class="text-sm text-slate-400">Manage batches, courses & requests</p>
+                    </div>
+                </div>
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <a href="Offline.html" target="_blank"
+                        class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-all">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        View Live Page
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-6 space-y-6">
+        <!-- Statistics Dashboard -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-card-dark rounded-xl border border-border-dark p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-400">Total Courses</p>
+                        <p id="stat-courses" class="text-2xl font-bold text-white">0</p>
+                    </div>
+                    <span class="material-symbols-outlined text-blue-500 text-3xl">menu_book</span>
+                </div>
+            </div>
+            <div class="bg-card-dark rounded-xl border border-border-dark p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-400">Total Batches</p>
+                        <p id="stat-batches" class="text-2xl font-bold text-white">0</p>
+                    </div>
+                    <span class="material-symbols-outlined text-green-500 text-3xl">groups</span>
+                </div>
+            </div>
+            <div class="bg-card-dark rounded-xl border border-border-dark p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-400">Batch Fee</p>
+                        <p id="stat-fee" class="text-2xl font-bold text-white">₹0</p>
+                    </div>
+                    <span class="material-symbols-outlined text-orange-500 text-3xl">payments</span>
+                </div>
+            </div>
+            <div class="bg-card-dark rounded-xl border border-border-dark p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-slate-400">Pending Requests</p>
+                        <p id="stat-requests" class="text-2xl font-bold text-white">0</p>
+                    </div>
+                    <span class="material-symbols-outlined text-purple-500 text-3xl">pending_actions</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Fee Editor -->
+        <div class="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 shadow-lg">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex items-center gap-4 flex-1">
+                    <div class="size-14 rounded-xl bg-slate-900/20 backdrop-blur flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-3xl">payments</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white font-bold text-lg mb-2">Offline Batch Fee</h3>
+                        <p class="text-white/80 text-sm">Set the enrollment fee for offline batches</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <div class="flex items-baseline gap-2">
+                            <select id="fee-currency" title="Currency"
+                                class="bg-slate-900/10 border border-white/20 rounded-lg px-2 py-1 text-white text-sm focus:outline-none focus:border-white/40">
+                                <option value="₹">₹</option>
+                                <option value="$">$</option>
+                                <option value="€">€</option>
+                            </select>
+                            <input type="number" id="fee-price" placeholder="999"
+                                class="w-32 bg-slate-900/10 border border-white/20 rounded-lg px-3 py-2 text-3xl font-black text-white text-right focus:outline-none focus:border-white/40">
+                        </div>
+                    </div>
+                    <button onclick="saveBatchFee()"
+                        class="px-6 py-3 bg-slate-900 text-primary rounded-lg font-bold hover:bg-slate-900/90 transition-colors shadow-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">save</span>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Batch Management (New System) -->
+        <div class="bg-card-dark rounded-xl border border-border-dark overflow-hidden">
+            <div class="px-6 py-4 border-b border-border-dark flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">calendar_month</span>
+                    Detailed Batch Schedule
+                </h2>
+                <div class="flex items-center gap-2">
+                    <select id="detailed-batch-status-filter" onchange="filterDetailedBatchesAdmin()"
+                        class="px-3 py-1.5 bg-slate-800 border border-slate-600 rounded-lg text-sm text-white focus:border-primary focus:outline-none">
+                        <option value="all">All Batches</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="running">Running</option>
+                        <option value="past">Past</option>
+                    </select>
+                    <button onclick="showAddDetailedBatchModal()"
+                        class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                        New Batch
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-slate-800 border-b border-border-dark">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Batch Name
+                            </th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Instructor
+                            </th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Schedule</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Status</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Enrolled</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Progress</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailed-batches-container" class="divide-y divide-border-dark">
+                        <tr>
+                            <td colspan="7" class="px-4 py-8 text-center text-slate-400">
+                                <span class="material-symbols-outlined text-3xl mb-2">hourglass_empty</span>
+                                <p>Loading detailed batches...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Course Management -->
+        <div class="bg-card-dark rounded-xl border border-border-dark overflow-hidden">
+            <div class="px-6 py-4 border-b border-border-dark flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">menu_book</span>
+                    Course Management
+                </h2>
+                <button onclick="showAddCourseModal()"
+                    class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg font-semibold transition-all">
+                    <span class="material-symbols-outlined text-[18px]">add</span>
+                    Add Course
+                </button>
+            </div>
+            <div id="courses-container" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Courses will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Enrollment Management -->
+        <div class="bg-card-dark rounded-xl border border-border-dark overflow-hidden">
+            <div class="px-6 py-4 border-b border-border-dark flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">school</span>
+                    Enrollment Management
+                </h2>
+                <div class="flex items-center gap-2">
+                    <select id="enrollment-filter" onchange="filterEnrollments()"
+                        class="bg-slate-800 border-none text-white text-sm rounded-lg focus:ring-1 focus:ring-primary py-1.5 pl-3 pr-8">
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="all">All Status</option>
+                    </select>
+                    <button onclick="fetchEnrollments()"
+                        class="text-sm text-primary hover:underline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">refresh</span>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-slate-800 border-b border-border-dark">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Student</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Contact</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Course
+                                Details</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Enrolled At
+                            </th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Status</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enrollments-container" class="divide-y divide-border-dark">
+                        <tr>
+                            <td colspan="6" class="px-4 py-8 text-center text-slate-400">
+                                Loading enrollments...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Custom Batch Requests -->
+        <div class="bg-card-dark rounded-xl border border-border-dark overflow-hidden">
+            <div class="px-6 py-4 border-b border-border-dark flex items-center justify-between">
+                <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">request_quote</span>
+                    Custom Batch Requests
+                </h2>
+                <button onclick="refreshRequests()"
+                    class="text-sm text-primary hover:underline flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">refresh</span>
+                    Refresh
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-slate-800 border-b border-border-dark">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Student</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Contact</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Course</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Time</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Size</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Date</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-slate-400 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requests-container" class="divide-y divide-border-dark">
+                        <tr>
+                            <td colspan="7" class="px-4 py-8 text-center text-slate-400">
+                                No pending requests
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Batch Modal -->
+    <div id="addBatchModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-card-dark rounded-2xl shadow-2xl max-w-md w-full p-6 border border-border-dark">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-white">Add New Batch</h3>
+                <button onclick="closeAddBatchModal()" class="text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Course</label>
+                    <select id="batch-course" title="Select Course for Batch"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                        <option value="">Select Course</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Faculty Name</label>
+                    <input type="text" id="batch-faculty" placeholder="Enter faculty name"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Day</label>
+                        <select id="batch-day" title="Select Day of Week"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                            <option value="Mon">Monday</option>
+                            <option value="Tue">Tuesday</option>
+                            <option value="Wed">Wednesday</option>
+                            <option value="Thu">Thursday</option>
+                            <option value="Fri">Friday</option>
+                            <option value="Sat">Saturday</option>
+                            <option value="Sun">Sunday</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1" for="batch-duration">Duration
+                            (hrs)</label>
+                        <input type="number" id="batch-duration" value="2" step="0.5" title="Batch Duration"
+                            placeholder="e.g. 2"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1" for="batch-start">Start
+                            Time</label>
+                        <input type="time" id="batch-start" title="Start Time" placeholder="Select start time"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1" for="batch-end">End Time</label>
+                        <input type="time" id="batch-end" title="End Time" placeholder="Select end time"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeAddBatchModal()"
+                    class="flex-1 px-4 py-2.5 rounded-lg border border-slate-600 text-slate-300 font-semibold hover:bg-slate-700 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="addBatch()"
+                    class="flex-1 px-4 py-2.5 rounded-lg bg-green-600 hover:bg-green-500 text-white font-semibold transition-colors">
+                    Add Batch
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div id="addCourseModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-card-dark rounded-2xl shadow-2xl max-w-md w-full p-6 border border-border-dark">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-white">Add New Course</h3>
+                <button onclick="closeAddCourseModal()" class="text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Course Name</label>
+                    <input type="text" id="course-name" placeholder="e.g., Java Full Stack"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1" for="course-price">Price
+                            (₹)</label>
+                        <input type="number" id="course-price" value="5000"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1"
+                            for="course-duration">Duration</label>
+                        <input type="text" id="course-duration" value="6 Months"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1"
+                            for="course-category">Category</label>
+                        <input type="text" id="course-category" value="Programming"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Total Seats</label>
+                        <input type="number" id="course-seats" value="30"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Instructor</label>
+                    <input type="text" id="course-instructor" placeholder="Instructor name"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeAddCourseModal()"
+                    class="flex-1 px-4 py-2.5 rounded-lg border border-slate-600 text-slate-300 font-semibold hover:bg-slate-700 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="addCourse()"
+                    class="flex-1 px-4 py-2.5 rounded-lg bg-green-600 hover:bg-green-500 text-white font-semibold transition-colors">
+                    Add Course
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Batch Modal -->
+    <div id="detailedBatchModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div
+            class="bg-card-dark rounded-2xl shadow-2xl max-w-2xl w-full p-6 border border-border-dark max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+                <h3 id="detailedModalTitle" class="text-xl font-bold text-white">Add Detailed Batch</h3>
+                <button onclick="closeDetailedBatchModal()" class="text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="detailedBatchForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Batch Name *</label>
+                        <input type="text" id="detailed-batch-name" required
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Instructor *</label>
+                        <input type="text" id="detailed-batch-instructor" required
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1"
+                            for="detailed-batch-status">Status</label>
+                        <select id="detailed-batch-status" required
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                            <option value="upcoming">Upcoming</option>
+                            <option value="running">Running</option>
+                            <option value="past">Past</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Capacity</label>
+                        <input type="number" id="detailed-batch-capacity" required value="50"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">Start Date *</label>
+                        <input type="date" id="detailed-batch-start-date" required
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">End Date *</label>
+                        <input type="date" id="detailed-batch-end-date" required
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Schedule Details *</label>
+                    <input type="text" id="detailed-batch-schedule" required
+                        placeholder="e.g., Mon, Wed, Fri • 10:00 AM - 12:00 PM"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                </div>
+
+                <div id="enrolled-field-container" class="hidden">
+                    <label class="block text-sm font-semibold text-slate-300 mb-1">Enrolled Students</label>
+                    <input type="number" id="detailed-batch-enrolled" value="0"
+                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white focus:border-primary focus:outline-none">
+                </div>
+            </form>
+
+            <div class="flex gap-3 mt-6">
+                <button onclick="closeDetailedBatchModal()"
+                    class="flex-1 px-4 py-2.5 rounded-lg border border-slate-600 text-slate-300 font-semibold hover:bg-slate-700 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="saveDetailedBatch()"
+                    class="flex-1 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white font-semibold transition-colors">
+                    Save Batch
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Curriculum Manager Modal -->
+    <div id="curriculumManagerModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div
+            class="bg-card-dark rounded-2xl shadow-2xl max-w-5xl w-full h-[85vh] flex flex-col border border-border-dark">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-border-dark flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Manage Curriculum</h3>
+                    <p id="curriculum-batch-title" class="text-sm text-slate-400">Batch Name</p>
+                </div>
+                <button onclick="closeCurriculumManagerModal()" class="text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 overflow-hidden flex flex-col md:flex-row">
+                <!-- Modules Sidebar -->
+                <div class="w-full md:w-1/3 border-r border-border-dark flex flex-col bg-slate-900/50">
+                    <div class="p-4 border-b border-border-dark flex justify-between items-center">
+                        <h4 class="font-bold text-white">Modules</h4>
+                        <button onclick="addModule()"
+                            class="text-xs bg-primary hover:bg-primary-dark text-white px-2 py-1 rounded flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">add</span> Add
+                        </button>
+                    </div>
+                    <div id="admin-modules-list" class="flex-1 overflow-y-auto p-2 space-y-2">
+                        <!-- Module items -->
+                    </div>
+                </div>
+
+                <!-- Topics Content -->
+                <div class="w-full md:w-2/3 flex flex-col">
+                    <div id="section-topics-header"
+                        class="p-4 border-b border-border-dark bg-slate-800/50 flex justify-between items-center hidden">
+                        <h4 class="font-bold text-white">Topics in <span id="current-module-name"
+                                class="text-primary">Module</span></h4>
+                        <button onclick="addTopic()"
+                            class="text-xs bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">add</span> Add Topic
+                        </button>
+                    </div>
+
+                    <div id="admin-topics-list" class="flex-1 overflow-y-auto p-4 space-y-3">
+                        <div class="h-full flex flex-col items-center justify-center text-slate-500">
+                            <span class="material-symbols-outlined text-4xl mb-2">arrow_back</span>
+                            <p>Select a module to manage topics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-border-dark bg-slate-900/50 flex justify-end">
+                <button onclick="closeCurriculumManagerModal()"
+                    class="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-semibold transition-colors">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <script src="js/batch-data-store.js"></script>
+    <script src="js/offline-admin.js"></script>
+</body>
+
+</html>

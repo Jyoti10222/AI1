@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI-TECH PRO Faculty Management - Hybrid Batches</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Toast Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .toast {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        .toast.hiding {
+            animation: fadeOut 0.3s ease-in forwards;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-white dark:text-white font-display min-h-screen flex flex-col">
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2"></div>
+
+    <header
+        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-700 dark:border-[#233648] px-6 py-3 bg-slate-900 dark:bg-background-dark sticky top-0 z-50">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4 text-primary">
+                <div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+                    <span class="material-symbols-outlined">analytics</span>
+                </div>
+                <h2 class="text-white dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI-TECH
+                    PRO</h2>
+            </div>
+            <label class="flex flex-col min-w-40 !h-10 max-w-64">
+                <div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+                    <div
+                        class="text-slate-400 dark:text-[#92adc9] flex border-none bg-slate-900 dark:bg-[#233648] items-center justify-center pl-4 border-r-0">
+                        <span class="material-symbols-outlined text-xl">search</span>
+                    </div>
+                    <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-white dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-900 dark:bg-[#233648] focus:border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#92adc9] px-4 pl-2 text-base font-normal leading-normal"
+                        placeholder="Search hybrid batches..." value="" />
+                </div>
+            </label>
+        </div>
+        <div class="flex flex-1 justify-end gap-4">
+            <div class="flex gap-3">
+                <button onclick="openManageCoursesModal()"
+                    class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-900 dark:bg-[#233648] text-white dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-[#2d455c] transition-colors">
+                    <span class="material-symbols-outlined mr-2 text-primary">edit_document</span>
+                    <span class="truncate">Manage Courses</span>
+                </button>
+                <button onclick="saveChanges()"
+                    class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
+                    <span class="truncate">Save Changes</span>
+                </button>
+                <button onclick="addBatchRow()"
+                    class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-900 dark:bg-[#233648] text-white dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 dark:hover:bg-[#2d455c] transition-colors">
+                    <span class="material-symbols-outlined mr-2 text-primary">add</span>
+                    <span class="truncate">Add Batch</span>
+                </button>
+            </div>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsQBtx82akKM2AMbvz36WEaVMWkmtJ8hEdAUWGDUdXtVYa6yGkjPufnCQ4rp_WDzq3Tin0SyKvRUwiUZ2ttGCdw6Wek25UcHjHCUbs2MmVP-cgmxb_roip8ufwibexL09_Bwqf3Pc6ruVO2AuQ9DpWkbJNAdDz0taldM0yezy_G44HMQRx8-QSNivXUxit1S8pjCDD71HyEwHBz_fjISEw9KShDQmybRtiO84pKHJPNau5KMeksxI7eDfG8laqv7EURuzZ0X-ideQ");'>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1">
+        <aside
+            class="w-64 flex-shrink-0 border-r border-slate-700 dark:border-[#233648] bg-slate-900 dark:bg-background-dark hidden lg:flex flex-col">
+            <div class="flex flex-col gap-6 p-6">
+                <div class="flex flex-col">
+                    <h1 class="text-white dark:text-white text-base font-bold leading-normal">Batch Types</h1>
+                    <p
+                        class="text-slate-400 dark:text-[#92adc9] text-xs font-medium leading-normal uppercase tracking-wider">
+                        Management Console</p>
+                </div>
+                <nav class="flex flex-col gap-1">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 dark:text-[#92adc9] hover:bg-slate-900 dark:hover:bg-[#233648] transition-all"
+                        href="FacultyOnline.html">
+                        <span class="material-symbols-outlined text-[22px]">laptop_mac</span>
+                        <p class="text-sm font-medium leading-normal">Online Batches</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 dark:text-[#92adc9] hover:bg-slate-900 dark:hover:bg-[#233648] transition-all"
+                        href="FacultyOffline.html">
+                        <span class="material-symbols-outlined text-[22px]">corporate_fare</span>
+                        <p class="text-sm font-medium leading-normal">Offline Batches</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary group" href="#">
+                        <span class="material-symbols-outlined text-[22px] fill-1">hub</span>
+                        <p class="text-sm font-semibold leading-normal">Hybrid Batches</p>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+        <main class="flex-1 overflow-x-hidden pb-12">
+            <div class="flex flex-wrap justify-between items-end gap-3 p-6 lg:px-8 max-w-7xl mx-auto w-full">
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span
+                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-primary uppercase tracking-wider">Active
+                            View</span>
+                        <span class="text-slate-400 dark:text-slate-400 text-sm">/</span>
+                        <span class="text-slate-400 dark:text-slate-400 text-sm font-medium">Hybrid Mode</span>
+                    </div>
+                    <h1 class="text-white dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">
+                        Hybrid Batch Management</h1>
+                    <p class="text-slate-400 dark:text-[#92adc9] text-base font-normal leading-normal max-w-xl">
+                        Manage integrated schedules for combined online and in-person learning sessions across
+                        specialized technical tracks.
+                    </p>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 mt-4">
+                <div
+                    class="bg-slate-900 dark:bg-background-dark border border-slate-700 dark:border-[#324d67] rounded-xl overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr
+                                    class="bg-slate-950 dark:bg-[#192633] border-b border-slate-700 dark:border-[#324d67]">
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        Course Name</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        Faculty Name</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        Day</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        Start Time</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        End Time</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider text-center">
+                                        Duration</th>
+                                    <th
+                                        class="px-6 py-4 text-white dark:text-white text-xs font-bold uppercase tracking-wider">
+                                        Session Type</th>
+                                    <th
+                                        class="px-6 py-4 text-slate-400 dark:text-[#92adc9] text-xs font-bold uppercase tracking-wider text-right">
+                                        Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="batchTableBody" class="divide-y divide-slate-100 dark:divide-[#324d67]">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Courses Modal -->
+    <div id="manage-courses-modal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+        <div class="bg-slate-900 dark:bg-[#1e293b] rounded-xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-slate-700 dark:border-gray-700 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-white dark:text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">edit_document</span>
+                    Manage Courses
+                </h3>
+                <button onclick="closeManageCoursesModal()"
+                    class="text-slate-400 hover:text-white dark:text-gray-400 dark:hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div id="courses-list" class="space-y-4">
+                    <!-- Course items will be injected here -->
+                </div>
+            </div>
+            <div
+                class="p-6 border-t border-slate-700 dark:border-gray-700 bg-slate-950 dark:bg-[#151e2a] rounded-b-xl flex justify-end">
+                <button onclick="closeManageCoursesModal()"
+                    class="px-4 py-2 bg-slate-900 dark:bg-[#233648] border border-slate-600 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-slate-950 dark:hover:bg-[#2d455c] font-medium transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let courses = [];
+        let batches = [];
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            const icon = type === 'success' ? 'check_circle' : 'error';
+            toast.className = `toast flex items-center w-full max-w-xs p-4 mb-4 text-white rounded-lg shadow ${bgColor}`;
+            toast.innerHTML = `
+                <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg bg-slate-900/20">
+                    <span class="material-symbols-outlined text-xl">${icon}</span>
+                </div>
+                <div class="ml-3 text-sm font-normal">${message}</div>
+                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-transparent text-white rounded-lg focus:ring-2 focus:ring-white p-1.5 hover:bg-slate-900/10 inline-flex h-8 w-8" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined text-lg">close</span>
+                </button>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('hiding');
+                toast.addEventListener('animationend', () => toast.remove());
+            }, 3000);
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('http://localhost:8080/api/hybrid-config');
+                const result = await response.json();
+
+                if (result.success) {
+                    courses = result.data.courses || [];
+                    batches = result.data.batches || [];
+                    renderBatches();
+                    showToast('Data loaded successfully');
+                } else {
+                    showToast('Failed to load data', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showToast('Error loading data', 'error');
+            }
+        }
+
+        function renderBatches() {
+            const tbody = document.getElementById('batchTableBody');
+            tbody.innerHTML = '';
+
+            batches.forEach((batch, index) => {
+                const row = document.createElement('tr');
+                row.className = "group hover:bg-slate-950/50 dark:hover:bg-primary/5 transition-colors";
+
+                const isOnline = batch.type === 'online';
+                const typeBadge = isOnline
+                    ? `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-primary/10 text-primary ring-1 ring-primary/20"><span class="size-1.5 rounded-full bg-primary"></span>Online</span>`
+                    : `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20"><span class="size-1.5 rounded-full bg-emerald-500"></span>In-person</span>`;
+
+                row.innerHTML = `
+                    <td class="px-6 py-4">
+                        <select onchange="updateBatch(${index}, 'courseId', this.value)" 
+                            class="w-full bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-white dark:text-white text-sm font-semibold">
+                            ${courses.map(c => `<option value="${c.id}" ${c.id === batch.courseId ? 'selected' : ''}>${c.name}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                             <div class="size-6 rounded-full bg-primary/20 flex items-center justify-center text-[10px] text-primary font-bold">
+                                ${getInitials(batch.faculty)}
+                            </div>
+                            <input onchange="updateBatch(${index}, 'faculty', this.value)"
+                                class="w-full bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm"
+                                type="text" value="${batch.faculty}" />
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <input onchange="updateBatch(${index}, 'day', this.value)"
+                            class="w-full bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm"
+                            type="text" value="${batch.day}" placeholder="e.g. Mon & Wed" />
+                    </td>
+                    <td class="px-6 py-4">
+                         <input onchange="updateBatch(${index}, 'startTime', this.value)"
+                            class="w-24 bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm font-mono"
+                            type="text" value="${batch.startTime}" />
+                    </td>
+                    <td class="px-6 py-4">
+                         <input onchange="updateBatch(${index}, 'endTime', this.value)"
+                            class="w-24 bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm font-mono"
+                            type="text" value="${batch.endTime}" />
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                         <input onchange="updateBatch(${index}, 'duration', this.value)"
+                            class="w-20 bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm text-center"
+                            type="text" value="${batch.duration}" />
+                    </td>
+                    <td class="px-6 py-4">
+                         <select onchange="updateBatch(${index}, 'type', this.value)" 
+                            class="w-full bg-transparent border-none focus:ring-1 focus:ring-primary rounded px-2 py-1 text-slate-400 dark:text-[#92adc9] text-sm">
+                            <option value="online" ${batch.type === 'online' ? 'selected' : ''}>Online</option>
+                            <option value="offline" ${batch.type === 'offline' ? 'selected' : ''}>In-person</option>
+                        </select>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <button onclick="removeBatch(${index})" 
+                            class="text-red-500 hover:text-red-700 font-bold text-xs uppercase tracking-widest px-3 py-1">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function getInitials(name) {
+            return name ? name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) : '??';
+        }
+
+        async function addNewCourse() {
+            const nameInput = document.getElementById('new-course-name');
+            const name = nameInput.value.trim();
+            if (!name) return showToast('Enter a course name', 'error');
+
+            try {
+                const response = await fetch('http://localhost:8080/api/hybrid-config/course', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('New course added');
+                    courses.push(result.data);
+                    openManageCoursesModal();
+                    renderBatches();
+                } else {
+                    showToast(result.message || 'Failed to add course', 'error');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('Server error', 'error');
+            }
+        }
+
+        function calculateDuration(start, end) {
+            if (!start || !end) return '';
+            const parseTime = (t) => {
+                // Handle plain 24h "HH:MM" or "HH:MM AM/PM"
+                let hours, minutes, modifier;
+                if (t.includes(' ')) {
+                    [time, modifier] = t.split(' ');
+                    [hours, minutes] = time.split(':');
+                    if (hours === '12') hours = '00';
+                    if (modifier === 'PM') hours = parseInt(hours, 10) + 12;
+                } else {
+                    [hours, minutes] = t.split(':');
+                }
+                return new Date(2000, 0, 1, hours, minutes);
+            };
+
+            try {
+                const startDate = parseTime(start);
+                const endDate = parseTime(end);
+                let diff = (endDate - startDate) / 1000 / 60;
+                if (diff < 0) diff += 24 * 60;
+
+                const hours = Math.floor(diff / 60);
+                const minutes = diff % 60;
+
+                if (hours > 0 && minutes > 0) return `${hours} Hr ${minutes} Min`;
+                if (hours > 0) return `${hours} Hours`;
+                return `${minutes} Minutes`;
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function updateBatch(index, field, value) {
+            batches[index][field] = value;
+            if (field === 'faculty') renderBatches();
+
+            if (field === 'startTime' || field === 'endTime') {
+                const start = batches[index].startTime;
+                const end = batches[index].endTime;
+                const dur = calculateDuration(start, end);
+                if (dur) {
+                    batches[index].duration = dur;
+                    renderBatches();
+                }
+            }
+        }
+
+        function addBatchRow() {
+            const newBatch = {
+                id: 'b-hyb-' + Date.now(),
+                courseId: courses.length > 0 ? courses[0].id : '',
+                faculty: 'New Faculty',
+                day: 'TBD',
+                startTime: '09:00 AM',
+                endTime: '11:00 AM',
+                duration: '2 Hours',
+                type: 'online'
+            };
+            batches.push(newBatch);
+            renderBatches();
+            showToast('New batch row added');
+        }
+
+        function removeBatch(index) {
+            if (confirm('Delete this batch?')) {
+                batches.splice(index, 1);
+                renderBatches();
+            }
+        }
+
+        // Save Changes to Backend
+        async function saveChanges() {
+            const btn = document.querySelector('button[onclick="saveChanges()"]');
+            const originalContent = btn.innerHTML;
+
+            try {
+                // Show Loading State
+                btn.disabled = true;
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined animate-spin mr-2 text-white text-sm">progress_activity</span>
+                    <span class="truncate">Saving...</span>
+                `;
+
+                const response = await fetch('http://localhost:8080/api/hybrid-config/batches', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ batches })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('All changes saved successfully');
+                } else {
+                    showToast('Failed to save changes', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving changes:', error);
+                showToast('Error connecting to server', 'error');
+            } finally {
+                // Restore Button State
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }, 500);
+            }
+        }
+
+        // Manage Courses Modal Functions
+        function openManageCoursesModal() {
+            const modal = document.getElementById('manage-courses-modal');
+            const list = document.getElementById('courses-list');
+
+            let listHtml = `
+                <div class="bg-slate-950 dark:bg-[#233648] p-4 rounded-lg border border-slate-700 dark:border-gray-700 mb-6">
+                    <h4 class="text-sm font-bold text-white dark:text-white mb-3">Add New Course</h4>
+                    <div class="flex gap-2">
+                        <input type="text" id="new-course-name" placeholder="Enter course name..."
+                            class="flex-1 bg-slate-900 dark:bg-[#1e293b] border border-slate-600 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-white dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button onclick="addNewCourse()"
+                            class="px-4 py-2 bg-green-600 text-white text-sm font-bold rounded-lg hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                <div class="h-px bg-gray-200 dark:bg-gray-700 my-4"></div>
+            `;
+
+            listHtml += courses.map(course => `
+                <div class="flex items-center gap-4 bg-slate-950 dark:bg-[#233648] p-4 rounded-lg border border-slate-700 dark:border-gray-700">
+                    <div class="flex-1 space-y-2">
+                        <label class="text-xs font-bold text-slate-400 uppercase">Course Name</label>
+                        <input type="text" value="${course.name}" id="edit-course-${course.id}"
+                            class="w-full bg-slate-900 dark:bg-[#1e293b] border border-slate-600 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-white dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <button onclick="saveCourseName('${course.id}')"
+                        class="mt-6 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+                        Save
+                    </button>
+                </div>
+            `).join('');
+
+            list.innerHTML = listHtml;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeManageCoursesModal() {
+            const modal = document.getElementById('manage-courses-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        async function saveCourseName(courseId) {
+            const newName = document.getElementById(`edit-course-${courseId}`).value;
+            if (!newName) return showToast('Course name cannot be empty', 'error');
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/hybrid-config/course/${courseId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newName })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('Course name updated');
+                    // Update local data
+                    const idx = courses.findIndex(c => c.id === courseId);
+                    if (idx !== -1) {
+                        courses[idx].name = newName;
+                        renderBatches(); // Update dropdowns in background
+                    }
+                } else {
+                    showToast('Failed to update course', 'error');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('Server error', 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>

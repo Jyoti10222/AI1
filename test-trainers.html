@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Trainer API</title>
+</head>
+
+<body>
+    <h1>Trainer API Test</h1>
+    <button onclick="testAPI()">Test API</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('http://localhost:8080/api/trainers/all');
+                const data = await response.json();
+
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+
+                console.log('Total trainers:', data.trainers.length);
+                console.log('Stats:', data.stats);
+
+                data.trainers.forEach((trainer, index) => {
+                    console.log(`Trainer ${index + 1}:`, trainer.name, '- Status:', trainer.status);
+                });
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        // Auto-run on load
+        window.onload = testAPI;
+    </script>
+</body>
+
+</html>

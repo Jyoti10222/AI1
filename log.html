@@ -1,0 +1,26 @@
+<form id="loginForm">
+    <input id="email" type="email" placeholder="Email" required />
+    <input id="password" type="password" placeholder="Password" required />
+    <button>Login</button>
+  </form>
+  
+  <script>
+  document.getElementById("loginForm").onsubmit = async (e) => {
+    e.preventDefault();
+  
+    const res = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value
+      })
+    });
+  
+    const data = await res.json();
+    alert(data.message);
+  
+    if (res.ok) location.href = "onboarding.html";
+  };
+  </script>
+  

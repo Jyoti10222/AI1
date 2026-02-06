@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Pricing Admin - AI-TECH PRO LMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#137fec',
+                        'primary-hover': '#0f6bd0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 font-sans">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-700 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined filled text-primary text-3xl">payments</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-white">Online Pricing Admin</h1>
+                        <p class="text-xs text-slate-400">Manage online course pricing</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="Online.html" target="_blank"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-blue-50 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                        View User Page
+                    </a>
+                    <a href="PricingDashboard.html"
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                        Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-slate-900 rounded-xl shadow-sm p-6 border border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400">All-Access Pass</p>
+                        <p id="stat-access-price" class="text-3xl font-bold text-white mt-1">₹2,003</p>
+                        <p class="text-xs text-slate-400 mt-1" id="stat-access-period">per month</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-blue-600">all_inclusive</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-xl shadow-sm p-6 border border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400">Total Courses</p>
+                        <p id="stat-courses" class="text-3xl font-bold text-white mt-1">0</p>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-green-600">school</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-xl shadow-sm p-6 border border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400">Avg. Course Price</p>
+                        <p id="stat-avg-price" class="text-3xl font-bold text-white mt-1">₹0</p>
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                        <span class="material-symbols-outlined text-purple-600">trending_up</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Management -->
+        <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden mb-8">
+            <div class="border-b border-slate-700 bg-slate-950 px-6 py-4">
+                <h2 class="text-xl font-bold text-white">All-Access Pass Pricing</h2>
+                <p class="text-sm text-slate-400 mt-1">Set the pricing for unlimited access to all online batches</p>
+            </div>
+            <div class="p-6">
+                <form id="access-pricing-form" class="space-y-6 max-w-2xl">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Price (₹) *</label>
+                            <input type="number" id="access-price" required
+                                class="w-full px-4 py-2 border border-slate-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                                placeholder="2003">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Period *</label>
+                            <select id="access-period" required
+                                class="w-full px-4 py-2 border border-slate-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option value="month">Monthly</option>
+                                <option value="year">Yearly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <input type="text" id="access-description"
+                            class="w-full px-4 py-2 border border-slate-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            placeholder="Access all online batches with expert instructors">
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="submit"
+                            class="px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg font-medium transition-colors shadow-sm">
+                            Save Access Pricing
+                        </button>
+                        <button type="button" onclick="previewPricing()"
+                            class="px-6 py-2.5 border border-slate-600 text-gray-700 rounded-lg font-medium hover:bg-slate-950 transition-colors">
+                            Preview on User Page
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Individual Course Pricing -->
+        <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden mb-8">
+            <div class="border-b border-slate-700 bg-slate-950 px-6 py-4">
+                <h2 class="text-xl font-bold text-white">Individual Course Pricing</h2>
+                <p class="text-sm text-slate-400 mt-1">Set pricing for each online course</p>
+            </div>
+            <div class="p-6">
+                <div id="courses-pricing-list" class="space-y-4">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden">
+            <div class="border-b border-slate-700 bg-slate-950 px-6 py-4">
+                <h2 class="text-xl font-bold text-white">Pricing Preview</h2>
+                <p class="text-sm text-slate-400 mt-1">How pricing will appear on the user page</p>
+            </div>
+            <div class="p-6">
+                <div
+                    class="bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg p-4 lg:p-6 relative overflow-hidden max-w-4xl">
+                    <div class="absolute -top-12 -right-12 w-40 h-40 bg-slate-900/10 rounded-full blur-2xl"></div>
+                    <div
+                        class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-12 lg:size-14 rounded-xl bg-slate-900/20 backdrop-blur flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-3xl">all_inclusive</span>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg lg:text-xl">Online Batch Access Pass</h3>
+                                <p id="preview-description" class="text-white/80 text-sm">Access all online batches with
+                                    expert instructors</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="text-right">
+                                <div class="flex items-baseline gap-1">
+                                    <span id="preview-price"
+                                        class="text-3xl lg:text-4xl font-black text-white">₹2,003</span>
+                                    <span id="preview-period" class="text-white/80 text-sm">/month</span>
+                                </div>
+                                <p class="text-white/60 text-xs">Cancel anytime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let configData = null;
+
+        // Load configuration
+        async function loadConfig() {
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/online-config');
+                const result = await response.json();
+                if (result.success && result.data) {
+                    configData = result.data;
+                    populateForm();
+                    updateStats();
+                    renderCourses();
+                    updatePreview();
+                }
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showToast('Failed to load configuration', 'error');
+            }
+        }
+
+        // Populate form with current data
+        function populateForm() {
+            if (!configData) return;
+
+            if (configData.accessFee) {
+                document.getElementById('access-price').value = configData.accessFee.price || '';
+                document.getElementById('access-period').value = configData.accessFee.period || 'month';
+                document.getElementById('access-description').value = configData.accessFee.description || '';
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            if (!configData) return;
+
+            const price = configData.accessFee?.price || 2003;
+            const period = configData.accessFee?.period || 'month';
+            document.getElementById('stat-access-price').textContent = `₹${price.toLocaleString('en-IN')}`;
+            document.getElementById('stat-access-period').textContent = `per ${period}`;
+
+            const courses = configData.courses || [];
+            document.getElementById('stat-courses').textContent = courses.length;
+
+            // Calculate average price
+            const avgPrice = courses.length > 0
+                ? Math.round(courses.reduce((sum, c) => sum + (c.price || 0), 0) / courses.length)
+                : 0;
+            document.getElementById('stat-avg-price').textContent = `₹${avgPrice.toLocaleString('en-IN')}`;
+        }
+
+        // Render courses
+        function renderCourses() {
+            const container = document.getElementById('courses-pricing-list');
+            if (!configData || !configData.courses) {
+                container.innerHTML = '<p class="text-slate-400 text-center py-4">No courses available</p>';
+                return;
+            }
+
+            container.innerHTML = configData.courses.map(course => `
+                <div class="flex items-center justify-between p-4 border border-slate-700 rounded-lg hover:border-primary transition-colors">
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-white">${course.name}</h4>
+                        <p class="text-sm text-slate-400">${course.duration || '6 Months'} • ${course.batchCount || 0} batches</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-right">
+                            <p class="text-sm text-slate-400">Course Fee</p>
+                            <p class="text-lg font-bold text-white">₹${(course.price || 0).toLocaleString('en-IN')}</p>
+                        </div>
+                        <button onclick="editCoursePrice('${course.id}')" class="px-4 py-2 text-sm font-medium text-primary hover:bg-blue-50 rounded-lg transition-colors">
+                            Edit Price
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update preview
+        function updatePreview() {
+            const price = document.getElementById('access-price').value || 2003;
+            const period = document.getElementById('access-period').value || 'month';
+            const description = document.getElementById('access-description').value || 'Access all online batches with expert instructors';
+
+            document.getElementById('preview-price').textContent = `₹${parseInt(price).toLocaleString('en-IN')}`;
+            document.getElementById('preview-period').textContent = `/${period}`;
+            document.getElementById('preview-description').textContent = description;
+        }
+
+        // Save access pricing
+        document.getElementById('access-pricing-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const price = parseInt(document.getElementById('access-price').value);
+            const period = document.getElementById('access-period').value;
+            const description = document.getElementById('access-description').value;
+
+            try {
+                // Update accessFee in config
+                if (!configData.accessFee) configData.accessFee = {};
+                configData.accessFee.price = price;
+                configData.accessFee.period = period;
+                configData.accessFee.description = description;
+                configData.accessFee.currency = '₹';
+
+                const response = await fetch('http://127.0.0.1:8080/api/online-config', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(configData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('Access pricing updated successfully!', 'success');
+                    loadConfig();
+                } else {
+                    showToast('Failed to update pricing', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Server error', 'error');
+            }
+        });
+
+        // Edit course price
+        function editCoursePrice(courseId) {
+            const course = configData.courses.find(c => c.id === courseId);
+            if (!course) return;
+
+            const newPrice = prompt(`Enter new price for ${course.name} (in ₹):`, course.price || 0);
+            if (newPrice === null) return;
+
+            const price = parseInt(newPrice);
+            if (isNaN(price) || price < 0) {
+                showToast('Invalid price', 'error');
+                return;
+            }
+
+            updateCoursePrice(courseId, price);
+        }
+
+        // Update course price
+        async function updateCoursePrice(courseId, price) {
+            try {
+                // Update in configData
+                const courseIndex = configData.courses.findIndex(c => c.id === courseId);
+                if (courseIndex !== -1) {
+                    configData.courses[courseIndex].price = price;
+                }
+
+                const response = await fetch('http://127.0.0.1:8080/api/online-config', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(configData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast('Course price updated!', 'success');
+                    loadConfig();
+                } else {
+                    showToast('Failed to update price', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Server error', 'error');
+            }
+        }
+
+        // Preview pricing
+        function previewPricing() {
+            updatePreview();
+            window.open('Online.html', '_blank');
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white z-50 ${type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+                }`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Update preview on input change
+        document.getElementById('access-price').addEventListener('input', updatePreview);
+        document.getElementById('access-period').addEventListener('change', updatePreview);
+        document.getElementById('access-description').addEventListener('input', updatePreview);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadConfig);
+    </script>
+</body>
+
+</html>

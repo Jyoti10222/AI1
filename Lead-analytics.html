@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lead Analytics Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    /* KPI */
+    .kpi {
+      font-size: 28px;
+      font-weight: bold;
+      color: #135bec;
+    }
+
+    /* Bar chart */
+    .bar {
+      height: 12px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: #135bec;
+    }
+
+    /* Pie legend */
+    .legend {
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #f0f2f4;
+      text-align: left;
+    }
+
+    /* Date filter */
+    .filter {
+      margin-bottom: 20px;
+    }
+
+    .filter input {
+      padding: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h1 style="margin:0;">📊 Lead Reporting & Analytics</h1>
+    <div style="display: flex; gap: 10px;">
+      <input type="file" id="csvInput" accept=".csv" style="display:none">
+
+      <button onclick="document.getElementById('csvInput').click()"
+        style="background:#4f46e5; color:white; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:5px;">
+        📥 Import CSV
+      </button>
+
+      <button onclick="exportCSV()"
+        style="background:#d97706; color:white; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; gap:5px;">
+        📤 Export CSV
+      </button>
+    </div>
+  </div>
+
+  <div class="filter">
+    <label>From: <input type="date" id="fromDate"></label>
+    <label>To: <input type="date" id="toDate"></label>
+    <button onclick="filterData()">Apply</button>
+  </div>
+
+  <div class="dashboard">
+
+    <!-- Conversion Rate -->
+    <div class="card">
+      <h3>Conversion Rate</h3>
+      <div class="kpi" id="conversionRate">12%</div>
+      <p>Total Leads → Converted</p>
+    </div>
+
+    <!-- Leads by Status -->
+    <div class="card">
+      <h3>Leads by Status</h3>
+
+      <p>New</p>
+      <div class="bar"><span style="width:35%"></span></div>
+
+      <p>Contacted</p>
+      <div class="bar"><span style="width:25%"></span></div>
+
+      <p>Qualified</p>
+      <div class="bar"><span style="width:20%"></span></div>
+
+      <p>Converted</p>
+      <div class="bar"><span style="width:12%"></span></div>
+
+      <p>Lost</p>
+      <div class="bar"><span style="width:8%; background:#ef4444"></span></div>
+    </div>
+
+    <!-- Leads by Source -->
+    <div class="card">
+      <h3>Leads by Source</h3>
+      <div class="legend">Facebook – 40%</div>
+      <div class="bar"><span style="width:40%"></span></div>
+
+      <div class="legend">LinkedIn – 25%</div>
+      <div class="bar"><span style="width:25%"></span></div>
+
+      <div class="legend">Website – 20%</div>
+      <div class="bar"><span style="width:20%"></span></div>
+
+      <div class="legend">Referral – 10%</div>
+      <div class="bar"><span style="width:10%"></span></div>
+
+      <div class="legend">Ads – 5%</div>
+      <div class="bar"><span style="width:5%"></span></div>
+      <div class="legend">Pamphlet – 35%</div>
+      <div class="bar"><span style="width:35%"></span></div>
+      <div class="legend">Instagram – 25%</div>
+      <div class="bar"><span style="width:5%"></span></div>
+      <div class="legend">Others – 5%</div>
+      <div class="bar"><span style="width:5%"></span></div>
+    </div>
+
+    <!-- Sales Performance -->
+    <div class="card">
+      <h3>Sales Performance</h3>
+      <table>
+        <tr>
+          <th>Sales Person</th>
+          <th>Leads</th>
+          <th>Converted</th>
+        </tr>
+        <!-- <tr>
+        <td>Jyoti Mulimani</td>
+        <td>50</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>40</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>Sarah Lee</td>
+        <td>35</td>
+        <td>6</td>
+      </tr> -->
+      </table>
+    </div>
+
+    <!-- Date-wise Reports -->
+    <div class="card">
+      <h3>Date-wise Leads</h3>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Leads</th>
+        </tr>
+        <tr>
+          <td>2025-11-16</td>
+          <td>18</td>
+        </tr>
+        <tr>
+          <td>2025-11-15</td>
+          <td>25</td>
+        </tr>
+        <tr>
+          <td>2025-11-14</td>
+          <td>12</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- <script>
+const API = "http://localhost:8080/api/leads";
+
+let leads = [];
+
+// Fetch all leads from backend
+async function loadLeads() {
+  try {
+    const res = await fetch(API);
+    if (!res.ok) throw new Error("Failed to load leads from backend");
+    leads = await res.json();
+    renderDashboard(leads);
+  } catch (err) {
+    console.error("Backend error:", err);
+    alert("Could not load leads from backend.");
+  }
+}
+
+// Apply date filter
+function filterData() {
+  const from = document.getElementById("fromDate").value;
+  const to = document.getElementById("toDate").value;
+
+  if (!from || !to) {
+    alert("Please select both From and To dates");
+    return;
+  }
+
+  const filtered = leads.filter(lead => {
+    const leadDate = new Date(lead.createdDate);
+    return leadDate >= new Date(from) && leadDate <= new Date(to);
+  });
+
+  renderDashboard(filtered);
+}
+
+// Render dashboard cards & tables
+function renderDashboard(data) {
+  // 1️⃣ Conversion Rate
+  const totalLeads = data.length;
+  const convertedLeads = data.filter(l => l.status === "Converted").length;
+  document.getElementById("conversionRate").textContent =
+    totalLeads ? Math.round((convertedLeads / totalLeads) * 100) + "%" : "0%";
+
+  // 2️⃣ Leads by Status
+  const statuses = ["New", "Contacted", "Qualified", "Converted", "Lost"];
+  statuses.forEach(status => {
+    const count = data.filter(l => l.status === status).length;
+    const width = totalLeads ? (count / totalLeads) * 100 : 0;
+    const bar = document.querySelector(
+      `.card:nth-child(2) .bar:nth-child(${statuses.indexOf(status) * 2 + 2}) span`
+    );
+    if (bar) {
+      bar.style.width = width + "%";
+      bar.style.background = status === "Lost" ? "#ef4444" : "#135bec";
+    }
+  });
+
+  // 3️⃣ Leads by Source
+  const sources = ["Facebook", "LinkedIn", "Website", "Referral", "Ads"];
+  sources.forEach(source => {
+    const count = data.filter(l => l.source === source).length;
+    const width = totalLeads ? (count / totalLeads) * 100 : 0;
+    const bar = document.querySelector(
+      `.card:nth-child(3) .bar:nth-child(${sources.indexOf(source) * 2 + 2}) span`
+    );
+    if (bar) bar.style.width = width + "%";
+  });
+
+  // 4️⃣ Sales Performance
+  const salesData = {}; // sales person → {leads, converted}
+  data.forEach(l => {
+    const person = l.name; // you can replace with actual salesperson field
+    if (!salesData[person]) salesData[person] = { leads: 0, converted: 0 };
+    salesData[person].leads++;
+    if (l.status === "Converted") salesData[person].converted++;
+  });
+
+  const salesTable = document.querySelector(".card:nth-child(4) table");
+  salesTable.innerHTML = `
+    <tr>
+      <th>Sales Person</th>
+      <th>Leads</th>
+      <th>Converted</th>
+    </tr>
+    ${Object.keys(salesData)
+      .map(
+        p =>
+          `<tr><td>${p}</td><td>${salesData[p].leads}</td><td>${salesData[p].converted}</td></tr>`
+      )
+      .join("")}
+  `;
+
+  // 5️⃣ Date-wise Reports
+  const dateMap = {};
+  data.forEach(l => {
+    if (!dateMap[l.createdDate]) dateMap[l.createdDate] = 0;
+    dateMap[l.createdDate]++;
+  });
+
+  const dateTable = document.querySelector(".card:nth-child(5) table");
+  dateTable.innerHTML = `
+    <tr>
+      <th>Date</th>
+      <th>Leads</th>
+    </tr>
+    ${Object.keys(dateMap)
+      .sort((a, b) => new Date(b) - new Date(a))
+      .map(d => `<tr><td>${d}</td><td>${dateMap[d]}</td></tr>`)
+      .join("")}
+  `;
+}
+
+// Initial load
+loadLeads();
+</script> -->
+  <!-- <script>
+const API = "http://localhost:8080/api/leads";
+let leads = [];
+
+// Load all leads from backend
+async function loadLeads() {
+  try {
+    const res = await fetch(API);
+    if (!res.ok) throw new Error("Failed to load leads from backend");
+    leads = await res.json();
+    renderDashboard(leads);
+  } catch (err) {
+    console.error("Backend error:", err);
+    alert("Could not load leads from backend.");
+  }
+}
+
+// Filter leads by date
+function filterData() {
+  const from = document.getElementById("fromDate").value;
+  const to = document.getElementById("toDate").value;
+
+  if (!from || !to) {
+    alert("Please select both From and To dates");
+    return;
+  }
+
+  const filtered = leads.filter(lead => {
+    const leadDate = new Date(lead.createdDate);
+    return leadDate >= new Date(from) && leadDate <= new Date(to);
+  });
+
+  renderDashboard(filtered);
+}
+
+// Render dashboard dynamically
+function renderDashboard(data) {
+  const totalLeads = data.length;
+  const convertedLeads = data.filter(l => l.status === "Converted").length;
+  document.getElementById("conversionRate").textContent =
+    totalLeads ? Math.round((convertedLeads / totalLeads) * 100) + "%" : "0%";
+
+  // --- Leads by Status ---
+  const statusContainer = document.querySelector(".card:nth-child(2)");
+  statusContainer.innerHTML = "<h3>Leads by Status</h3>";
+  const statuses = ["New", "Contacted", "Qualified", "Converted", "Lost"];
+  statuses.forEach(status => {
+    const count = data.filter(l => l.status === status).length;
+    const width = totalLeads ? (count / totalLeads) * 100 : 0;
+    const color = status === "Lost" ? "#ef4444" : "#135bec";
+    statusContainer.innerHTML += `
+      <p>${status}</p>
+      <div class="bar"><span style="width:${width}%; background:${color}"></span></div>
+    `;
+  });
+
+  // --- Leads by Source ---
+  const sourceContainer = document.querySelector(".card:nth-child(3)");
+  sourceContainer.innerHTML = "<h3>Leads by Source</h3>";
+  const sources = ["Facebook", "LinkedIn", "Website", "Referral", "Ads"];
+  sources.forEach(source => {
+    const count = data.filter(l => l.source === source).length;
+    const width = totalLeads ? (count / totalLeads) * 100 : 0;
+    sourceContainer.innerHTML += `
+      <div class="legend">${source} – ${Math.round(width)}%</div>
+      <div class="bar"><span style="width:${width}%"></span></div>
+    `;
+  });
+
+  // --- Sales Performance ---
+  const salesData = {};
+  data.forEach(l => {
+    const person = l.name; // replace with salesperson if different
+    if (!salesData[person]) salesData[person] = { leads: 0, converted: 0 };
+    salesData[person].leads++;
+    if (l.status === "Converted") salesData[person].converted++;
+  });
+
+  const salesTable = document.querySelector(".card:nth-child(4) table");
+  salesTable.innerHTML = `
+    <tr>
+      <th>Sales Person</th>
+      <th>Leads</th>
+      <th>Converted</th>
+    </tr>
+    ${Object.keys(salesData)
+      .map(
+        p =>
+          `<tr><td>${p}</td><td>${salesData[p].leads}</td><td>${salesData[p].converted}</td></tr>`
+      )
+      .join("")}
+  `;
+
+  // --- Date-wise Leads ---
+  const dateMap = {};
+  data.forEach(l => {
+    if (!dateMap[l.createdDate]) dateMap[l.createdDate] = 0;
+    dateMap[l.createdDate]++;
+  });
+
+  const dateTable = document.querySelector(".card:nth-child(5) table");
+  dateTable.innerHTML = `
+    <tr>
+      <th>Date</th>
+      <th>Leads</th>
+    </tr>
+    ${Object.keys(dateMap)
+      .sort((a, b) => new Date(b) - new Date(a))
+      .map(d => `<tr><td>${d}</td><td>${dateMap[d]}</td></tr>`)
+      .join("")}
+  `;
+}
+
+// Initial load
+loadLeads();
+</script> -->
+  <script>
+    const API = "http://localhost:8080/api/leads"; // your backend API
+
+    // DOM references
+    const fromDate = document.getElementById("fromDate");
+    const toDate = document.getElementById("toDate");
+
+    // --- Utility function to fetch all leads ---
+    async function fetchLeads() {
+      try {
+        const res = await fetch(API);
+        if (!res.ok) throw new Error("Failed to fetch leads");
+        const data = await res.json();
+        return data;
+      } catch (err) {
+        console.error(err);
+        alert("Backend error! Could not load leads.");
+        return [];
+      }
+    }
+
+    // --- Main render function ---
+    async function renderDashboard(filteredLeads = null) {
+      const leads = filteredLeads || await fetchLeads();
+
+      const totalLeads = leads.length;
+      const convertedLeads = leads.filter(l => l.status === "Converted").length;
+
+      // Conversion Rate
+      const conversionRate = totalLeads ? Math.round((convertedLeads / totalLeads) * 100) : 0;
+      document.getElementById("conversionRate").textContent = conversionRate + "%";
+
+      // Leads by Status
+      const statuses = ["New", "Contacted", "Qualified", "Converted", "Lost", "Follow-Up"];
+      const statusCard = document.querySelector(".dashboard .card:nth-child(2)");
+      statusCard.innerHTML = "<h3>Leads by Status</h3>";
+      statuses.forEach(status => {
+        const count = leads.filter(l => l.status === status).length;
+        const width = totalLeads ? (count / totalLeads) * 100 : 0;
+        const color = status === "Lost" ? "#ef4444" : "#135bec";
+        statusCard.innerHTML += `
+            <p>${status}</p>
+            <div class="bar"><span style="width:${width}%; background:${color}"></span></div>
+        `;
+      });
+
+      // Leads by Source
+      const sources = ["Facebook", "LinkedIn", "Website", "Referral", "Ads", "Instagram", "Others", "Pamphlet"];
+      const sourceCard = document.querySelector(".dashboard .card:nth-child(3)");
+      sourceCard.innerHTML = "<h3>Leads by Source</h3>";
+      sources.forEach(source => {
+        const count = leads.filter(l => l.source === source).length;
+        const width = totalLeads ? (count / totalLeads) * 100 : 0;
+        sourceCard.innerHTML += `
+            <div class="legend">${source} – ${Math.round(width)}%</div>
+            <div class="bar"><span style="width:${width}%"></span></div>
+        `;
+      });
+
+      // Sales Performance (group by name)
+      const salesCard = document.querySelector(".dashboard .card:nth-child(4) table");
+      const salesData = {};
+      leads.forEach(l => {
+        if (!salesData[l.name]) salesData[l.name] = { leads: 0, converted: 0 };
+        salesData[l.name].leads++;
+        if (l.status === "Converted") salesData[l.name].converted++;
+      });
+      let salesRows = "<tr><th>Sales Person</th><th>Leads</th><th>Converted</th></tr>";
+      for (const name in salesData) {
+        salesRows += `<tr>
+            <td>${name}</td>
+            <td>${salesData[name].leads}</td>
+            <td>${salesData[name].converted}</td>
+        </tr>`;
+      }
+      salesCard.innerHTML = salesRows;
+
+      // Date-wise Leads
+      const dateCard = document.querySelector(".dashboard .card:nth-child(5) table");
+      const dateMap = {};
+      leads.forEach(l => {
+        if (!dateMap[l.createdDate]) dateMap[l.createdDate] = 0;
+        dateMap[l.createdDate]++;
+      });
+      let dateRows = "<tr><th>Date</th><th>Leads</th></tr>";
+      Object.keys(dateMap).sort((a, b) => new Date(b) - new Date(a)).forEach(date => {
+        dateRows += `<tr><td>${date}</td><td>${dateMap[date]}</td></tr>`;
+      });
+      dateCard.innerHTML = dateRows;
+    }
+
+
+    // --- Apply Date Filter ---
+    async function filterData() {
+      const from = fromDate.value;
+      const to = toDate.value;
+      if (!from || !to) {
+        alert("Please select both From and To dates");
+        return;
+      }
+      const leads = await fetchLeads();
+      const filtered = leads.filter(l => l.createdDate >= from && l.createdDate <= to);
+      renderDashboard(filtered);
+    }
+
+    // Initial load
+    renderDashboard();
+
+  </script>
+
+  <script>
+    // -------------------
+    // CSV Export Function
+    // -------------------
+    async function exportCSV() {
+      const leads = await fetchLeads();
+
+      if (!leads || leads.length === 0) {
+        alert("No data available to export.");
+        return;
+      }
+
+      // Headers
+      const headers = ["Lead ID", "Name", "Email", "Phone", "Experience", "Source", "Status", "Priority", "Budget", "City", "Follow Up", "Created Date", "Remarks"];
+
+      // Map data to CSV rows
+      const rows = leads.map(l => [
+        l.leadId,
+        `"${l.name || ''}"`,
+        `"${l.email || ''}"`,
+        `"${l.phone || ''}"`,
+        `"${l.experienceType || ''}"`,
+        `"${l.source || ''}"`,
+        `"${l.status || ''}"`,
+        `"${l.priority || ''}"`,
+        l.budget || 0,
+        `"${l.city || ''}"`,
+        l.followUpDate || '',
+        l.createdDate || '',
+        `"${l.remarks || ''}"`
+      ].join(","));
+
+      const csvContent = [headers.join(","), ...rows].join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "lead_analytics_export.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // -------------------
+    // CSV Import Function
+    // -------------------
+    const csvInput = document.getElementById('csvInput');
+    if (csvInput) {
+      csvInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async function (evt) {
+          const text = evt.target.result;
+          const lines = text.split("\n");
+
+          let successCount = 0;
+
+          // Start from index 1 to skip header
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            // Parse line (handling quotes simply)
+            const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (parts.length < 3) continue;
+
+            const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : "";
+
+            const newLead = {
+              leadId: Math.floor(Math.random() * 90000) + 10000,
+              name: clean(parts[1]),
+              email: clean(parts[2]),
+              phone: clean(parts[3]),
+              experienceType: clean(parts[4]),
+              source: clean(parts[5]),
+              status: clean(parts[6]),
+              priority: clean(parts[7]),
+              budget: parseFloat(clean(parts[8])) || null,
+              city: clean(parts[9]),
+              followUpDate: clean(parts[10]),
+              createdDate: new Date().toISOString(),
+              country: "India",
+              remarks: clean(parts[12])
+            };
+
+            // Sync to Backend
+            try {
+              await fetch(API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newLead)
+              });
+              successCount++;
+            } catch (err) {
+              console.warn("Failed to upload row", i, err);
+            }
+          }
+
+          if (successCount > 0) {
+            alert(`Successfully imported ${successCount} leads!`);
+            renderDashboard(); // Refresh UI
+          } else {
+            alert("Import finished, but no leads were successfully added. Check console or file format.");
+          }
+          e.target.value = ''; // Reset input
+        };
+        reader.readAsText(file);
+      });
+    }
+  </script>
+
+</body>
+
+</html>

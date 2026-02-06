@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trainer Pricing Plans - FitTrack Pro</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for table if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+    <a href="PricingDashboard.html" style="
+  text-decoration:none;
+  font-size:22px;
+  font-weight:bold;
+  color:#135bec;
+">
+←
+</a>
+
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">fitness_center</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI-TECH PRO</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+
+</div>
+<div class="flex gap-2 items-center">
+   
+
+    <!-- Inline plan controls beside Login -->
+    <div id="planControlsInline" class="hidden lg:flex items-center gap-2">
+        <a href="Pricingai.html" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">AI Plans</a>
+        <a href="Pricinghybrid.html" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">Hybrid Plan</a>
+        <button id="btnViewPlans" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">Plans</button>
+        <button id="btnAddPlan" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">Add</button>
+        <button id="btnEditPrice" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">Edit</button>
+        <button id="btnToggleFeature" class="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold">Toggle</button>
+    </div>
+
+    
+</div>
+</div>
+<!-- Mobile Menu Icon -->
+<button class="lg:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+<!-- Header Section -->
+<div class="max-w-4xl w-full text-center mb-10">
+<h1 class="text-slate-900 dark:text-white text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                Human Trainer Plans
+            </h1>
+<p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+                Personalized coaching from certified experts to accelerate your fitness journey. Choose the commitment level that fits your goals.
+            </p>
+</div>
+<!-- Segmented Control -->
+<div class="max-w-md w-full mb-12">
+    <div class="flex h-12 w-full items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-800 p-1">
+        <label class="flex-1 cursor-pointer h-full flex items-center justify-center rounded-md transition-all text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+            <span class="truncate text-sm font-semibold">Monthly</span>
+            <input id="billingMonthly" class="hidden" name="billing_period" type="radio" value="monthly" checked />
+        </label>
+        <label class="flex-1 cursor-pointer h-full flex items-center justify-center rounded-md transition-all text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+            <span class="truncate text-sm font-semibold">Quarterly</span>
+            <input id="billingQuarterly" class="hidden" name="billing_period" type="radio" value="quarterly" />
+        </label>
+        <label class="flex-1 cursor-pointer h-full flex items-center justify-center rounded-md transition-all text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+            <span class="truncate text-sm font-semibold">Yearly</span>
+            <input id="billingYearly" class="hidden" name="billing_period" type="radio" value="yearly" />
+        </label>
+    </div>
+</div>
+<!-- Pricing Table -->
+<div class="layout-content-container flex flex-col max-w-[1100px] w-full mb-16">
+<div class="@container">
+<div class="overflow-x-auto custom-scrollbar rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<table class="w-full min-w-[700px] table-fixed">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<th class="w-1/4 px-6 py-6 text-left text-slate-900 dark:text-white text-base font-bold leading-normal border-b border-slate-200 dark:border-slate-700">
+                                    Feature Comparison
+                                </th>
+<th id="thMonthly" data-monthly="5000" class="w-1/4 px-6 py-6 text-center border-b border-slate-200 dark:border-slate-700">
+<div class="text-slate-900 dark:text-white text-lg font-bold mb-1">Monthly</div>
+<div class="text-primary text-2xl font-extrabold tracking-tight"><span id="priceMonthly">₹5,000</span><span class="text-sm font-medium text-slate-500 dark:text-slate-400">/mo</span></div>
+<div class="text-xs text-transparent select-none mt-1">No savings</div>
+</th>
+<th id="thQuarterly" data-monthly="4500" class="w-1/4 px-6 py-6 text-center border-b border-slate-200 dark:border-slate-700 bg-primary/5 dark:bg-primary/10 relative">
+<div class="text-slate-900 dark:text-white text-lg font-bold mb-1">Quarterly</div>
+<div class="text-primary text-2xl font-extrabold tracking-tight"><span id="priceQuarterly">₹13,500</span><span class="text-sm font-medium text-slate-500 dark:text-slate-400">/qtr</span></div>
+<div class="text-xs font-bold text-green-600 dark:text-green-400 mt-1 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full inline-block">Save 10%</div>
+</th>
+<th id="thYearly" data-monthly="4000" class="w-1/4 px-6 py-6 text-center border-b border-slate-200 dark:border-slate-700 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">BEST VALUE</div>
+<div class="text-slate-900 dark:text-white text-lg font-bold mb-1">Yearly</div>
+<div class="text-primary text-2xl font-extrabold tracking-tight"><span id="priceYearly">₹48,000</span><span class="text-sm font-medium text-slate-500 dark:text-slate-400">/yr</span></div>
+<div class="text-xs font-bold text-green-600 dark:text-green-400 mt-1 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full inline-block">Save 20%</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<!-- Feature Rows -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">1-on-1 Video Sessions</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold">2 per month</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold bg-primary/5 dark:bg-primary/10">6 per quarter</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold">24 per year</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">Custom Workout Plan</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white">Standard</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold bg-primary/5 dark:bg-primary/10">Advanced + Tracking</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-bold">Pro Personalized</td>
+</tr>
+ <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium"> Daily Mock Interviews</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white">Basic Macros</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold bg-primary/5 dark:bg-primary/10">Full Meal Plan</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-bold">Meal Plan + Supplements</td>
+</tr> 
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">Daily Support</td>
+<td class="px-6 py-4 text-center text-slate-500 dark:text-slate-400">Email Only</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold bg-primary/5 dark:bg-primary/10">
+<div class="flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                        WhatsApp
+                                    </div>
+</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-bold">
+<div class="flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                        WhatsApp + Priority Call
+                                    </div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">Progress Analysis</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white">Monthly</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold bg-primary/5 dark:bg-primary/10">Bi-weekly</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-bold">Weekly</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300 font-medium">Access to App</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-primary">check</span>
+</td>
+<td class="px-6 py-4 text-center bg-primary/5 dark:bg-primary/10">
+<span class="material-symbols-outlined text-primary">check</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-primary">check</span>
+</td>
+</tr>
+<!-- Action Row -->
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<td class="px-6 py-6 border-t border-slate-200 dark:border-slate-700"></td>
+<td class="px-6 py-6 text-center border-t border-slate-200 dark:border-slate-700">
+<button class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-900 dark:text-white font-bold py-3 rounded-lg transition-colors">
+                                        Choose Monthly
+                                    </button>
+</td>
+<td class="px-6 py-6 text-center border-t border-slate-200 dark:border-slate-700 bg-primary/5 dark:bg-primary/10">
+<button class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 rounded-lg shadow-md transition-all hover:shadow-lg transform hover:-translate-y-0.5">
+                                        Choose Quarterly
+                                    </button>
+</td>
+<td class="px-6 py-6 text-center border-t border-slate-200 dark:border-slate-700">
+<button class="w-full bg-white dark:bg-slate-700 border-2 border-primary/20 hover:border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 rounded-lg transition-all">
+                                        Choose Yearly
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Modals and overlay for plan controls -->
+<div id="modalOverlay" class="hidden fixed inset-0 bg-black/40 z-40"></div>
+
+<div id="viewPlansModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Plans</h3>
+    <ul id="plansList" class="space-y-2 text-sm text-slate-700 dark:text-slate-200"></ul>
+    <div class="mt-4 text-right"><button id="closeView" class="px-4 py-2 rounded bg-slate-100 dark:bg-slate-800">Close</button></div>
+</div>
+
+<div id="addPlanModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Add New Plan</h3>
+    <label class="block text-sm mb-2">Plan Name</label>
+    <input id="newPlanName" class="w-full mb-3 p-2 rounded border" />
+    <label class="block text-sm mb-2">Monthly Price (number)</label>
+    <input id="newPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+    <div class="flex gap-2 justify-end"><button id="cancelAdd" class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitAdd" class="px-4 py-2 rounded bg-primary text-white">Add Plan</button></div>
+</div>
+
+<div id="editPriceModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Edit Price</h3>
+    <label class="block text-sm mb-2">Select Plan</label>
+    <select id="editPlanSelect" class="w-full mb-3 p-2 rounded border"></select>
+    <label class="block text-sm mb-2">Monthly Price</label>
+    <input id="editPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+    <div class="flex gap-2 justify-end"><button id="cancelEdit" class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitEdit" class="px-4 py-2 rounded bg-primary text-white">Save</button></div>
+</div>
+
+<div id="toggleFeatureModal" class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6">
+    <h3 class="text-lg font-bold mb-3">Activate / Deactivate Features</h3>
+    <div id="featureList" class="space-y-2 text-sm text-slate-700 dark:text-slate-200 max-h-64 overflow-auto"></div>
+    <div class="mt-4 text-right"><button id="closeToggle" class="px-4 py-2 rounded bg-slate-100">Close</button></div>
+</div>
+<!-- FAQ Section -->
+<div class="max-w-2xl w-full mb-20">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h3>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<details class="group bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:border-primary dark:open:border-primary/50 transition-all duration-300">
+<summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-slate-900 dark:text-white">
+<span>Can I switch trainers during my subscription?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<div class="text-slate-600 dark:text-slate-400 px-5 pb-5 leading-relaxed">
+                        Yes, you can request a trainer change once per billing cycle. We want to ensure you have the best possible connection with your coach to achieve your fitness goals.
+                    </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:border-primary dark:open:border-primary/50 transition-all duration-300">
+<summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-slate-900 dark:text-white">
+<span>What happens if I miss a 1-on-1 session?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<div class="text-slate-600 dark:text-slate-400 px-5 pb-5 leading-relaxed">
+                        Sessions can be rescheduled if you provide at least 24 hours notice. Missed sessions without notice are forfeited, but exceptions are made for emergencies.
+                    </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:border-primary dark:open:border-primary/50 transition-all duration-300">
+<summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-slate-900 dark:text-white">
+<span>Is there a refund policy?</span>
+<span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+</summary>
+<div class="text-slate-600 dark:text-slate-400 px-5 pb-5 leading-relaxed">
+                        We offer a 7-day money-back guarantee for new subscribers on the Quarterly and Yearly plans. Monthly plans are non-refundable but can be canceled at any time.
+                    </div>
+</details>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 px-10">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+<span class="font-bold text-slate-900 dark:text-white">FitTrack Pro</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2023 FitTrack Pro. All rights reserved.</p>
+</div>
+</footer>
+<style>
+/* Blink animation for selected pricing block */
+.blink-highlight {
+    animation: blink 1s ease-in-out infinite;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+@keyframes blink {
+    0% { transform: translateY(0); background-color: rgba(255,255,255,0.0); }
+    50% { transform: translateY(-4px); background-color: rgba(59,130,246,0.06); }
+    100% { transform: translateY(0); background-color: rgba(255,255,255,0.0); }
+}
+</style>
+<script>
+// Utilities
+function formatINR(n) {
+    return '₹' + Number(n).toLocaleString('en-IN', {maximumFractionDigits:0});
+}
+
+// Update header price displays based on dataset.monthly values and selected billing period
+function updatePricesHuman(period) {
+    // period: monthly | quarterly | yearly
+    // canonical monthly values stored on each header's dataset.monthly
+    const thMonthly = document.getElementById('thMonthly');
+    const thQuarterly = document.getElementById('thQuarterly');
+    const thYearly = document.getElementById('thYearly');
+    const monthlyVal = thMonthly ? Number(thMonthly.dataset.monthly || 0) : 0;
+    const qFactor = 0.9; // 10% off quarterly
+    const yFactor = 0.8; // 20% off yearly
+
+    // compute displays
+    const dispMonthly = monthlyVal;
+    const dispQuarterly = Math.round(monthlyVal * 3 * qFactor);
+    const dispYearly = Math.round(monthlyVal * 12 * yFactor);
+
+    const priceMonthlyEl = document.getElementById('priceMonthly');
+    const priceQuarterlyEl = document.getElementById('priceQuarterly');
+    const priceYearlyEl = document.getElementById('priceYearly');
+    if (priceMonthlyEl) priceMonthlyEl.textContent = formatINR(dispMonthly);
+    if (priceQuarterlyEl) priceQuarterlyEl.textContent = formatINR(dispQuarterly);
+    if (priceYearlyEl) priceYearlyEl.textContent = formatINR(dispYearly);
+
+    // update modals if open
+    if (typeof refreshModalsHuman === 'function') refreshModalsHuman(period);
+}
+
+// Blink highlight
+function applyBillingBlink(period) {
+    const map = {
+        monthly: document.getElementById('thMonthly'),
+        quarterly: document.getElementById('thQuarterly'),
+        yearly: document.getElementById('thYearly')
+    };
+    Object.values(map).forEach(el => el && el.classList.remove('blink-highlight'));
+    const target = map[period];
+    if (target) target.classList.add('blink-highlight');
+}
+
+// Modal helpers and handlers
+function openModal(id) {
+    document.getElementById('modalOverlay').classList.remove('hidden');
+    document.getElementById(id).classList.remove('hidden');
+}
+function closeModal(id) {
+    document.getElementById('modalOverlay').classList.add('hidden');
+    document.getElementById(id).classList.add('hidden');
+}
+
+// Keep modal lists in sync with current prices
+function refreshModalsHuman(period) {
+    const currentPeriod = period || (document.querySelector('input[name="billing_period"]:checked') ? document.querySelector('input[name="billing_period"]:checked').value : 'monthly');
+    // View Plans
+    const list = document.getElementById('plansList');
+    if (list) {
+        list.innerHTML = '';
+        const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+        headers.forEach(h => {
+            const title = h.querySelector('div.text-lg') ? h.querySelector('div.text-lg').textContent.trim() : (h.querySelector('div') ? h.querySelector('div').textContent.trim() : 'Plan');
+            const priceEl = h.querySelector('[id^="price"]');
+            const price = priceEl ? priceEl.textContent : '';
+            const li = document.createElement('li'); li.textContent = `${title} — ${price}`;
+            list.appendChild(li);
+        });
+    }
+
+    // Edit select
+    const sel = document.getElementById('editPlanSelect');
+    if (sel) {
+        const prev = sel.value;
+        sel.innerHTML = '';
+        const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+        headers.forEach((h, idx) => {
+            const name = h.querySelector('div.text-lg') ? h.querySelector('div.text-lg').textContent.trim() : 'Plan';
+            const priceEl = h.querySelector('[id^="price"]');
+            const display = priceEl ? priceEl.textContent : '';
+            const opt = document.createElement('option'); opt.value = idx; opt.textContent = `${name} — ${display}`;
+            sel.appendChild(opt);
+        });
+        if (prev && sel.options[prev]) sel.value = prev;
+        const idx = Number(sel.value || 0);
+        const priceEl = (headers[idx] && headers[idx].querySelector('[id^="price"]')) || null;
+        document.getElementById('editPlanPrice').value = priceEl ? Number(priceEl.dataset ? priceEl.dataset.monthly || 0 : 0) : 0;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // show control panel on larger screens
+    const controls = document.getElementById('planControls'); if (controls) controls.classList.remove('hidden');
+
+    // wire billing radios
+    const radios = document.querySelectorAll('input[name="billing_period"]');
+    radios.forEach(r => r.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            applyBillingBlink(e.target.value);
+            updatePricesHuman(e.target.value);
+        }
+    }));
+    // initialize
+    const checked = document.querySelector('input[name="billing_period"]:checked');
+    applyBillingBlink(checked ? checked.value : 'monthly');
+    updatePricesHuman(checked ? checked.value : 'monthly');
+
+    // View Plans
+    document.getElementById('btnViewPlans').addEventListener('click', () => {
+        refreshModalsHuman(); openModal('viewPlansModal');
+    });
+    document.getElementById('closeView').addEventListener('click', () => closeModal('viewPlansModal'));
+
+    // Add Plan
+    document.getElementById('btnAddPlan').addEventListener('click', () => openModal('addPlanModal'));
+    document.getElementById('cancelAdd').addEventListener('click', () => closeModal('addPlanModal'));
+    document.getElementById('submitAdd').addEventListener('click', () => {
+        const name = document.getElementById('newPlanName').value.trim() || 'New Plan';
+        const monthly = Number(document.getElementById('newPlanPrice').value) || 0;
+        const theadRow = document.querySelector('thead tr');
+        const th = document.createElement('th');
+        th.className = 'w-1/4 px-6 py-6 text-center border-b border-slate-200 dark:border-slate-700';
+        th.dataset.monthly = monthly;
+        const idSuffix = Date.now();
+        th.innerHTML = `<div class="text-slate-900 dark:text-white text-lg font-bold mb-1">${name}</div><div class="text-primary text-2xl font-extrabold tracking-tight"><span id="price${idSuffix}">${formatINR(monthly)}</span><span class="text-sm font-medium text-slate-500 dark:text-slate-400">/mo</span></div><div class="text-xs text-slate-500 mt-1">Billed monthly</div>`;
+        theadRow.appendChild(th);
+        // append placeholder tds to each tbody row
+        document.querySelectorAll('tbody tr').forEach(tr => {
+            // header rows have colspan attribute
+            if (tr.querySelector('td') && tr.querySelector('td').getAttribute('colspan')) {
+                const td = document.createElement('td'); td.className='px-6 py-4'; td.textContent=''; tr.appendChild(td); return;
+            }
+            const td = document.createElement('td'); td.className='px-6 py-4 text-center'; td.textContent='-'; tr.appendChild(td);
+        });
+        closeModal('addPlanModal');
+        // refresh displays
+        const active = document.querySelector('input[name="billing_period"]:checked');
+        updatePricesHuman(active ? active.value : 'monthly');
+    });
+
+    // Edit Price
+    function populateEditSelect() {
+        const sel = document.getElementById('editPlanSelect'); sel.innerHTML='';
+        const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+        headers.forEach((h, idx) => {
+            const name = h.querySelector('div.text-lg') ? h.querySelector('div.text-lg').textContent.trim() : 'Plan';
+            const monthly = Number(h.dataset.monthly || 0);
+            const opt = document.createElement('option'); opt.value = idx; opt.textContent = `${name} (${formatINR(monthly)})`; sel.appendChild(opt);
+        });
+    }
+    document.getElementById('btnEditPrice').addEventListener('click', () => { populateEditSelect(); openModal('editPriceModal'); });
+    document.getElementById('cancelEdit').addEventListener('click', () => closeModal('editPriceModal'));
+    document.getElementById('submitEdit').addEventListener('click', () => {
+        const sel = document.getElementById('editPlanSelect'); const idx = Number(sel.value);
+        const newVal = Number(document.getElementById('editPlanPrice').value) || 0;
+        const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+        const target = headers[idx];
+        if (target) {
+            target.dataset.monthly = newVal;
+            // if header has a price span, set its dataset.monthly too
+            const priceEl = target.querySelector('[id^="price"]');
+            if (priceEl) priceEl.dataset.monthly = newVal;
+            const active = document.querySelector('input[name="billing_period"]:checked');
+            updatePricesHuman(active ? active.value : 'monthly');
+        }
+        closeModal('editPriceModal');
+    });
+
+    // Toggle features
+    document.getElementById('btnToggleFeature').addEventListener('click', () => {
+        const list = document.getElementById('featureList'); list.innerHTML='';
+        const rows = Array.from(document.querySelectorAll('tbody tr')).filter(r => r.querySelector('td') && !r.querySelector('td').hasAttribute('colspan'));
+        rows.forEach(r => {
+            const name = r.querySelector('td') ? r.querySelector('td').textContent.trim() : '';
+            const div = document.createElement('div'); div.className='flex items-center justify-between gap-3';
+            const label = document.createElement('div'); label.textContent = name;
+            const chk = document.createElement('input'); chk.type='checkbox'; chk.checked = !r.classList.contains('feature-disabled');
+            chk.addEventListener('change', () => {
+                if (!chk.checked) { Array.from(r.querySelectorAll('td')).slice(1).forEach(c=>c.classList.add('opacity-30')); r.classList.add('feature-disabled'); }
+                else { Array.from(r.querySelectorAll('td')).slice(1).forEach(c=>c.classList.remove('opacity-30')); r.classList.remove('feature-disabled'); }
+            });
+            div.appendChild(label); div.appendChild(chk); list.appendChild(div);
+        });
+        openModal('toggleFeatureModal');
+    });
+    document.getElementById('closeToggle').addEventListener('click', () => closeModal('toggleFeatureModal'));
+
+    // edit select change
+    document.getElementById('editPlanSelect').addEventListener('change', (e) => {
+        const idx = Number(e.target.value);
+        const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+        const priceEl = (headers[idx] && headers[idx].querySelector('[id^="price"]')) || null;
+        document.getElementById('editPlanPrice').value = priceEl ? Number(priceEl.dataset.monthly || headers[idx].dataset.monthly || 0) : 0;
+    });
+});
+</script>
+</body></html>

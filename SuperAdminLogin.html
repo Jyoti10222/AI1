@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Super Admin Login | AI-TECH PRO</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f97316", // orange-500 for Super Admin
+                        "primary-hover": "#ea580c",
+                        "dark-bg": "#020617",
+                        "dark-card": "#0f172a",
+                    },
+                    fontFamily: { sans: ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased">
+    <div class="relative flex min-h-screen flex-col items-center justify-center p-4">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-orange-400/10 rounded-full blur-[100px]">
+            </div>
+        </div>
+
+        <div class="w-full max-w-md z-10">
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center size-16 rounded-2xl bg-orange-500 text-white shadow-xl mb-4">
+                    <span class="material-symbols-outlined text-[32px]">verified_user</span>
+                </div>
+                <h1 class="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Super Admin
+                </h1>
+                <p class="text-slate-500 mt-2">Organization level management & analytics</p>
+            </div>
+
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 p-8">
+                <form id="superAdminLoginForm" onsubmit="superAdminLogin(event)" class="space-y-6">
+                    <div
+                        class="bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 p-4 rounded-xl mb-6">
+                        <div class="flex gap-3">
+                            <span class="material-symbols-outlined text-red-500">warning</span>
+                            <p class="text-xs text-red-700 dark:text-red-400 font-medium">This is a restricted area. All
+                                access attempts are logged and monitored.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Admin
+                            Identifier</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">shield_person</span>
+                            <input type="text" id="identifier" required placeholder="Org ID or Email"
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Secure
+                            Pin</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">key</span>
+                            <input type="password" id="password" required placeholder="••••••••"
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Multi-Factor
+                                Access</span>
+                            <button type="button" onclick="generateCaptcha()"
+                                class="text-orange-600 dark:text-orange-400 text-xs hover:underline">Refresh</button>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div id="captchaText"
+                                class="text-2xl font-black tracking-widest italic select-none line-through decoration-orange-500/50 bg-white dark:bg-slate-800 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 min-w-[120px] text-center uppercase">
+                                XXXXXX</div>
+                            <input type="text" id="captchaInput" required placeholder="Code"
+                                class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-orange-500">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-black text-lg shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98]">
+                        UNAUTHORIZED ACCESS PROHIBITED
+                    </button>
+                </form>
+            </div>
+
+            <p class="text-center mt-8 text-xs text-slate-500">
+                AI-TECH PRO Enterprise Security System v3.4.1
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let generatedCaptcha = "";
+        function generateCaptcha() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            generatedCaptcha = captcha;
+            document.getElementById("captchaText").innerText = captcha;
+            document.getElementById("captchaInput").value = "";
+        }
+
+        window.onload = generateCaptcha;
+
+        async function superAdminLogin(event) {
+            event.preventDefault();
+            const identifier = document.getElementById("identifier").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const captchaEntered = document.getElementById("captchaInput").value.trim().toUpperCase();
+
+            if (captchaEntered !== generatedCaptcha) {
+                alert("Invalid verification code. Access denied.");
+                generateCaptcha();
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/super-admins/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier, password })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.setItem("superAdminLoggedIn", "true");
+                    localStorage.setItem("superAdminUser", JSON.stringify(result.superAdmin));
+                    localStorage.setItem("userRole", "superadmin"); // Set role for permission system
+                    alert("Super Admin authenticated! A secure login alert has been sent to " + result.superAdmin.email);
+                    window.location.href = "SuperAdmin.html"; // Redirect to Super Admin Dashboard
+                } else {
+                    alert("Insufficient privileges or incorrect credentials. Access denied.");
+                    generateCaptcha();
+                }
+            } catch (error) {
+                console.error('Super Admin login error:', error);
+                alert("Security handshake failed. Is the defense server online?");
+            }
+        }
+    </script>
+</body>
+
+</html>

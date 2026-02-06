@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hybrid Pricing Plans - Variant 3</title>
+    <!-- Google Fonts: Manrope -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+        <!-- Top Navigation Bar -->
+        <header
+            class="sticky top-0 z-50 relative w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#101922]/90 backdrop-blur-md">
+            <div class="flex items-center justify-between px-6 py-4 lg:px-10 max-w-7xl mx-auto w-full">
+                <div class="flex items-center gap-4">
+                    <a href="PricingDashboard.html" style="
+  text-decoration:none;
+  font-size:22px;
+  font-weight:bold;
+  color:#135bec;
+">
+                        ←
+                    </a>
+
+                    <div class="size-8 text-primary">
+                        <svg class="h-full w-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">AI-TECH PRO</h2>
+                </div>
+                <div class="hidden lg:flex items-center gap-8">
+                    <nav class="flex gap-6">
+                        <a class="text-sm font-semibold hover:text-primary transition-colors" href="Pricingai.html">AI
+                            Plans</a>
+                        <a class="text-sm font-semibold hover:text-primary transition-colors"
+                            href="Pricinghuman.html">Trainer Plans</a>
+                        <a class="text-sm font-semibold text-primary" href="#">Hybrid Plans</a>
+                        <!-- <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">About Us</a> -->
+                    </nav>
+                    <!-- plan controls placed beside nav -->
+                    <!-- plan controls removed: managed via HybridAdmin.html -->
+                    <!-- <div class="flex gap-3">
+<button class="h-10 px-5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                            Log In
+                        </button>
+<button class="h-10 px-5 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25">
+                            Get Started
+                        </button>
+</div> -->
+                </div>
+                <!-- Mobile Menu Icon -->
+                <button class="lg:hidden p-2 text-slate-600 dark:text-slate-300">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </header>
+        <main class="flex-grow flex flex-col items-center w-full px-4 py-12 md:px-8">
+            <div class="max-w-6xl w-full flex flex-col gap-10">
+                <!-- Page Heading & Toggle -->
+                <div class="flex flex-col items-center text-center gap-8">
+                    <div class="max-w-3xl space-y-4">
+                        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+                            Compare Hybrid Plans
+                        </h1>
+                        <p class="text-lg text-slate-600 dark:text-slate-400">
+                            Find the perfect balance of AI efficiency and human expertise. Choose the plan that
+                            accelerates your fitness journey.
+                        </p>
+                    </div>
+                    <!-- Billing Toggle -->
+                    <div class="inline-flex p-1 bg-slate-200 dark:bg-slate-800 rounded-xl" role="tablist"
+                        aria-label="Billing period">
+                        <button id="btnMonthly" data-period="monthly"
+                            class="px-6 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                            aria-pressed="true">Monthly</button>
+                        <button id="btnQuarterly" data-period="quarterly"
+                            class="px-6 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">Quarterly</button>
+                        <button id="btnYearly" data-period="yearly"
+                            class="px-6 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">Yearly
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-wider bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full">Save
+                                20%</span></button>
+                    </div>
+                </div>
+                <!-- removed old left-side controls; controls moved into header -->
+                <!-- Comparison Table Container -->
+                <div
+                    class="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#15202b] shadow-xl shadow-slate-200/50 dark:shadow-none">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="p-6 min-w-[200px] w-1/4 bg-slate-50 dark:bg-[#101922] align-bottom border-b border-slate-200 dark:border-slate-700">
+                                        <div class="flex flex-col gap-2">
+                                            <span class="text-lg font-bold">Features Overview</span>
+                                            <p class="text-sm text-slate-500 font-normal">Detailed breakdown of what's
+                                                included in each tier.</p>
+                                        </div>
+                                    </th>
+                                    <!-- Basic Hybrid -->
+                                    <th
+                                        class="p-6 min-w-[220px] w-1/4 align-bottom border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-[#15202b]">
+                                        <div class="flex flex-col gap-4">
+                                            <div>
+                                                <h3 class="text-base font-bold text-slate-900 dark:text-white">Basic
+                                                    Hybrid</h3>
+                                                <div class="mt-2 flex items-baseline gap-1">
+                                                    <span id="priceBasic" data-monthly="1999"
+                                                        class="text-3xl font-black text-slate-900 dark:text-white">₹1,999</span>
+                                                    <span id="unitBasic"
+                                                        class="text-sm font-medium text-slate-500">/mo</span>
+                                                </div>
+                                                <p class="mt-1 text-xs text-slate-500"><span id="noteBasic">Billed
+                                                        quarterly</span></p>
+                                            </div>
+                                            <button
+                                                class="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-900 dark:text-white text-sm font-bold transition-colors">
+                                                Choose Basic
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <!-- Standard Hybrid (Highlighted) -->
+                                    <th
+                                        class="p-6 min-w-[220px] w-1/4 align-bottom border-b border-t-4 border-t-primary border-x border-slate-200 dark:border-slate-700 bg-blue-50/30 dark:bg-blue-900/10 relative">
+                                        <div
+                                            class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-sm">
+                                            Most Popular
+                                        </div>
+                                        <div class="flex flex-col gap-4">
+                                            <div>
+                                                <h3 class="text-base font-bold text-primary">Standard Hybrid</h3>
+                                                <div class="mt-2 flex items-baseline gap-1">
+                                                    <span id="priceStandard" data-monthly="4999"
+                                                        class="text-3xl font-black text-slate-900 dark:text-white">₹4,999</span>
+                                                    <span id="unitStandard"
+                                                        class="text-sm font-medium text-slate-500">/mo</span>
+                                                </div>
+                                                <p class="mt-1 text-xs text-slate-500"><span id="noteStandard">Billed
+                                                        quarterly</span></p>
+                                            </div>
+                                            <button
+                                                class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-colors shadow-md shadow-primary/20">
+                                                Choose Standard
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <!-- Premium Hybrid -->
+                                    <th
+                                        class="p-6 min-w-[220px] w-1/4 align-bottom border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-[#15202b]">
+                                        <div class="flex flex-col gap-4">
+                                            <div>
+                                                <h3 class="text-base font-bold text-slate-900 dark:text-white">Premium
+                                                    Hybrid</h3>
+                                                <div class="mt-2 flex items-baseline gap-1">
+                                                    <span id="pricePremium" data-monthly="9999"
+                                                        class="text-3xl font-black text-slate-900 dark:text-white">₹9,999</span>
+                                                    <span id="unitPremium"
+                                                        class="text-sm font-medium text-slate-500">/mo</span>
+                                                </div>
+                                                <p class="mt-1 text-xs text-slate-500"><span id="notePremium">Billed
+                                                        quarterly</span></p>
+                                            </div>
+                                            <button
+                                                class="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-900 dark:text-white text-sm font-bold transition-colors">
+                                                Choose Premium
+                                            </button>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                <!-- Core Features Header -->
+                                <tr>
+                                    <td class="bg-slate-50 dark:bg-[#101922] px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-500"
+                                        colspan="4">Core Resources</td>
+                                </tr>
+                                <!-- AI Chatbot -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">AI Chatbot
+                                        Access</td>
+                                    <td class="px-6 text-center text-sm font-semibold text-slate-900 dark:text-white">
+                                        Limited</td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800">
+                                        <span class="inline-flex items-center gap-1.5 text-primary font-bold"><span
+                                                class="material-symbols-outlined text-[20px]">check_circle</span>
+                                            Unlimited</span>
+                                    </td>
+                                    <td class="p-6 text-center"><span
+                                            class="inline-flex items-center gap-1.5 text-slate-900 dark:text-white font-bold"><span
+                                                class="material-symbols-outlined text-[20px] text-primary">check_circle</span>
+                                            Unlimited</span></td>
+                                </tr>
+                                <!-- Trainer Hours -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Human Trainer
+                                        Hours</td>
+                                    <td class="p-6 text-center text-sm text-slate-600 dark:text-slate-400"><span
+                                            class="resource-hours" data-monthly="2">2 Hours/mo</span></td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800 text-sm font-bold text-slate-900 dark:text-white">
+                                        <span class="resource-hours" data-monthly="10">10 Hours/mo</span>
+                                    </td>
+                                    <td class="p-6 text-center text-sm font-bold text-slate-900 dark:text-white"><span
+                                            class="resource-hours" data-monthly="-1">Unlimited</span></td>
+                                </tr>
+                                <!-- Response Time -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Trainer
+                                        Response Time</td>
+                                    <td class="p-6 text-center text-sm text-slate-600 dark:text-slate-400">48 Hours</td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800 text-sm font-bold text-slate-900 dark:text-white">
+                                        24 Hours</td>
+                                    <td class="p-6 text-center text-sm font-bold text-slate-900 dark:text-white">1 Hour
+                                        (Priority)</td>
+                                </tr>
+                                <!-- Video Analysis -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Video Form
+                                        Analysis</td>
+                                    <td class="p-6 text-center text-sm text-slate-600 dark:text-slate-400"><span
+                                            class="resource-credits" data-monthly="5">5 Credits</span></td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800 text-sm font-bold text-slate-900 dark:text-white">
+                                        <span class="resource-credits" data-monthly="20">20 Credits</span>
+                                    </td>
+                                    <td class="p-6 text-center text-sm font-bold text-slate-900 dark:text-white"><span
+                                            class="resource-credits" data-monthly="-1">Unlimited</span></td>
+                                </tr>
+                                <!-- Advanced Features Header -->
+                                <tr>
+                                    <td class="bg-slate-50 dark:bg-[#101922] px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-500"
+                                        colspan="4">Advanced Personalization</td>
+                                </tr>
+                                <!-- Custom Roadmap -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Custom
+                                        Roadmap</td>
+                                    <td class="p-6 text-center text-sm text-slate-600 dark:text-slate-400">Standard</td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800 text-sm font-bold text-slate-900 dark:text-white">
+                                        Fully Custom</td>
+                                    <td class="p-6 text-center text-sm font-bold text-slate-900 dark:text-white">
+                                        Priority Custom + Adjustments</td>
+                                </tr>
+                                <!-- Nutrition Planning -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">AI Nutrition
+                                        Planning</td>
+                                    <td class="p-6 text-center">
+                                        <span class="material-symbols-outlined text-slate-400">remove</span>
+                                    </td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800">
+                                        <span class="material-symbols-outlined text-primary font-bold">check</span>
+                                    </td>
+                                    <td class="p-6 text-center">
+                                        <span class="material-symbols-outlined text-primary font-bold">check</span>
+                                    </td>
+                                </tr>
+                                <!-- 1-on-1 Calls -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Weekly 1-on-1
+                                        Video Calls</td>
+                                    <td class="p-6 text-center">
+                                        <span class="material-symbols-outlined text-slate-400">remove</span>
+                                    </td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800">
+                                        <span class="text-sm font-medium text-slate-500">Add-on available</span>
+                                    </td>
+                                    <td class="p-6 text-center">
+                                        <span class="material-symbols-outlined text-primary font-bold">check</span>
+                                    </td>
+                                </tr>
+                                <!-- Support Header -->
+                                <tr>
+                                    <td class="bg-slate-50 dark:bg-[#101922] px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-500"
+                                        colspan="4">Support &amp; Community</td>
+                                </tr>
+                                <!-- Community Access -->
+                                <tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="p-6 text-sm font-medium text-slate-700 dark:text-slate-300">Community
+                                        Access</td>
+                                    <td class="p-6 text-center">
+                                        <span class="material-symbols-outlined text-primary font-bold">check</span>
+                                    </td>
+                                    <td
+                                        class="p-6 text-center bg-blue-50/10 dark:bg-blue-900/5 border-x border-slate-100 dark:border-slate-800">
+                                        <span class="material-symbols-outlined text-primary font-bold">check</span>
+                                    </td>
+                                    <td class="p-6 text-center">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 dark:text-white">
+                                            <span
+                                                class="material-symbols-outlined text-primary text-[20px]">verified</span>
+                                            VIP Group
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Modals: View Plans / Add Plan / Edit Price / Toggle Features -->
+                <div id="modalOverlay" class="hidden fixed inset-0 bg-black/40 z-40"></div>
+
+                <div id="viewPlansModal"
+                    class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-bold mb-3">Plans</h3>
+                    <ul id="plansList" class="space-y-2 text-sm text-slate-700 dark:text-slate-200"></ul>
+                    <div class="mt-4 text-right"><button id="closeView"
+                            class="px-4 py-2 rounded bg-slate-100 dark:bg-slate-800">Close</button></div>
+                </div>
+
+                <div id="addPlanModal"
+                    class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-bold mb-3">Add New Plan</h3>
+                    <label class="block text-sm mb-2">Plan Name</label>
+                    <input id="newPlanName" class="w-full mb-3 p-2 rounded border" />
+                    <label class="block text-sm mb-2">Monthly Price (number)</label>
+                    <input id="newPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+                    <div class="flex gap-2 justify-end"><button id="cancelAdd"
+                            class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitAdd"
+                            class="px-4 py-2 rounded bg-primary text-white">Add Plan</button></div>
+                </div>
+
+                <div id="editPriceModal"
+                    class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-md bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-bold mb-3">Edit Price</h3>
+                    <label class="block text-sm mb-2">Select Plan</label>
+                    <select id="editPlanSelect" class="w-full mb-3 p-2 rounded border"></select>
+                    <label class="block text-sm mb-2">Monthly Price</label>
+                    <input id="editPlanPrice" type="number" class="w-full mb-3 p-2 rounded border" />
+                    <div class="flex gap-2 justify-end"><button id="cancelEdit"
+                            class="px-4 py-2 rounded bg-slate-100">Cancel</button><button id="submitEdit"
+                            class="px-4 py-2 rounded bg-primary text-white">Save</button></div>
+                </div>
+
+                <div id="toggleFeatureModal"
+                    class="hidden fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl bg-white dark:bg-[#0b1720] rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-bold mb-3">Activate / Deactivate Features</h3>
+                    <div id="featureList"
+                        class="space-y-2 text-sm text-slate-700 dark:text-slate-200 max-h-64 overflow-auto"></div>
+                    <div class="mt-4 text-right"><button id="closeToggle"
+                            class="px-4 py-2 rounded bg-slate-100">Close</button></div>
+                </div>
+                <!-- FAQ Section -->
+                <div class="mt-10 max-w-3xl mx-auto w-full">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked
+                        Questions</h3>
+                    <div class="flex flex-col gap-4">
+                        <details
+                            class="group bg-white dark:bg-[#15202b] rounded-lg border border-slate-200 dark:border-slate-700 open:shadow-md transition-shadow">
+                            <summary
+                                class="flex cursor-pointer items-center justify-between p-5 font-medium text-slate-900 dark:text-white">
+                                Can I switch between plans later?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in
+                                your next billing cycle. If you upgrade, you'll get instant access to the new features.
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white dark:bg-[#15202b] rounded-lg border border-slate-200 dark:border-slate-700 open:shadow-md transition-shadow">
+                            <summary
+                                class="flex cursor-pointer items-center justify-between p-5 font-medium text-slate-900 dark:text-white">
+                                How do the video analysis credits work?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                You can upload videos of your exercises directly to the app. Our trainers and AI will
+                                analyze your form and provide feedback. One video submission equals one credit. Credits
+                                reset every month.
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white dark:bg-[#15202b] rounded-lg border border-slate-200 dark:border-slate-700 open:shadow-md transition-shadow">
+                            <summary
+                                class="flex cursor-pointer items-center justify-between p-5 font-medium text-slate-900 dark:text-white">
+                                Is there a long-term contract?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-5 pb-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                No, our monthly and quarterly plans are flexible. You can cancel anytime. The yearly
+                                plan is a one-time commitment for 12 months that offers significant savings.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+                <!-- Bottom CTA -->
+                <div class="flex flex-col items-center gap-4 py-10 text-center">
+                    <p class="text-slate-600 dark:text-slate-400">Still not sure which plan is right for you?</p>
+                    <button
+                        class="flex items-center gap-2 text-primary font-bold hover:text-primary/80 transition-colors">
+                        Book a free consultation call
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-[#15202b] border-t border-slate-200 dark:border-slate-800 py-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4 text-slate-900 dark:text-white">
+                        <div class="size-6 text-primary">
+                            <svg class="h-full w-full" fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd"
+                                    d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                                    fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <span class="text-lg font-bold">HybridFit</span>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Empowering your fitness journey with AI and
+                        human expertise.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary" href="#">AI Coach</a></li>
+                        <li><a class="hover:text-primary" href="#">Trainer Matching</a></li>
+                        <li><a class="hover:text-primary" href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary" href="#">About</a></li>
+                        <li><a class="hover:text-primary" href="#">Blog</a></li>
+                        <li><a class="hover:text-primary" href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Pricinghybrid: update prices and numeric resources when billing period changes
+        function formatINR(n) {
+            return '₹' + Number(n).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        }
+
+        function updatePrices(period) {
+            const discountYearly = 0.8; // 20% off yearly
+            // price elements
+            const plans = [
+                { priceEl: document.getElementById('priceBasic'), unitEl: document.getElementById('unitBasic') },
+                { priceEl: document.getElementById('priceStandard'), unitEl: document.getElementById('unitStandard') },
+                { priceEl: document.getElementById('pricePremium'), unitEl: document.getElementById('unitPremium') }
+            ];
+            plans.forEach(p => {
+                if (!p.priceEl) return;
+                const monthly = Number(p.priceEl.dataset.monthly || 0);
+                let display = monthly; let unit = '/mo';
+                if (period === 'monthly') { display = monthly; unit = '/mo'; }
+                else if (period === 'quarterly') { display = monthly * 3; unit = '/qtr'; }
+                else if (period === 'yearly') {
+                    // show per-month equivalent when yearly selected (with discount), and note billed yearly
+                    display = Math.round(monthly * discountYearly);
+                    unit = '/mo';
+                }
+                p.priceEl.textContent = formatINR(display);
+                if (p.unitEl) p.unitEl.textContent = unit;
+            });
+
+            // resources: hours and credits
+            document.querySelectorAll('.resource-hours').forEach(el => {
+                const monthly = Number(el.dataset.monthly);
+                if (monthly <= 0) { el.textContent = 'Unlimited'; return; }
+                if (period === 'monthly') el.textContent = monthly + ' Hours/mo';
+                else if (period === 'quarterly') el.textContent = (monthly * 3) + ' Hours/qtr';
+                else el.textContent = (monthly * 12) + ' Hours/yr';
+            });
+
+            document.querySelectorAll('.resource-credits').forEach(el => {
+                const monthly = Number(el.dataset.monthly);
+                if (monthly <= 0) { el.textContent = 'Unlimited'; return; }
+                if (period === 'monthly') el.textContent = monthly + ' Credits';
+                else if (period === 'quarterly') el.textContent = (monthly * 3) + ' Credits';
+                else el.textContent = (monthly * 12) + ' Credits';
+            });
+
+            // update billing note below each price (noteBasic, noteStandard, notePremium)
+            const noteMap = {
+                monthly: 'Billed monthly',
+                quarterly: 'Billed quarterly',
+                yearly: 'Billed yearly (charged annually)'
+            };
+            ['noteBasic', 'noteStandard', 'notePremium'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = noteMap[period] || '';
+            });
+
+            // refresh modal contents so open/closed modals reflect current pricing period
+            if (typeof refreshModals === 'function') refreshModals(period);
+
+        }
+
+        // Refresh modal content (View Plans and Edit select) to reflect current displayed prices
+        function refreshModals(period) {
+            const currentPeriod = period || (document.querySelector('[aria-pressed="true"]') ? document.querySelector('[aria-pressed="true"]').dataset.period : 'monthly');
+            // Update View Plans list if present
+            const list = document.getElementById('plansList');
+            if (list) {
+                list.innerHTML = '';
+                const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+                headers.forEach(h => {
+                    const name = h.querySelector('h3') ? h.querySelector('h3').textContent.trim() : 'Plan';
+                    const priceEl = h.querySelector('[id^="price"]');
+                    const price = priceEl ? priceEl.textContent : '';
+                    const li = document.createElement('li');
+                    li.textContent = `${name} — ${price}`;
+                    list.appendChild(li);
+                });
+            }
+
+            // Update Edit Plan select labels to show current displayed price
+            const sel = document.getElementById('editPlanSelect');
+            if (sel) {
+                const prevValue = sel.value;
+                sel.innerHTML = '';
+                const headers = Array.from(document.querySelectorAll('thead th')).slice(1);
+                headers.forEach((h, idx) => {
+                    const name = h.querySelector('h3') ? h.querySelector('h3').textContent.trim() : 'Plan';
+                    const priceEl = h.querySelector('[id^="price"]');
+                    const display = priceEl ? priceEl.textContent : '';
+                    const opt = document.createElement('option'); opt.value = idx; opt.textContent = `${name} — ${display}`;
+                    sel.appendChild(opt);
+                });
+                // restore previous selection if possible
+                if (prevValue && sel.options[prevValue]) sel.value = prevValue;
+                // update edit input value
+                const idx = Number(sel.value || 0);
+                const priceEl = (headers[idx] && headers[idx].querySelector('[id^="price"]')) || null;
+                document.getElementById('editPlanPrice').value = priceEl ? Number(priceEl.dataset.monthly || 0) : 0;
+            }
+        }
+
+        // UI: handle billing button active state
+        function setActiveButton(period) {
+            ['btnMonthly', 'btnQuarterly', 'btnYearly'].forEach(id => {
+                const b = document.getElementById(id);
+                if (!b) return;
+                if (b.dataset.period === period) {
+                    b.classList.add('bg-white', 'dark:bg-slate-700', 'shadow-sm');
+                    b.setAttribute('aria-pressed', 'true');
+                } else {
+                    b.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow-sm');
+                    b.setAttribute('aria-pressed', 'false');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch configuration from backend
+            fetch('http://127.0.0.1:8080/api/hybrid-config')
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success && response.data) {
+                        const config = response.data;
+
+                        // Update Page Info
+                        if (config.pageInfo) {
+                            document.title = config.pageInfo.title || document.title;
+                            const titleEl = document.querySelector('h1');
+                            const subEl = document.querySelector('h1 + p');
+                            if (titleEl && config.pageInfo.title) titleEl.textContent = config.pageInfo.title;
+                            if (subEl && config.pageInfo.subtitle) subEl.textContent = config.pageInfo.subtitle;
+                        }
+
+                        // Update Pricing Tiers
+                        if (config.pricingTiers) {
+                            const basicEl = document.getElementById('priceBasic');
+                            const standardEl = document.getElementById('priceStandard');
+                            const premiumEl = document.getElementById('pricePremium');
+
+                            if (basicEl) basicEl.dataset.monthly = config.pricingTiers.basic || 1999;
+                            if (standardEl) standardEl.dataset.monthly = config.pricingTiers.standard || 4999;
+                            if (premiumEl) premiumEl.dataset.monthly = config.pricingTiers.premium || 9999;
+                        }
+
+                        // Initial update based on default period
+                        updatePrices('monthly');
+                    }
+                })
+                .catch(err => console.error('Error loading hybrid config:', err));
+
+
+            const btns = document.querySelectorAll('#btnMonthly, #btnQuarterly, #btnYearly');
+            btns.forEach(b => b.addEventListener('click', () => {
+                const period = b.dataset.period;
+                setActiveButton(period);
+                updatePrices(period);
+            }));
+            // initialize
+            setActiveButton('monthly');
+            updatePrices('monthly');
+            // show control panel on larger screens
+            const controls = document.getElementById('planControls');
+            if (controls) controls.classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
+```

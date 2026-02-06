@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TrainAI - Pricing Dashboard</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5ec2",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2632",
+                        "border-light": "#e7edf3",
+                        "border-dark": "#2a3b4d",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 overflow-hidden h-screen flex flex-col">
+    <header
+        class="flex-none z-50 w-full border-b border-border-light dark:border-border-dark bg-white dark:bg-card-dark">
+        <div class="flex w-full items-center justify-between px-6 py-3">
+            <div class="flex items-center gap-2 cursor-pointer">
+                <div class="flex items-center justify-center size-8 rounded bg-primary text-white">
+                    <span class="material-symbols-outlined">fitness_center</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Tech-Pro AI <a
+                        href="A9Admin.html" class="text-slate-400 font-normal ml-2 text-sm hover:text-primary">Admin
+                        Dashboard</a></h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <div
+                    class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">
+                    JD
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1 overflow-y-auto relative bg-background-light dark:bg-background-dark">
+        <main class="w-full">
+            <div class="w-full max-w-7xl mx-auto px-6 py-10 flex flex-col gap-10">
+
+                <!-- Welcome Section -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Pricing Management</h1>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 mt-2">Manage all your courses, plans, and
+                        pricing structures from one central hub.</p>
+                </div>
+
+                <!-- Section 1: Course Pricing -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-1 bg-primary rounded-full"></div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Course & Batch Pricing</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Card: Learning Paths -->
+                        <a href="PaymentAdmin.html"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div
+                                class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span class="material-symbols-outlined text-[80px] text-blue-500">school</span>
+                            </div>
+                            <div class="flex flex-col h-full relative z-10">
+                                <div
+                                    class="size-14 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">school</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Learning Paths</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Configure pricing for
+                                    comprehensive learning tracks and bundles.</p>
+                            </div>
+                        </a>
+
+                        <!-- Card: AI Pricing -->
+                        <a href="AILearningAdmin.html"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div
+                                class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span class="material-symbols-outlined text-[80px] text-indigo-500">smart_toy</span>
+                            </div>
+                            <div class="flex flex-col h-full relative z-10">
+                                <div
+                                    class="size-14 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">smart_toy</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">AI Pricing</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Manage rates for AI-driven
+                                    self-paced courses.</p>
+                            </div>
+                        </a>
+
+                        <!-- Card: Online Pricing -->
+                        <a href="OnlineAdmin.html"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div
+                                class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span class="material-symbols-outlined text-[80px] text-sky-500">language</span>
+                            </div>
+                            <div class="flex flex-col h-full relative z-10">
+                                <div
+                                    class="size-14 rounded-xl bg-sky-50 dark:bg-sky-900/20 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">language</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Online Pricing</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Set prices for live online batches
+                                    and webinars.</p>
+                            </div>
+                        </a>
+
+                        <!-- Card: Offline Pricing -->
+                        <a href="OfflineAdmin.html"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div
+                                class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span class="material-symbols-outlined text-[80px] text-emerald-500">apartment</span>
+                            </div>
+                            <div class="flex flex-col h-full relative z-10">
+                                <div
+                                    class="size-14 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">apartment</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Offline Pricing</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Update fees for physical classroom
+                                    settings.</p>
+                            </div>
+                        </a>
+
+                        <!-- Card: Hybrid Pricing -->
+                        <a href="HybridPricing.html"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div
+                                class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <span class="material-symbols-outlined text-[80px] text-orange-500">offline_bolt</span>
+                            </div>
+                            <div class="flex flex-col h-full relative z-10">
+                                <div
+                                    class="size-14 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">offline_bolt</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Hybrid Pricing</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Configure fees for mixed
+                                    online/offline modules.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 2: Plans & Offers -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-1 bg-purple-500 rounded-full"></div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Plans & Offers</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Card: Subscriptions -->
+                        <a href="Pricingsub.html" target="_blank"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-14 rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">card_membership</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Subscription Plans</h3>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage recurring billing
+                                        tiers.</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <span
+                                        class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">arrow_forward_ios</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card: Add-ons -->
+                        <a href="AddsOn.html" target="_blank"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-14 rounded-xl bg-pink-50 dark:bg-pink-900/20 flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">extension</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Add-ons</h3>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Extra content & services.
+                                    </p>
+                                </div>
+                                <div class="ml-auto">
+                                    <span
+                                        class="material-symbols-outlined text-slate-300 group-hover:text-pink-500 transition-colors">arrow_forward_ios</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card: Discounts -->
+                        <a href="Discounts.html" target="_blank"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-14 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">percent</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Discounts</h3>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Coupons & promo codes.
+                                    </p>
+                                </div>
+                                <div class="ml-auto">
+                                    <span
+                                        class="material-symbols-outlined text-slate-300 group-hover:text-green-500 transition-colors">arrow_forward_ios</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Analytics -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-1 bg-yellow-400 rounded-full"></div>
+                        <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Analytics</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Card: Reports -->
+                        <a href="#"
+                            class="group relative bg-white dark:bg-card-dark rounded-2xl p-6 border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-14 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 flex items-center justify-center text-yellow-600 dark:text-yellow-400 group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-[32px]">analytics</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Pricing Reports</h3>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Analyze revenue trends
+                                        and plan performance.</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <span
+                                        class="material-symbols-outlined text-slate-300 group-hover:text-yellow-500 transition-colors">arrow_forward_ios</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer
+                    class="mt-8 border-t border-border-light dark:border-border-dark pt-8 pb-12 text-center text-sm text-slate-400">
+                    <p>© 2023 TrainAI Inc. All rights reserved.</p>
+                    <div class="flex justify-center gap-6 mt-4">
+                        <a class="hover:text-slate-600 dark:hover:text-slate-200" href="#">Privacy</a>
+                        <a class="hover:text-slate-600 dark:hover:text-slate-200" href="#">Terms</a>
+                        <a class="hover:text-slate-600 dark:hover:text-slate-200" href="#">Support</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

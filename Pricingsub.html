@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI-TECH PRO - Subscription Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#137fec",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+                "surface-light": "#ffffff",
+                "surface-dark": "#1a2530",
+                "text-primary-light": "#0d141b",
+                "text-primary-dark": "#e7edf3",
+                "text-secondary-light": "#4c739a",
+                "text-secondary-dark": "#93a8c1",
+                "border-light": "#e7edf3",
+                "border-dark": "#2a3b4d",
+              },
+              fontFamily: {
+                "display": ["Manrope", "sans-serif"],
+                "body": ["Noto Sans", "sans-serif"],
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #137fec;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #137fec;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark min-h-screen flex flex-col overflow-x-hidden transition-colors duration-200">
+<!-- Top Navigation -->
+<div class="relative w-full bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark">
+<div class="layout-container flex h-full flex-col">
+<div class="flex justify-center w-full">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap px-4 lg:px-10 py-4">
+<div class="flex items-center gap-4">
+    <body>
+  <a href="PricingDashboard.html" ...>←</a>
+  <!-- rest of your page -->
+</body>
+
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">subscriptions</span>
+</div>
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold leading-tight tracking-[-0.015em]">AI-TECH PRO</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-text-primary-light dark:text-text-primary-dark hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-text-primary-light dark:text-text-primary-dark hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+<a class="text-text-primary-light dark:text-text-primary-dark hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Logout</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-border-light dark:ring-border-dark" data-alt="User profile avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuLGcGlPUKrdUXaEMe0EDKYlEmVBYAmKrRJQos2soEcPNirvsKRVT_t88K-44eSmdzXTaeOieOli2l05Bo76PdLsdNdKO3tNtyx1fDQ6jQLvBeCwz2JcXUOjJsXSatjvKxcKZ2jakOQQhYa8UNoQDxt0wSWpA2ExVlgC9L0ljE4kCZT4pSGZBdPF-GbU6zAmmPoYxLVfr8jVOx1CnbQX4Bgy76Bdj7ClKgTIVaL4UIE_ZN3razc68dZHa2mFk2oUXyFBqJppf1KnU");'></div>
+</div>
+</header>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 w-full flex justify-center py-6 px-4 lg:px-10">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 items-center text-sm font-medium">
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-text-secondary-light dark:text-text-secondary-dark select-none">/</span>
+<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
+<span class="text-text-secondary-light dark:text-text-secondary-dark select-none">/</span>
+<span class="text-text-primary-light dark:text-text-primary-dark">Subscriptions</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-text-primary-light dark:text-text-primary-dark text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">Subscription Configuration</h1>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-base md:text-lg font-normal max-w-2xl">Manage pricing, billing cycles, and access rules for AI-TECH PRO subscription tiers.</p>
+</div>
+<button id="btnCreatePlan" class="bg-primary hover:bg-blue-600 text-white font-bold py-2.5 px-6 rounded-lg shadow-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Create New Plan</span>
+</button>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Basic Plan Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex flex-col overflow-hidden group hover:border-primary/50 dark:hover:border-primary/50 transition-colors">
+<div class="p-6 border-b border-border-light dark:border-border-dark flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold">Basic Plan</h3>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const STORAGE_KEY = 'stagedPlans';
+  let stagedPlans = [];
+  try { stagedPlans = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { stagedPlans = []; }
+
+  function saveStaged() { localStorage.setItem(STORAGE_KEY, JSON.stringify(stagedPlans)); }
+
+  function renderStaged() {
+    const container = document.getElementById('stagedContainer');
+    const list = document.getElementById('stagedList');
+    if (!list || !container) return;
+    if (stagedPlans.length === 0) { container.classList.add('hidden'); list.innerHTML = ''; return; }
+    container.classList.remove('hidden');
+    list.innerHTML = '';
+    stagedPlans.forEach((p, i) => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center justify-between';
+      li.innerHTML = `<div><strong>${p.name}</strong> — ${p.monthly}</div><div><button data-idx="${i}" class="removePlan text-xs text-primary hover:underline">Remove</button></div>`;
+      list.appendChild(li);
+    });
+    // attach remove handlers
+    document.querySelectorAll('.removePlan').forEach(btn => btn.addEventListener('click', (e) => {
+      const idx = Number(e.target.dataset.idx); if (!Number.isNaN(idx)) stagedPlans.splice(idx,1);
+      saveStaged(); renderStaged();
+    }));
+  }
+
+  const btnCreate = document.getElementById('btnCreatePlan');
+  if (btnCreate) btnCreate.addEventListener('click', () => {
+    const name = prompt('New plan name'); if (!name) return;
+    const monthlyRaw = prompt('Monthly price (number, e.g. 1999)'); if (monthlyRaw === null) return;
+    const monthly = Number(monthlyRaw);
+    if (Number.isNaN(monthly)) { alert('Invalid number'); return; }
+    stagedPlans.push({name, monthly}); saveStaged(); renderStaged();
+  });
+
+  const btnDiscard = document.getElementById('btnDiscardAll');
+  if (btnDiscard) btnDiscard.addEventListener('click', () => {
+    if (!confirm('Discard all staged changes? This will remove your local staged edits.')) return;
+    stagedPlans = [];
+    saveStaged();
+    renderStaged();
+    alert('Staged changes discarded.\n\nNote: This only removes staged (unpublished) changes. Published pages remain unchanged.');
+  });
+
+  const btnPublish = document.getElementById('btnPublishAll');
+  if (btnPublish) btnPublish.addEventListener('click', () => {
+    if (stagedPlans.length === 0) { alert('No staged changes to publish'); return; }
+    // save lastPublished snapshot locally
+    try { localStorage.setItem('lastPublishedPlans', JSON.stringify(stagedPlans)); } catch(e) {}
+    const payload = {plans: stagedPlans};
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'plan_changes.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    alert('Downloaded plan_changes.json. To apply the changes to the pricing pages on disk, run in your project root:\n\npython scripts/apply_plan_changes.py plan_changes.json\n\nIf you want, I can run that for you now to update the files immediately.');
+  });
+
+  // render saved staged plans on load
+  renderStaged();
+});
+</script>
+</body></html>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Entry level tier for hobbyists.</p>
+</div>
+<button class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6">
+<!-- Pricing Input -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Monthly Price</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark font-medium">$</span>
+</div>
+<input class="w-full pl-8 pr-4 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-text-primary-light dark:text-text-primary-dark font-medium" placeholder="0.00" type="number" value="0.00"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark text-xs">USD</span>
+</div>
+</div>
+</div>
+<!-- Duration Select -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Duration Cycle</label>
+<div class="relative">
+<select class="w-full pl-4 pr-10 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none text-text-primary-light dark:text-text-primary-dark font-medium cursor-pointer">
+<option>Monthly</option>
+<option>Quarterly</option>
+<option>Annual</option>
+<option selected="">Lifetime</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-text-secondary-light dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Toggles Section -->
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Allow Upgrades</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle1"></label>
+</div>
+</div>
+<div class="flex items-center justify-between opacity-50 pointer-events-none">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Enable Free Trial</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle2"></label>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0 mt-auto">
+<button onclick="savePlan('Basic Plan')"
+ class="w-full py-2.5 rounded-lg border font-semibold">
+ Save Changes
+</button>
+
+</div>
+</div>
+<!-- Pro Plan Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg ring-1 ring-primary/20 border-t-4 border-t-primary flex flex-col overflow-hidden relative">
+<div class="absolute top-4 right-4 text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="p-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold">Pro Plan</h3>
+<span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Active</span>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Ideally for professionals &amp; small teams.</p>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6">
+<!-- Pricing Input -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Monthly Price</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark font-medium">$</span>
+</div>
+<input class="w-full pl-8 pr-4 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-text-primary-light dark:text-text-primary-dark font-medium" placeholder="0.00" type="number" value="29.00"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark text-xs">USD</span>
+</div>
+</div>
+</div>
+<!-- Duration Select -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Duration Cycle</label>
+<div class="relative">
+<select class="w-full pl-4 pr-10 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none text-text-primary-light dark:text-text-primary-dark font-medium cursor-pointer">
+<option selected="">Monthly</option>
+<option>Quarterly</option>
+<option>Annual</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-text-secondary-light dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Toggles Section -->
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Auto-renew</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle3"></label>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-3 rounded-lg border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-3">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Enable Free Trial</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle4"></label>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium whitespace-nowrap">Trial Period (Days)</label>
+<div class="flex items-center w-full">
+<button class="size-8 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 flex items-center justify-center bg-white dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<input class="w-full h-8 text-center border-y border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-sm font-medium outline-none" type="text" value="14"/>
+<button class="size-8 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 flex items-center justify-center bg-white dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0 mt-auto">
+<button onclick="savePlan('Pro Plan')" class="w-full py-2.5 rounded-lg bg-primary text-white">
+ Save Changes
+</button>
+
+</div>
+</div>
+<!-- Enterprise Plan Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex flex-col overflow-hidden group hover:border-primary/50 dark:hover:border-primary/50 transition-colors">
+<div class="p-6 border-b border-border-light dark:border-border-dark flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold">Enterprise</h3>
+<span class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Draft</span>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Scalable solution for large organizations.</p>
+</div>
+<button class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6">
+<!-- Pricing Input -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Monthly Price</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark font-medium">$</span>
+</div>
+<input class="w-full pl-8 pr-4 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-text-primary-light dark:text-text-primary-dark font-medium" placeholder="0.00" type="number" value="99.00"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-text-secondary-light dark:text-text-secondary-dark text-xs">USD</span>
+</div>
+</div>
+</div>
+<!-- Duration Select -->
+<div class="flex flex-col gap-2">
+<label class="text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">Duration Cycle</label>
+<div class="relative">
+<select class="w-full pl-4 pr-10 py-2.5 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none text-text-primary-light dark:text-text-primary-dark font-medium cursor-pointer">
+<option>Monthly</option>
+<option>Quarterly</option>
+<option selected="">Annual</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-text-secondary-light dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Toggles Section -->
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Contact Sales for Pricing</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle5" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle5"></label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Priority Support</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600 checked:right-0 checked:border-primary transition-all duration-200" id="toggle6" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle6"></label>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0 mt-auto">
+<button onclick="savePlan('Enterprise')"
+class="w-full py-2.5 rounded-lg border border-border-light dark:border-border-dark hover:bg-background-light dark:hover:bg-background-dark text-text-primary-light dark:text-text-primary-dark font-semibold text-sm transition-colors">
+Save Changes
+</button>
+
+</div>
+</div>
+</div>
+<!-- Bulk Actions / Footer info -->
+<div class="mt-4 flex flex-col md:flex-row justify-between items-center bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark text-sm text-text-secondary-light dark:text-text-secondary-dark gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">info</span>
+<p>All currency values are in <strong>USD</strong>. Changes may take up to 24 hours to reflect on the client side.</p>
+</div>
+<div class="flex gap-4">
+<button id="btnDiscardAll" class="text-text-primary-light dark:text-text-primary-dark font-medium hover:underline">Discard All</button>
+<button id="btnPublishAll" class="bg-text-primary-light dark:bg-white text-white dark:text-text-primary-light font-bold py-2 px-4 rounded-lg">Publish All Changes</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Staged Changes Preview -->
+<div id="stagedContainer" class="max-w-[1200px] mx-auto mt-4 px-4 lg:px-10 hidden">
+  <div class="bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-4">
+    <h4 class="font-bold mb-2">Staged Plans</h4>
+    <ul id="stagedList" class="space-y-2 text-sm text-text-secondary-light dark:text-text-secondary-dark"></ul>
+    <p class="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-2">These changes are staged locally. Click <strong>Publish All Changes</strong> to write updates to the pricing pages.</p>
+  </div>
+</div>
+<script>
+function savePlan(planName) {
+
+  const card = event.target.closest(".rounded-xl");
+
+  const price = card.querySelector("input[type='number']").value;
+  const duration = card.querySelector("select").value;
+
+  const toggles = card.querySelectorAll("input[type='checkbox']");
+
+  const data = {
+    planName: planName,
+    monthlyPrice: price,
+    durationCycle: duration,
+    allowUpgrades: toggles[0]?.checked || false,
+    freeTrial: toggles[1]?.checked || false,
+    trialDays: 14,
+    autoRenew: toggles[2]?.checked || false,
+    prioritySupport: toggles[3]?.checked || false,
+    contactSales: toggles[4]?.checked || false
+  };
+
+  fetch("http://localhost:8080/api/pricing/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(() => alert("Saved successfully"))
+  .catch(() => alert("Backend error"));
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", loadPricing);
+
+function loadPricing() {
+  fetch("http://localhost:8080/api/pricing")
+    .then(res => res.json())
+    .then(plans => {
+      plans.forEach(plan => fillPlan(plan));
+    })
+    .catch(() => console.error("Failed to load pricing"));
+}
+
+function fillPlan(plan) {
+
+  let card;
+  if (plan.planName === "Basic Plan") card = document.querySelector("[onclick*='Basic Plan']")?.closest(".rounded-xl");
+  if (plan.planName === "Pro Plan") card = document.querySelector("[onclick*='Pro Plan']")?.closest(".rounded-xl");
+  if (plan.planName === "Enterprise") card = document.querySelector("[onclick*='Enterprise']")?.closest(".rounded-xl");
+
+  if (!card) return;
+
+  card.querySelector("input[type='number']").value = plan.monthlyPrice;
+  card.querySelector("select").value = plan.durationCycle;
+
+  const toggles = card.querySelectorAll("input[type='checkbox']");
+
+  toggles[0] && (toggles[0].checked = plan.allowUpgrades);
+  toggles[1] && (toggles[1].checked = plan.freeTrial);
+  toggles[2] && (toggles[2].checked = plan.autoRenew);
+  toggles[3] && (toggles[3].checked = plan.prioritySupport);
+  toggles[4] && (togles[4].checked = plan.contactSales);
+}
+</script>
+
+</body></html>

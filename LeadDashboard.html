@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lead Management Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold mb-6">Lead Management Dashboard</h1>
+
+
+    <a href="Lead-analytics.html" target="_blank"> <button id="reportBtn"
+        class="bg-green-600 text-white rounded px-4 py-2">
+        Report
+      </button></a>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <select id="statusFilter" class="p-2 border rounded" onchange="applyFilters()">
+      <option value="All">All Status</option>
+      <option>New</option>
+      <option>Contacted</option>
+      <option>Qualified</option>
+      <option>Converted</option>
+      <option>Lost</option>
+      <option>Follow-Up</option>
+      <option>Not Interested</option>
+    </select>
+
+    <select id="sourceFilter" class="p-2 border rounded" onchange="applyFilters()">
+      <option value="All">All Sources</option>
+      <option>LinkedIn</option>
+      <option>Web</option>
+      <option>Referral</option>
+      <option>Ads</option>
+      <option>Email</option>
+      <option>Cold Call</option>
+      <option>Walk-in</option>
+      <option>Facebook</option>
+      <option>Instagram</option>
+      <option value="Pamphlet">Pamphlet</option>
+    </select>
+
+    <input type="date" id="dateFilter" class="p-2 border rounded" onchange="applyFilters()">
+
+    <button onclick="resetFilters()" class="bg-blue-600 text-white rounded px-4">
+      Reset
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="bg-white shadow rounded overflow-x-auto">
+    <table class="min-w-[1600px] w-full border-collapse text-sm">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3">Lead ID</th>
+          <th class="p-3">Name</th>
+          <th class="p-3">Email</th>
+          <th class="p-3">Phone</th>
+          <th class="p-3">Experience Type</th>
+          <th class="p-3">Source</th>
+          <th class="p-3">Status</th>
+          <!-- <th class="p-3">Assigned To</th> -->
+          <th class="p-3">Priority</th>
+          <th class="p-3">Budget</th>
+          <th class="p-3">City</th>
+          <th class="p-3">Country</th>
+          <th class="p-3">Follow-Up</th>
+          <th class="p-3">Created Date</th>
+          <th class="p-3">Remarks</th>
+        </tr>
+      </thead>
+
+      <tbody id="leadTable">
+
+        <tr data-status="New" data-source="Facebook" data-date="2025-11-16">
+          <td class="p-3">L001</td>
+          <td class="p-3 font-semibold">Jyoti Mulimani</td>
+          <td class="p-3">jyoti@gmail.com</td>
+          <td class="p-3">+91 9876543210</td>
+          <td class="p-3">Fresher</td>
+          <td class="p-3">Facebook</td>
+          <td class="p-3">New</td>
+          <td class="p-3">High</td>
+          <td class="p-3">₹50,000</td>
+          <td class="p-3">Bangalore</td>
+          <td class="p-3">India</td>
+          <td class="p-3">2025-11-20</td>
+          <td class="p-3">2025-11-16</td>
+          <td class="p-3">AI course inquiry</td>
+        </tr>
+
+        <tr data-status="Qualified" data-source="LinkedIn" data-date="2025-12-01">
+          <td>L002</td>
+          <td>Sarah Jenkins</td>
+          <td>sarah@mail.com</td>
+          <td>+1 555 1111</td>
+          <td>Experienced</td>
+          <td>LinkedIn</td>
+          <td>Qualified</td>
+          <td>Medium</td>
+          <td>$3,000</td>
+          <td>New York</td>
+          <td>USA</td>
+          <td>2025-12-05</td>
+          <td>2025-12-01</td>
+          <td>Demo scheduled</td>
+        </tr>
+
+        <tr data-status="Contacted" data-source="Referral" data-date="2025-11-28">
+          <td>L003</td>
+          <td>David Kim</td>
+          <td>david@innovate.io</td>
+          <td>+1 555 2222</td>
+          <td>Fresher</td>
+          <td>Referral</td>
+          <td>Contacted</td>
+          <td>Low</td>
+          <td>$1,500</td>
+          <td>Seoul</td>
+          <td>Korea</td>
+          <td>2025-12-02</td>
+          <td>2025-11-28</td>
+          <td>Follow-up pending</td>
+        </tr>
+
+        <tr data-status="Converted" data-source="Web" data-date="2025-10-15">
+          <td>L004</td>
+          <td>Michael Ross</td>
+          <td>michael@corp.com</td>
+          <td>+1 555 3333</td>
+          <td>Fresher</td>
+          <td>Web</td>
+          <td>Converted</td>
+          <td>High</td>
+          <td>$8,000</td>
+          <td>Chicago</td>
+          <td>USA</td>
+          <td>Closed</td>
+          <td>2025-10-15</td>
+          <td>Deal closed</td>
+        </tr>
+
+        <tr data-status="Lost" data-source="Ads" data-date="2025-09-18">
+          <td>L005</td>
+          <td>Emily Chen</td>
+          <td>emily@mail.com</td>
+          <td>+1 555 4444</td>
+          <td>Experienced</td>
+          <td>Ads</td>
+          <td>Lost</td>
+          <td>Low</td>
+          <td>$900</td>
+          <td>Toronto</td>
+          <td>Canada</td>
+          <td>-</td>
+          <td>2025-09-18</td>
+          <td>No response</td>
+        </tr>
+
+        <tr data-status="New" data-source="Instagram" data-date="2025-12-10">
+          <td>L006</td>
+          <td>Riya Sharma</td>
+          <td>riya@gmail.com</td>
+          <td>+91 900001111</td>
+          <td>Fresher</td>
+          <td>Instagram</td>
+          <td>New</td>
+          <td>High</td>
+          <td>₹30,000</td>
+          <td>Pune</td>
+          <td>India</td>
+          <td>2025-12-12</td>
+          <td>2025-12-10</td>
+          <td>Interested</td>
+        </tr>
+
+        <tr data-status="Qualified" data-source="Email" data-date="2025-11-05">
+          <td>L007</td>
+          <td>Arjun Patel</td>
+          <td>arjun@mail.com</td>
+          <td>+91 988881111</td>
+          <td>Experienced</td>
+          <td>Email</td>
+          <td>Qualified</td>
+          <td>Medium</td>
+          <td>₹40,000</td>
+          <td>Ahmedabad</td>
+          <td>India</td>
+          <td>2025-11-10</td>
+          <td>2025-11-05</td>
+          <td>Good fit</td>
+        </tr>
+
+        <tr data-status="Follow-Up" data-source="Cold Call" data-date="2025-11-22">
+          <td>L008</td>
+          <td>Robert Wolf</td>
+          <td>rob@corp.net</td>
+          <td>+1 555 8888</td>
+          <td>Fresher</td>
+          <td>Cold Call</td>
+          <td>Follow-Up</td>
+          <td>Low</td>
+          <td>$2,000</td>
+          <td>Dallas</td>
+          <td>USA</td>
+          <td>2025-11-25</td>
+          <td>2025-11-22</td>
+          <td>Call again</td>
+        </tr>
+
+        <!-- Add more rows easily following same pattern -->
+        <tr data-status="New" data-source="Walk-in" data-date="2025-12-12">
+          <td>L009</td>
+          <td>Kavya Rao</td>
+          <td>kavya@mail.com</td>
+          <td>+91 911112222</td>
+          <td>Experienced</td>
+          <td>Walk-in</td>
+          <td>New</td>
+          <td>Medium</td>
+          <td>₹25,000</td>
+          <td>Hyderabad</td>
+          <td>India</td>
+          <td>2025-12-15</td>
+          <td>2025-12-12</td>
+          <td>Walk-in lead</td>
+        </tr>
+
+        <tr data-status="Converted" data-source="Facebook" data-date="2025-10-30">
+          <td>L010</td>
+          <td>Neha Singh</td>
+          <td>neha@mail.com</td>
+          <td>+91 922223333</td>
+          <td>Fresher</td>
+          <td>Facebook</td>
+          <td>Converted</td>
+          <td>High</td>
+          <td>₹60,000</td>
+          <td>Delhi</td>
+          <td>India</td>
+          <td>Closed</td>
+          <td>2025-10-30</td>
+          <td>Payment done</td>
+        </tr>
+
+        <tr data-status="Lost" data-source="Web" data-date="2025-09-01">
+          <td>L011</td>
+          <td>Chris Evans</td>
+          <td>chris@mail.com</td>
+          <td>+1 555 9999</td>
+          <td>Fresher</td>
+          <td>Web</td>
+          <td>Lost</td>
+          <td>Low</td>
+          <td>$1,000</td>
+          <td>LA</td>
+          <td>USA</td>
+          <td>-</td>
+          <td>2025-09-01</td>
+          <td>Not interested</td>
+        </tr>
+        <!-- 
+<tr data-status="Qualified" data-source="Referral" data-date="2025-11-14">
+<td>L012</td><td>Sneha Kulkarni</td><td>sneha@mail.com</td><td>+91 933334444</td>
+<td>SoftTech</td><td>Referral</td><td>Qualified</td><td>Admin</td><td>Medium</td>
+<td>₹35,000</td><td>Nagpur</td><td>India</td><td>2025-11-18</td><td>2025-11-14</td><td>Warm lead</td>
+</tr>
+
+<tr data-status="Contacted" data-source="Ads" data-date="2025-12-03">
+<td>L013</td><td>James Miller</td><td>james@mail.com</td><td>+1 555 1212</td>
+<td>MarketPro</td><td>Ads</td><td>Contacted</td><td>Mike</td><td>Medium</td>
+<td>$4,000</td><td>Boston</td><td>USA</td><td>2025-12-06</td><td>2025-12-03</td><td>Email sent</td>
+</tr>
+
+<tr data-status="New" data-source="Instagram" data-date="2025-12-14">
+<td>L014</td><td>Pooja Mehta</td><td>pooja@mail.com</td><td>+91 944445555</td>
+<td>DesignHub</td><td>Instagram</td><td>New</td><td>Admin</td><td>Low</td>
+<td>₹20,000</td><td>Surat</td><td>India</td><td>2025-12-16</td><td>2025-12-14</td><td>Asked for brochure</td>
+</tr>
+
+<tr data-status="Converted" data-source="Email" data-date="2025-10-05">
+<td>L015</td><td>Thomas Lee</td><td>thomas@mail.com</td><td>+1 555 3434</td>
+<td>TechWorld</td><td>Email</td><td>Converted</td><td>John</td><td>High</td>
+<td>$9,000</td><td>San Jose</td><td>USA</td><td>Closed</td><td>2025-10-05</td><td>Enterprise deal</td>
+</tr> -->
+
+      </tbody>
+    </table>
+    <form id="leadForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 bg-white p-4 rounded shadow">
+
+      <input type="text" id="name" placeholder="Name" required class="p-2 border rounded">
+      <input type="email" id="email" placeholder="Email" required class="p-2 border rounded">
+      <input type="text" id="phone" placeholder="Phone" class="p-2 border rounded">
+      <input type="text" id="company" placeholder="Experience Type" class="p-2 border rounded">
+
+      <select id="source" class="p-2 border rounded">
+        <option>Facebook</option>
+        <option>LinkedIn</option>
+        <option>Instagram</option>
+        <option>Web</option>
+        <option>Referral</option>
+        <option>Email</option>
+        <option>Cold Call</option>
+        <option value="Pamphlet">Pamphlet</option>
+      </select>
+
+      <select id="status" class="p-2 border rounded">
+        <option>New</option>
+        <option>Contacted</option>
+        <option>Qualified</option>
+        <option>Converted</option>
+        <option>Lost</option>
+        <option>Follow-Up</option>
+      </select>
+
+      <!-- <input type="text" id="assignedTo" placeholder="Assigned To" class="p-2 border rounded"> -->
+      <input type="text" id="priority" placeholder="Priority" class="p-2 border rounded">
+      <input type="text" id="budget" placeholder="Budget" class="p-2 border rounded">
+      <input type="text" id="city" placeholder="City" class="p-2 border rounded">
+      <input type="text" id="country" placeholder="Country" class="p-2 border rounded">
+
+      <input type="date" id="followUpDate" class="p-2 border rounded">
+      <input type="text" id="remarks" placeholder="Remarks" class="p-2 border rounded">
+
+      <button type="submit" class="bg-blue-600 text-white rounded p-2 col-span-1 md:col-span-4">
+        Add Lead
+      </button>
+    </form>
+
+  </div>
+  <script>
+    const API_URL = "http://localhost:8080/api/leads";
+    const leadTable = document.getElementById("leadTable");
+    const leadForm = document.getElementById("leadForm");
+
+    /* ===============================
+       LOAD ALL LEADS ON PAGE LOAD
+    ================================ */
+    window.onload = fetchLeads;
+
+    function fetchLeads() {
+      fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+          leadTable.innerHTML = "";
+          data.forEach(addRowToTable);
+        })
+        .catch(err => console.error("Error loading leads", err));
+    }
+
+    /* ===============================
+       ADD LEAD FORM SUBMIT
+    ================================ */
+    leadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const leadData = {
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        experienceType: company.value,
+        source: source.value,
+        status: status.value,
+        priority: priority.value,
+        budget: budget.value,
+        city: city.value,
+        country: country.value,
+        createdDate: followUpDate.value || null,
+        remarks: remarks.value
+      };
+
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leadData)
+      })
+        .then(res => res.json())
+        .then(savedLead => {
+          addRowToTable(savedLead); // add to existing rows
+          leadForm.reset();
+        })
+        .catch(err => {
+          console.error("Error saving lead", err);
+          alert("Failed to add lead");
+        });
+    });
+
+    /* ===============================
+       ADD ROW TO TABLE (NO RELOAD)
+    ================================ */
+    function addRowToTable(lead) {
+      const row = document.createElement("tr");
+
+      row.dataset.status = lead.status;
+      row.dataset.source = lead.source;
+      row.dataset.date = lead.createdDate;
+
+      row.innerHTML = `
+    <td class="p-3">${lead.leadId}</td>
+    <td class="p-3 font-semibold">${lead.name}</td>
+    <td class="p-3">${lead.email || "-"}</td>
+    <td class="p-3">${lead.phone || "-"}</td>
+    <td class="p-3">${lead.experienceType || "-"}</td>
+    <td class="p-3">${lead.source}</td>
+    <td class="p-3">${lead.status}</td>
+    <td class="p-3">${lead.priority || "-"}</td>
+    <td class="p-3">${lead.budget || "-"}</td>
+    <td class="p-3">${lead.city || "-"}</td>
+    <td class="p-3">${lead.country || "-"}</td>
+    <td class="p-3">-</td>
+    <td class="p-3">${lead.createdDate}</td>
+    <td class="p-3">${lead.remarks || "-"}</td>
+  `;
+
+      leadTable.prepend(row); // newest lead on top
+    }
+
+    /* ===============================
+       FILTER LOGIC (UNCHANGED)
+    ================================ */
+    function applyFilters() {
+      const status = statusFilter.value;
+      const source = sourceFilter.value;
+      const date = dateFilter.value;
+
+      document.querySelectorAll("#leadTable tr").forEach(row => {
+        const match =
+          (status === "All" || row.dataset.status === status) &&
+          (source === "All" || row.dataset.source === source) &&
+          (!date || row.dataset.date === date);
+
+        row.style.display = match ? "" : "none";
+      });
+    }
+
+    function resetFilters() {
+      statusFilter.value = "All";
+      sourceFilter.value = "All";
+      dateFilter.value = "";
+      applyFilters();
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

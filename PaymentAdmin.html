@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Admin - AI-TECH PRO LMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-hover": "#0f6ac6",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .input-field {
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.2);
+        }
+
+        .tab-btn {
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            transform: translateY(-2px);
+        }
+
+        .success-toast {
+            animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-in 2.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-100 to-slate-200 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white">settings</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-800">Payment Admin</h1>
+                    <p class="text-sm text-slate-500">Manage separate pricing for each payment page</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-8">
+        <!-- Status Card -->
+        <div id="status-card" class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 hidden">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-amber-600">info</span>
+                <p id="status-message" class="text-amber-700 font-medium"></p>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
+            <button onclick="switchTab('pay')" id="tab-pay"
+                class="tab-btn flex items-center justify-center gap-2 px-4 py-4 rounded-xl font-bold transition-all bg-purple-500 text-white shadow-lg active">
+                <span class="material-symbols-outlined">credit_card</span>
+                Pay.html
+            </button>
+            <button onclick="switchTab('pay1')" id="tab-pay1"
+                class="tab-btn flex items-center justify-center gap-2 px-4 py-4 rounded-xl font-bold transition-all bg-slate-200 text-slate-600 hover:bg-slate-300">
+                <span class="material-symbols-outlined">credit_card</span>
+                Pay1.html
+            </button>
+            <button onclick="switchTab('pay2')" id="tab-pay2"
+                class="tab-btn flex items-center justify-center gap-2 px-4 py-4 rounded-xl font-bold transition-all bg-slate-200 text-slate-600 hover:bg-slate-300">
+                <span class="material-symbols-outlined">credit_card</span>
+                Pay2.html
+            </button>
+            <button onclick="switchTab('online')" id="tab-online"
+                class="tab-btn flex items-center justify-center gap-2 px-4 py-4 rounded-xl font-bold transition-all bg-slate-200 text-slate-600 hover:bg-slate-300">
+                <span class="material-symbols-outlined">laptop_chromebook</span>
+                Online.html
+            </button>
+        </div>
+
+        <!-- Current Page Indicator -->
+        <div class="mb-6 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-sm text-slate-500">Editing:</span>
+                <span id="current-page-badge"
+                    class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">Pay.html</span>
+            </div>
+            <a id="preview-link" href="Pay.html" target="_blank"
+                class="flex items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm">
+                <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                Preview Page
+            </a>
+        </div>
+
+        <!-- Pricing Configuration Card -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div id="card-header" class="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-5">
+                <h2 class="text-white text-xl font-bold">💰 Pay.html Pricing</h2>
+                <p class="text-purple-100 text-sm mt-1">Complete Curriculum Page</p>
+            </div>
+
+            <form id="pricing-form" class="p-6 space-y-6">
+                <!-- One-time Payment Fields (Pay, Pay1, Pay2) -->
+                <div id="onetime-fields">
+                    <!-- Price Fields -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px] text-slate-400">sell</span>
+                                    Original Price (₹)
+                                </span>
+                            </label>
+                            <input type="number" id="originalPrice"
+                                class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none text-lg font-semibold"
+                                placeholder="1999" min="0">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px] text-green-500">discount</span>
+                                    Discount (₹)
+                                </span>
+                            </label>
+                            <input type="number" id="discount"
+                                class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none text-lg font-semibold text-green-600"
+                                placeholder="1500" min="0">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px] text-primary">payments</span>
+                                    Final Amount (₹)
+                                </span>
+                            </label>
+                            <input type="number" id="totalAmount"
+                                class="input-field w-full px-4 py-3 border-2 border-primary/30 rounded-xl focus:border-primary focus:outline-none text-lg font-bold text-primary bg-primary/5"
+                                placeholder="499" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Discount Label -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700">Discount Label</label>
+                        <input type="text" id="discountLabel"
+                            class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none"
+                            placeholder="Limited Time Discount">
+                    </div>
+
+                    <!-- Course Details -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">Course Name</label>
+                            <input type="text" id="courseName"
+                                class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none"
+                                placeholder="Full Stack Development Path">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">Duration</label>
+                            <input type="text" id="courseDuration"
+                                class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none"
+                                placeholder="6 Months">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscription Fields (Online.html) -->
+                <div id="subscription-fields" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px] text-orange-500">payments</span>
+                                    Monthly Price (₹)
+                                </span>
+                            </label>
+                            <input type="number" id="subscriptionPrice"
+                                class="input-field w-full px-4 py-3 border-2 border-orange-200 rounded-xl focus:border-orange-500 focus:outline-none text-lg font-bold text-orange-600 bg-orange-50"
+                                placeholder="999" min="0">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-700">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px] text-slate-400">schedule</span>
+                                    Billing Period
+                                </span>
+                            </label>
+                            <select id="subscriptionPeriod"
+                                class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none text-lg font-semibold">
+                                <option value="month">Per Month</option>
+                                <option value="year">Per Year</option>
+                                <option value="quarter">Per Quarter</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mt-4">
+                        <label class="block text-sm font-semibold text-slate-700">Access Description</label>
+                        <input type="text" id="subscriptionDescription"
+                            class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none"
+                            placeholder="Access all online batches with expert instructors">
+                    </div>
+
+                    <div class="space-y-2 mt-4">
+                        <label class="block text-sm font-semibold text-slate-700">Pass Title</label>
+                        <input type="text" id="subscriptionTitle"
+                            class="input-field w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-primary focus:outline-none"
+                            placeholder="Online Batch Access Pass">
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" id="save-btn"
+                        class="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-hover transition-all shadow-lg">
+                        <span class="material-symbols-outlined">save</span>
+                        Save Changes
+                    </button>
+                    <button type="button" onclick="fetchConfig()"
+                        class="flex items-center justify-center gap-2 px-6 py-4 bg-slate-100 text-slate-700 font-semibold rounded-xl hover:bg-slate-200 transition-colors">
+                        <span class="material-symbols-outlined">refresh</span>
+                        Refresh
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div id="summary-pay" onclick="switchTab('pay')"
+                class="cursor-pointer bg-white rounded-xl p-4 shadow-md border-2 border-purple-400 hover:shadow-lg transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-purple-600">Pay.html</span>
+                    <span class="text-xs text-slate-400">Complete</span>
+                </div>
+                <p id="summary-pay-amount" class="text-2xl font-bold text-slate-800">₹ 499</p>
+            </div>
+            <div id="summary-pay1" onclick="switchTab('pay1')"
+                class="cursor-pointer bg-white rounded-xl p-4 shadow-md border-2 border-transparent hover:border-primary hover:shadow-lg transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-blue-600">Pay1.html</span>
+                    <span class="text-xs text-slate-400">Upskilling</span>
+                </div>
+                <p id="summary-pay1-amount" class="text-2xl font-bold text-slate-800">₹ 1,501</p>
+            </div>
+            <div id="summary-pay2" onclick="switchTab('pay2')"
+                class="cursor-pointer bg-white rounded-xl p-4 shadow-md border-2 border-transparent hover:border-green-500 hover:shadow-lg transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-green-600">Pay2.html</span>
+                    <span class="text-xs text-slate-400">Modular</span>
+                </div>
+                <p id="summary-pay2-amount" class="text-2xl font-bold text-slate-800">₹ 1,499</p>
+            </div>
+            <div id="summary-online" onclick="switchTab('online')"
+                class="cursor-pointer bg-white rounded-xl p-4 shadow-md border-2 border-transparent hover:border-orange-500 hover:shadow-lg transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-orange-600">Online.html</span>
+                    <span class="text-xs text-slate-400">Batch Access</span>
+                </div>
+                <p id="summary-online-amount" class="text-2xl font-bold text-slate-800">₹ 999</p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-6 bg-blue-50 rounded-xl p-5 border border-blue-200">
+            <p class="text-blue-700 text-sm">
+                <strong>Note:</strong> Each payment page has its own separate configuration.
+                Changes to one page don't affect the others. Make sure the backend server is running:
+                <code class="bg-blue-100 px-2 py-0.5 rounded">cd backend && npm start</code>
+            </p>
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50"></div>
+
+    <script>
+        const BACKEND_BASE = 'http://localhost:8080/api/payment-config';
+        let currentPage = 'pay';
+
+        const pageConfig = {
+            pay: { color: 'purple', label: 'Pay.html', desc: 'Complete Curriculum Page', file: 'Pay.html' },
+            pay1: { color: 'blue', label: 'Pay1.html', desc: 'Upskilling Program Page', file: 'Pay1.html' },
+            pay2: { color: 'green', label: 'Pay2.html', desc: 'Modular Learning Page', file: 'Pay2.html' },
+            online: { color: 'orange', label: 'Online.html', desc: 'Online Batch Access Pass', file: 'Online.html' }
+        };
+
+        // Elements
+        const form = document.getElementById('pricing-form');
+        const statusCard = document.getElementById('status-card');
+        const statusMessage = document.getElementById('status-message');
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `success-toast flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+            toast.innerHTML = `<span class="material-symbols-outlined">${type === 'success' ? 'check_circle' : 'error'}</span><span class="font-medium">${message}</span>`;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function showStatus(message) {
+            statusMessage.textContent = message;
+            statusCard.classList.remove('hidden');
+        }
+
+        function hideStatus() {
+            statusCard.classList.add('hidden');
+        }
+
+        function switchTab(pageId) {
+            currentPage = pageId;
+            const config = pageConfig[pageId];
+
+            // Toggle form fields based on page type
+            const onetimeFields = document.getElementById('onetime-fields');
+            const subscriptionFields = document.getElementById('subscription-fields');
+
+            if (pageId === 'online') {
+                onetimeFields.classList.add('hidden');
+                subscriptionFields.classList.remove('hidden');
+            } else {
+                onetimeFields.classList.remove('hidden');
+                subscriptionFields.classList.add('hidden');
+            }
+
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'shadow-lg');
+                btn.classList.add('bg-slate-200', 'text-slate-600');
+                btn.classList.remove('bg-purple-500', 'bg-blue-500', 'bg-green-500', 'bg-orange-500', 'text-white');
+            });
+            const activeTab = document.getElementById(`tab-${pageId}`);
+            activeTab.classList.add('active', 'shadow-lg', `bg-${config.color}-500`, 'text-white');
+            activeTab.classList.remove('bg-slate-200', 'text-slate-600');
+
+            // Update header
+            document.getElementById('card-header').className = `bg-gradient-to-r from-${config.color}-500 to-${config.color}-600 px-6 py-5`;
+            document.getElementById('card-header').innerHTML = `<h2 class="text-white text-xl font-bold">💰 ${config.label} Pricing</h2><p class="text-${config.color}-100 text-sm mt-1">${config.desc}</p>`;
+
+            // Update badge and preview link
+            document.getElementById('current-page-badge').textContent = config.label;
+            document.getElementById('current-page-badge').className = `px-3 py-1 bg-${config.color}-100 text-${config.color}-700 rounded-full text-sm font-bold`;
+            document.getElementById('preview-link').href = config.file;
+
+            // Update summary borders
+            document.querySelectorAll('[id^="summary-"]').forEach(el => {
+                el.classList.remove('border-purple-400', 'border-blue-400', 'border-green-400', 'border-orange-400');
+                el.classList.add('border-transparent');
+            });
+            document.getElementById(`summary-${pageId}`).classList.remove('border-transparent');
+            document.getElementById(`summary-${pageId}`).classList.add(`border-${config.color}-400`);
+
+            fetchConfig();
+        }
+
+        async function fetchConfig() {
+            try {
+                const response = await fetch(`${BACKEND_BASE}/${currentPage}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const data = result.data;
+
+                    if (currentPage === 'online') {
+                        // Subscription fields
+                        document.getElementById('subscriptionPrice').value = data.price || 999;
+                        document.getElementById('subscriptionPeriod').value = data.period || 'month';
+                        document.getElementById('subscriptionDescription').value = data.description || '';
+                        document.getElementById('subscriptionTitle').value = data.title || '';
+                    } else {
+                        // One-time payment fields
+                        document.getElementById('originalPrice').value = data.originalPrice;
+                        document.getElementById('discount').value = data.discount;
+                        document.getElementById('totalAmount').value = data.totalAmount;
+                        document.getElementById('discountLabel').value = data.discountLabel || '';
+                        document.getElementById('courseName').value = data.courseName || '';
+                        document.getElementById('courseDuration').value = data.courseDuration || '';
+                    }
+                    hideStatus();
+                }
+            } catch (error) {
+                showStatus('Backend server not running. Start it with: cd backend && npm start');
+            }
+            fetchAllSummaries();
+        }
+
+        async function fetchAllSummaries() {
+            try {
+                const response = await fetch(BACKEND_BASE);
+                const result = await response.json();
+                if (result.success) {
+                    for (const [pageId, data] of Object.entries(result.data)) {
+                        if (data) {
+                            const amount = pageId === 'online' ? data.price : data.totalAmount;
+                            if (amount) {
+                                document.getElementById(`summary-${pageId}-amount`).textContent = `₹ ${amount.toLocaleString('en-IN')}`;
+                            }
+                        }
+                    }
+                }
+            } catch (error) { }
+        }
+
+        async function saveConfig(e) {
+            e.preventDefault();
+            const saveBtn = document.getElementById('save-btn');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Saving...';
+
+            try {
+                let requestBody;
+
+                if (currentPage === 'online') {
+                    // Subscription data
+                    requestBody = {
+                        price: parseInt(document.getElementById('subscriptionPrice').value),
+                        period: document.getElementById('subscriptionPeriod').value,
+                        description: document.getElementById('subscriptionDescription').value,
+                        title: document.getElementById('subscriptionTitle').value
+                    };
+                } else {
+                    // One-time payment data
+                    requestBody = {
+                        originalPrice: parseInt(document.getElementById('originalPrice').value),
+                        discount: parseInt(document.getElementById('discount').value),
+                        totalAmount: parseInt(document.getElementById('totalAmount').value),
+                        discountLabel: document.getElementById('discountLabel').value,
+                        courseName: document.getElementById('courseName').value,
+                        courseDuration: document.getElementById('courseDuration').value
+                    };
+                }
+
+                const response = await fetch(`${BACKEND_BASE}/${currentPage}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(`${pageConfig[currentPage].label} prices updated!`, 'success');
+                    fetchAllSummaries();
+                } else {
+                    showToast('Failed to update prices', 'error');
+                }
+            } catch (error) {
+                showToast('Backend server not running', 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<span class="material-symbols-outlined">save</span> Save Changes';
+            }
+        }
+
+        form.addEventListener('submit', saveConfig);
+        fetchConfig();
+        fetchAllSummaries();
+    </script>
+</body>
+
+</html>

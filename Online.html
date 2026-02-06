@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Batch Schedule &amp; Enrollment - AI-TECH PRO</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0f65bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2632",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3b4a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for the timeline */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 w-full bg-card-light dark:bg-card-dark border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="px-6 lg:px-10 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-3">
+                        <a href="A4Onboarding.html"
+                            class="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-blue-500">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                            Back
+                        </a>
+                        <div class="size-8 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">school</span>
+                        </div>
+
+
+                        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">AI-TECH PRO</h2>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex items-center gap-6">
+
+
+
+                    </div>
+                </div>
+                <!-- Search & Profile -->
+                <div class="flex items-center gap-4 lg:gap-6">
+                    <div class="relative hidden sm:block group">
+                        <div
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">search</span>
+                        </div>
+                        <input
+                            class="block w-full min-w-[240px] rounded-lg border-0 bg-slate-100 dark:bg-slate-800 py-2 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:bg-white dark:focus:bg-slate-900 transition-all"
+                            placeholder="Search courses..." type="text" />
+                    </div>
+                    <button
+                        class="relative rounded-full size-10 overflow-hidden ring-2 ring-slate-100 dark:ring-slate-700 hover:ring-primary transition-all">
+                        <img alt="User Profile" class="h-full w-full object-cover"
+                            data-alt="User profile picture of a man smiling"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBll4p1hTQbaAo_KUiNjAYgKTkr9N032ZBEPIYO1ssFOdXBe3IMi34petjgw1yUHDtdzAM_EV7ATCvctSrMaiB-o6aIqMTBO0XelzR9Dqw917f8O-HjyyPmovn72QACnS3w2xvOfG_mY0yjZR1hopPjHMfzsDoaUCz-UBzY-RSliDamsHFtGmR2CT80pNJcl4kXMun3DSNTtTVAbrxwCItCEs-xJ9dDOzjfeJLFAM0SWKfxT6dTtv6V_JAqzLl2xYwY7gTNCT3wLKk" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Area -->
+    <main class="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8 flex flex-col gap-6">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 text-sm">
+            <a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Home</a>
+            <span class="text-slate-300 dark:text-slate-600">/</span>
+            <span class="font-medium text-slate-900 dark:text-white">Batch Schedule</span>
+        </div>
+        <!-- Page Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <div class="max-w-2xl">
+                <h1 class="text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-2">Batch
+                    Schedule &amp; Enrollment</h1>
+                <p class="text-slate-600 dark:text-slate-400 text-base lg:text-lg">View upcoming online batches, check
+                    availability, and enroll in your preferred slots directly from the timeline.</p>
+            </div>
+            <button onclick="openRequestModal()"
+                class="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold shadow-lg shadow-primary/20 transition-all active:scale-95">
+                <span class="material-symbols-outlined">add</span>
+                Request Custom Batch
+            </button>
+        </div>
+        <!-- Access Fee Banner -->
+        <div class="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-4 lg:p-6 shadow-lg relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div
+                        class="size-12 lg:size-14 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-3xl">all_inclusive</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-lg lg:text-xl">Online Batch Access Pass</h3>
+                        <p id="access-description" class="text-white/80 text-sm">Access all online batches with expert
+                            instructors</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <div class="flex items-baseline gap-1">
+                            <span id="access-price" class="text-3xl lg:text-4xl font-black text-white">--</span>
+                            <span id="access-period" class="text-white/80 text-sm">/month</span>
+                        </div>
+                        <p class="text-white/60 text-xs">Cancel anytime</p>
+                    </div>
+                    <a href="Pay1.html">
+                        <button
+                            class="px-6 py-3 bg-white text-primary rounded-lg font-bold hover:bg-white/90 transition-colors shadow-lg">
+                            Get Access
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individual Course Pricing -->
+        <div id="individual-pricing-section"
+            class="bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm p-6 mb-6"
+            style="display: none;">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Individual Course Pricing</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Purchase individual courses without
+                        subscription</p>
+                </div>
+            </div>
+            <div id="individual-courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Courses will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Batch Status Tabs -->
+        <div
+            class="bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm p-6 mb-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Batch Schedule</h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">View upcoming, running, and past batches with
+                        detailed curriculum</p>
+                </div>
+                <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                    <button onclick="filterBatches('upcoming')" id="tab-upcoming"
+                        class="batch-tab px-4 py-2 rounded-md text-sm font-semibold transition-all bg-blue-500 text-white shadow-md">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">schedule</span>
+                            Upcoming
+                        </span>
+                    </button>
+                    <button onclick="filterBatches('running')" id="tab-running"
+                        class="batch-tab px-4 py-2 rounded-md text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">play_circle</span>
+                            Running
+                        </span>
+                    </button>
+                    <button onclick="filterBatches('past')" id="tab-past"
+                        class="batch-tab px-4 py-2 rounded-md text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Past
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Batches Container -->
+            <div id="batches-detailed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Batch cards will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Toolbar: Calendar Navigation -->
+        <div
+            class="sticky top-[72px] z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div
+                class="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4 p-4 rounded-xl bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark shadow-sm">
+                <!-- Calendar Navigation -->
+                <div class="flex items-center justify-between w-full xl:w-auto gap-4">
+                    <span id="calendar-month-year"
+                        class="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap hidden sm:block"></span>
+                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                        <button id="btn-prev-week" aria-label="Previous Week"
+                            class="p-2 rounded-md hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 shadow-sm transition-all">
+                            <span class="material-symbols-outlined block">chevron_left</span>
+                        </button>
+                        <button id="btn-today"
+                            class="px-4 py-2 rounded-md text-sm font-semibold text-slate-900 dark:text-white hover:bg-white dark:hover:bg-slate-700 transition-all">
+                            Today
+                        </button>
+                        <button id="btn-next-week" aria-label="Next Week"
+                            class="p-2 rounded-md hover:bg-white dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 shadow-sm transition-all">
+                            <span class="material-symbols-outlined block">chevron_right</span>
+                        </button>
+                    </div>
+                    <!-- View Toggle -->
+                    <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 hidden sm:flex">
+                        <button id="btn-view-week" aria-label="Week View"
+                            class="p-2 rounded-md bg-white dark:bg-slate-600 shadow text-primary dark:text-white">
+                            <span class="material-symbols-outlined text-[20px] block">calendar_view_week</span>
+                        </button>
+                        <button id="btn-view-month" aria-label="Month View"
+                            class="p-2 rounded-md hover:bg-white dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400">
+                            <span class="material-symbols-outlined text-[20px] block">calendar_month</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Timeline / Calendar Area -->
+        <div
+            class="relative w-full bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden flex flex-col h-[600px] xl:h-[700px]">
+            <!-- Calendar Header (Dates) -->
+            <div class="flex border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-900/50">
+                <!-- Top Left Corner (Legend/Sticky) -->
+                <div
+                    class="w-48 lg:w-64 shrink-0 p-4 border-r border-border-light dark:border-border-dark flex items-center">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Course
+                        Tracks</span>
+                </div>
+                <!-- Days Grid Header -->
+                <div class="flex-1 overflow-hidden">
+                    <div id="calendar-grid-header" class="grid grid-cols-7 min-w-[1000px]">
+                        <!-- Dynamic Calendar Header populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <!-- Scrollable Body -->
+            <div class="flex-1 overflow-y-auto overflow-x-auto custom-scrollbar">
+                <!-- Courses Dynamic Container -->
+                <div id="course-rows-container">
+                    <!-- Dynamic Rows Will Be Injected Here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-md w-full p-6 transform scale-95 opacity-0 transition-all duration-200"
+            id="modalContent">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white" id="modalTitle">Enroll in Batch</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="modalBody" class="mb-6">
+                <!-- Dynamic content -->
+            </div>
+            <div class="flex gap-3">
+                <button onclick="closeModal()"
+                    class="flex-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Cancel</button>
+                <button onclick="confirmEnrollment()"
+                    class="flex-1 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white font-semibold transition-colors">Confirm
+                    Enrollment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Batch Modal -->
+    <div id="requestBatchModal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-lg w-full p-6">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Request Custom Batch</h3>
+                <button onclick="closeRequestModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="requestBatchForm" class="space-y-4">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-50 dark:bg-slate-700">
+                            <tr>
+                                <th class="px-3 py-2 text-left font-semibold text-slate-700 dark:text-slate-300">Field
+                                </th>
+                                <th class="px-3 py-2 text-left font-semibold text-slate-700 dark:text-slate-300">Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-600">
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Student Name</td>
+                                <td class="px-3 py-2">
+                                    <input type="text" id="studentName" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm"
+                                        placeholder="Enter your name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Email</td>
+                                <td class="px-3 py-2">
+                                    <input type="email" id="studentEmail" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm"
+                                        placeholder="your.email@example.com" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Phone</td>
+                                <td class="px-3 py-2">
+                                    <input type="tel" id="studentPhone" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm"
+                                        placeholder="+91 XXXXXXXXXX" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Course Track</td>
+                                <td class="px-3 py-2">
+                                    <select id="courseTrack" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm">
+                                        <option value="">Select Course</option>
+                                        <option>Java Full Stack</option>
+                                        <option>Python Stack</option>
+                                        <option>Cybersecurity</option>
+                                        <option>AI & Machine Learning</option>
+                                        <option>Cloud Computing</option>
+                                        <option>Data Analytics</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Preferred Time</td>
+                                <td class="px-3 py-2">
+                                    <select id="preferredTime" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm">
+                                        <option value="">Select Time</option>
+                                        <option>Morning (9 AM - 12 PM)</option>
+                                        <option>Afternoon (2 PM - 5 PM)</option>
+                                        <option>Evening (6 PM - 9 PM)</option>
+                                        <option>Weekend Only</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300">Batch Size</td>
+                                <td class="px-3 py-2">
+                                    <select id="batchSize" required
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm">
+                                        <option value="">Select Size</option>
+                                        <option>Small (5-10 students)</option>
+                                        <option>Medium (11-20 students)</option>
+                                        <option>Large (21-30 students)</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-2 font-medium text-slate-700 dark:text-slate-300 align-top">
+                                    Additional Notes</td>
+                                <td class="px-3 py-2">
+                                    <textarea id="additionalNotes" rows="2"
+                                        class="w-full rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-2 py-1 text-sm"
+                                        placeholder="Any specific requirements..."></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeRequestModal()"
+                        class="flex-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white font-semibold transition-colors flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">send</span>
+                        Send Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2"></div>
+
+    <!-- Curriculum Modal -->
+    <div id="curriculumModal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-200 dark:border-slate-700">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 id="curriculum-batch-name" class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                            Batch Name</h3>
+                        <div class="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
+                            <span id="curriculum-instructor" class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">person</span>
+                                Instructor
+                            </span>
+                            <span id="curriculum-schedule" class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">schedule</span>
+                                Schedule
+                            </span>
+                            <span id="curriculum-duration" class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                                Duration
+                            </span>
+                        </div>
+                    </div>
+                    <button onclick="closeCurriculumModal()"
+                        class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body - Scrollable -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div id="curriculum-modules-container" class="space-y-4">
+                    <!-- Modules will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+                <div class="flex items-center justify-between">
+                    <div id="curriculum-progress-info" class="text-sm text-slate-600 dark:text-slate-400">
+                        <!-- Progress info -->
+                    </div>
+                    <button onclick="closeCurriculumModal()"
+                        class="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/batch-data-store.js"></script>
+    <script>
+        // ========================================
+        // CONFIGURATION & STATE
+        // ========================================
+
+        // Simulating "Today" as February 4, 2026 for demo purposes
+        const SIMULATED_TODAY = new Date('2026-02-04');
+
+        let allBatchesDetailed = [];
+        let currentBatchFilter = 'upcoming';
+
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeBatches();
+            setupEventListeners();
+            fetchOnlinePricing();
+
+            // Initialize Calendar (Visual Only)
+            renderCalendarHeader();
+        });
+
+
+
+        async function initializeBatches() {
+            try {
+                // 1. Fetch Batches from Backend API
+                const response = await fetch('http://localhost:8080/api/online-config');
+                const result = await response.json();
+
+                if (!result.success || !result.data || !result.data.batchesDetailed) {
+                    console.error('Failed to fetch batches from backend:', result);
+                    showNoBatchesMessage();
+                    return;
+                }
+
+                const rawBatches = result.data.batchesDetailed || [];
+                const simpleBatches = result.data.batches || [];
+
+                // Store courses globally for calendar rendering
+                window.allCourses = result.data.courses || [];
+                console.log(`✅ Loaded ${rawBatches.length} detailed batches, ${simpleBatches.length} simple batches, and ${window.allCourses.length} courses from backend`);
+
+                // 2. Process Batches with Real-Time Status Calculation
+                const today = new Date();
+
+                // Convert simple batches to detailed format
+                const normalizedSimpleBatches = simpleBatches.map(b => {
+                    const course = window.allCourses.find(c => c.id === b.courseId);
+                    return {
+                        ...b,
+                        name: b.name || (course ? `${course.name} Batch` : 'Unnamed Batch'),
+                        status: b.status || 'running',
+                        schedule: `${b.day}, ${b.startTime} - ${b.endTime}`,
+                        instructor: b.faculty,
+                        // Ensure robust fields exist
+                        time: b.startTime,
+                        duration: b.duration || '2 Hours',
+                        isRecurring: true
+                    };
+                });
+
+                const combinedBatches = [...rawBatches, ...normalizedSimpleBatches];
+
+                allBatchesDetailed = combinedBatches.map(batch => {
+                    try {
+                        if (batch.isRecurring) {
+                            if (!batch.time) batch.time = extractTimeFromSchedule(batch.schedule) || '10:00 AM';
+                            if (!batch.instructor && !batch.faculty) batch.instructor = "TBD";
+                            if (!batch.name) {
+                                if (batch.courseId) {
+                                    const c = window.allCourses.find(x => x.id === batch.courseId);
+                                    if (c) batch.name = c.name;
+                                } else {
+                                    batch.name = "Unnamed Batch";
+                                }
+                            }
+                            return batch;
+                        }
+
+                        // Parse Start Date
+                        if (!batch.startDate) return null;
+                        const [sy, sm, sd] = batch.startDate.split('-').map(Number);
+                        const start = new Date(sy, sm - 1, sd);
+                        start.setHours(0, 0, 0, 0); // Start of day
+
+                        // Parse End Date
+                        if (!batch.endDate) return null;
+                        const [ey, em, ed] = batch.endDate.split('-').map(Number);
+                        const end = new Date(ey, em - 1, ed);
+                        end.setHours(23, 59, 59, 999); // End of day
+
+                        // Calculate Status Dynamically (IGNORE backend status field)
+                        let status = 'upcoming';
+                        if (today > end) {
+                            status = 'past';
+                        } else if (today >= start && today <= end) {
+                            status = 'running';
+                        } else {
+                            status = 'upcoming';
+                        }
+
+                        batch.status = status;
+
+                        // Add time field if missing (extract from schedule)
+                        if (!batch.time) {
+                            batch.time = extractTimeFromSchedule(batch.schedule) || '10:00 AM';
+                        }
+
+                        // Ensure instructor exists
+                        if (!batch.instructor && !batch.faculty) {
+                            batch.instructor = "TBD";
+                        }
+
+                        // Fix undefined name in card
+                        if (!batch.name) batch.name = "Unnamed Batch";
+
+                        // Add duration if missing
+                        if (!batch.duration) {
+                            batch.duration = '2 Hours';
+                        }
+
+                        // Log batch status for debugging
+                        console.log(`📊 Batch: "${batch.name}" | Start: ${batch.startDate} | End: ${batch.endDate} | Status: ${status}`);
+
+                        return { ...batch, status: status };
+                    } catch (e) {
+                        console.error('Error processing batch:', batch, e);
+                        return null;
+                    }
+                }).filter(Boolean);
+
+                // 3. Log Status Summary
+                const statusCounts = {
+                    upcoming: allBatchesDetailed.filter(b => b.status === 'upcoming').length,
+                    running: allBatchesDetailed.filter(b => b.status === 'running').length,
+                    past: allBatchesDetailed.filter(b => b.status === 'past').length
+                };
+                console.log(`✅ Processed ${allBatchesDetailed.length} batches | Upcoming: ${statusCounts.upcoming} | Running: ${statusCounts.running} | Past: ${statusCounts.past}`);
+
+                // 4. Initial Render
+                if (allBatchesDetailed.length === 0) {
+                    showNoBatchesMessage();
+                } else {
+                    filterBatches('upcoming');
+                }
+            } catch (error) {
+                console.error('Error initializing batches:', error);
+                showNoBatchesMessage();
+            }
+        }
+
+
+        function extractTimeFromSchedule(schedule) {
+            if (!schedule) return '00:00';
+            // Extract time pattern like "6:00 PM" or "7:00 PM"
+            const timeMatch = schedule.match(/(\d{1,2}:\d{2}\s*(?:AM|PM))/i);
+            return timeMatch ? timeMatch[1] : '00:00';
+        }
+
+        function showNoBatchesMessage() {
+            console.warn("No batches loaded after processing. Check backend API or data.");
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce";
+            toast.innerHTML = `<div class="font-bold">No Batches Found</div><div class="text-sm">Check backend API or admin console.</div>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+
+        // ========================================
+        // BATCH MANAGEMENT FUNCTIONS
+        // ========================================
+
+        function filterBatches(status) {
+            currentBatchFilter = status;
+
+            document.querySelectorAll('.batch-tab').forEach(tab => {
+                tab.classList.remove('bg-blue-500', 'bg-green-500', 'bg-gray-500', 'text-white', 'shadow-md');
+                tab.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+
+            const activeTab = document.getElementById(`tab-${status}`);
+            if (activeTab) {
+                activeTab.classList.remove('text-slate-600', 'dark:text-slate-300');
+                activeTab.classList.add('text-white', 'shadow-md');
+
+                if (status === 'upcoming') activeTab.classList.add('bg-blue-500');
+                else if (status === 'running') activeTab.classList.add('bg-green-500');
+                else if (status === 'past') activeTab.classList.add('bg-gray-500');
+            }
+
+            renderDetailedBatches();
+
+            // Re-render grid if container exists
+            const gridContainer = document.getElementById('course-rows-container');
+            const filteredBatches = allBatchesDetailed.filter(b => b.status === currentBatchFilter);
+            if (gridContainer && window.allCourses) {
+                renderCourseRows(window.allCourses, filteredBatches);
+            }
+        }
+        window.filterBatches = filterBatches;
+
+        function renderDetailedBatches() {
+            const container = document.getElementById('batches-detailed-container');
+            if (!container) return;
+
+            const filteredBatches = allBatchesDetailed.filter(b => b.status === currentBatchFilter);
+
+            if (filteredBatches.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 mb-4">event_busy</span>
+                        <p class="text-slate-500 dark:text-slate-400">No ${currentBatchFilter} batches found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredBatches.map(batch => createBatchCard(batch)).join('');
+        }
+
+        function createBatchCard(batch) {
+            let statusColor = 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300';
+            let btnColor = 'bg-slate-900 text-white hover:bg-slate-800';
+
+            if (batch.status === 'upcoming') {
+                statusColor = 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+                btnColor = 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/20';
+            } else if (batch.status === 'running') {
+                statusColor = 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400';
+                btnColor = 'bg-green-600 text-white hover:bg-green-700 shadow-green-500/20';
+            } else if (batch.status === 'past') {
+                statusColor = 'bg-gray-100 text-gray-700 dark:bg-gray-900/30 dark:text-gray-400';
+                btnColor = 'bg-gray-600 text-white hover:bg-gray-700 opacity-50 cursor-not-allowed';
+            }
+
+            const progress = batch.status === 'running' ? 45 : (batch.status === 'past' ? 100 : 0);
+
+            // Escape JSON for onclick
+            const batchJson = JSON.stringify(batch).replace(/'/g, "&apos;").replace(/"/g, "&quot;");
+
+            return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-primary/50 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                         <span class="material-symbols-outlined text-9xl transform rotate-12">calendar_month</span>
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${statusColor} mb-3 inline-block">
+                                    ${batch.status}
+                                </span>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">${batch.name}</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">person</span>
+                                    ${batch.instructor}
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-black text-slate-900 dark:text-white">${batch.time}</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">${batch.duration}</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                                <p>${new Date(batch.startDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-[18px]">schedule</span>
+                                <p>${batch.schedule}</p>
+                            </div>
+                             <div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-[18px]">group</span>
+                                <p>${batch.enrolled}/${batch.capacity} Enrolled</p>
+                            </div>
+                        </div>
+
+                        ${batch.status === 'running' ? `
+                             <div class="mb-6">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="font-bold text-slate-700 dark:text-slate-300">Batch Progress</span>
+                                    <span class="text-green-600 dark:text-green-400">${progress}%</span>
+                                </div>
+                                <div class="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-green-500 rounded-full" style="width: ${progress}%"></div>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="flex gap-3">
+                            <button onclick="requestBatch('${batch.id}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                Request Info
+                            </button>
+                            ${batch.status === 'upcoming' ? `
+                                <button onclick="openEnrollmentModal('${batch.id}')" class="flex-1 py-2.5 rounded-xl ${btnColor} font-bold shadow-lg shadow-primary/20">
+                                    Enroll Now
+                                </button>
+                            ` : `
+                                <button onclick='viewCurriculum(${batchJson})' class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 font-bold transition-all">
+                                    View Curriculum
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ========================================
+        // MODAL FUNCTIONS
+        // ========================================
+
+        function openEnrollmentModal(batchId) {
+            const batch = allBatchesDetailed.find(b => b.id === batchId);
+            if (!batch) return;
+
+            const modal = document.getElementById('enrollmentModal');
+            const content = document.getElementById('modalContent');
+            const body = document.getElementById('modalBody');
+
+            if (!modal || !content || !body) return;
+
+            document.getElementById('modalTitle').textContent = `Enroll in ${batch.name}`;
+            body.innerHTML = `
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl space-y-2">
+                         <p class="text-sm">Instructor: <span class="font-bold">${batch.instructor}</span></p>
+                         <p class="text-sm">Time: <span class="font-bold">${batch.time}</span></p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); confirmEnrollment();" class="space-y-3">
+                        <input type="text" class="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600" placeholder="Full Name" required>
+                        <input type="email" class="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600" placeholder="Email Address" required>
+                         <div class="flex gap-3 pt-2">
+                            <button type="submit" class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold transition-colors shadow-lg shadow-primary/20">
+                                Confirm Enrollment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+
+            // Hide default footer buttons since we have form submit
+            const footer = modal.querySelector('.flex.gap-3:last-child');
+            if (footer && footer.tagName === 'DIV' && !footer.id) footer.style.display = 'none';
+
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('opacity-0', 'scale-95');
+                content.classList.add('opacity-100', 'scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('enrollmentModal');
+            const content = document.getElementById('modalContent');
+
+            // Restore footer if hidden
+            const footer = modal.querySelector('.flex.gap-3:last-child');
+            if (footer && footer.tagName === 'DIV' && !footer.id) footer.style.display = 'flex';
+
+            content.classList.remove('opacity-100', 'scale-100');
+            content.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 200);
+        }
+
+        function confirmEnrollment() {
+            alert('Enrollment request submitted! We will contact you shortly.');
+            closeModal();
+        }
+
+        function requestBatch() {
+            const modal = document.getElementById('requestBatchModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeRequestModal() {
+            const modal = document.getElementById('requestBatchModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function viewCurriculum(batch) {
+            const modal = document.getElementById('curriculumModal');
+            if (!modal) return;
+
+            document.getElementById('curriculum-batch-name').textContent = batch.name;
+            const instrEl = document.getElementById('curriculum-instructor');
+            if (instrEl) instrEl.innerHTML = `<span class="material-symbols-outlined text-[18px]">person</span> ${batch.instructor}`;
+
+            const container = document.getElementById('curriculum-modules-container');
+            if (batch.modules && batch.modules.length > 0) {
+                container.innerHTML = batch.modules.map(mod => `
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">${mod.name}</h4>
+                        <ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                            ${mod.topics.map(t => `<li>${t.name}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = '<p class="text-center text-slate-500 py-8 italic">Curriculum details coming soon.</p>';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCurriculumModal() {
+            const modal = document.getElementById('curriculumModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function setupEventListeners() {
+            // Removed redundant batch-tab listeners (handled by inline onclick)
+
+            document.querySelectorAll('.fixed').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        if (modal.id === 'enrollmentModal') closeModal();
+                        if (modal.id === 'requestBatchModal') closeRequestModal();
+                        if (modal.id === 'curriculumModal') closeCurriculumModal();
+                    }
+                });
+            });
+        }
+
+        async function fetchOnlinePricing() {
+            try {
+                const response = await fetch('http://localhost:8080/api/payment-config/online');
+                const result = await response.json();
+                if (result.success && result.data) {
+                    const { price, period, description } = result.data;
+                    const priceEl = document.getElementById('access-price');
+                    if (priceEl && price) priceEl.textContent = `₹${price.toLocaleString('en-IN')}`;
+                    const periodEl = document.getElementById('access-period');
+                    if (periodEl && period) periodEl.textContent = `/${period}`;
+                }
+            } catch (e) { console.warn('Pricing fetch failed', e); }
+        }
+
+        // ========================================
+        // CALENDAR FUNCTIONS (Visual Only)
+        // ========================================
+
+        let currentCalendarDate = new Date();
+
+        function renderCalendarHeader() {
+            const headerContainer = document.getElementById('calendar-grid-header');
+            const monthYearEl = document.getElementById('calendar-month-year');
+            if (!headerContainer) return;
+
+            const startOfWeek = new Date(currentCalendarDate);
+            const currentDayIndex = currentCalendarDate.getDay() || 7;
+            startOfWeek.setDate(currentCalendarDate.getDate() - (currentDayIndex - 1)); // Start Monday
+
+            if (monthYearEl) {
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                monthYearEl.textContent = `${monthNames[startOfWeek.getMonth()]} ${startOfWeek.getFullYear()}`;
+            }
+
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            let html = '';
+
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(startOfWeek);
+                d.setDate(startOfWeek.getDate() + i);
+
+                const isToday = d.toDateString() === new Date().toDateString();
+
+                const wrapperClass = isToday
+                    ? "p-3 border-r border-border-light dark:border-border-dark text-center group cursor-pointer bg-primary/5 dark:bg-primary/10"
+                    : "p-3 border-r border-border-light dark:border-border-dark text-center group cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors";
+
+                const bgClass = (i >= 5 && !isToday) ? " bg-slate-50/50 dark:bg-slate-900/30" : "";
+                const textClass = isToday ? "text-xs font-medium text-primary mb-1" : "text-xs font-medium text-slate-500 dark:text-slate-400 mb-1";
+                const numberClass = isToday ? "size-8 flex items-center justify-center rounded-full bg-primary text-white text-sm font-bold shadow-md shadow-primary/30" : "size-8 flex items-center justify-center rounded-full text-sm font-bold text-slate-900 dark:text-white";
+
+                html += `
+                    <div class="${wrapperClass}${bgClass}">
+                        <p class="${textClass}">${days[i]}</p>
+                        <div class="flex justify-center"><span class="${numberClass}">${d.getDate()}</span></div>
+                    </div>
+                `;
+            }
+            headerContainer.innerHTML = html;
+        }
+
+        async function loadOnlineData() {
+            try {
+                const response = await fetch('http://localhost:8080/api/online-config');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const data = result.data;
+
+                    // Update pricing
+                    if (data.accessFee) {
+                        const { price, period, description } = data.accessFee;
+                        const priceEl = document.getElementById('access-price');
+                        if (priceEl) priceEl.textContent = `₹${(price || 4999).toLocaleString('en-IN')}`;
+                        const periodEl = document.getElementById('access-period');
+                        if (periodEl) periodEl.textContent = `/${period || 'year'}`;
+                    }
+
+                    // Render batches using existing logic
+                    if (data.batchesDetailed) {
+                        // Map backend data to frontend structure if needed, or use directly
+                        // The backend structure seems to match exactly what renderDetailedBatches expects
+                        allBatchesDetailed = data.batchesDetailed;
+
+                        // Re-run filter to render
+                        filterBatches(currentBatchFilter || 'upcoming');
+
+                        // Also populate course grid if needed
+                        if (data.courses) {
+                            renderIndividualPricing(data.courses);
+                        }
+                    }
+                }
+            } catch (e) { console.warn('Online data load failed', e); }
+        }
+
+        // Helper to render individual pricing (missing in previous view but likely needed)
+        function renderIndividualPricing(courses) {
+            // Implementation for rendering individual pricing if needed
+            // This function was previously missing or incorrectly placed.
+            // For now, it's an empty placeholder as its full implementation wasn't provided.
+        }
+
+        // --- CALENDAR / GRID RENDERER ---
+        function renderCourseRows(courses, batches) {
+            const container = document.getElementById('course-rows-container');
+            if (!container) return; // Silent return if container doesn't exist
+
+            container.innerHTML = ''; // Clear
+
+            if (!courses || courses.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-slate-500">No courses available for calendar view.</div>`;
+                return;
+            }
+
+            courses.forEach(course => {
+                // Filter batches for this course (Robust matching)
+                const courseBatches = batches.filter(b => {
+                    const idMatch = b.courseId && b.courseId === course.id;
+                    const nameMatch = b.name && b.name.toLowerCase().includes(course.name.toLowerCase());
+                    return idMatch || nameMatch;
+                });
+
+                // Only render row if there are batches or if we want to show empty rows
+                if (courseBatches.length > 0) {
+                    const rowHtml = createCourseRow(course, courseBatches);
+                    container.insertAdjacentHTML('beforeend', rowHtml);
+                }
+            });
+        }
+
+        function createCourseRow(course, courseBatches) {
+            const color = course.color || 'blue';
+            const dayMap = { 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6, 'Sun': 7 };
+
+            let gridHtml = '';
+
+            courseBatches.forEach(batch => {
+                // For Online, batches might not have specific 'day'. 
+                // If schedule is 'Mon-Fri', we might want to span across.
+                // For simplicity in this grid, assuming we map primary start day or just place it based on logic.
+                // If batch.days is array ['Mon', 'Wed'] -> we might need multiple entries or a span.
+                // Simplification for now: Parse day from schedule or default to 1.
+
+                let days = [];
+                if (batch.schedule && batch.schedule.includes('Mon')) days.push('Mon');
+                if (batch.schedule && batch.schedule.includes('Tue')) days.push('Tue');
+                if (batch.schedule && batch.schedule.includes('Wed')) days.push('Wed');
+                if (batch.schedule && batch.schedule.includes('Thu')) days.push('Thu');
+                if (batch.schedule && batch.schedule.includes('Fri')) days.push('Fri');
+                if (batch.schedule && batch.schedule.includes('Sat')) days.push('Sat');
+                if (batch.schedule && batch.schedule.includes('Sun')) days.push('Sun');
+
+                if (days.length === 0) days = ['Mon']; // Default
+
+                days.forEach(day => {
+                    const colStart = dayMap[day] || 1;
+                    // Check if batch is running currently to highlight? 
+                    // Or just render all active in that week. 
+
+                    gridHtml += `
+                        <div class="col-start-${colStart} col-span-1 p-2 z-10">
+                            <div class="group relative flex flex-col justify-between h-full min-h-[120px] bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-3 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-pointer"
+                                 onclick="openEnrollmentModal('${course.name}', '${batch.time}', '${batch.instructor}', '${batch.capacity - batch.enrolled}')">
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white mb-1 leading-tight line-clamp-2">${batch.name}</h4>
+                                    <p class="text-[10px] text-slate-500 mb-1 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">schedule</span> ${batch.time}
+                                    </p>
+                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-medium bg-${color}-100 text-${color}-800 dark:bg-${color}-900/30 dark:text-${color}-400">
+                                        ${batch.status || 'Upcoming'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+            return `
+                <div class="flex border-b border-border-light dark:border-border-dark min-w-[1000px]">
+                    <!-- Sticky Left Column -->
+                    <div class="w-48 lg:w-64 shrink-0 p-4 border-r border-border-light dark:border-border-dark bg-white dark:bg-slate-800 sticky left-0 z-20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-${color}-100 text-${color}-600 dark:bg-${color}-900/30 dark:text-${color}-400 flex items-center justify-center">
+                                <span class="material-symbols-outlined">${course.icon || 'school'}</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">${course.name}</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${(courseBatches.length)} Batches</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Scrollable Grid Columns -->
+                    <div class="flex-1 grid grid-cols-7 relative bg-slate-50/50 dark:bg-slate-900/20">
+                        ${[1, 2, 3, 4, 5, 6, 7].map(i => `
+                            <div class="border-r border-border-light dark:border-border-dark h-full absolute top-0 bottom-0" style="left: ${(i / 7) * 100}%"></div>
+                        `).join('')}
+                        ${gridHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Placeholder for openEnrollmentModal if not exists
+        if (typeof window.openEnrollmentModal !== 'function') {
+            window.openEnrollmentModal = function (courseName, time, faculty, seats) {
+                const modal = document.getElementById('enrollmentModal');
+                const title = document.getElementById('modalTitle');
+                if (modal && title) {
+                    title.textContent = `Enroll in ${courseName}`;
+                    modal.classList.remove('hidden', 'opacity-0', 'scale-95');
+                    modal.classList.add('flex', 'opacity-100', 'scale-100');
+                    // Additional field population logic here if needed
+                }
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('enrollmentModal');
+            if (modal) {
+                modal.classList.add('hidden', 'opacity-0', 'scale-95');
+                modal.classList.remove('flex', 'opacity-100', 'scale-100');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendarHeader();
+            loadOnlineData();
+            setupEventListeners();
+        });
+
+        document.getElementById('btn-prev-week')?.addEventListener('click', () => {
+            currentCalendarDate.setDate(currentCalendarDate.getDate() - 7);
+            renderCalendarHeader();
+        });
+
+        document.getElementById('btn-next-week')?.addEventListener('click', () => {
+            currentCalendarDate.setDate(currentCalendarDate.getDate() + 7);
+            renderCalendarHeader();
+        });
+
+        document.getElementById('btn-today')?.addEventListener('click', () => {
+            currentCalendarDate = new Date();
+            renderCalendarHeader();
+        });
+
+        // View Toggles (Visual only for now)
+        document.getElementById('btn-view-week')?.addEventListener('click', (e) => {
+            e.currentTarget.classList.add('bg-white', 'dark:bg-slate-600', 'shadow', 'text-primary', 'dark:text-white');
+            e.currentTarget.classList.remove('hover:bg-white', 'dark:hover:bg-slate-700', 'text-slate-500', 'dark:text-slate-400');
+
+            const monthBtn = document.getElementById('btn-view-month');
+            monthBtn.classList.remove('bg-white', 'dark:bg-slate-600', 'shadow', 'text-primary', 'dark:text-white');
+            monthBtn.classList.add('hover:bg-white', 'dark:hover:bg-slate-700', 'text-slate-500', 'dark:text-slate-400');
+        });
+
+        document.getElementById('btn-view-month')?.addEventListener('click', (e) => {
+            e.currentTarget.classList.add('bg-white', 'dark:bg-slate-600', 'shadow', 'text-primary', 'dark:text-white');
+            e.currentTarget.classList.remove('hover:bg-white', 'dark:hover:bg-slate-700', 'text-slate-500', 'dark:text-slate-400');
+
+            const weekBtn = document.getElementById('btn-view-week');
+            weekBtn.classList.remove('bg-white', 'dark:bg-slate-600', 'shadow', 'text-primary', 'dark:text-white');
+            weekBtn.classList.add('hover:bg-white', 'dark:hover:bg-slate-700', 'text-slate-500', 'dark:text-slate-400');
+
+            alert('Month view coming soon!');
+        });
+
+    </script>
+</body>
+
+</html>

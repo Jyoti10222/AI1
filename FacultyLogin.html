@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trainer Login | AI-TECH PRO</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981", // emerald-500 for Trainer
+                        "primary-hover": "#059669",
+                        "dark-bg": "#0f172a",
+                        "dark-card": "#1e293b",
+                    },
+                    fontFamily: { sans: ["Inter", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 transition-colors duration-200 antialiased">
+    <div class="relative flex min-h-screen flex-col items-center justify-center p-4">
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div class="absolute -top-[10%] left-[20%] w-[500px] h-[500px] bg-emerald-400/10 rounded-full blur-[100px]">
+            </div>
+        </div>
+
+        <div class="w-full max-w-md z-10">
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center size-16 rounded-2xl bg-emerald-500 text-white shadow-lg mb-4">
+                    <span class="material-symbols-outlined text-[32px]">school</span>
+                </div>
+                <h1 class="text-3xl font-black text-slate-900 dark:text-white">Trainer Portal</h1>
+                <p class="text-slate-500 mt-2">Manage your batches and students</p>
+            </div>
+
+            <div
+                class="bg-white dark:bg-dark-card rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 p-8">
+                <form id="trainerLoginForm" onsubmit="trainerLogin(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Trainer
+                            Email</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+                            <input type="email" id="email" required placeholder="trainer@aitechpro.com"
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">Password</label>
+                            <a href="ForgotPassword.html"
+                                class="text-xs font-semibold text-emerald-600 hover:text-emerald-500 hover:underline">Forgot
+                                password?</a>
+                        </div>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
+                            <input type="password" id="password" required placeholder="••••••••"
+                                class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Security
+                                Check</span>
+                            <button type="button" onclick="generateCaptcha()"
+                                class="text-emerald-600 dark:text-emerald-400 text-xs hover:underline">Refresh</button>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div id="captchaText"
+                                class="text-2xl font-black tracking-widest italic select-none line-through decoration-emerald-500/50 bg-white dark:bg-slate-800 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 min-w-[120px] text-center">
+                                XXXXXX</div>
+                            <input type="text" id="captchaInput" required placeholder="Enter code"
+                                class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-lg shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.98]">
+                        Access Dashboard
+                    </button>
+                </form>
+            </div>
+
+            <p class="text-center mt-8 text-sm text-slate-500">
+                Facing issues? <a href="#" class="text-emerald-600 font-bold hover:underline">Contact Faculty Admin</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let generatedCaptcha = "";
+        function generateCaptcha() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            generatedCaptcha = captcha;
+            document.getElementById("captchaText").innerText = captcha;
+            document.getElementById("captchaInput").value = "";
+        }
+
+        window.onload = async function () {
+            // 1. Sync from Server (Crucial for file:// isolation)
+            try {
+                const res = await fetch('http://localhost:8080/api/trainers');
+                const serverData = await res.json();
+                if (serverData.success && Array.isArray(serverData.data)) {
+                    localStorage.setItem('trainers_data', JSON.stringify(serverData.data));
+                    console.log('Synced trainers from server:', serverData.data.length);
+                }
+            } catch (err) {
+                console.warn('Server sync failed (Offline?)', err);
+            }
+
+            generateCaptcha(); // Call captcha generation on load
+            try {
+                const debugDiv = document.createElement('div');
+                debugDiv.className = 'fixed bottom-4 left-4 right-4 p-4 bg-slate-900 border border-slate-700 rounded-xl z-[1000] text-xs font-mono shadow-2xl overflow-y-auto max-h-64';
+
+                let html = `<h4 class="text-white font-bold mb-2 flex justify-between">
+                    <span>🔮 DIAGNOSTICS CHAIN</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-red-400 hover:text-red-300">Close</button>
+                    </h4>`;
+
+                // 1. LocalStorage Check
+                const STORAGE_KEY = 'trainers_data';
+                const localData = localStorage.getItem(STORAGE_KEY);
+                html += `<div class="mb-3 pb-3 border-b border-slate-700">
+                            <div class="font-bold text-blue-400 mb-1">BROWSER STORAGE (Local)</div>`;
+
+                if (localData) {
+                    try {
+                        const localTrainers = JSON.parse(localData);
+                        html += `<div class="text-green-400">✓ Data Present (Count: ${localTrainers.length})</div>`;
+                        if (localTrainers.length > 0) {
+                            html += `<ul class="mt-1 space-y-1">` +
+                                localTrainers.map(t =>
+                                    `<li class="flex items-center justify-between bg-slate-800 p-1 rounded">
+                                        <span class="text-slate-300">${t.email}</span>
+                                        <button type="button" onclick="document.getElementById('email').value='${t.email}'; document.getElementById('password').value='${t.password}';" class="px-2 py-0.5 bg-blue-600 text-white rounded text-[10px] hover:bg-blue-500">Auto-Fill</button>
+                                    </li>`).join('') + `</ul>`;
+                        } else {
+                            html += `<div class="text-slate-500">Array is empty []</div>`;
+                        }
+                    } catch (e) {
+                        html += `<div class="text-red-500">JSON Parse Error</div>`;
+                    }
+                } else {
+                    html += `<div class="text-amber-500">No local data found</div>`;
+                }
+                html += `</div>`;
+
+                // 2. Server Check
+                html += `<div><div class="font-bold text-purple-400 mb-1">SERVER DATABASE (API)</div>`;
+                try {
+                    const res = await fetch('http://localhost:8080/api/trainers');
+                    const serverData = await res.json();
+
+                    if (serverData.success) {
+                        html += `<div class="text-green-400">✓ Online (Count: ${serverData.count})</div>`;
+                        if (serverData.data && serverData.data.length > 0) {
+                            html += `<ul class="mt-1 space-y-1">` +
+                                serverData.data.map(t =>
+                                    `<li class="flex items-center justify-between bg-slate-800 p-1 rounded">
+                                        <span class="text-slate-300">${t.email}</span>
+                                        <span class="text-gray-500 text-[10px]">${t.status}</span>
+                                    </li>`).join('') + `</ul>`;
+                        } else {
+                            html += `<div class="text-slate-500">Database is empty</div>`;
+                        }
+                    } else {
+                        html += `<div class="text-red-400">Server Error: ${serverData.message}</div>`;
+                    }
+                } catch (err) {
+                    html += `<div class="text-red-500 font-bold">❌ CONNECTION FAILED</div>
+                             <div class="text-slate-400 mt-1">Is 'node server.js' running?</div>`;
+                }
+                html += `</div>`;
+
+                debugDiv.innerHTML = html;
+                document.body.appendChild(debugDiv); // Append to body, not form
+            } catch (e) {
+                console.error("Debug stats failed", e);
+            }
+        };
+
+        async function trainerLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const captchaEntered = document.getElementById("captchaInput").value.trim();
+
+            if (captchaEntered !== generatedCaptcha) {
+                alert("Invalid CAPTCHA. Please try again.");
+                generateCaptcha();
+                return;
+            }
+
+            // Check trainer status from localStorage
+            const STORAGE_KEY = 'trainers_data';
+            let trainers = [];
+
+            try {
+                const data = localStorage.getItem(STORAGE_KEY);
+                trainers = data ? JSON.parse(data) : [];
+            } catch (error) {
+                console.error('Error loading trainers:', error);
+            }
+
+            // Find trainer in localStorage
+            const trainer = trainers.find(t => t.email.toLowerCase() === email.toLowerCase());
+
+            if (trainer) {
+                // 1. Check Status - Accept both 'active' and 'approved' (admin sets 'approved')
+                const status = trainer.status.toLowerCase();
+                if (status !== 'active' && status !== 'approved') {
+                    alert("⚠️ Your account is currently inactive.\n\nPlease contact the administrator to activate your account before logging in.");
+                    generateCaptcha();
+                    return;
+                }
+
+                // 2. Check Password
+                // Note: In a real app, passwords should be hashed. Here we compare plain text for the prototype.
+                if (trainer.password && trainer.password !== password) {
+                    alert("Invalid password. Please try again.");
+                    generateCaptcha();
+                    return;
+                }
+
+                // 3. Login Success (Local)
+                alert("Login successful! Welcome to the Faculty Portal.");
+                localStorage.setItem('trainer', JSON.stringify(trainer));
+                window.location.href = "FacultyDashboard.html";
+                return;
+            }
+
+            // Fallback: If not found locally, try backend
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/trainers/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("Login successful! Welcome to the Faculty Portal.");
+                    localStorage.setItem('trainer', JSON.stringify(result.trainer));
+                    window.location.href = "FacultyDashboard.html";
+                } else {
+                    alert("Invalid credentials. Please try again.");
+                    generateCaptcha();
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                const available = trainers.map(t => t.email).join(", ");
+                alert(`Login failed.\n\nAccount '${email}' not found locally.\nAvailable email(s): ${available || 'None'}\n\n(Server connection also failed)`);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Center - Tech-Pro AI Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-600 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-white">notifications_active</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 leading-tight">Notification Center</h1>
+                        <p class="text-xs text-gray-500">Admin Dashboard</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div id="liveClock"
+                        class="text-sm font-mono text-gray-500 bg-gray-100 px-3 py-1 rounded-md hidden md:block">
+                        --:--:--
+                    </div>
+                    <a href="A5Dashboard.html" class="text-sm font-medium text-gray-500 hover:text-indigo-600">Back to
+                        Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- LEFT: Compose Notification -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-24">
+                    <h2 class="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-indigo-600">edit_square</span>
+                        Compose
+                    </h2>
+
+                    <form id="notificationForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                            <input type="text" id="notifTitle" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                                placeholder="e.g., System Maintenance">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="notifMessage" rows="4" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                                placeholder="Write your notification message here..."></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                                <select id="notifType" aria-label="Notification Type"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option value="info">ℹ️ Info</option>
+                                    <option value="success">✅ Success</option>
+                                    <option value="warning">⚠️ Warning</option>
+                                    <option value="error">🚨 Urgent</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Audience</label>
+                                <select id="notifAudience" aria-label="Notification Audience"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option value="all">Everywhere</option>
+                                    <option value="online">Online Batches</option>
+                                    <option value="offline">Offline Batches</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full mt-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">send</span> Send Notification
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT: History -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                        <h2 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-500">history</span>
+                            Recent Notifications
+                        </h2>
+                        <button onclick="loadNotifications()"
+                            class="text-indigo-600 hover:text-indigo-800 text-sm font-medium flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[18px]">refresh</span> Refresh
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr
+                                    class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500 font-semibold">
+                                    <th class="px-6 py-4">Title / Message</th>
+                                    <th class="px-6 py-4">Type</th>
+                                    <th class="px-6 py-4">Audience</th>
+                                    <th class="px-6 py-4">Sent At</th>
+                                </tr>
+                            </thead>
+                            <tbody id="notificationsList" class="divide-y divide-gray-100 text-sm">
+                                <tr>
+                                    <td colspan="4" class="px-6 py-8 text-center text-gray-500">
+                                        Loading notifications...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api';
+
+        // 1. Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('liveClock').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Load Notifications
+        async function loadNotifications() {
+            try {
+                const res = await fetch(`${API_URL}/notifications`);
+                const json = await res.json();
+
+                const tbody = document.getElementById('notificationsList');
+                tbody.innerHTML = '';
+
+                if (!json.success || !json.data || json.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">No notifications found</td></tr>`;
+                    return;
+                }
+
+                json.data.forEach(n => {
+                    let typeBadge = '';
+                    if (n.type === 'info') typeBadge = '<span class="px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs font-bold">Info</span>';
+                    else if (n.type === 'success') typeBadge = '<span class="px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-bold">Success</span>';
+                    else if (n.type === 'warning') typeBadge = '<span class="px-2 py-1 rounded bg-yellow-100 text-yellow-700 text-xs font-bold">Warning</span>';
+                    else if (n.type === 'error') typeBadge = '<span class="px-2 py-1 rounded bg-red-100 text-red-700 text-xs font-bold">Urgent</span>';
+
+                    const date = new Date(n.date).toLocaleString();
+
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-gray-50 transition-colors';
+                    tr.innerHTML = `
+                        <td class="px-6 py-4">
+                            <p class="font-bold text-gray-900">${n.title}</p>
+                            <p class="text-gray-500 text-xs mt-1 truncate max-w-xs">${n.message}</p>
+                        </td>
+                        <td class="px-6 py-4">${typeBadge}</td>
+                        <td class="px-6 py-4 capitalize text-gray-600">${n.audience}</td>
+                        <td class="px-6 py-4 text-gray-500 text-xs font-mono">${date}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+            } catch (err) {
+                console.error(err);
+                showToast('Failed to load notifications', 'error');
+            }
+        }
+
+        // 3. Send Notification
+        document.getElementById('notificationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Sending...';
+
+            const payload = {
+                title: document.getElementById('notifTitle').value,
+                message: document.getElementById('notifMessage').value,
+                type: document.getElementById('notifType').value,
+                audience: document.getElementById('notifAudience').value
+            };
+
+            try {
+                const res = await fetch(`${API_URL}/notifications`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    showToast('Notification sent successfully!', 'success');
+                    e.target.reset();
+                    loadNotifications();
+                } else {
+                    showToast(json.message || 'Failed to send', 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Network error', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+
+        // 4. Toast
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const el = document.createElement('div');
+
+            let bg = 'bg-slate-800';
+            let icon = 'info';
+            if (type === 'success') { bg = 'bg-green-600'; icon = 'check_circle'; }
+            if (type === 'error') { bg = 'bg-red-600'; icon = 'error'; }
+
+            el.className = `${bg} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform translate-y-10 opacity-0 transition-all duration-300`;
+            el.innerHTML = `<span class="material-symbols-outlined">${icon}</span> <span class="font-medium text-sm">${msg}</span>`;
+
+            container.appendChild(el);
+
+            // Animation
+            requestAnimationFrame(() => {
+                el.classList.remove('translate-y-10', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                el.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => el.remove(), 300);
+            }, 3000);
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadNotifications);
+    </script>
+</body>
+
+</html>
